@@ -1,0 +1,2 @@
+# Cancer-Report-Validator
+The Cancer Report Validator (CRV) is an interactive tool for validating the content of electronic submissions of cancer-related medical information prior to a system's communication with a public health central cancer registry. The CRV conforms to the [HL7 Implementation Guide for CDA® Release 2: Reporting to Public Health Cancer Registries from Ambulatory Healthcare Providers, Release 1; DSTU Release 1.1 - US Realm](http://www.hl7.org/implement/standards/product_brief.cfm?product_id=398").

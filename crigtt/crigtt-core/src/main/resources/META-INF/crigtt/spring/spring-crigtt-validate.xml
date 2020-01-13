@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:lang="http://www.springframework.org/schema/lang"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:task="http://www.springframework.org/schema/task"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    
+    <!--====================================================================================================
+    = DOCUMENTS
+    =====================================================================================================-->
+    <beans:bean id="docSchematronSkeleton" parent="doc" factory-bean="docBuilderCrigtt" factory-method="build"
+        c:src="classpath*:META-INF/crigtt/schematron/iso-schematron-xslt2/iso_schematron_skeleton_for_saxon.xsl"
+        p:uri="iso_schematron_skeleton_for_saxon.xsl"/>
+
+    <!--====================================================================================================
+    = TESTCASE SOURCES
+    =====================================================================================================-->
+    <util:list id="testcaseSources">
+        <beans:value>classpath*:META-INF/crigtt/data/validate/testcases/crigtt-validate-testcases-testcase0.xml</beans:value>
+        <beans:value>classpath*:META-INF/crigtt/data/validate/testcases/crigtt-validate-testcases-testcase1a.xml</beans:value>
+        <beans:value>classpath*:META-INF/crigtt/data/validate/testcases/crigtt-validate-testcases-testcase1b.xml</beans:value>
+        <beans:value>classpath*:META-INF/crigtt/data/validate/testcases/crigtt-validate-testcases-testcase2.xml</beans:value>
+        <beans:value>classpath*:META-INF/crigtt/data/validate/testcases/crigtt-validate-testcases-testcase3.xml</beans:value>
+        <beans:value>classpath*:META-INF/crigtt/data/validate/testcases/crigtt-validate-testcases-testcase4.xml</beans:value>
+    </util:list>
+
+    <!--====================================================================================================
+    = XSLT EXECUTABLES
+    =====================================================================================================-->
+    <beans:bean id="xsltExecSchematronInclude" parent="xsltExecCrigtt" factory-bean="xsltCompilerCrigtt" factory-method="compile"
+        c:src="classpath*:META-INF/crigtt/schematron/iso-schematron-xslt2/iso_dsdl_include.xsl"/>
+    
+    <beans:bean id="xsltExecSchematronExpand" parent="xsltExecCrigtt" factory-bean="xsltCompilerCrigtt" factory-method="compile"
+        c:src="classpath*:META-INF/crigtt/schematron/iso-schematron-xslt2/iso_abstract_expand.xsl"/>
+    
+    <beans:bean id="xsltExecSchematronValidationReport" parent="xsltExecCrigtt" factory-bean="xsltCompilerCrigtt" factory-method="compile"
+        c:src="classpath*:META-INF/crigtt/schematron/iso-schematron-xslt2/iso_svrl_for_xslt2.xsl"/>
+    
+    <beans:bean id="xsltExecSchematronPostProcess" parent="xsltExecCrigtt" factory-bean="xsltCompilerCrigtt" factory-method="compile"
+        c:src="classpath*:META-INF/crigtt/style/crigtt/crigtt-schematron-post-process.xsl"/>
+    
+    <beans:bean id="xsltExecValidatorResponse" parent="xsltExecCrigtt" factory-bean="xsltCompilerCrigtt" factory-method="compile" abstract="true">
+        <beans:constructor-arg name="extFuncs">
+            <beans:array>
+                <beans:ref bean="extFuncDefaultIfBlank"/>
+                <beans:ref bean="extFuncEscapeHtml"/>
+                <beans:ref bean="extFuncIsBlank"/>
+                <beans:ref bean="extFuncFormatTimestamp"/>
+            </beans:array>
+        </beans:constructor-arg>
+    </beans:bean>
+    
+    <beans:bean id="xsltExecValidatorResponseHtml" parent="xsltExecValidatorResponse" factory-bean="xsltCompilerCrigtt" factory-method="compile"
+        c:src="classpath*:META-INF/crigtt/style/crigtt/crigtt-validate-response-html.xsl"/>
+    
+    <!--====================================================================================================
+    = VALIDATOR SCHEMATRONS
+    =====================================================================================================-->
+    <beans:bean id="validatorSchematron" class="gov.hhs.onc.crigtt.validate.ValidatorSchematron" abstract="true"/>
+    
+    <beans:bean id="validatorSchematronImpl" class="gov.hhs.onc.crigtt.validate.impl.ValidatorSchematronImpl" parent="validatorSchematron" abstract="true"
+        p:queryBinding="xslt2"
+        p:schemaVersion="ISO19757-3">
+        <beans:property name="extensionFunctions">
+            <beans:array>
+                <beans:ref bean="extFuncLoc"/>
+                <beans:ref bean="extFuncValidateVocabStatic"/>
+                <beans:ref bean="extFuncValidateVocabDynamic"/>
+            </beans:array>
+        </beans:property>
+        <beans:property name="parameters">
+            <beans:map>
+                <beans:entry key="allow-foreign" value="true" value-type="java.lang.Boolean"/>
+                <beans:entry key="diagnose" value="#{ T(gov.hhs.onc.crigtt.config.CrigttConfigurationValues).YES }"/>
+                <beans:entry key="full-path-notation" value="2"/>
+                <beans:entry key="generate-path" value="true" value-type="java.lang.Boolean"/>
+                <beans:entry key="langCode" value="#{ T(java.util.Locale).ENGLISH.language }"/>
+            </beans:map>
+        </beans:property>
+        <beans:property name="referencedDocuments">
+            <beans:array>
+                <beans:ref bean="docSchematronSkeleton"/>
+            </beans:array>
+        </beans:property>
+        <beans:property name="xsltExecutables">
+            <beans:array>
+                <beans:ref bean="xsltExecSchematronInclude"/>
+                <beans:ref bean="xsltExecSchematronExpand"/>
+                <beans:ref bean="xsltExecSchematronValidationReport"/>
+                <beans:ref bean="xsltExecSchematronPostProcess"/>
+            </beans:array>
+        </beans:property>
+    </beans:bean>
+    
+    <beans:bean id="validatorSchematronCcdaR2CancerReg" parent="validatorSchematronImpl"
+        p:id="ccda-r2-cancer-reg"
+        p:name="Consolidated Clinical Document Architecture (C-CDA) Release 2.0 Cancer Registry DSTU 1.1"
+        p:source="classpath*:META-INF/crigtt/schematron/ccda-r2-cancer-reg/CancerIG_R1D1dot1.sch">
+        <beans:property name="vocabServices">
+            <beans:array>
+                <beans:ref bean="vocabServiceStaticCrigtt"/>
+                <beans:ref bean="vocabServiceDynamicCrigtt"/>
+            </beans:array>
+        </beans:property>
+    </beans:bean>
+    
+    <!--====================================================================================================
+    = CACHE MANAGERS
+    =====================================================================================================-->
+    <!--suppress SpringPlaceholdersInspection -->
+    <beans:bean id="cacheManagerValidateResults" parent="cacheManagerCrigtt"
+        p:maxBytesLocalHeap="${crigtt.cache.validate.results.heap.max.bytes}">
+        <beans:property name="configuration">
+            <beans:bean parent="cacheManagerConfig"/>
+        </beans:property>
+    </beans:bean>
+    
+    <!--====================================================================================================
+    = CACHES
+    =====================================================================================================-->
+    <beans:bean id="cacheValidateResults" parent="cacheCrigtt"
+        p:manager-ref="cacheManagerValidateResults">
+        <beans:property name="configuration">
+            <beans:bean parent="cacheConfig"/>
+        </beans:property>
+    </beans:bean>
+    
+    <!--====================================================================================================
+    = THREAD GROUPS
+    =====================================================================================================-->
+    <beans:bean id="threadGroupValidate" parent="threadGroup">
+        <beans:constructor-arg index="0" type="java.lang.ThreadGroup" ref="threadGroupCrigtt"/>
+        <beans:constructor-arg index="1" type="java.lang.String" value="#{ threadGroupCrigtt.name }-validate"/>
+    </beans:bean>
+    
+    <!--====================================================================================================
+    = TASK EXECUTION
+    =====================================================================================================-->
+    <!--suppress SpringPlaceholdersInspection -->
+    <beans:bean id="taskExecValidate" parent="taskExecCrigtt" abstract="true"
+        p:keepAliveSeconds="${crigtt.task.exec.validate.keep.alive.seconds}"
+        p:threadGroup-ref="threadGroupValidate"/>
+    
+    <!--suppress SpringPlaceholdersInspection -->
+    <beans:bean id="taskExecValidateService" parent="taskExecValidate"
+        p:corePoolSize="${crigtt.task.exec.validate.service.pool.size.core}"
+        p:maxPoolSize="${crigtt.task.exec.validate.service.pool.size.max}"
+        p:threadNamePrefix="#{ threadGroupValidate.name }-service-"/>
+    
+    <!--====================================================================================================
+    = VALIDATOR TASKS
+    =====================================================================================================-->
+    <beans:bean id="validatorTask" class="gov.hhs.onc.crigtt.validate.ValidatorTask" abstract="true"/>
+    
+    <!--====================================================================================================
+    = VALIDATOR SCHEMATRON TASKS
+    =====================================================================================================-->
+    <beans:bean id="validatorTaskSchematron" class="gov.hhs.onc.crigtt.validate.SchematronValidatorTask" parent="validatorTask" abstract="true"/>
+    
+    <beans:bean id="validatorTaskSchematronImpl" class="gov.hhs.onc.crigtt.validate.impl.SchematronValidatorTaskImpl" parent="validatorTaskSchematron"
+        abstract="true"/>
+    
+    <beans:bean id="validatorTaskSchematronCrigtt" parent="validatorTaskSchematronImpl" abstract="true">
+        <beans:property name="phaseLevels">
+            <beans:map>
+                <beans:entry key="infos" value="INFO"/>
+                <beans:entry key="warnings" value="WARN"/>
+                <beans:entry key="errors" value="ERROR"/>
+            </beans:map>
+        </beans:property>
+    </beans:bean>
+    
+    <!--suppress SpringBeanConstructorArgInspection -->
+    <beans:bean id="validatorTaskSchematronCcdaR2CancerReg" parent="validatorTaskSchematronCrigtt" lazy-init="true" scope="prototype"
+        p:schematron-ref="validatorSchematronCcdaR2CancerReg"/>
+
+    <!--====================================================================================================
+    = CONTEXT SPECIFIC VALIDATOR TASKS
+    =====================================================================================================-->
+    <beans:bean id="validatorTaskContextSpecific" class="gov.hhs.onc.crigtt.validate.ContextSpecificValidatorTask" parent="validatorTask" abstract="true"/>
+
+    <beans:bean id="validatorTaskContextSpecificImpl" class="gov.hhs.onc.crigtt.validate.impl.ContextSpecificValidatorTaskImpl"
+        parent="validatorTaskContextSpecific" abstract="true"/>
+
+    <!--suppress SpringBeanConstructorArgInspection -->
+    <beans:bean id="validatorTaskContextSpecificCrigtt" parent="validatorTaskContextSpecificImpl" lazy-init="true" scope="prototype"
+        p:testcaseSources-ref="testcaseSources"/>
+
+    <!--====================================================================================================
+    = VALIDATOR SERVICES
+    =====================================================================================================-->
+    <beans:bean id="validatorService" class="gov.hhs.onc.crigtt.validate.ValidatorService" abstract="true"/>
+    
+    <beans:bean id="validatorServiceImpl" class="gov.hhs.onc.crigtt.validate.impl.ValidatorServiceImpl" parent="validatorService"
+        p:digestAlgorithm="SHA512"
+        p:digestProvider="#{ new org.bouncycastle.jce.provider.BouncyCastleProvider() }">
+        <beans:property name="taskBeanNames">
+            <beans:array>
+                <beans:idref bean="validatorTaskSchematronCcdaR2CancerReg"/>
+                <beans:idref bean="validatorTaskContextSpecificCrigtt"/>
+            </beans:array>
+        </beans:property>
+    </beans:bean>
+</beans:beans>

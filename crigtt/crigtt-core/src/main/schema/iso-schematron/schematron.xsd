@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+(c) International Organization for Standardization 2005.
+Permission to copy in any form is granted for use with conforming
+SGML systems and applications as defined in ISO 8879,
+provided this notice is included in all copies.
+-->
+<xsd:schema
+    elementFormDefault="qualified"
+    targetNamespace="http://purl.oclc.org/dsdl/schematron"
+    xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    
+    <!-- Element declarations -->
+    <xsd:element name="schema">
+        <xsd:complexType>
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                <xsd:group ref="sch:foreign"/>
+                <xsd:element ref="sch:include"/>
+                <xsd:element ref="sch:title"/>
+                <xsd:element ref="sch:ns"/>
+                <xsd:element ref="sch:p"/>
+                <xsd:element ref="sch:let"/>
+                <xsd:element ref="sch:phase"/>
+                <xsd:element ref="sch:pattern"/>
+                <xsd:element ref="sch:diagnostics"/>
+            </xsd:choice>
+            <xsd:attribute name="id" type="xsd:ID"/>
+            <xsd:attributeGroup ref="sch:rich"/>
+            <xsd:attribute name="schemaVersion" type="sch:non-empty-string"/>
+            <xsd:attribute name="defaultPhase" type="xsd:IDREF"/>
+            <xsd:attribute name="queryBinding" type="sch:non-empty-string"/>
+            <xsd:attributeGroup ref="sch:foreign"/>
+        </xsd:complexType>
+    </xsd:element>
+  
+    <xsd:element name="active">
+        <xsd:complexType mixed="true">
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                <xsd:group ref="sch:foreign"/>
+                <xsd:element ref="sch:dir"/>
+                <xsd:element ref="sch:emph"/>
+                <xsd:element ref="sch:span"/>
+            </xsd:choice>
+            <xsd:attribute name="pattern" use="required" type="xsd:IDREF"/>
+            <xsd:attributeGroup ref="sch:foreign"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="assert">
+        <xsd:complexType mixed="true">
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                <xsd:group ref="sch:foreign"/>
+                <xsd:element ref="sch:name"/>
+                <xsd:element ref="sch:value-of"/>
+                <xsd:element ref="sch:emph"/>
+                <xsd:element ref="sch:dir"/>
+                <xsd:element ref="sch:span"/>
+            </xsd:choice>
+            <xsd:attribute name="test" use="required" type="sch:exprValue"/>
+            <xsd:attribute name="flag" type="sch:flagValue"/>
+            <xsd:attribute name="id" type="xsd:ID"/>
+            <xsd:attribute name="diagnostics" type="xsd:IDREFS"/>
+            <xsd:attributeGroup ref="sch:rich"/>
+            <xsd:attributeGroup ref="sch:linkable"/>
+            <xsd:attributeGroup ref="sch:foreign"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="diagnostic">
+        <xsd:complexType mixed="true">
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                <xsd:group ref="sch:foreign"/>
+                <xsd:element ref="sch:value-of"/>
+                <xsd:element ref="sch:emph"/>
+                <xsd:element ref="sch:dir"/>
+                <xsd:element ref="sch:span"/>
+            </xsd:choice>
+            <xsd:attribute name="id" use="required" type="xsd:ID"/>
+            <xsd:attributeGroup ref="sch:rich"/>
+            <xsd:attributeGroup ref="sch:foreign"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="diagnostics">
+        <xsd:complexType>
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                <xsd:group ref="sch:foreign"/>
+                <xsd:element ref="sch:include"/>
+                <xsd:element ref="sch:diagnostic"/>
+            </xsd:choice>
+            <xsd:attributeGroup ref="sch:foreign"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="dir">
+        <xsd:complexType mixed="true">
+            <xsd:group ref="sch:foreign"/>
+            <xsd:attribute name="value">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:token">
+                        <xsd:enumeration value="ltr"/>
+                        <xsd:enumeration value="rtl"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:attribute>
+            <xsd:attributeGroup ref="sch:foreign"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="emph">
+        <xsd:complexType mixed="true"/>
+    </xsd:element>
+    
+    <xsd:element name="extends">
+        <xsd:complexType>
+            <xsd:attribute name="rule" use="required" type="xsd:IDREF"/>
+            <xsd:attributeGroup ref="sch:foreign-empty"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="let">
+        <xsd:complexType>
+            <xsd:attribute name="name" use="required" type="sch:nameValue"/>
+            <xsd:attribute name="value" use="required" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="name">
+        <xsd:complexType>
+            <xsd:attribute name="path" type="sch:pathValue"/>
+            <xsd:attributeGroup ref="sch:foreign-empty"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="ns">
+        <xsd:complexType>
+            <xsd:attribute name="uri" use="required" type="sch:uriValue"/>
+            <xsd:attribute name="prefix" use="required" type="sch:nameValue"/>
+            <xsd:attributeGroup ref="sch:foreign-empty"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="p">
+        <xsd:complexType mixed="true">
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                <xsd:group ref="sch:foreign"/>
+                <xsd:element ref="sch:dir"/>
+                <xsd:element ref="sch:emph"/>
+                <xsd:element ref="sch:span"/>
+            </xsd:choice>
+            <xsd:attribute name="id" type="xsd:ID"/>
+            <xsd:attribute name="class" type="sch:classValue"/>
+            <xsd:attribute name="icon" type="sch:uriValue"/>
+            <xsd:attributeGroup ref="sch:foreign"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="param">
+        <xsd:complexType>
+            <xsd:attribute name="name" use="required" type="sch:nameValue"/>
+            <xsd:attribute name="value" use="required" type="sch:non-empty-string"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="pattern">
+        <xsd:complexType>
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                <xsd:group ref="sch:foreign"/>
+                <xsd:element ref="sch:include"/>
+                <xsd:element ref="sch:title"/>
+                <xsd:element ref="sch:p"/>
+                <xsd:element ref="sch:let"/>
+                <xsd:element ref="sch:rule"/>
+                <xsd:element ref="sch:param"/>
+            </xsd:choice>
+            <xsd:attributeGroup ref="sch:rich"/>
+            <xsd:attributeGroup ref="sch:foreign"/>
+            <xsd:attribute name="abstract" type="xsd:boolean"/>
+            <xsd:attribute name="id" type="xsd:ID"/>
+            <xsd:attribute name="is-a" type="xsd:IDREF"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="phase">
+        <xsd:complexType>
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                <xsd:group ref="sch:foreign"/>
+                <xsd:element ref="sch:include"/>
+                <xsd:element ref="sch:p"/>
+                <xsd:element ref="sch:let"/>
+                <xsd:element ref="sch:active"/>
+            </xsd:choice>
+            <xsd:attribute name="id" use="required" type="xsd:ID"/>
+            <xsd:attributeGroup ref="sch:rich"/>
+            <xsd:attributeGroup ref="sch:foreign"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="report">
+        <xsd:complexType mixed="true">
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                <xsd:group ref="sch:foreign"/>
+                <xsd:element ref="sch:name"/>
+                <xsd:element ref="sch:value-of"/>
+                <xsd:element ref="sch:emph"/>
+                <xsd:element ref="sch:dir"/>
+                <xsd:element ref="sch:span"/>
+            </xsd:choice>
+            <xsd:attribute name="test" use="required" type="sch:exprValue"/>
+            <xsd:attribute name="flag" type="sch:flagValue"/>
+            <xsd:attribute name="id" type="xsd:ID"/>
+            <xsd:attribute name="diagnostics" type="xsd:IDREFS"/>
+            <xsd:attributeGroup ref="sch:rich"/>
+            <xsd:attributeGroup ref="sch:linkable"/>
+            <xsd:attributeGroup ref="sch:foreign"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="rule">
+        <xsd:complexType>
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                <xsd:group ref="sch:foreign"/>
+                <xsd:element ref="sch:include"/>
+                <xsd:element ref="sch:let"/>
+                <xsd:element ref="sch:assert"/>
+                <xsd:element ref="sch:report"/>
+                <xsd:element ref="sch:extends"/>
+            </xsd:choice>
+            <xsd:attribute name="flag" type="sch:flagValue"/>
+            <xsd:attributeGroup ref="sch:rich"/>
+            <xsd:attributeGroup ref="sch:linkable"/>
+            <xsd:attributeGroup ref="sch:foreign"/>
+            <xsd:attribute name="abstract" type="xsd:boolean"/>
+            <xsd:attribute name="id" type="xsd:ID"/>
+            <xsd:attribute name="context" type="sch:pathValue"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="span">
+        <xsd:complexType mixed="true">
+            <xsd:group ref="sch:foreign"/>
+            <xsd:attribute name="class" use="required" type="sch:classValue"/>
+            <xsd:attributeGroup ref="sch:foreign"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="title">
+        <xsd:complexType mixed="true">
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="unbounded" ref="sch:dir"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="value-of">
+        <xsd:complexType>
+            <xsd:attribute name="select" use="required" type="sch:pathValue"/>
+            <xsd:attributeGroup ref="sch:foreign-empty"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <!-- common declarations -->
+    <xsd:element name="include">
+        <xsd:complexType>
+            <xsd:attribute name="href" use="required" type="sch:uriValue"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:attributeGroup name="rich">
+        <xsd:attribute name="icon" type="sch:uriValue"/>
+        <xsd:attribute name="see" type="sch:uriValue"/>
+        <xsd:attribute name="fpi" type="sch:fpiValue"/>
+    </xsd:attributeGroup>
+    
+    <xsd:attributeGroup name="linkable">
+        <xsd:attribute name="role" type="sch:roleValue"/>
+        <xsd:attribute name="subject" type="sch:pathValue"/>
+    </xsd:attributeGroup>
+    
+    <xsd:group name="foreign">
+        <xsd:sequence>
+            <xsd:group minOccurs="0" maxOccurs="unbounded" ref="sch:foreign-element"/>
+        </xsd:sequence>
+    </xsd:group>
+    
+    <xsd:attributeGroup name="foreign">
+        <xsd:attributeGroup ref="sch:foreign-attributes"/>
+    </xsd:attributeGroup>
+    
+    <xsd:attributeGroup name="foreign-empty">
+        <xsd:attributeGroup ref="sch:foreign-attributes"/>
+    </xsd:attributeGroup>
+    
+    <xsd:attributeGroup name="foreign-attributes">
+        <xsd:anyAttribute namespace="##other" processContents="skip"/>
+    </xsd:attributeGroup>
+    
+    <xsd:group name="foreign-element">
+        <xsd:sequence>
+            <xsd:any namespace="##other" processContents="skip"/>
+        </xsd:sequence>
+    </xsd:group>
+    
+    <!-- Data types -->
+    <xsd:simpleType name="uriValue">
+        <xsd:restriction base="xsd:anyURI"/>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="pathValue">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="exprValue">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="fpiValue">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="langValue">
+        <xsd:restriction base="xsd:language"/>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="roleValue">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="flagValue">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="nameValue">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    
+    <!-- In the default query language binding, xsd:NCNAME -->
+    <xsd:simpleType name="classValue">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="non-empty-string">
+        <xsd:restriction base="xsd:token">
+            <xsd:minLength value="1"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

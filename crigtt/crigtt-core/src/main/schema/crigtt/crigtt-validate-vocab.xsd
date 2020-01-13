@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema
+    elementFormDefault="qualified"
+    targetNamespace="urn:gov.hhs.onc.crigtt:validate-vocab"
+    xmlns:crigtt="urn:gov.hhs.onc.crigtt"
+    xmlns:crigtt-validate-vocab="urn:gov.hhs.onc.crigtt:validate-vocab"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    
+    <!--====================================================================================================
+    = IMPORTS
+    =====================================================================================================-->
+    <xsd:import namespace="urn:gov.hhs.onc.crigtt" schemaLocation="crigtt-core.xsd"/>
+    
+    <!--====================================================================================================
+    = SIMPLE TYPES: ENUMERATIONS
+    =====================================================================================================-->
+    <xsd:simpleType name="VocabTarget">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="CODE_ID"/>
+            <xsd:enumeration value="CODE_NAME"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <!--====================================================================================================
+    = COMPLEX TYPES
+    =====================================================================================================-->
+    <xsd:complexType name="ValueSet">
+        <xsd:sequence>
+            <xsd:group ref="crigtt:NameElements"/>
+            <xsd:group ref="crigtt:VersionElements"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="CodeSystem">
+        <xsd:sequence>
+            <xsd:group ref="crigtt:NameElements"/>
+            <xsd:group ref="crigtt:VersionElements"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="VocabSet">
+        <xsd:sequence>
+            <xsd:element name="groupingValueSet" type="crigtt-validate-vocab:ValueSet" minOccurs="0"/>
+            <xsd:element name="valueSet" type="crigtt-validate-vocab:ValueSet" minOccurs="0"/>
+            <xsd:element name="codeSystem" type="crigtt-validate-vocab:CodeSystem" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="VocabSets">
+        <xsd:sequence>
+            <xsd:element name="vocabSet" type="crigtt-validate-vocab:VocabSet" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="Code">
+        <xsd:sequence>
+            <xsd:group ref="crigtt:NameElements"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="Codes">
+        <xsd:sequence>
+            <xsd:element name="code" type="crigtt-validate-vocab:Code" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="VocabAssertion">
+        <xsd:sequence>
+            <xsd:group ref="crigtt:IdElements"/>
+            <xsd:element name="active" type="xsd:boolean" minOccurs="0" default="true"/>
+            <xsd:element name="optional" type="xsd:boolean" minOccurs="0" default="false"/>
+            <xsd:element name="target" type="crigtt-validate-vocab:VocabTarget" minOccurs="0" default="CODE_ID"/>
+            <xsd:element name="searchTarget" type="crigtt-validate-vocab:VocabTarget" minOccurs="0" default="CODE_ID"/>
+            <xsd:element name="expectedVocabSets" type="crigtt-validate-vocab:VocabSets" minOccurs="0"/>
+            <xsd:element name="vocabContextExpression" type="xsd:string" minOccurs="0" default="."/>
+            <xsd:element name="groupingValueSetFallback" type="xsd:boolean" minOccurs="0" default="true"/>
+            <xsd:element name="groupingValueSetIdExpression" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="groupingValueSetNameExpression" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="groupingValueSetVersionExpression" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="valueSetFallback" type="xsd:boolean" minOccurs="0" default="true"/>
+            <xsd:element name="valueSetIdExpression" type="xsd:string" minOccurs="0" default="@sdtc:valueSet"/>
+            <xsd:element name="valueSetNameExpression" type="xsd:string" minOccurs="0" default="@sdtc:valueSetName"/>
+            <xsd:element name="valueSetVersionExpression" type="xsd:string" minOccurs="0" default="@sdtc:valueSetVersion"/>
+            <xsd:element name="codeSystemFallback" type="xsd:boolean" minOccurs="0" default="false"/>
+            <xsd:element name="codeSystemIdExpression" type="xsd:string" minOccurs="0" default="@codeSystem"/>
+            <xsd:element name="codeSystemNameExpression" type="xsd:string" minOccurs="0" default="@codeSystemName"/>
+            <xsd:element name="codeSystemVersionExpression" type="xsd:string" minOccurs="0" default="@codeSystemVersion"/>
+            <xsd:element name="codeIdFallback" type="xsd:boolean" minOccurs="0" default="false"/>
+            <xsd:element name="codeIdExpression" type="xsd:string" minOccurs="0" default="@code"/>
+            <xsd:element name="codeNameExpression" type="xsd:string" minOccurs="0" default="@displayName"/>
+            <xsd:element name="testExpressionOverride" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="VocabAssertions">
+        <xsd:sequence>
+            <xsd:element name="vocabAssertion" type="crigtt-validate-vocab:VocabAssertion" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <!--====================================================================================================
+    = ELEMENTS
+    =====================================================================================================-->
+    <xsd:element name="vocabAssertions" type="crigtt-validate-vocab:VocabAssertions"/>
+</xsd:schema>

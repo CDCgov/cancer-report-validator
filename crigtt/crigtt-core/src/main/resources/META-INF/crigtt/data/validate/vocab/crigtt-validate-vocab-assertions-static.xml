@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<crigtt-validate-vocab:vocabAssertions
+    xmlns:crigtt="urn:gov.hhs.onc.crigtt"
+    xmlns:crigtt-validate-vocab="urn:gov.hhs.onc.crigtt:validate-vocab">
+    
+    <!--====================================================================================================
+    = VOCABULARY ASSERTIONS
+    =====================================================================================================-->
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-81-7154</crigtt:id>
+        <crigtt-validate-vocab:codeIdExpression>@use</crigtt-validate-vocab:codeIdExpression>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-81-7158</crigtt:id>
+        <crigtt-validate-vocab:codeIdExpression>@qualifier</crigtt-validate-vocab:codeIdExpression>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-81-7160</crigtt:id>
+        <crigtt-validate-vocab:codeIdExpression>@qualifier</crigtt-validate-vocab:codeIdExpression>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-81-7155</crigtt:id>
+        <crigtt-validate-vocab:codeIdExpression>@qualifier</crigtt-validate-vocab:codeIdExpression>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-81-7161</crigtt:id>
+        <crigtt-validate-vocab:codeIdExpression>@qualifier</crigtt-validate-vocab:codeIdExpression>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-81-16850</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1098-7497</crigtt:id>
+        <crigtt-validate-vocab:codeIdExpression>@moodCode</crigtt-validate-vocab:codeIdExpression>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1098-14840</crigtt:id>
+        <crigtt-validate-vocab:codeIdExpression>@typeCode</crigtt-validate-vocab:codeIdExpression>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1098-32366</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1098-31525</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1098-8565</crigtt:id>
+        <crigtt-validate-vocab:codeIdExpression>@moodCode</crigtt-validate-vocab:codeIdExpression>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1098-8569</crigtt:id>
+        <crigtt-validate-vocab:codeIdExpression>@moodCode</crigtt-validate-vocab:codeIdExpression>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1098-8573</crigtt:id>
+        <crigtt-validate-vocab:codeIdExpression>@moodCode</crigtt-validate-vocab:codeIdExpression>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1098-14817</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1098-32886</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1098-14849</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1098-32476</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1098-14848</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1169-34014-c</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1169-34016-c</crigtt:id>
+        <crigtt-validate-vocab:target>CODE_NAME</crigtt-validate-vocab:target>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1169-34031-c</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1169-34033-c</crigtt:id>
+        <crigtt-validate-vocab:target>CODE_NAME</crigtt-validate-vocab:target>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1169-33243-c</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1169-32433</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1169-34083</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1169-34111</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1169-34121</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1169-34168</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1169-34195</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1169-34211</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1169-34227</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-81-7290</crigtt:id>
+        <crigtt-validate-vocab:codeIdExpression>@use</crigtt-validate-vocab:codeIdExpression>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1098-5259-v</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1098-10007-c</crigtt:id>
+        <crigtt-validate-vocab:codeIdExpression>@classCode</crigtt-validate-vocab:codeIdExpression>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1098-5303</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1098-32889</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1098-9045-v</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1098-32427-v</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+    
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1098-31229-v</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1169-34154</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1169-34055</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+
+    <crigtt-validate-vocab:vocabAssertion>
+        <crigtt:id>a-1169-34066</crigtt:id>
+    </crigtt-validate-vocab:vocabAssertion>
+</crigtt-validate-vocab:vocabAssertions>

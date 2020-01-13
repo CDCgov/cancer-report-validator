@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:lang="http://www.springframework.org/schema/lang"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:task="http://www.springframework.org/schema/task"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    
+    <!--====================================================================================================
+    = XML INPUT FACTORIES
+    =====================================================================================================-->
+    <beans:bean id="xmlInFactory" class="javax.xml.stream.XMLInputFactory" abstract="true"/>
+    
+    <beans:bean id="xmlInFactoryWoodstox" class="com.ctc.wstx.stax.WstxInputFactory" parent="xmlInFactory" abstract="true"/>
+    
+    <beans:bean id="xmlInFactoryCrigtt" class="gov.hhs.onc.crigtt.xml.impl.CrigttXmlInputFactory" parent="xmlInFactoryWoodstox"
+        p:XMLReporter-ref="errorListenerCrigtt">
+        <beans:property name="properties">
+            <beans:map>
+                <beans:entry key="#{ T(javax.xml.stream.XMLInputFactory).IS_REPLACING_ENTITY_REFERENCES }" value="false" value-type="java.lang.Boolean"/>
+                <beans:entry key="#{ T(javax.xml.stream.XMLInputFactory).IS_SUPPORTING_EXTERNAL_ENTITIES }" value="false" value-type="java.lang.Boolean"/>
+                <beans:entry key="#{ T(javax.xml.stream.XMLInputFactory).IS_VALIDATING }" value="true" value-type="java.lang.Boolean"/>
+                <beans:entry key="#{ T(com.ctc.wstx.api.WstxInputProperties).P_CACHE_DTDS }" value="false" value-type="java.lang.Boolean"/>
+                <beans:entry key="#{ T(com.ctc.wstx.api.WstxInputProperties).P_INPUT_BUFFER_LENGTH }" value="#{ 1024 * 1024 }" value-type="java.lang.Integer"/>
+                <beans:entry key="#{ T(javax.xml.stream.XMLInputFactory).SUPPORT_DTD }" value="false" value-type="java.lang.Boolean"/>
+                <beans:entry key="#{ T(org.codehaus.stax2.XMLStreamProperties).XSP_SUPPORT_XMLID }"
+                    value="#{ T(org.codehaus.stax2.XMLStreamProperties).XSP_V_XMLID_NONE }"/>
+            </beans:map>
+        </beans:property>
+    </beans:bean>
+    
+    <!--====================================================================================================
+    = SAX PARSER FACTORIES
+    =====================================================================================================-->
+    <beans:bean id="saxParserFactory" class="javax.xml.parsers.SAXParserFactory" abstract="true"/>
+    
+    <beans:bean id="saxParserFactoryWoodstox" class="com.ctc.wstx.sax.WstxSAXParserFactory" parent="saxParserFactory" abstract="true"/>
+    
+    <beans:bean id="saxParserFactoryCrigtt" class="gov.hhs.onc.crigtt.xml.impl.CrigttSaxParserFactory" parent="saxParserFactoryWoodstox"
+        c:xmlInputFactory-ref="xmlInFactoryCrigtt"/>
+    
+    <!--====================================================================================================
+    = XML OUTPUT FACTORIES
+    =====================================================================================================-->
+    <beans:bean id="xmlOutFactory" class="javax.xml.stream.XMLOutputFactory" abstract="true"/>
+    
+    <beans:bean id="xmlOutFactoryWoodstox" class="com.ctc.wstx.stax.WstxOutputFactory" parent="xmlOutFactory" abstract="true"/>
+    
+    <beans:bean id="xmlOutFactoryCrigtt" class="gov.hhs.onc.crigtt.xml.impl.CrigttXmlOutputFactory" parent="xmlOutFactoryWoodstox"
+        p:problemReporter-ref="errorListenerCrigtt"/>
+    
+    <!--====================================================================================================
+    = OBJECT FACTORIES
+    =====================================================================================================-->
+    <beans:bean id="objFactorySchematron" class="gov.hhs.onc.crigtt.schematron.ObjectFactory"/>
+    
+    <beans:bean id="objFactorySchematronImpl" class="gov.hhs.onc.crigtt.schematron.impl.ObjectFactory"/>
+    
+    <beans:bean id="objFactorySchematronSvrl" class="gov.hhs.onc.crigtt.schematron.svrl.ObjectFactory"/>
+    
+    <beans:bean id="objFactorySchematronSvrlImpl" class="gov.hhs.onc.crigtt.schematron.svrl.impl.ObjectFactory"/>
+    
+    <beans:bean id="objFactoryValidate" class="gov.hhs.onc.crigtt.validate.ObjectFactory"/>
+    
+    <beans:bean id="objFactoryValidateImpl" class="gov.hhs.onc.crigtt.validate.impl.ObjectFactory"/>
+
+    <beans:bean id="objFactoryValidateTestcases" class="gov.hhs.onc.crigtt.validate.testcases.ObjectFactory"/>
+
+    <beans:bean id="objFactoryValidateTestcasesImpl" class="gov.hhs.onc.crigtt.validate.testcases.impl.ObjectFactory"/>
+    
+    <beans:bean id="objFactoryValidateVocab" class="gov.hhs.onc.crigtt.validate.vocab.ObjectFactory"/>
+    
+    <beans:bean id="objFactoryValidateVocabImpl" class="gov.hhs.onc.crigtt.validate.vocab.impl.ObjectFactory"/>
+    
+    <!--====================================================================================================
+    = CHARACTER ESCAPE HANDLERS
+    =====================================================================================================-->
+    <beans:bean id="charEscapeHandler" class="com.sun.xml.bind.marshaller.CharacterEscapeHandler" abstract="true"/>
+    
+    <beans:bean id="charEscapeHandlerNio" class="com.sun.xml.bind.marshaller.NioEscapeHandler" parent="charEscapeHandler" abstract="true"/>
+    
+    <beans:bean id="charEscapeHandlerCrigtt" parent="charEscapeHandlerNio"
+        c:charsetName="#{ charsetUtf8.name() }"/>
+    
+    <!--====================================================================================================
+    = JAXB MARSHALLERS
+    =====================================================================================================-->
+    <beans:bean id="jaxbMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller" abstract="true"/>
+    
+    <beans:bean id="jaxbMarshallerCrigtt" class="gov.hhs.onc.crigtt.xml.impl.CrigttJaxbMarshaller" parent="jaxbMarshaller" abstract="true">
+        <beans:property name="marshallerProperties">
+            <beans:map>
+                <beans:entry key="#{ T(javax.xml.bind.Marshaller).JAXB_ENCODING }" value="#{ charsetUtf8.name() }"/>
+                <beans:entry key="#{ T(com.sun.xml.bind.marshaller.CharacterEscapeHandler).name }" value-ref="charEscapeHandlerCrigtt"/>
+            </beans:map>
+        </beans:property>
+    </beans:bean>
+    
+    <beans:bean id="jaxbMarshallerSchematron" parent="jaxbMarshallerCrigtt">
+        <beans:property name="packagesToScan">
+            <beans:array>
+                <beans:value>#{ objFactorySchematronImpl.class.package.name }</beans:value>
+            </beans:array>
+        </beans:property>
+    </beans:bean>
+    
+    <beans:bean id="jaxbMarshallerSchematronSvrl" parent="jaxbMarshallerCrigtt">
+        <beans:property name="packagesToScan">
+            <beans:array>
+                <beans:value>#{ objFactorySchematronSvrlImpl.class.package.name }</beans:value>
+            </beans:array>
+        </beans:property>
+    </beans:bean>
+    
+    <beans:bean id="jaxbMarshallerValidate" parent="jaxbMarshallerCrigtt">
+        <beans:property name="packagesToScan">
+            <beans:array>
+                <beans:value>#{ objFactoryValidateImpl.class.package.name }</beans:value>
+                <beans:value>#{ objFactoryValidateVocabImpl.class.package.name }</beans:value>
+                <beans:value>#{ objFactoryValidateTestcasesImpl.class.package.name }</beans:value>
+            </beans:array>
+        </beans:property>
+    </beans:bean>
+</beans:beans>

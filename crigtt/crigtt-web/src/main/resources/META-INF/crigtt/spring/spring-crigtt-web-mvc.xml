@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+    profile="crigtt.profile.app.context.web"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:lang="http://www.springframework.org/schema/lang"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:task="http://www.springframework.org/schema/task"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    
+    <!--====================================================================================================
+    = CONTEXT
+    =====================================================================================================-->
+    <mvc:annotation-driven conversion-service="conversionService"/>
+    
+    <!--====================================================================================================
+    = HANDLERS
+    =====================================================================================================-->
+    <mvc:default-servlet-handler/>
+    
+    <!--====================================================================================================
+    = INTERCEPTORS
+    =====================================================================================================-->
+    <beans:bean id="interceptorHandler" class="org.springframework.web.servlet.HandlerInterceptor" abstract="true"/>
+    
+    <beans:bean id="interceptorWebContent" class="org.springframework.web.servlet.mvc.WebContentInterceptor" parent="interceptorHandler"
+        p:cacheSeconds="0"
+        p:useCacheControlHeader="true"
+        p:useCacheControlNoStore="true"
+        p:useExpiresHeader="true"/>
+    
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <beans:ref bean="interceptorWebContent"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    
+    <!--====================================================================================================
+    = VIEW RESOLVERS
+    =====================================================================================================-->
+    <mvc:view-resolvers>
+        <mvc:jsp prefix="/WEB-INF/views/" suffix=".jsp" view-class="org.springframework.web.servlet.view.JstlView"/>
+    </mvc:view-resolvers>
+    
+    <!--====================================================================================================
+    = CONTROLLERS
+    =====================================================================================================-->
+    <beans:bean id="controller" class="org.springframework.web.servlet.mvc.Controller" abstract="true"/>
+    
+    <!--====================================================================================================
+    = REGISTRATION BEANS: SERVLET
+    =====================================================================================================-->
+    <beans:bean id="regBeanServletDispatcher" parent="regBeanServlet"
+        p:loadOnStartup="1"
+        p:name="dispatcherServlet">
+        <beans:property name="multipartConfig">
+            <!--suppress SpringPlaceholdersInspection -->
+            <beans:bean parent="multipartConfigElemMem"
+                c:maxFileSize="${crigtt.servlet.dispatcher.multipart.max.size.file}"
+                c:maxRequestSize="${crigtt.servlet.dispatcher.multipart.max.size.req}"/>
+        </beans:property>
+        <beans:property name="servlet">
+            <beans:bean class="org.springframework.web.servlet.DispatcherServlet" parent="servletHttp"/>
+        </beans:property>
+        <beans:property name="urlMappings">
+            <beans:list>
+                <beans:value>/</beans:value>
+            </beans:list>
+        </beans:property>
+    </beans:bean>
+</beans:beans>

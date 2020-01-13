@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:lang="http://www.springframework.org/schema/lang"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:task="http://www.springframework.org/schema/task"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    
+    <!--====================================================================================================
+    = CACHE MANAGER CONFIGURATIONS
+    =====================================================================================================-->
+    <beans:bean id="cacheManagerConfig" class="net.sf.ehcache.config.Configuration" abstract="true"/>
+    
+    <!--====================================================================================================
+    = CACHE MANAGERS
+    =====================================================================================================-->
+    <beans:bean id="cacheManager" class="org.springframework.cache.CacheManager" abstract="true"/>
+    
+    <beans:bean id="cacheManagerEhCache" class="org.springframework.cache.ehcache.EhCacheCacheManager" parent="cacheManager" abstract="true"/>
+    
+    <beans:bean id="cacheManagerCrigtt" class="gov.hhs.onc.crigtt.data.cache.impl.CrigttCacheManagerFactoryBean" parent="cacheManagerEhCache" abstract="true"/>
+    
+    <!--====================================================================================================
+    = CACHE CONFIGURATIONS
+    =====================================================================================================-->
+    <beans:bean id="cacheConfig" class="net.sf.ehcache.config.CacheConfiguration" abstract="true"/>
+    
+    <beans:bean id="cacheConfigCrigtt" parent="cacheConfig" abstract="true"
+        p:eternal="true"
+        p:memoryStoreEvictionPolicyFromObject="FIFO"/>
+    
+    <!--====================================================================================================
+    = CACHES
+    =====================================================================================================-->
+    <beans:bean id="cache" class="gov.hhs.onc.crigtt.data.cache.impl.CrigttCache" abstract="true"/>
+    
+    <beans:bean id="cacheCrigtt" class="gov.hhs.onc.crigtt.data.cache.impl.CrigttCacheFactoryBean" parent="cache" abstract="true"
+        p:persistenceStrategy="NONE">
+        <beans:property name="listeners">
+            <beans:array>
+                <beans:ref bean="cacheListener"/>
+            </beans:array>
+        </beans:property>
+    </beans:bean>
+</beans:beans>

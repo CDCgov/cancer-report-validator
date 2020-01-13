@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:lang="http://www.springframework.org/schema/lang"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:task="http://www.springframework.org/schema/task"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    
+    <!--====================================================================================================
+    = CONFIGURATION
+    =====================================================================================================-->
+    <beans:bean id="config" class="net.sf.saxon.Configuration" abstract="true"/>
+    
+    <beans:bean id="configCrigtt" class="gov.hhs.onc.crigtt.config.impl.CrigttConfiguration" parent="config"
+        p:errorHandler-ref="errorListenerCrigtt"
+        p:errorListener-ref="errorListenerCrigtt"
+        p:lineNumbering="true"
+        p:logger-ref="loggerCrigtt"
+        p:recoveryPolicy="#{ T(net.sf.saxon.Configuration).DO_NOT_RECOVER }"
+        p:stripsAllWhiteSpace="false"
+        p:stripsWhiteSpace="#{ T(net.sf.saxon.value.Whitespace).NONE }"
+        p:xsltVersion="#{ T(net.sf.saxon.value.DecimalValue).TWO.stringValue }">
+        <beans:property name="configurationProperties">
+            <beans:map>
+                <beans:entry key="#{ T(net.sf.saxon.lib.FeatureKeys).GENERATE_BYTE_CODE }" value="true" value-type="java.lang.Boolean"/>
+            </beans:map>
+        </beans:property>
+        <beans:property name="defaultSerializationProperties">
+            <beans:map>
+                <beans:entry key="#{ T(javax.xml.transform.OutputKeys).ENCODING }" value="#{ charsetUtf8.name() }"/>
+                <beans:entry key="#{ T(javax.xml.transform.OutputKeys).STANDALONE }" value="#{ T(gov.hhs.onc.crigtt.config.CrigttConfigurationValues).YES }"/>
+            </beans:map>
+        </beans:property>
+    </beans:bean>
+</beans:beans>

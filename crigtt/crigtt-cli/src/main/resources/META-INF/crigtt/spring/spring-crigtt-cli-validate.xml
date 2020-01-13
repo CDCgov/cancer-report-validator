@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:lang="http://www.springframework.org/schema/lang"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:task="http://www.springframework.org/schema/task"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    
+    <!--====================================================================================================
+    = COMMAND LINE INTERFACE VALIDATOR OPTIONS
+    =====================================================================================================-->
+    <beans:bean id="cliValidatorOpts" class="gov.hhs.onc.crigtt.cli.validate.CliValidatorOptions" abstract="true"/>
+    
+    <beans:bean id="cliValidatorOptsImpl" class="gov.hhs.onc.crigtt.cli.validate.impl.CliValidatorOptionsImpl" parent="cliValidatorOpts" abstract="true"/>
+    
+    <!--suppress SpringPlaceholdersInspection -->
+    <beans:bean id="cliValidatorOptsCrigtt" parent="cliValidatorOptsImpl" lazy-init="true" scope="prototype"
+        p:format="true"
+        p:outputDirectory="${crigtt.cli.out.dir}"
+        p:testcaseId="${crigtt.cli.testcase.name.default}"/>
+    
+    <!--====================================================================================================
+    = COMMAND LINE INTERFACE VALIDATOR SERVICE
+    =====================================================================================================-->
+    <beans:bean id="cliValidatorService" class="gov.hhs.onc.crigtt.cli.validate.CliValidatorService" abstract="true"/>
+    
+    <beans:bean id="cliValidatorServiceImpl" class="gov.hhs.onc.crigtt.cli.validate.impl.CliValidatorServiceImpl" parent="cliValidatorService" abstract="true"/>
+    
+    <beans:bean id="cliValidatorServiceCrigtt" parent="cliValidatorServiceImpl">
+        <beans:property name="optionsBeanName">
+            <beans:idref bean="cliValidatorOptsCrigtt"/>
+        </beans:property>
+    </beans:bean>
+</beans:beans>

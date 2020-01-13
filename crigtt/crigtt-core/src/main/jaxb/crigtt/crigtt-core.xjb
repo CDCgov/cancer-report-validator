@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jaxb:bindings
+    jaxb:extensionBindingPrefixes="annox xjc"
+    jaxb:version="2.0"
+    node="/xsd:schema"
+    schemaLocation="../../schema/crigtt/crigtt-core.xsd"
+    xmlns:annox="http://annox.dev.java.net"
+    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+    xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    
+    <!--====================================================================================================
+    = SCHEMA
+    =====================================================================================================-->
+    <jaxb:schemaBindings>
+        <jaxb:package name="gov.hhs.onc.crigtt.beans"/>
+    </jaxb:schemaBindings>
+    
+    <!--====================================================================================================
+    = GROUPS
+    =====================================================================================================-->
+    <jaxb:bindings node="xsd:group[@name='VersionElements']">
+        <jaxb:bindings node="xsd:sequence">
+            <jaxb:bindings node="xsd:element[@name='version']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+        </jaxb:bindings>
+    </jaxb:bindings>
+ </jaxb:bindings>

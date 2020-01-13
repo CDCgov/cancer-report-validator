@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jaxb:bindings
+    jaxb:extensionBindingPrefixes="annox xjc"
+    jaxb:version="2.0"
+    node="/xsd:schema"
+    schemaLocation="../../schema/crigtt/crigtt-validate.xsd"
+    xmlns:annox="http://annox.dev.java.net"
+    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+    xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    
+    <!--====================================================================================================
+    = SCHEMA
+    =====================================================================================================-->
+    <jaxb:schemaBindings>
+        <jaxb:package name="gov.hhs.onc.crigtt.validate"/>
+        <jaxb:nameXmlTransform>
+            <jaxb:typeName prefix="Validator"/>
+        </jaxb:nameXmlTransform>
+    </jaxb:schemaBindings>
+    
+    <!--====================================================================================================
+    = GROUPS
+    =====================================================================================================-->
+    <jaxb:bindings node="xsd:group[@name='DocumentElements']">
+        <jaxb:bindings node="xsd:sequence">
+            <jaxb:bindings node="xsd:element[@name='document']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    
+    <jaxb:bindings node="xsd:group[@name='DtoElements']">
+        <jaxb:bindings node="xsd:sequence">
+            <jaxb:bindings node="xsd:element[@name='submittedTimestamp']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    
+    <jaxb:bindings node="xsd:group[@name='StatusElements']">
+        <jaxb:bindings node="xsd:sequence">
+            <jaxb:bindings node="xsd:element[@name='status']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+        </jaxb:bindings>
+    </jaxb:bindings>
+
+    <jaxb:bindings node="xsd:group[@name='TestcaseElements']">
+        <jaxb:bindings node="xsd:sequence">
+            <jaxb:bindings node="xsd:element[@name='testcaseId']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    
+    <!--====================================================================================================
+    = COMPLEX TYPES
+    =====================================================================================================-->
+    <jaxb:bindings node="xsd:complexType[@name='Location']">
+        <annox:annotate target="class">
+            @com.fasterxml.jackson.annotation.JsonSubTypes({ @com.fasterxml.jackson.annotation.JsonSubTypes.Type(gov.hhs.onc.crigtt.validate.impl.ValidatorLocationImpl.class) })
+        </annox:annotate>
+        <annox:annotate target="class">
+            @com.fasterxml.jackson.annotation.JsonTypeName("validatorLocation")
+        </annox:annotate>
+        <jaxb:bindings node="xsd:sequence">
+            <jaxb:bindings node="xsd:element[@name='nodeExpression']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='lineNumber']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='columnNumber']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    
+    <jaxb:bindings node="xsd:complexType[@name='Schema']">
+        <annox:annotate target="class">
+            @com.fasterxml.jackson.annotation.JsonSubTypes({ @com.fasterxml.jackson.annotation.JsonSubTypes.Type(gov.hhs.onc.crigtt.validate.impl.ValidatorSchemaImpl.class) })
+        </annox:annotate>
+        <annox:annotate target="class">
+            @com.fasterxml.jackson.annotation.JsonTypeName("validatorSchema")
+        </annox:annotate>
+    </jaxb:bindings>
+    
+    <jaxb:bindings node="xsd:complexType[@name='Phase']">
+        <annox:annotate target="class">
+            @com.fasterxml.jackson.annotation.JsonSubTypes({ @com.fasterxml.jackson.annotation.JsonSubTypes.Type(gov.hhs.onc.crigtt.validate.impl.ValidatorPhaseImpl.class) })
+        </annox:annotate>
+        <annox:annotate target="class">
+            @com.fasterxml.jackson.annotation.JsonTypeName("validatorPhase")
+        </annox:annotate>
+    </jaxb:bindings>
+    
+    <jaxb:bindings node="xsd:complexType[@name='Pattern']">
+        <annox:annotate target="class">
+            @com.fasterxml.jackson.annotation.JsonSubTypes({ @com.fasterxml.jackson.annotation.JsonSubTypes.Type(gov.hhs.onc.crigtt.validate.impl.ValidatorPatternImpl.class) })
+        </annox:annotate>
+        <annox:annotate target="class">
+            @com.fasterxml.jackson.annotation.JsonTypeName("validatorPattern")
+        </annox:annotate>
+    </jaxb:bindings>
+    
+    <jaxb:bindings node="xsd:complexType[@name='Rule']">
+        <annox:annotate target="class">
+            @com.fasterxml.jackson.annotation.JsonSubTypes({ @com.fasterxml.jackson.annotation.JsonSubTypes.Type(gov.hhs.onc.crigtt.validate.impl.ValidatorRuleImpl.class) })
+        </annox:annotate>
+        <annox:annotate target="class">
+            @com.fasterxml.jackson.annotation.JsonTypeName("validatorRule")
+        </annox:annotate>
+    </jaxb:bindings>
+    
+    <jaxb:bindings node="xsd:complexType[@name='Assertion']">
+        <annox:annotate target="class">
+            @com.fasterxml.jackson.annotation.JsonSubTypes({ @com.fasterxml.jackson.annotation.JsonSubTypes.Type(gov.hhs.onc.crigtt.validate.impl.ValidatorAssertionImpl.class) })
+        </annox:annotate>
+        <annox:annotate target="class">
+            @com.fasterxml.jackson.annotation.JsonTypeName("validatorAssertion")
+        </annox:annotate>
+    </jaxb:bindings>
+    
+    <jaxb:bindings node="xsd:complexType[@name='Event']">
+        <annox:annotate target="class">
+            @com.fasterxml.jackson.annotation.JsonSubTypes({ @com.fasterxml.jackson.annotation.JsonSubTypes.Type(gov.hhs.onc.crigtt.validate.impl.ValidatorEventImpl.class) })
+        </annox:annotate>
+        <annox:annotate target="class">
+            @com.fasterxml.jackson.annotation.JsonTypeName("validatorEvent")
+        </annox:annotate>
+        <jaxb:bindings node="xsd:sequence">
+            <jaxb:bindings node="xsd:element[@name='level']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='location']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='contextExpression']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='testExpression']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='runtimeTestExpression']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='schema']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='phase']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='pattern']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='rule']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='assertion']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='expectedVocabSets']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='vocabSet']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='expectedCodes']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='code']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='description']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='messages']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='actualResult']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='expectedResults']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='contextSpecific']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    
+    <jaxb:bindings node="xsd:complexType[@name='Document']">
+        <annox:annotate target="class">
+            @com.fasterxml.jackson.annotation.JsonSubTypes({ @com.fasterxml.jackson.annotation.JsonSubTypes.Type(gov.hhs.onc.crigtt.validate.impl.ValidatorDocumentImpl.class) })
+        </annox:annotate>
+        <annox:annotate target="class">
+            @com.fasterxml.jackson.annotation.JsonTypeName("validatorDocument")
+        </annox:annotate>
+        <jaxb:bindings node="xsd:sequence">
+            <jaxb:bindings node="xsd:element[@name='fileName']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='hash']">
+                <jaxb:inlineBinaryData/>
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='content']">
+                <jaxb:inlineBinaryData/>
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    
+    <jaxb:bindings node="xsd:complexType[@name='Submission']">
+        <annox:annotate target="class">
+            @com.fasterxml.jackson.annotation.JsonSubTypes({ @com.fasterxml.jackson.annotation.JsonSubTypes.Type(gov.hhs.onc.crigtt.validate.impl.ValidatorSubmissionImpl.class) })
+        </annox:annotate>
+        <annox:annotate target="class">
+            @com.fasterxml.jackson.annotation.JsonTypeName("validatorSubmission")
+        </annox:annotate>
+        <annox:annotate target="class">
+            @javax.xml.bind.annotation.XmlRootElement(name = "submission")
+        </annox:annotate>
+    </jaxb:bindings>
+    
+    <jaxb:bindings node="xsd:complexType[@name='EventTotals']">
+        <annox:annotate target="class">
+            @com.fasterxml.jackson.annotation.JsonSubTypes({ @com.fasterxml.jackson.annotation.JsonSubTypes.Type(gov.hhs.onc.crigtt.validate.impl.ValidatorEventTotalsImpl.class) })
+        </annox:annotate>
+        <annox:annotate target="class">
+            @com.fasterxml.jackson.annotation.JsonTypeName("validatorEventTotals")
+        </annox:annotate>
+        <jaxb:bindings node="xsd:sequence">
+            <jaxb:bindings node="xsd:element[@name='all']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='info']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='warn']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='error']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='mismatch']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    
+    <jaxb:bindings node="xsd:complexType[@name='Results']">
+        <annox:annotate target="class">
+            @com.fasterxml.jackson.annotation.JsonSubTypes({ @com.fasterxml.jackson.annotation.JsonSubTypes.Type(gov.hhs.onc.crigtt.validate.impl.ValidatorResultsImpl.class) })
+        </annox:annotate>
+        <annox:annotate target="class">
+            @com.fasterxml.jackson.annotation.JsonTypeName("validatorResults")
+        </annox:annotate>
+        <jaxb:bindings node="xsd:sequence">
+            <jaxb:bindings node="xsd:element[@name='eventTotals']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='events']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    
+    <jaxb:bindings node="xsd:complexType[@name='Response']">
+        <jaxb:class implClass="gov.hhs.onc.crigtt.validate.impl.AbstractValidatorResponse"/>
+    </jaxb:bindings>
+    
+    <jaxb:bindings node="xsd:complexType[@name='Report']">
+        <annox:annotate target="class">
+            @com.fasterxml.jackson.annotation.JsonSubTypes({ @com.fasterxml.jackson.annotation.JsonSubTypes.Type(gov.hhs.onc.crigtt.validate.impl.ValidatorReportImpl.class) })
+        </annox:annotate>
+        <annox:annotate target="class">
+            @com.fasterxml.jackson.annotation.JsonTypeName("validatorReport")
+        </annox:annotate>
+        <annox:annotate target="class">
+            @javax.xml.bind.annotation.XmlRootElement(name = "report")
+        </annox:annotate>
+        <jaxb:bindings node="xsd:complexContent/xsd:extension/xsd:sequence">
+            <jaxb:bindings node="xsd:element[@name='processedTimestamp']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='results']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    
+    <jaxb:bindings node="xsd:complexType[@name='Error']">
+        <annox:annotate target="class">
+            @com.fasterxml.jackson.annotation.JsonSubTypes({ @com.fasterxml.jackson.annotation.JsonSubTypes.Type(gov.hhs.onc.crigtt.validate.impl.ValidatorErrorImpl.class) })
+        </annox:annotate>
+        <annox:annotate target="class">
+            @com.fasterxml.jackson.annotation.JsonTypeName("validatorError")
+        </annox:annotate>
+        <annox:annotate target="class">
+            @javax.xml.bind.annotation.XmlRootElement(name = "error")
+        </annox:annotate>
+        <jaxb:bindings node="xsd:complexContent/xsd:extension/xsd:sequence">
+            <jaxb:bindings node="xsd:element[@name='message']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+            <jaxb:bindings node="xsd:element[@name='stackTrace']">
+                <annox:annotate target="getter">@com.fasterxml.jackson.annotation.JsonProperty</annox:annotate>
+            </jaxb:bindings>
+        </jaxb:bindings>
+    </jaxb:bindings>
+ </jaxb:bindings>

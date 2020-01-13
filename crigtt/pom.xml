@@ -1,0 +1,48 @@
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>gov.hhs.onc.crigtt</groupId>
+        <artifactId>crigtt-parent</artifactId>
+        <version>1.0.6-SNAPSHOT</version>
+        <relativePath>crigtt-parent</relativePath>
+    </parent>
+    
+    <artifactId>crigtt-all</artifactId>
+    <packaging>pom</packaging>
+    
+    <description>Cancer Registry IG Test Tool (CRIGTT) aggregate Maven project.</description>
+    
+    <properties>
+        <!-- Project properties -->
+        <project.basedir.all>${project.basedir}</project.basedir.all>
+    </properties>
+    
+    <modules>
+        <module>crigtt-parent</module>
+        <module>crigtt-core</module>
+        <module>crigtt-cli</module>
+        <module>crigtt-web-parent</module>
+        <module>crigtt-web</module>
+    </modules>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>enforce-java-version</id>
+                        <inherited>false</inherited>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

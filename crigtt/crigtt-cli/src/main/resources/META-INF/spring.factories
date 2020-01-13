@@ -1,0 +1,5 @@
+gov.hhs.onc.crigtt.context.CrigttMetadataInitializer=\
+    gov.hhs.onc.crigtt.cli.context.impl.CliMetadataInitializer
+
+gov.hhs.onc.crigtt.logging.CrigttLoggingInitializer=\
+    gov.hhs.onc.crigtt.cli.logging.impl.CliLoggingInitializer

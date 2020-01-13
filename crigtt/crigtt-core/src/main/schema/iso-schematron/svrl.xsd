@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+(c) International Organization for Standardization 2005.
+Permission to copy in any form is granted for use with conforming
+SGML systems and applications as defined in ISO 8879,
+provided this notice is included in all copies.
+-->
+<xsd:schema
+    elementFormDefault="qualified"
+    targetNamespace="http://purl.oclc.org/dsdl/svrl"
+    xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    
+    <xsd:element name="schematron-output">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="unbounded" ref="svrl:text"/>
+                <xsd:element minOccurs="0" maxOccurs="unbounded" ref="svrl:ns-prefix-in-attribute-values"/>
+                <xsd:sequence maxOccurs="unbounded">
+                    <xsd:element ref="svrl:active-pattern"/>
+                    <xsd:sequence maxOccurs="unbounded">
+                        <xsd:element ref="svrl:fired-rule"/>
+                        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                            <xsd:element ref="svrl:failed-assert"/>
+                            <xsd:element ref="svrl:successful-report"/>
+                        </xsd:choice>
+                    </xsd:sequence>
+                </xsd:sequence>
+            </xsd:sequence>
+            <xsd:attribute name="title"/>
+            <xsd:attribute name="phase" type="xsd:NMTOKEN"/>
+            <xsd:attribute name="schemaVersion"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <!-- only namespaces from sch:ns need to be reported -->
+    <xsd:element name="ns-prefix-in-attribute-values">
+        <xsd:complexType>
+            <xsd:attribute name="prefix" use="required" type="xsd:NMTOKEN"/>
+            <xsd:attribute name="uri" use="required"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <!-- only active patterns are reported -->
+    <xsd:element name="active-pattern">
+        <xsd:complexType>
+            <xsd:attribute name="id" type="xsd:ID"/>
+            <xsd:attribute name="name"/>
+            <xsd:attribute name="role" type="xsd:NMTOKEN"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <!-- only rules that are fired are reported, -->
+    <xsd:element name="fired-rule">
+        <xsd:complexType>
+            <xsd:attribute name="id" type="xsd:ID"/>
+            <xsd:attribute name="context" use="required"/>
+            <xsd:attribute name="role" type="xsd:NMTOKEN"/>
+            <xsd:attribute name="flag" type="xsd:NMTOKEN"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <!-- only references are reported, not the diagnostic -->
+    <xsd:element name="diagnostic-reference">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="svrl:text"/>
+            </xsd:sequence>
+            <xsd:attribute name="diagnostic" use="required" type="xsd:NMTOKEN"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <!-- only failed assertions are reported -->
+    <xsd:element name="failed-assert">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="unbounded" ref="svrl:diagnostic-reference"/>
+                <xsd:element ref="svrl:text"/>
+            </xsd:sequence>
+            <xsd:attributeGroup ref="svrl:attlist.assert-and-report"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <!-- only successful asserts are reported -->
+    <xsd:element name="successful-report">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="unbounded" ref="svrl:diagnostic-reference"/>
+                <xsd:element ref="svrl:text"/>
+            </xsd:sequence>
+            <xsd:attributeGroup ref="svrl:attlist.assert-and-report"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="text" type="xsd:string"/>
+    
+    <xsd:attributeGroup name="attlist.assert-and-report">
+        <xsd:attribute name="id" type="xsd:ID"/>
+        <xsd:attribute name="location" use="required"/>
+        <xsd:attribute name="test" use="required"/>
+        <xsd:attribute name="role" type="xsd:NMTOKEN"/>
+        <xsd:attribute name="flag" type="xsd:NMTOKEN"/>
+    </xsd:attributeGroup>
+</xsd:schema>

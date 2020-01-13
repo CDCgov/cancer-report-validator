@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="crigtt-core Tests Suite" verbose="1">
+    <test name="crigtt-core Tests">
+        <groups>
+            <run>
+                <include name="crigtt\.test\.all"/>
+                <exclude name="crigtt\.test\.it\.all"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="gov.hhs.onc.crigtt.*"/>
+        </packages>
+    </test>
+</suite>

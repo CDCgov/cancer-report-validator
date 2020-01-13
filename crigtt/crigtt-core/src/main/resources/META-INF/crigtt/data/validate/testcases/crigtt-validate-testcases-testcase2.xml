@@ -300,7 +300,7 @@
                     <crigtt-validate-testcases:subExpressionSet>
                         <crigtt-validate-testcases:subExpression>/id[@root='2.16.840.1.113883.4.6']/@extension</crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>4587963256</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>2590403020</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>

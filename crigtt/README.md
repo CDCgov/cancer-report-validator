@@ -1,11 +1,11 @@
-# ![CRIGTT Logo](https://github.com/esacinc/crigtt/raw/master/crigtt-core/src/main/resources/META-INF/resources/static/images/crigtt-logo-48x48.png) The Cancer Registry Implementation Guide Test Tool (CRIGTT) Project
+# Cancer-Report-Validator (CRV) Project
+
 
 # Introduction
 
 ## Purpose
 
-The Cancer Registry Implementation Guide Test Tool (CRIGTT) project is an interactive tool for validating the content of electronic submissions of
-cancer-related medical information prior to a system's communication with a cancer registry.
+The Cancer Report Validator (CRV) is an interactive tool for validating the content of electronic submissions of cancer-related medical information prior to a system's communication with a public health central cancer registry. The CRV conforms to the [HL7 Implementation Guide for CDA® Release 2: Reporting to Public Health Cancer Registries from Ambulatory Healthcare Providers, Release 1; DSTU Release 1.1 - US Realm](http://www.hl7.org/implement/standards/product_brief.cfm?product_id=398").
 
 ## Background
 
@@ -25,9 +25,7 @@ This initiative has been sponsored by the CDC and is being managed by the [Offic
 
 ## Links
 
-* [JIRA Project](http://jira.oncprojectracking.org/browse/CRIGTT)
-* [Crucible Project](https://crucible.oncprojectracking.org/cru/browse/CRIGTT)
-* [Confluence Space](http://confluence.siframework.org/display/CRIGTT)
+* [Cancer Report Validator Documentation](https://oncprojectracking.healthit.gov/wiki/display/CRIGTT/Cancer+Report+Validator+Documentation)
 
 ## Groups
 

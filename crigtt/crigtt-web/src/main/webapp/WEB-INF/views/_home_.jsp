@@ -135,14 +135,13 @@
                     <h2><strong>Test Data</strong></h2>
                     <spring:message code="crigtt.msg.test.data.url" var="testDataUrl"/>
                     <p>
-                        Test cases have been developed in conjunction with the validator. The test data can be obtained <a href="https://oncprojectracking.healthit.gov/wiki/display/CRIGTT/Test+Data+Documentation" target="_blank">here</a>.
+                        Test cases have been developed in conjunction with the validator. The test data can be obtained <a href="${testDataUrl}">here</a>.
                     </p>
                     <h2><strong>Documentation</strong></h2>
                     <spring:message code="crigtt.msg.juror.document.url" var="jurorDocumentUrl"/>
                     <p>
                         Links for the project documentation can be found <a target="_blank" href="${gitHubRepositoryUrl}">here</a>.
-                        The Juror Document can be found <a href="https://oncprojectracking.healthit.gov/wiki/display/CRIGTT/CRV+Juror+Document" target="_blank">here</a>.
-						Questions may be directed to the Cancer Registry Testing Tool Google Group <a href="http://groups.google.com/group/cancer-reg-testing-tool" target="_blank">here</a>
+                        The Juror Document can be found <a href="${jurorDocumentUrl}">here</a>.
                     </p>
                 </div>
                 <div id="content-tab-validator" class="tab-pane" role="tabpanel">

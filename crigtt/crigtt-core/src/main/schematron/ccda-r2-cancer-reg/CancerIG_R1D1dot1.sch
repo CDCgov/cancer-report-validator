@@ -201,12 +201,11 @@ Schematron generated from Trifolia on 4/22/2015
 		<sch:active pattern="p-urn-hl7ii-2.16.840.1.113883.10.13.2-2015-02-05-infos"/>
 		<sch:active pattern="p-urn-hl7ii-2.16.840.1.113883.10.13.3-2015-02-05-infos"/>
 		<sch:active pattern="p-urn-hl7ii-2.16.840.1.113883.10.13.4-2015-02-05-infos"/>
-		<sch:active pattern="p-urn-hl7ii-2.16.840.1.113883.10.13.7-2015-02-06-infos"/>
-		<sch:active pattern="p-urn-hl7ii-2.16.840.1.113883.10.13.32-2015-04-02-infos"/>
+		<sch:active pattern="p-urn-hl7ii-2.16.840.1.113883.10.13.7-2015-02-06-infos"/>	
 	</sch:phase>
 	<sch:pattern id="p-DOCUMENT-TEMPLATE">
 		<sch:rule id="r-errors-DOC-abstract" abstract="true">
-			<sch:assert id="a-IG-1169-DOC" test="cda:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension = '2014-06-09'] or cda:templateId[@root='2.16.840.1.113883.10.13.1' and @extension = '2015-01-29']">The document must contain at least 1 of the document level templates for this schematron to be applicable.</sch:assert>
+			<sch:assert id="a-IG-1169-DOC" test="cda:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension = '2014-06-09'] and cda:templateId[@root='2.16.840.1.113883.10.13.1' and @extension = '2015-01-29']">The document must contain both of the document level templates for this schematron to be applicable.</sch:assert>
 		</sch:rule>
 		<sch:rule id="r-errors-DOC" context="cda:ClinicalDocument">
 			<sch:extends rule="r-errors-DOC-abstract"/>
@@ -396,7 +395,6 @@ SHALL contain exactly one [1..1] custodian (CONF:1098-5519).</sch:assert>
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.20.22.1.1-2014-06-09-branch-1098-5448-errors" context="cda:ClinicalDocument[cda:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension = '2014-06-09']]/cda:author/cda:assignedAuthor">
 			<sch:assert id="a-1098-5449" test="exists(cda:id)">This assignedAuthor SHALL contain at least one [1..*] id (CONF:1098-5449).</sch:assert>
 			<sch:assert id="a-1098-16788" test="empty(cda:code) or (count(cda:code)=1 and count(cda:code[@code])=1)">The code, if present, SHALL contain exactly one [1..1] @code, which SHOULD be selected from ValueSet Healthcare Provider Taxonomy (HIPAA) urn:oid:2.16.840.1.114222.4.11.1066 DYNAMIC (CONF:1098-16788).</sch:assert>
-			<sch:assert id="a-1098-5452-c" test="exists(cda:addr)">This assignedAuthor SHALL contain at least one [1..*] US Realm Address (AD.US.FIELDED) (identifier: urn:oid:2.16.840.1.113883.10.20.22.5.2) (CONF:1098-5452).</sch:assert>
 			<sch:assert id="a-1098-5428" test="exists(cda:telecom)">This assignedAuthor SHALL contain at least one [1..*] telecom (CONF:1098-5428).</sch:assert>
 			<sch:assert id="a-1098-16789-c" test="empty(cda:assignedPerson) or (count(cda:assignedPerson)=1 and count(cda:assignedPerson[exists(cda:name)])=1)">The assignedPerson, if present, SHALL contain at least one [1..*] US Realm Person Name (PN.US.FIELDED) (identifier: urn:oid:2.16.840.1.113883.10.20.22.5.1.1) (CONF:1098-16789).</sch:assert>
 			<sch:assert id="a-1098-16790-c" test="count(cda:assignedPerson | cda:assignedAuthoringDevice)=1">There SHALL be exactly one assignedAuthor/assignedPerson or exactly one assignedAuthor/assignedAuthoringDevice (CONF:1098-16790).</sch:assert>
@@ -1063,23 +1061,23 @@ Note: This id may be set equal to (a pointer to) an id on a participant elsewher
 			<sch:assert id="a-1098-7932" test="count(cda:templateId[@root='2.16.840.1.113883.10.20.22.2.15'][@extension='2014-06-09'])=1">SHALL contain exactly one [1..1] templateId (CONF:1098-7932) such that it SHALL contain exactly one [1..1] @root="2.16.840.1.113883.10.20.22.2.15" (CONF:1098-10388). SHALL contain exactly one [1..1] @extension="2014-06-09" (CONF:1098-32607).</sch:assert>
 		</sch:rule>
 	</sch:pattern>
-	<sch:pattern id="p-urn-hl7ii-2.16.840.1.113883.10.13.17-2014-08-08-errors">
-		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.17-2014-08-08-errors-abstract" abstract="true">
-			<sch:extends rule="r-urn-oid-2.16.840.1.113883.10.20.22.5.2-errors-abstract"/>
-			<sch:let name="useablePeriod" value="cda:useablePeriod[@xsi:type='IVL_TS']"/>
-			<sch:assert id="a-1126-202-c" test="count(cda:city)=1 and count(cda:country)=1">SHALL contain exactly one [1..1] city (ValueSet: City urn:oid:2.16.840.1.114222.4.11.973 DYNAMIC) (CONF:1126-202).
-Note: City is required if the country is US. If country is not specified, it's assumed to be US. If country is something other than US, the city MAY be present but MAY be bound to different vocabularies. The value for city element SHALL be the "display name", selected from "city" Value Set.</sch:assert>
-			<sch:assert id="a-1126-206" test="exists($useablePeriod)">SHALL contain at least one [1..*] useablePeriod (CONF:1126-206).
-Note: usablePeriod indicates patient’s address history. For example, if patient had multiple prior addresses, then occupancy start (low) and end (high) date need to be provided for each address.</sch:assert>
-			<sch:assert id="a-1126-207" test="count($useablePeriod[count(cda:low)=1]) = count($useablePeriod)">Such useablePeriods SHALL contain exactly one [1..1] low (CONF:1126-207).
-Note: to indicate the time when the patient began living at the address.</sch:assert>
-			<sch:assert id="a-1126-208" test="count($useablePeriod[count(cda:high) &lt; 2]) = count($useablePeriod)">Such useablePeriods SHALL contain zero or one [0..1] high (CONF:1126-208).
-Note: to indicate the time when the patient stopped living at the address.</sch:assert>
-			<sch:assert id="a-1126-33226-c" test="count(cda:country)=1">SHALL contain exactly one [1..1] country, which SHALL be selected from ValueSet Country urn:oid:2.16.840.1.113883.3.88.12.80.63 (CONF:1126-33226).</sch:assert>
-			<sch:assert id="a-1126-33227-c" test="count(cda:postalCode)=1 and (exists(cda:postalCode/@nullFlavor) or (matches(cda:postalCode/text(), '^\d{5}$') or matches(cda:postalCode/text(), '^\d{5}-\d{4}$')))">SHALL contain exactly one [1..1] postalCode, which SHOULD be selected from ValueSet PostalCode urn:oid:2.16.840.1.113883.3.88.12.80.2 (CONF:1126-33227).
-Note: The expected format for the Postal Code is either NNNNN or NNNNN-NNNN</sch:assert>
-			<sch:assert id="a-1126-33228-c" test="count(cda:state)=1">SHALL contain exactly one [1..1] state, which SHOULD be selected from ValueSet StateValueSet urn:oid:2.16.840.1.113883.3.88.12.80.1 (CONF:1126-33228).</sch:assert>
-		</sch:rule>
+		<sch:pattern id="p-urn-hl7ii-2.16.840.1.113883.10.13.17-2014-08-08-errors">
+			<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.17-2014-08-08-errors-abstract" abstract="true">
+				<sch:extends rule="r-urn-oid-2.16.840.1.113883.10.20.22.5.2-errors-abstract"/>
+				<sch:let name="useablePeriod" value="cda:useablePeriod[@xsi:type='IVL_TS']"/>
+				<sch:assert id="a-1126-202-c" test="count(cda:city)=1 and count(cda:country)=1">SHALL contain exactly one [1..1] city (ValueSet: City urn:oid:2.16.840.1.114222.4.11.973 DYNAMIC) (CONF:1126-202).
+	Note: City is required if the country is US. If country is not specified, it's assumed to be US. If country is something other than US, the city MAY be present but MAY be bound to different vocabularies. The value for city element SHALL be the "display name", selected from "city" Value Set.</sch:assert>
+				<sch:assert id="a-1126-206" test="exists($useablePeriod)">SHALL contain at least one [1..*] useablePeriod (CONF:1126-206).
+	Note: usablePeriod indicates patient’s address history. For example, if patient had multiple prior addresses, then occupancy start (low) and end (high) date need to be provided for each address.</sch:assert>
+				<sch:assert id="a-1126-207" test="count($useablePeriod[count(cda:low)=1]) = count($useablePeriod)">Such useablePeriods SHALL contain exactly one [1..1] low (CONF:1126-207).
+	Note: to indicate the time when the patient began living at the address.</sch:assert>
+				<sch:assert id="a-1126-208" test="count($useablePeriod[count(cda:high) &lt; 2]) = count($useablePeriod)">Such useablePeriods SHALL contain zero or one [0..1] high (CONF:1126-208).
+	Note: to indicate the time when the patient stopped living at the address.</sch:assert>
+				<sch:assert id="a-1126-33226-c" test="count(cda:country)=1">SHALL contain exactly one [1..1] country, which SHALL be selected from ValueSet Country urn:oid:2.16.840.1.113883.3.88.12.80.63 (CONF:1126-33226).</sch:assert>
+				<sch:assert id="a-1126-33227-c" test="count(cda:postalCode)=1 and (exists(cda:postalCode/@nullFlavor) or (matches(cda:postalCode/text(), '^\d{5}$') or matches(cda:postalCode/text(), '^\d{5}-\d{4}$')))">SHALL contain exactly one [1..1] postalCode, which SHOULD be selected from ValueSet PostalCode urn:oid:2.16.840.1.113883.3.88.12.80.2 (CONF:1126-33227).
+	Note: The expected format for the Postal Code is either NNNNN or NNNNN-NNNN</sch:assert>
+				<sch:assert id="a-1126-33228-c" test="count(cda:state)=1">SHALL contain exactly one [1..1] state, which SHOULD be selected from ValueSet StateValueSet urn:oid:2.16.840.1.113883.3.88.12.80.1 (CONF:1126-33228).</sch:assert>
+			</sch:rule>
 	</sch:pattern>
 	<sch:pattern id="p-urn-hl7ii-2.16.840.1.113883.10.13.18-2014-08-08-errors">
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.18-2014-08-08-errors-abstract" abstract="true">
@@ -1297,7 +1295,7 @@ Note: Problem Value Set a subset of SNOMED CT (CodeSystem: 2.16.840.1.113883.6.9
 			<sch:assert id="a-1126-33321" test="@classCode='OBS'">SHALL contain exactly one [1..1] @classCode="OBS" Observation (CodeSystem: HL7ActClass urn:oid:2.16.840.1.113883.5.6) (CONF:1126-33321).</sch:assert>
 			<sch:assert id="a-1126-33322" test="@moodCode='EVN'">SHALL contain exactly one [1..1] @moodCode="EVN" Event (CodeSystem: ActMood urn:oid:2.16.840.1.113883.5.1001) (CONF:1126-33322).</sch:assert>
 			<sch:assert id="a-1126-33326" test="count(cda:value[@xsi:type='PQ'][@value])=1">This value SHALL contain exactly one [1..1] @value (CONF:1126-33326).</sch:assert>
-			<sch:assert id="a-1126-33327" test="count(cda:value[@xsi:type='PQ'][not(@unit='cGy') or @unit='cGy'])=1">This value SHALL contain zero or one [0..1] @unit="cGy" centiGray (CodeSystem: UCUM urn:oid:2.16.840.1.113883.6.8) (CONF:1126-33327).</sch:assert>
+			<sch:assert id="a-1126-33327" test="count(cda:value[@xsi:type='PQ'][@unit='cGy'])=1">This value SHALL contain exactly one [1..1] @unit="cGy" centiGray (CodeSystem: UCUM urn:oid:2.16.840.1.113883.6.8) (CONF:1126-33327).</sch:assert>
 			<sch:assert id="a-1126-33584" test="empty(cda:statusCode) or (count(cda:statusCode)=1 and count(cda:statusCode[empty(@nullFlavor) and @code='completed'])=1)">The statusCode, if present, SHALL contain exactly one [1..1] @code="completed" Completed (CONF:1126-33584).</sch:assert>
 		</sch:rule>
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.27-2014-08-08-errors" context="cda:observation[cda:templateId[@root='2.16.840.1.113883.10.13.27' and @extension = '2014-08-08']]">
@@ -1566,7 +1564,7 @@ Note: This element records the provider that referred the patient to the reporti
 			<sch:assert id="a-1169-33044" test="empty(@nullFlavor)">This section SHALL NOT contain [0..0] @nullFlavor (CONF:1169-33044).</sch:assert>
 		</sch:rule>
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.1-2015-01-29-branch-1169-33229-errors" context="cda:ClinicalDocument[cda:templateId[@root='2.16.840.1.113883.10.13.1' and @extension = '2015-01-29']]/cda:author[cda:assignedAuthor[cda:assignedPerson]]">
-			<sch:assert id="a-1169-33231" test="count(cda:assignedAuthor)=1 and count(cda:assignedAuthor[exists(cda:addr)])=1">This assignedAuthor SHALL contain at least one [1..*] US Realm Address (AD.US.FIELDED) (V2) - Cancer IG Specific Constraints (identifier: urn:hl7ii:2.16.840.1.113883.10.13.17:2014-08-08) (CONF:1169-33231).</sch:assert>
+			<sch:assert id="a-1169-33231" test="count(cda:assignedAuthor)=1 and count(cda:assignedAuthor[exists(cda:addr)])=1">This assignedAuthor SHALL contain at least one [1..*] US Realm Address (AD.US.FIELDED) (V2) - Cancer IG Specific Constraints (identifier: urn:oid:2.16.840.1.113883.10.20.22.5.2) (CONF:1169-33231).</sch:assert>
 		</sch:rule>
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.1-2015-01-29-branch-1169-33686-errors" context="cda:ClinicalDocument[cda:templateId[@root='2.16.840.1.113883.10.13.1' and @extension = '2015-01-29']]/cda:author[cda:assignedAuthor[cda:assignedAuthoringDevice]]">
 			<sch:assert id="a-1169-33688" test="count(cda:assignedAuthor[exists(cda:addr)])=1">This assignedAuthor SHALL contain at least one [1..*] US Realm Address (AD.US.FIELDED) (identifier: urn:oid:2.16.840.1.113883.10.20.22.5.2) (CONF:1169-33688).</sch:assert>
@@ -1611,7 +1609,7 @@ Note: SHALL provide ALL addresses for that patient over time. In other words, AL
 			<sch:extends rule="r-urn-oid-2.16.840.1.113883.10.20.22.5.2-errors-abstract"/>
 		</sch:rule>
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.1-2015-01-29-addr-1169-32655-errors" context="cda:ClinicalDocument[cda:templateId[@root='2.16.840.1.113883.10.13.1' and @extension = '2015-01-29']]/cda:recordTarget/cda:patientRole/cda:addr">
-			<sch:extends rule="r-urn-hl7ii-2.16.840.1.113883.10.13.17-2014-08-08-errors-abstract"/>
+					<sch:extends rule="r-urn-hl7ii-2.16.840.1.113883.10.13.17-2014-08-08-errors-abstract"/>
 		</sch:rule>
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.1-2015-01-29-personName-1169-33916-errors" context="cda:ClinicalDocument[cda:templateId[@root='2.16.840.1.113883.10.13.1' and @extension = '2015-01-29']]/cda:documentationOf/cda:serviceEvent/cda:performer/cda:assignedEntity/cda:assignedPerson/cda:name"> 
 			<sch:extends rule="r-urn-oid-2.16.840.1.113883.10.20.22.5.1.1-errors-abstract"/>
@@ -1623,7 +1621,7 @@ Note: SHALL provide ALL addresses for that patient over time. In other words, AL
 			<sch:extends rule="r-urn-oid-2.16.840.1.113883.10.20.22.5.2-errors-abstract"/>
 		</sch:rule>
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.1-2015-01-29-addr-1169-33231-errors" context="cda:ClinicalDocument[cda:templateId[@root='2.16.840.1.113883.10.13.1' and @extension = '2015-01-29']]/cda:author/cda:assignedAuthor[cda:assignedPerson]/cda:addr">
-			<sch:extends rule="r-urn-hl7ii-2.16.840.1.113883.10.13.17-2014-08-08-errors-abstract"/>
+					<sch:extends rule="r-urn-oid-2.16.840.1.113883.10.20.22.5.2-errors-abstract"/>
 		</sch:rule>
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.1-2015-01-29-addr-1169-33688-errors" context="cda:ClinicalDocument[cda:templateId[@root='2.16.840.1.113883.10.13.1' and @extension = '2015-01-29']]/cda:author[cda:assignedAuthor[cda:assignedAuthoringDevice]]/cda:addr"> 
 			<sch:extends rule="r-urn-oid-2.16.840.1.113883.10.20.22.5.2-errors-abstract"/>
@@ -1690,9 +1688,11 @@ Note: Identifies the role of the person who recorded the staging elements. SHALL
 		</sch:rule>
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.35-2015-02-05-branch-1169-34054-errors" context="cda:observation[cda:templateId[@root='2.16.840.1.113883.10.13.35' and @extension = '2015-02-05']]/cda:value[@xsi:type='CD']">
 			<sch:let name="origTextValue" value="cda:originalText/cda:reference/@value"/>
-			<sch:assert id="a-1169-34055" test="@code=document('voc.xml')/voc:systems/voc:system[@valueSetOid='2.16.840.1.113883.3.520.4.9']/voc:code/@value">This value SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet TNM Clinical Stage Group urn:oid:2.16.840.1.113883.3.520.4.9 DYNAMIC (CONF:1169-34055).</sch:assert>
-			<sch:assert id="a-1169-34056" test="@codeSystem='2.16.840.1.113883.15.6'">This value SHALL contain exactly one [1..1] @codeSystem="2.16.840.1.113883.15.6" (CodeSystem: TNM 7. Edition urn:oid:2.16.840.1.113883.15.6) (CONF:1169-34056).</sch:assert>
-			<sch:assert id="a-1169-34057" test="@sdtc:valueSet='2.16.840.1.113883.3.520.4.9'">This value SHALL contain exactly one [1..1] @sdtc:valueSet="2.16.840.1.113883.3.520.4.9" (CodeSystem: TNM 7. Edition urn:oid:2.16.840.1.113883.15.6) (CONF:1169-34057).</sch:assert>
+
+			<!--8/21/2019-->
+			<sch:assert id="a-1169-34055" test="(@sdtc:valueSet='2.16.840.1.113883.3.520.4.9' and @code=document('voc.xml')/voc:systems/voc:system[@valueSetOid='2.16.840.1.113883.3.520.4.9']/voc:code/@value) or (@sdtc:valueSet='2.16.840.1.113883.3.520.4.30' and @code=document('voc.xml')/voc:systems/voc:system[@valueSetOid='2.16.840.1.113883.3.520.4.30']/voc:code/@value)">This value SHALL contain exactly one [1..1] @code, which SHALL be selected from:(a) ValueSet TNM Clinical Stage Group 7th Edition(urn:oid:2.16.840.1.113883.3.520.4.9) DYNAMIC or (b)ValueSet TNM Clinical Stage Group 8th Edition (urn:oid:2.16.840.1.113883.3.520.4.30 DYNAMI(CONF:1169-34055).</sch:assert>
+			<sch:assert id="a-1169-34056" test="@codeSystem='2.16.840.1.113883.15.6' or @codeSystem='2.16.840.1.113883.3.520.3.18'">This value SHALL contain exactly one [1..1] @codeSystem. The @codeSystem associated with the code for TNM Clinical Stage Group SHALL be selected from: (a)TNM 7. Edition (CodeSystem: urn:oid:2.16.840.1.113883.15.6) or (b) TNM 8. Edition (Code System: urn:oid:2.16.840.1.113883.3.520.3.18)(CONF:1169-34056).</sch:assert>
+			<sch:assert id="a-1169-34057" test="@sdtc:valueSet='2.16.840.1.113883.3.520.4.9' or @sdtc:valueSet='2.16.840.1.113883.3.520.4.30'">This value SHALL contain exactly one [1..1] @sdtc:valueSet. The @sdtc:valueSet associated with the code for TNM Clinical Stage Group SHALL be selected from:(a)  "Value Set O ID2.16.840.1.113883.3.520.4.9" (CodeSystem: TNM 7. Edition urn:oid:2.16.840.1.113883.15.6) or (b)  "Value Set OID 2.16.840.1.113883.3.520.4.30" (Code System: TNM 8. Edition urn:oid:2.16.840.1.113883.3.520.3.18) (CONF:1169-34057).</sch:assert>
 			<sch:assert id="a-1169-34061-c" test="empty(cda:originalText/cda:reference[@value]) or (count($origTextValue)=1 and starts-with($origTextValue, '#') and count(//*[@ID=substring($origTextValue, 2)])=1)">This reference/@value SHALL begin with a '#' and SHALL point to its corresponding narrative (using the approach defined in CDA Release 2, section 4.3.5.1) (CONF:1169-34061).</sch:assert>
 			<sch:assert id="a-1169-34062" test="count(cda:qualifier)=1">This value SHALL contain exactly one [1..1] qualifier (CONF:1169-34062).</sch:assert>
 		</sch:rule>
@@ -1893,9 +1893,11 @@ Note: - If coded, the code value describing the grade of the tumor/cancer SHALL 
 		</sch:rule>
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.36-2015-02-05-branch-1169-34082-errors" context="cda:observation[cda:templateId[@root='2.16.840.1.113883.10.13.36' and @extension = '2015-02-05']]/cda:value[@xsi:type='CD']">
 			<sch:let name="origTextValue" value="cda:originalText/cda:reference/@value"/>
-			<sch:assert id="a-1169-34083" test="@code=document('voc.xml')/voc:systems/voc:system[@valueSetOid='2.16.840.1.113883.3.520.4.6']/voc:code/@value">This value SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet TNM Clinical Tumor urn:oid:2.16.840.1.113883.3.520.4.6 (CONF:1169-34083).</sch:assert>
-			<sch:assert id="a-1169-34087" test="@codeSystem='2.16.840.1.113883.15.6'">This value SHALL contain exactly one [1..1] @codeSystem="2.16.840.1.113883.15.6" (CodeSystem: TNM 7. Edition urn:oid:2.16.840.1.113883.15.6) (CONF:1169-34087).</sch:assert>
-			<sch:assert id="a-1169-34088" test="@sdtc:valueSet='2.16.840.1.113883.3.520.4.6'">This value SHALL contain exactly one [1..1] @sdtc:valueSet="2.16.840.1.113883.3.520.4.6" (CodeSystem: TNM 7. Edition urn:oid:2.16.840.1.113883.15.6) (CONF:1169-34088).</sch:assert>
+
+			<!--8/21/2019-->
+			<sch:assert id="a-1169-34083" test="(@sdtc:valueSet='2.16.840.1.113883.3.520.4.6' and @code=document('voc.xml')/voc:systems/voc:system[@valueSetOid='2.16.840.1.113883.3.520.4.6']/voc:code/@value) or (@sdtc:valueSet='2.16.840.1.113883.3.520.4.32' and @code=document('voc.xml')/voc:systems/voc:system[@valueSetOid='2.16.840.1.113883.3.520.4.32']/voc:code/@value)">This value SHALL contain exactly one [1..1] @code, which SHALL be selected from (a) ValueSet TNM Clinical Tumor 7th Edition (urn:oid:2.16.840.1.113883.3.520.4.6) or (b) ValueSet TNM Clinical Tumor 8th Edition (urn:oid: 2.16.840.1.113883.3.520.4.32) (Code System: TNM 8. Edition urn:oid:2.16.840.1.113883.3.520.3.18)(CONF:1169-34083).</sch:assert>
+			<sch:assert id="a-1169-34087" test="(@codeSystem='2.16.840.1.113883.15.6') or (@codeSystem='2.16.840.1.113883.3.520.3.18')">This value SHALL contain exactly one [1..1] @codeSystem. The @codeSystem associated with the code for TNM Clinical Tumor SHALL be selected from:(a)(a) TNM 7. Edition (CodeSystem: 2.16.840.1.113883.15.6) or (b) TNM 8. Edition (Code System: urn:oid:2.16.840.1.113883.3.520.3.18)(CONF:1169-34087).</sch:assert>
+			<sch:assert id="a-1169-34088" test="@sdtc:valueSet='2.16.840.1.113883.3.520.4.6' or @sdtc:valueSet='2.16.840.1.113883.3.520.4.32'">This value SHALL contain exactly one [1..1] @sdtc:valueSet. The @sdtc:valueSet associated with the code for TNM Clinical Tumor SHALL be selected from:(a)  "ValueSet TNM Clinical Tumor 7th Edition (urn:oid:2.16.840.1.113883.3.520.4.6") (CodeSystem: TNM 7. Edition urn:oid:2.16.840.1.113883.15.6) or (b)  "ValueSet TNM Clinical Tumor 8th Edition (urn.oid:2.16.840.1.113883.3.520.4.32) (Code System: TNM 8. Edition urn:oid:2.16.840.1.113883.3.520.3.18) (CONF:1169-34088).</sch:assert>
 			<sch:assert id="a-1169-34089-c" test="empty(cda:originalText/cda:reference[@value]) or (count($origTextValue)=1 and starts-with($origTextValue, '#') and count(//*[@ID=substring($origTextValue, 2)])=1)">This reference/@value SHALL begin with a '#' and SHALL point to its corresponding narrative (using the approach defined in CDA Release 2, section 4.3.5.1) (CONF:1169-34089).</sch:assert>
 		</sch:rule>
 	</sch:pattern>
@@ -1912,9 +1914,12 @@ Note: - If coded, the code value describing the grade of the tumor/cancer SHALL 
 		</sch:rule>
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.37-2015-02-05-branch-1169-34107-errors" context="cda:observation[cda:templateId[@root='2.16.840.1.113883.10.13.37' and @extension = '2015-02-05']]/cda:value[@xsi:type='CD']">
 			<sch:let name="origTextValue" value="cda:originalText/cda:reference/@value"/>
-			<sch:assert id="a-1169-34111" test="@code=document('voc.xml')/voc:systems/voc:system[@valueSetOid='2.16.840.1.113883.3.520.4.7']/voc:code/@value">This value SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet TNM Clinical Node urn:oid:2.16.840.1.113883.3.520.4.7 (CONF:1169-34111).</sch:assert>
-			<sch:assert id="a-1169-34112" test="@codeSystem='2.16.840.1.113883.15.6'">This value SHALL contain exactly one [1..1] @codeSystem="2.16.840.1.113883.15.6" (CodeSystem: TNM 7. Edition urn:oid:2.16.840.1.113883.15.6) (CONF:1169-34112).</sch:assert>
-			<sch:assert id="a-1169-34113" test="@sdtc:valueSet='2.16.840.1.113883.3.520.4.7'">This value SHALL contain exactly one [1..1] @sdtc:valueSet="2.16.840.1.113883.3.520.4.7" (CodeSystem: TNM 7. Edition urn:oid:2.16.840.1.113883.15.6) (CONF:1169-34113).</sch:assert>
+            <sch:let name="test" value="hello"/>
+
+            <!--8/21/2019-->
+			<sch:assert id="a-1169-34111" test="(@sdtc:valueSet='2.16.840.1.113883.3.520.4.7' and @code=document('voc.xml')/voc:systems/voc:system[@valueSetOid='2.16.840.1.113883.3.520.4.7']/voc:code/@value) or (@sdtc:valueSet='2.16.840.1.113883.3.520.4.33' and  @code=document('voc.xml')/voc:systems/voc:system[@valueSetOid='2.16.840.1.113883.3.520.4.33']/voc:code/@value)">This value SHALL contain exactly one [1..1] @code,which SHALL be selected from:(a) Value Set TNM Clinical Node 7th Edition urn:oid:2.16.840.1.113883.3.520.4.7 or (b) Value Set TNM Clinical Node 8th Edition (urn:oid:2.16.840.1.113883.3.520.4.33) (CONF:1169-34111).</sch:assert>
+			<sch:assert id="a-1169-34112" test="@codeSystem='2.16.840.1.113883.15.6' or @codeSystem='2.16.840.1.113883.3.520.3.18'">This value SHALL contain exactly one [1..1] @codeSystem. The @codeSystem associated with the code for TNM Clinical Node SHALL be selected from:(a) TNM 7. Edition (CodeSystem: 2.16.840.1.113883.15.6) or (b) TNM 8. Edition (Code System: urn:OID:2.16.840.1.113883.3.520.3.18) (CONF:1169-34112).</sch:assert>
+			<sch:assert id="a-1169-34113" test="@sdtc:valueSet='2.16.840.1.113883.3.520.4.7' or @sdtc:valueSet='2.16.840.1.113883.3.520.4.33'">This value SHALL contain exactly one [1..1] @sdtc:valueSet. The @sdtc:valueSet associated with the code for TNM Clinical Node SHALL be selected from:(a)  "Value Set OID 2.16.840.1.113883.3.520.4.7" (CodeSystem: TNM 7. Edition urn:oid:2.16.840.1.113883.15.6) or (b)  Value Set OID 2.16.840.1.113883.3.520.4.33 (Code System: TNM 8. Edition urn:oid:2.16.840.1.113883.3.520.3.18) (CONF:1169-34113).</sch:assert>
 			<sch:assert id="a-1169-34114-c" test="empty(cda:originalText/cda:reference[@value]) or (count($origTextValue)=1 and starts-with($origTextValue, '#') and count(//*[@ID=substring($origTextValue, 2)])=1)">This reference/@value SHALL begin with a '#' and SHALL point to its corresponding narrative (using the approach defined in CDA Release 2, section 4.3.5.1) (CONF:1169-34114).</sch:assert>
 		</sch:rule>
 	</sch:pattern>
@@ -1931,9 +1936,11 @@ Note: - If coded, the code value describing the grade of the tumor/cancer SHALL 
 		</sch:rule>
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.38-2015-02-05-branch-1169-34120-errors" context="cda:observation[cda:templateId[@root='2.16.840.1.113883.10.13.38' and @extension = '2015-02-05']]/cda:value[@xsi:type='CD']">
 			<sch:let name="origTextValue" value="cda:originalText/cda:reference/@value"/>
-			<sch:assert id="a-1169-34121" test="@code=document('voc.xml')/voc:systems/voc:system[@valueSetOid='2.16.840.1.113883.3.520.4.8']/voc:code/@value">This value SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet TNM Clinical Metastasis urn:oid:2.16.840.1.113883.3.520.4.8 (CONF:1169-34121).</sch:assert>
-			<sch:assert id="a-1169-34122" test="@codeSystem='2.16.840.1.113883.15.6'">This value SHALL contain exactly one [1..1] @codeSystem="2.16.840.1.113883.15.6" (CodeSystem: TNM 7. Edition urn:oid:2.16.840.1.113883.15.6) (CONF:1169-34122).</sch:assert>
-			<sch:assert id="a-1169-34123" test="@sdtc:valueSet='2.16.840.1.113883.3.520.4.8'">This value SHALL contain exactly one [1..1] @sdtc:valueSet="2.16.840.1.113883.3.520.4.8" (CodeSystem: TNM 7. Edition urn:oid:2.16.840.1.113883.15.6) (CONF:1169-34123).</sch:assert>
+
+			<!--8/21/2019-->
+			<sch:assert id="a-1169-34121" test="(@sdtc:valueSet='2.16.840.1.113883.3.520.4.8' and @code=document('voc.xml')/voc:systems/voc:system[@valueSetOid='2.16.840.1.113883.3.520.4.8']/voc:code/@value) or (@sdtc:valueSet='2.16.840.1.113883.3.520.4.34' and @code=document('voc.xml')/voc:systems/voc:system[@valueSetOid='2.16.840.1.113883.3.520.4.34']/voc:code/@value)">This value SHALL contain exactly one [1..1] @code, which SHALL be selected from (a) Value Set TNM Clinical Metastasis 7th Edition urn:oid:2.16.840.1.113883.3.520.4.8 or (b) Value Set TNM Clinical Metastasis 8th Edition (urn:oid:2.16.840.1.113883.3.520.4.34) (CONF:1169-34121).</sch:assert>
+			<sch:assert id="a-1169-34122" test="@codeSystem='2.16.840.1.113883.15.6' or @codeSystem='2.16.840.1.113883.3.520.3.18'">This value SHALL contain exactly one [1..1] @codeSystem. The @codeSystem associated with the code for TNM Clinical Metastasis SHALL be selected from:(a) TNM 7. Edition (CodeSystem: 2.16.840.1.113883.15.6) or (b) TNM 8. Edition (Code System: urn:OID:2.16.840.1.113883.3.520.3.18) (CONF:1169-34122).</sch:assert>
+			<sch:assert id="a-1169-34123" test="@sdtc:valueSet='2.16.840.1.113883.3.520.4.8' or @sdtc:valueSet='2.16.840.1.113883.3.520.4.34'">This value SHALL contain exactly one [1..1] @sdtc:valueSet. The @sdtc:valueSet associated with the code for TNM Clinical Metastasis SHALL be selected from:(a)  "Value Set OID 2.16.840.1.113883.3.520.4.8" (CodeSystem: TNM 7. Edition urn:oid:2.16.840.1.113883.15.6) or (b)  "Value Set OID 2.16.840.1.113883.3.520.4.34" (Code System: TNM 8. Edition urn:oid:2.16.840.1.113883.3.520.3.18) (CONF:1169-34123).</sch:assert>
 			<sch:assert id="a-1169-34127-c" test="empty(cda:originalText/cda:reference[@value]) or (count($origTextValue)=1 and starts-with($origTextValue, '#') and count(//*[@ID=substring($origTextValue, 2)])=1)">This reference/@value SHALL begin with a '#' and SHALL point to its corresponding narrative (using the approach defined in CDA Release 2, section 4.3.5.1) (CONF:1169-34127).</sch:assert>
 		</sch:rule>
 	</sch:pattern>
@@ -1978,9 +1985,11 @@ Note: Identifies the role of the person who recorded the staging elements. SHALL
 		</sch:rule>
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.40-2015-02-05-branch-1169-34153-errors" context="cda:observation[cda:templateId[@root='2.16.840.1.113883.10.13.40' and @extension = '2015-02-05']]/cda:value[@xsi:type='CD']">
 			<sch:let name="origTextValue" value="cda:originalText/cda:reference/@value"/>
-			<sch:assert id="a-1169-34154" test="@code=document('voc.xml')/voc:systems/voc:system[@valueSetOid='2.16.840.1.113883.3.520.4.20']/voc:code/@value">This value SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet TNM Pathologic Stage Group urn:oid:2.16.840.1.113883.3.520.4.20 DYNAMIC (CONF:1169-34154).</sch:assert>
-			<sch:assert id="a-1169-34155" test="@codeSystem='2.16.840.1.113883.15.6'">This value SHALL contain exactly one [1..1] @codeSystem="2.16.840.1.113883.15.6" (CodeSystem: TNM 7. Edition urn:oid:2.16.840.1.113883.15.6) (CONF:1169-34155).</sch:assert>
-			<sch:assert id="a-1169-34156" test="@sdtc:valueSet='2.16.840.1.113883.3.520.4.20'">This value SHALL contain exactly one [1..1] @sdtc:valueSet="2.16.840.1.113883.3.520.4.20" (CodeSystem: TNM 7. Edition urn:oid:2.16.840.1.113883.15.6) (CONF:1169-34156).</sch:assert>
+
+			<!--8/21/2019-->
+			<sch:assert id="a-1169-34154" test="(@sdtc:valueSet='2.16.840.1.113883.3.520.4.20' and @code=document('voc.xml')/voc:systems/voc:system[@valueSetOid='2.16.840.1.113883.3.520.4.20']/voc:code/@value) or (@sdtc:valueSet='2.16.840.1.113883.3.520.4.35' and @code=document('voc.xml')/voc:systems/voc:system[@valueSetOid='2.16.840.1.113883.3.520.4.35']/voc:code/@value)">This value SHALL contain exactly one [1..1] @code, which SHALL be selected from:(a) ValueSet TNM Pathologic Stage Group 7th Edition urn:oid:2.16.840.1.113883.3.520.4.20 DYNAMIC or (b) ValueSet TNM Pathologic Stage Group 8th Edition (urn:oid:2.16.840.1.113883.3.520.4.35) DYNAMIC (CONF:1169-34154).</sch:assert>
+			<sch:assert id="a-1169-34155" test="@codeSystem='2.16.840.1.113883.15.6' or @codeSystem='2.16.840.1.113883.3.520.3.18'">This value SHALL contain exactly one [1..1] @codeSystem. The @codeSystem associated with the code for TNM Pathologic Stage Group SHALL be selected from:(a) TNM 7. Edition (CodeSystem: urn:oid:2.16.840.1.113883.15.6) or (b) TNM 8. Edition (Code System: urn:oid:2.16.840.1.113883.3.520.3.18) (CONF:1169-34155).</sch:assert>
+			<sch:assert id="a-1169-34156" test="@sdtc:valueSet='2.16.840.1.113883.3.520.4.20' or @sdtc:valueSet='2.16.840.1.113883.3.520.4.35'">This value SHALL contain exactly one [1..1] @sdtc:valueSet. The @sdtc:valueSet associated with the code for TNM Pathologic Stage Group SHALL be selected from:(a)  "Value Set OID 2.16.840.1.113883.3.520.4.20" (CodeSystem: TNM 7. Edition urn:oid:2.16.840.1.113883.15.6) or (b)  "Value Set OID 2.16.840.1.113883.3.520.4.35" (Code System: TNM 8. Edition urn:oid:2.16.840.1.113883.3.520.3.18)(CONF:1169-34156).</sch:assert>
 			<sch:assert id="a-1169-34160-c" test="empty(cda:originalText/cda:reference[@value]) or (count($origTextValue)=1 and starts-with($origTextValue, '#') and count(//*[@ID=substring($origTextValue, 2)])=1)">This reference/@value SHALL begin with a '#' and SHALL point to its corresponding narrative (using the approach defined in CDA Release 2, section 4.3.5.1) (CONF:1169-34160).</sch:assert>
 			<sch:assert id="a-1169-34161" test="count(cda:qualifier)=1">This value SHALL contain exactly one [1..1] qualifier (CONF:1169-34161).</sch:assert>
 		</sch:rule>
@@ -2009,9 +2018,12 @@ Note: Identifies the role of the person who recorded the staging elements. SHALL
 		</sch:rule>
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.41-2015-02-05-branch-1169-34194-errors" context="cda:observation[cda:templateId[@root='2.16.840.1.113883.10.13.41' and @extension = '2015-02-05']]/cda:value[@xsi:type='CD']">
 			<sch:let name="origTextValue" value="cda:originalText/cda:reference/@value"/>
-			<sch:assert id="a-1169-34195" test="@code=document('voc.xml')/voc:systems/voc:system[@valueSetOid='2.16.840.1.113883.3.520.4.17']/voc:code/@value">This value SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet TNM Pathologic Tumor urn:oid:2.16.840.1.113883.3.520.4.17 (CONF:1169-34195).</sch:assert>
-			<sch:assert id="a-1169-34196" test="@codeSystem='2.16.840.1.113883.15.6'">This value SHALL contain exactly one [1..1] @codeSystem="2.16.840.1.113883.15.6" (CodeSystem: TNM 7. Edition urn:oid:2.16.840.1.113883.15.6) (CONF:1169-34196).</sch:assert>
-			<sch:assert id="a-1169-34197" test="@sdtc:valueSet='2.16.840.1.113883.3.520.4.17'">This value SHALL contain exactly one [1..1] @sdtc:valueSet="2.16.840.1.113883.3.520.4.17" (CodeSystem: TNM 7. Edition urn:oid:2.16.840.1.113883.15.6) (CONF:1169-34197).</sch:assert>
+
+			<!--8/21/2019-->
+			<sch:assert id="a-1169-34195" test="(@sdtc:valueSet='2.16.840.1.113883.3.520.4.17' and @code=document('voc.xml')/voc:systems/voc:system[@valueSetOid='2.16.840.1.113883.3.520.4.17']/voc:code/@value) or (@sdtc:valueSet='2.16.840.1.113883.3.520.4.37' and @code=document('voc.xml')/voc:systems/voc:system[@valueSetOid='2.16.840.1.113883.3.520.4.37']/voc:code/@value)">This value SHALL contain exactly one [1..1] @code, which SHALL be selected from:(a) ValueSet TNM Pathologic Tumor 7th Edition urn:oid:2.16.840.1.113883.3.520.4.17 or (b) ValueSet TNM Pathologic Tumor 8th Edition (urn:oid:2.16.840.1.113883.3.520.4.37) (CONF:1169-34195).</sch:assert>
+			<!--<sch:assert id="a-1169-34195" test="@code=(document('voc.xml')/voc:systems/voc:system[@valueSetOid='2.16.840.1.113883.3.520.4.17']/voc:code/@value) or (document('voc.xml')/voc:systems/voc:system[@valueSetOid='2.16.840.1.113883.3.520.4.37']/voc:code/@value)">This value SHALL contain exactly one [1..1] @code, which SHALL be selected from:(a) ValueSet TNM Pathologic Tumor 7th Edition urn:oid:2.16.840.1.113883.3.520.4.17 or (b) ValueSet TNM Pathologic Tumor 8th Edition (urn:oid:2.16.840.1.113883.3.520.4.37) (CONF:1169-34195).</sch:assert>-->
+			<sch:assert id="a-1169-34196" test="@codeSystem='2.16.840.1.113883.15.6' or @codeSystem='2.16.840.1.113883.3.520.3.18'">This value SHALL contain exactly one [1..1] @codeSystem. The @codeSystem associated with the code for TNM Pathologic Tumor SHALL be selected from:(a) TNM 7. Edition (CodeSystem: 2.16.840.1.113883.15.6) or (b) TNM 8. Edition (Code System: 2.16.840.1.113883.3.520.3.18) (CONF:1169-34196).</sch:assert>
+			<sch:assert id="a-1169-34197" test="@sdtc:valueSet='2.16.840.1.113883.3.520.4.17' or @sdtc:valueSet='2.16.840.1.113883.3.520.4.37'">This value SHALL contain exactly one [1..1] @sdtc:valueSet. The @sdtc:valueSet associated with the code for TNM Pathologic Tumor SHALL be selected from:(a)  "Value Set OID 2.16.840.1.113883.3.520.4.17" (CodeSystem: TNM 7. Edition urn:oid:2.16.840.1.113883.15.6) or (b)  "Value Set OID 2.16.840.1.113883.3.520.4.37" (Code System: TNM 8. Edition urn:oid:2.16.840.1.113883.3.520.3.18) (CONF:1169-34197).</sch:assert>
 			<sch:assert id="a-1169-34201-c" test="empty(cda:originalText/cda:reference[@value]) or (count($origTextValue)=1 and starts-with($origTextValue, '#') and count(//*[@ID=substring($origTextValue, 2)])=1)">This reference/@value SHALL begin with a '#' and SHALL point to its corresponding narrative (using the approach defined in CDA Release 2, section 4.3.5.1) (CONF:1169-34201).</sch:assert>
 		</sch:rule>
 	</sch:pattern>
@@ -2028,9 +2040,11 @@ Note: Identifies the role of the person who recorded the staging elements. SHALL
 		</sch:rule>
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.42-2015-02-05-branch-1169-34210-errors" context="cda:observation[cda:templateId[@root='2.16.840.1.113883.10.13.42' and @extension = '2015-02-05']]/cda:value[@xsi:type='CD']">
 			<sch:let name="origTextValue" value="cda:originalText/cda:reference/@value"/>
-			<sch:assert id="a-1169-34211" test="@code=document('voc.xml')/voc:systems/voc:system[@valueSetOid='2.16.840.1.113883.3.520.4.18']/voc:code/@value">This value SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet TNM Pathologic Node urn:oid:2.16.840.1.113883.3.520.4.18 (CONF:1169-34211).</sch:assert>
-			<sch:assert id="a-1169-34212" test="@codeSystem='2.16.840.1.113883.15.6'">This value SHALL contain exactly one [1..1] @codeSystem="2.16.840.1.113883.15.6" (CodeSystem: TNM 7. Edition urn:oid:2.16.840.1.113883.15.6) (CONF:1169-34212).</sch:assert>
-			<sch:assert id="a-1169-34216" test="@sdtc:valueSet='2.16.840.1.113883.3.520.4.18'">This value SHALL contain exactly one [1..1] @sdtc:valueSet="2.16.840.1.113883.3.520.4.18" (CodeSystem: TNM 7. Edition urn:oid:2.16.840.1.113883.15.6) (CONF:1169-34216).</sch:assert>
+
+			<!--8/21/2019-->
+			<sch:assert id="a-1169-34211" test="(@sdtc:valueSet='2.16.840.1.113883.3.520.4.18' and @code=document('voc.xml')/voc:systems/voc:system[@valueSetOid='2.16.840.1.113883.3.520.4.18']/voc:code/@value) or (@sdtc:valueSet='2.16.840.1.113883.3.520.4.38' and @code=document('voc.xml')/voc:systems/voc:system[@valueSetOid='2.16.840.1.113883.3.520.4.38']/voc:code/@value)">This value SHALL contain exactly one [1..1] @code, which SHALL be selected from:(a) ValueSet TNM Pathologic Node 7th Edition urn:oid:2.16.840.1.113883.3.520.4.18 or (b) ValueSet TNM Pathologic Node 8th Edition (urn:oid:2.16.840.1.113883.3.520.4.38)  (CONF:1169-34211).</sch:assert>
+			<sch:assert id="a-1169-34212" test="@codeSystem='2.16.840.1.113883.15.6' or @codeSystem='2.16.840.1.113883.3.520.3.18'">This value SHALL contain exactly one [1..1] @codeSystem. The @codeSystem associated with the code for TNM Pathologic Node SHALL be selected from:(a) TNM 7. Edition (CodeSystem: 2.16.840.1.113883.15.6) or (b) TNM 8. Edition (Code System: 2.16.840.1.113883.3.520.3.18)(CONF:1169-34212).</sch:assert>
+			<sch:assert id="a-1169-34216" test="@sdtc:valueSet='2.16.840.1.113883.3.520.4.18' or @sdtc:valueSet='2.16.840.1.113883.3.520.4.38'">This value SHALL contain exactly one [1..1] @sdtc:valueSet. The @sdtc:valueSet associated with the code for TNM Pathologic Node SHALL be selected from:(a)  "Value Set OID 2.16.840.1.113883.3.520.4.18" (CodeSystem: TNM 7. Edition urn:oid:2.16.840.1.113883.15.6) or (b) "Value Set OID 2.16.840.1.113883.3.520.4.38" (Code System: TNM 8. Edition urn:oid:2.16.840.1.113883.3.520.3.18)(CONF:1169-34216).</sch:assert>
 			<sch:assert id="a-1169-34217-c" test="empty(cda:originalText/cda:reference[@value]) or (count($origTextValue)=1 and starts-with($origTextValue, '#') and count(//*[@ID=substring($origTextValue, 2)])=1)">This reference/@value SHALL begin with a '#' and SHALL point to its corresponding narrative (using the approach defined in CDA Release 2, section 4.3.5.1) (CONF:1169-34217).</sch:assert>
 		</sch:rule>
 	</sch:pattern>
@@ -2047,9 +2061,11 @@ Note: Identifies the role of the person who recorded the staging elements. SHALL
 		</sch:rule>
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.43-2015-02-05-branch-1169-34226-errors" context="cda:observation[cda:templateId[@root='2.16.840.1.113883.10.13.43' and @extension = '2015-02-05']]/cda:value[@xsi:type='CD']">
 			<sch:let name="origTextValue" value="cda:originalText/cda:reference/@value"/>
-			<sch:assert id="a-1169-34227" test="@code=document('voc.xml')/voc:systems/voc:system[@valueSetOid='2.16.840.1.113883.3.520.4.19']/voc:code/@value">This value SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet TNM Pathologic Metastasis urn:oid:2.16.840.1.113883.3.520.4.19 (CONF:1169-34227).</sch:assert>
-			<sch:assert id="a-1169-34228" test="@codeSystem='2.16.840.1.113883.15.6'">This value SHALL contain exactly one [1..1] @codeSystem="2.16.840.1.113883.15.6" (CodeSystem: TNM 7. Edition urn:oid:2.16.840.1.113883.15.6) (CONF:1169-34228).</sch:assert>
-			<sch:assert id="a-1169-34229" test="@sdtc:valueSet='2.16.840.1.113883.3.520.4.19'">This value SHALL contain exactly one [1..1] @sdtc:valueSet="2.16.840.1.113883.3.520.4.19" (CodeSystem: TNM 7. Edition urn:oid:2.16.840.1.113883.15.6) (CONF:1169-34229).</sch:assert>
+
+			<!--8/21/2019-->
+			<sch:assert id="a-1169-34227" test="(@sdtc:valueSet='2.16.840.1.113883.3.520.4.19' and @code=document('voc.xml')/voc:systems/voc:system[@valueSetOid='2.16.840.1.113883.3.520.4.19']/voc:code/@value) or (@sdtc:valueSet='2.16.840.1.113883.3.520.4.39' and @code=document('voc.xml')/voc:systems/voc:system[@valueSetOid='2.16.840.1.113883.3.520.4.39']/voc:code/@value)">This value SHALL contain exactly one [1..1] @code, which SHALL be selected from:(a) ValueSet TNM Pathologic Metastasis 7th Edition (urn:oid:2.16.840.1.113883.3.520.4.19) or (b) ValueSet TNM Pathologic Metastasis 8th Edition (urn:oid:2.16.840.1.113883.3.520.4.39) (CONF:1169-34227).</sch:assert>
+			<sch:assert id="a-1169-34228" test="@codeSystem='2.16.840.1.113883.15.6' or @codeSystem='2.16.840.1.113883.3.520.3.18'">This value SHALL contain exactly one [1..1] @codeSystem. The @codeSystem associated with the code for TNM Pathologic Metastasis SHALL be selected from:(a) TNM 7. Edition (CodeSystem: 2.16.840.1.113883.15.6) or (b) TNM 8. Edition (Code System: 2.16.840.1.113883.3.520.3.18) (CONF:1169-34228).</sch:assert>
+			<sch:assert id="a-1169-34229" test="@sdtc:valueSet='2.16.840.1.113883.3.520.4.19' or @sdtc:valueSet='2.16.840.1.113883.3.520.4.39'">This value SHALL contain exactly one [1..1] @sdtc:valueSet.The @sdtc:valueSet associated with the code for TNM Pathologic Metastasis SHALL be selected from:(a)  "Value Set OID 2.16.840.1.113883.3.520.4.19" (CodeSystem: TNM 7. Edition urn:oid:2.16.840.1.113883.15.6) or (b)  "Value Set OID 2.16.840.1.113883.3.520.4.39" (Code System: TNM 8. Edition urn:oid:2.16.840.1.113883.3.520.3.18) (CONF:1169-34229).</sch:assert>
 			<sch:assert id="a-1169-34233-c" test="empty(cda:originalText/cda:reference[@value]) or (count($origTextValue)=1 and starts-with($origTextValue, '#') and count(//*[@ID=substring($origTextValue, 2)])=1)">This reference/@value SHALL begin with a '#' and SHALL point to its corresponding narrative (using the approach defined in CDA Release 2, section 4.3.5.1) (CONF:1169-34233).</sch:assert>
 		</sch:rule>
 	</sch:pattern>
@@ -2114,6 +2130,7 @@ Note: This entryRelationship provides information on the TNM Pathologic Stage Gr
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.32-2015-04-02-errors" context="cda:observation[cda:templateId[@root='2.16.840.1.113883.10.13.32' and @extension = '2015-04-02']]">
 			<sch:extends rule="r-urn-hl7ii-2.16.840.1.113883.10.13.32-2015-04-02-errors-abstract"/>
 			<sch:assert id="a-1169-33805" test="count(cda:templateId[@root='2.16.840.1.113883.10.13.32'][@extension='2015-04-02'])=1">SHALL contain exactly one [1..1] templateId (CONF:1169-33805) such that it SHALL contain exactly one [1..1] @root="2.16.840.1.113883.10.13.32" (CONF:1169-33849). SHALL contain exactly one [1..1] @extension="2015-04-02" (CONF:1169-34368).</sch:assert>
+			<sch:assert id="a-1169-33858" test="@negationInd='true'">SHALL contain exactly one [1..1] @negationInd="true" (CONF:1169-33858).</sch:assert>
 		</sch:rule>
 	</sch:pattern>
 	<sch:pattern id="p-urn-oid-2.16.840.1.113883.10.20.22.5.1-warnings">
@@ -2248,6 +2265,7 @@ This assignedAuthor SHOULD contain zero or one [0..1] code (CONF:1098-16787).</s
 			<sch:assert id="a-1098-16788-v" test="empty(cda:code)">The code, if present, SHALL contain exactly one [1..1] @code, which SHOULD be selected from ValueSet Healthcare Provider Taxonomy (HIPAA) urn:oid:2.16.840.1.114222.4.11.1066 DYNAMIC (CONF:1098-16788).</sch:assert>
 			<sch:assert id="a-1098-5430-c" test="count(cda:assignedPerson)=1">This assignedAuthor SHOULD contain zero or one [0..1] assignedPerson (CONF:1098-5430).</sch:assert>
 			<sch:assert id="a-1098-16783-c" test="count(cda:assignedAuthoringDevice)=1">This assignedAuthor SHOULD contain zero or one [0..1] assignedAuthoringDevice (CONF:1098-16783).</sch:assert>
+		        <sch:assert id="a-1098-5452-c" test="exists(cda:addr)">This assignedAuthor SHALL contain at least one [1..*] US Realm Address (AD.US.FIELDED) (identifier: urn:oid:2.16.840.1.113883.10.20.22.5.2) (CONF:1098-5452).</sch:assert>
 		</sch:rule>
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.20.22.1.1-2014-06-09-branch-1098-5428-warnings" context="cda:ClinicalDocument[cda:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension = '2014-06-09']]/cda:author/cda:assignedAuthor/cda:telecom">
 			<sch:assert id="a-1098-7995" test="exists(@use)">Such telecoms SHOULD contain zero or one [0..1] @use, which SHALL be selected from ValueSet Telecom Use (US Realm Header) urn:oid:2.16.840.1.113883.11.20.9.20 DYNAMIC (CONF:1098-7995).</sch:assert>
@@ -2620,7 +2638,7 @@ SHOULD contain zero or one [0..1] participant (CONF:1098-8934) such that it SHAL
 	<sch:pattern id="p-urn-hl7ii-2.16.840.1.113883.10.13.17-2014-08-08-warnings">
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.17-2014-08-08-warnings-abstract" abstract="true">
 			<sch:extends rule="r-urn-oid-2.16.840.1.113883.10.20.22.5.2-warnings-abstract"/>
-		</sch:rule>
+			</sch:rule>
 	</sch:pattern>
 	<sch:pattern id="p-urn-hl7ii-2.16.840.1.113883.10.13.18-2014-08-08-warnings">
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.18-2014-08-08-warnings-abstract" abstract="true">
@@ -2732,10 +2750,10 @@ Note: This id is to be used to provide the Cancer Registry approved local identi
 			<sch:assert id="a-1126-33346" test="count(cda:effectiveTime)=1">SHOULD contain zero or one [0..1] effectiveTime (CONF:1126-33346).</sch:assert>
 		</sch:rule>
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.26-2014-08-08-branch-1126-33329-warnings" context="cda:procedure[cda:templateId[@root='2.16.840.1.113883.10.13.26' and @extension = '2014-08-08']]/cda:code">
-			<sch:assert id="a-1126-33587-c" test="exists(@nullFlavor) or exists(@code)">This code SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet Radiation Regional Treatment and Boost Radiation Grouping urn:oid:2.16.840.1.113883.3.520.4.23 (CONF:1126-33587).</sch:assert>
-			<sch:assert id="a-1126-33588" test="exists(@nullFlavor) or exists(@codeSystem)">This code SHALL contain exactly one [1..1] @codeSystem (CONF:1126-33588).</sch:assert>
-			<sch:assert id="a-1126-33661-c" test="exists(@nullFlavor) or exists(@displayName)">This code SHALL contain exactly one [1..1] @displayName, which SHALL be selected from ValueSet Radiation Regional Treatment and Boost Radiation Grouping urn:oid:2.16.840.1.113883.3.520.4.23 (CONF:1126-33661).</sch:assert>
-			<sch:assert id="a-1126-33724" test="exists(@nullFlavor) or @sdtc:valueSet='2.16.840.1.113883.3.520.4.23'">This code SHALL contain exactly one [1..1] @sdtc:valueSet="2.16.840.1.113883.3.520.4.23" (CONF:1126-33724).</sch:assert>
+			<sch:assert id="a-1126-33587-c" test="exists(@code)">This code SHOULD contain exactly one [1..1] @code, which SHALL be selected from ValueSet Radiation Regional Treatment and Boost Radiation Grouping urn:oid:2.16.840.1.113883.3.520.4.23 (CONF:1126-33587).</sch:assert>
+			<sch:assert id="a-1126-33588" test="exists(@codeSystem)">This code SHOULD contain exactly one [1..1] @codeSystem (CONF:1126-33588).</sch:assert>
+			<sch:assert id="a-1126-33661-c" test="exists(@displayName)">This code SHOULD contain exactly one [1..1] @displayName, which SHALL be selected from ValueSet Radiation Regional Treatment and Boost Radiation Grouping urn:oid:2.16.840.1.113883.3.520.4.23 (CONF:1126-33661).</sch:assert>
+			<sch:assert id="a-1126-33724" test="@sdtc:valueSet='2.16.840.1.113883.3.520.4.23'">This code SHOULD contain exactly one [1..1] @sdtc:valueSet="2.16.840.1.113883.3.520.4.23" (CONF:1126-33724).</sch:assert>
 			<sch:assert id="a-1126-33590-c" test="exists(@nullFlavor) or @codeSystem='2.16.840.1.113883.6.96' or @codeSystem='2.16.840.1.113883.6.14' or @codeSystem='2.16.840.1.113883.6.4'">This codeSystem in a Radiation Regional Treatment Modality SHOULD be selected from HCPCS (CodeSystem: 2.16.840.1.113883.6.14) and MAY be selected from SNOMED CT (CodeSystem: 2.16.840.1.113883.6.96) or ICD10 PCS (CodeSystem: 2.16.840.1.113883.6.4) (CONF:1126-33590).</sch:assert>
 			<sch:assert id="a-1126-33330" test="count(cda:originalText)=1">This code SHOULD contain zero or one [0..1] originalText (CONF:1126-33330).</sch:assert>
 			<sch:assert id="a-1126-33331" test="empty(cda:originalText) or (count(cda:originalText)=1 and count(cda:originalText[count(cda:reference)=1])=1)">The originalText, if present, SHOULD contain zero or one [0..1] reference (CONF:1126-33331).</sch:assert>
@@ -2759,16 +2777,15 @@ Note: This id is to be used to provide the Cancer Registry approved local identi
 			<sch:assert id="a-1126-33366" test="exists(cda:targetSiteCode)">SHOULD contain zero or more [0..*] targetSiteCode (CONF:1126-33366).</sch:assert>
 			<sch:assert id="a-1126-33367" test="exists(cda:performer)">SHOULD contain zero or more [0..*] performer (CONF:1126-33367).</sch:assert>
 			<sch:assert id="a-1126-33379" test="count(cda:effectiveTime)=1">SHOULD contain zero or one [0..1] effectiveTime (CONF:1126-33379).</sch:assert>
-			<sch:assert id="a-1126-33624" test="exists(cda:entryRelationship[count(cda:observation[cda:templateId[@root='2.16.840.1.113883.10.13.27' and @extension = '2014-08-08']])=1])">SHOULD contain at least one [1..*] entryRelationship (CONF:1126-33624) such that it SHALL contain exactly one [1..1] Radiation Regional Dose - cGy (identifier: urn:hl7ii:2.16.840.1.113883.10.13.27:2014-08-08) (CONF:1126-33625).</sch:assert>
 		</sch:rule>
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.25-2014-08-08-warnings" context="cda:procedure[cda:templateId[@root='2.16.840.1.113883.10.13.25' and @extension = '2014-08-08']]">
 			<sch:extends rule="r-urn-hl7ii-2.16.840.1.113883.10.13.25-2014-08-08-warnings-abstract"/>
 		</sch:rule>
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.25-2014-08-08-branch-1126-33362-warnings" context="cda:procedure[cda:templateId[@root='2.16.840.1.113883.10.13.25' and @extension = '2014-08-08']]/cda:code">
-			<sch:assert id="a-1126-33594-c" test="exists(@code)">This code SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet Radiation Regional Treatment and Boost Radiation Grouping urn:oid:2.16.840.1.113883.3.520.4.23 (CONF:1126-33594).</sch:assert>
-			<sch:assert id="a-1126-33595" test="exists(@codeSystem)">This code SHALL contain exactly one [1..1] @codeSystem (CONF:1126-33595).</sch:assert>
-			<sch:assert id="a-1126-33662-c" test="exists(@displayName)">This code SHALL contain exactly one [1..1] @displayName, which SHALL be selected from ValueSet Radiation Regional Treatment and Boost Radiation Grouping urn:oid:2.16.840.1.113883.3.520.4.23 (CONF:1126-33662).</sch:assert>
-			<sch:assert id="a-1126-33723" test="@sdtc:valueSet='2.16.840.1.113883.3.520.4.23'">This code SHALL contain exactly one [1..1] @sdtc:valueSet="2.16.840.1.113883.3.520.4.23" (CONF:1126-33723).</sch:assert>
+			<sch:assert id="a-1126-33594-c" test="exists(@code)">This code SHOULD contain exactly one [1..1] @code, which SHALL be selected from ValueSet Radiation Regional Treatment and Boost Radiation Grouping urn:oid:2.16.840.1.113883.3.520.4.23 (CONF:1126-33594).</sch:assert>
+			<sch:assert id="a-1126-33595" test="exists(@codeSystem)">This code SHOULD contain exactly one [1..1] @codeSystem (CONF:1126-33595).</sch:assert>
+			<sch:assert id="a-1126-33662-c" test="exists(@displayName)">This code SHOULD contain exactly one [1..1] @displayName, which SHALL be selected from ValueSet Radiation Regional Treatment and Boost Radiation Grouping urn:oid:2.16.840.1.113883.3.520.4.23 (CONF:1126-33662).</sch:assert>
+			<sch:assert id="a-1126-33723" test="@sdtc:valueSet='2.16.840.1.113883.3.520.4.23'">This code SHOULD contain exactly one [1..1] @sdtc:valueSet="2.16.840.1.113883.3.520.4.23" (CONF:1126-33723).</sch:assert>
 			<sch:assert id="a-1126-33597-c" test="@codeSystem='2.16.840.1.113883.6.96' or @codeSystem='2.16.840.1.113883.6.12' or @codeSystem='2.16.840.1.113883.6.4'">This codeSystem in a Radiation Regional Treatment Modality SHOULD be selected from CPT-4 (CodeSystem: 2.16.840.1.113883.6.12) MAY be selected from SNOMED CT (CodeSystem: 2.16.840.1.113883.6.96) or ICD10 PCS (CodeSystem: 2.16.840.1.113883.6.4) (CONF:1126-33597).</sch:assert>
 			<sch:assert id="a-1126-33363" test="count(cda:originalText)=1">This code SHOULD contain zero or one [0..1] originalText (CONF:1126-33363).</sch:assert>
 			<sch:assert id="a-1126-33364" test="empty(cda:originalText) or (count(cda:originalText)=1 and count(cda:originalText[count(cda:reference)=1])=1)">The originalText, if present, SHOULD contain zero or one [0..1] reference (CONF:1126-33364).</sch:assert>
@@ -2887,7 +2904,7 @@ Note: This id is to be used to provide the Cancer Registry approved local identi
 			<sch:extends rule="r-urn-oid-2.16.840.1.113883.10.20.22.5.2-warnings-abstract"/>
 		</sch:rule>
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.1-2015-01-29-addr-1169-33231-warnings" context="cda:ClinicalDocument[cda:templateId[@root='2.16.840.1.113883.10.13.1' and @extension = '2015-01-29']]/cda:author/cda:assignedAuthor[cda:assignedPerson]/cda:addr">
-			<sch:extends rule="r-urn-hl7ii-2.16.840.1.113883.10.13.17-2014-08-08-warnings-abstract"/>
+			<sch:extends rule="r-urn-oid-2.16.840.1.113883.10.20.22.5.2-warnings-abstract"/>
 		</sch:rule>
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.1-2015-01-29-addr-1169-33688-warnings" context="cda:ClinicalDocument[cda:templateId[@root='2.16.840.1.113883.10.13.1' and @extension = '2015-01-29']]/cda:author[cda:assignedAuthor[cda:assignedAuthoringDevice]]/cda:addr"> 
 			<sch:extends rule="r-urn-oid-2.16.840.1.113883.10.20.22.5.2-warnings-abstract"/>
@@ -3401,6 +3418,9 @@ SHALL contain exactly one [1..1] @typeCode="SUBJ" subject (CodeSystem: HL7ActRel
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.25-2014-08-08-branch-1126-33369-infos" context="cda:procedure[cda:templateId[@root='2.16.840.1.113883.10.13.25' and @extension = '2014-08-08']]/cda:performer/cda:assignedEntity/cda:representedOrganization">
 			<sch:assert id="a-1126-33385" test="exists(cda:name)">The representedOrganization, if present, MAY contain zero or more [0..*] name (CONF:1126-33385).</sch:assert>
 		</sch:rule>
+		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.25-2014-08-08-branch-1126-33624-infos" context="cda:procedure[cda:templateId[@root='2.16.840.1.113883.10.13.25' and @extension = '2014-08-08']]">
+		        <sch:assert id="a-1126-33624" test="exists(cda:entryRelationship[count(cda:observation[cda:templateId[@root='2.16.840.1.113883.10.13.27' and @extension = '2014-08-08']])=1])">May contain at least one [1..*] entryRelationship (CONF:1126-33624) such that it MAY contain exactly one [1..1] Radiation Regional Dose - cGy (identifier: urn:hl7ii:2.16.840.1.113883.10.13.27:2014-08-08) (CONF:1126-33625).</sch:assert>
+		</sch:rule>
 	</sch:pattern>
 	<sch:pattern id="p-urn-hl7ii-2.16.840.1.113883.10.13.28-2014-08-08-infos">
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.28-2014-08-08-infos" context="cda:observation[cda:templateId[@root='2.16.840.1.113883.10.13.28' and @extension = '2014-08-08']]">
@@ -3473,9 +3493,5 @@ Note: The effectiveTime/high (a.k.a. "resolution date") indicates Cancer Resolut
 			<sch:assert id="a-1169-33152" test="exists(@nullFlavor)">This low MAY contain zero or one [0..1] @nullFlavor (CONF:1169-33152).</sch:assert>
 		</sch:rule>
 	</sch:pattern>
-	<sch:pattern id="p-urn-hl7ii-2.16.840.1.113883.10.13.32-2015-04-02-infos">
-		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.32-2015-04-02-infos" context="cda:observation[cda:templateId[@root='2.16.840.1.113883.10.13.32' and @extension = '2015-04-02']]">
-			<sch:assert id="a-1169-33858" test="@negationInd='true'">MAY contain zero or one [0..1] @negationInd="true" (CONF:1169-33858).</sch:assert>
-		</sch:rule>
-	</sch:pattern>
+	
 </sch:schema>

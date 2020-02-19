@@ -1472,7 +1472,7 @@
 	<code value="cN0a" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 7. Edition" codeSystem="2.16.840.1.113883.15.6"/>
 	<code value="cN0b" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 7. Edition" codeSystem="2.16.840.1.113883.15.6"/>
 	<code value="cN1" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 7. Edition" codeSystem="2.16.840.1.113883.15.6"/>
-	<code value="cNla" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 7. Edition" codeSystem="2.16.840.1.113883.15.6"/>
+	<code value="cN1a" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 7. Edition" codeSystem="2.16.840.1.113883.15.6"/>
 	<code value="cN1b" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 7. Edition" codeSystem="2.16.840.1.113883.15.6"/>
 	<code value="cN1c" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 7. Edition" codeSystem="2.16.840.1.113883.15.6"/>
 	<code value="cN2" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 7. Edition" codeSystem="2.16.840.1.113883.15.6"/>
@@ -2757,7 +2757,7 @@
 	<code value="pN0a" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 7. Edition" codeSystem="2.16.840.1.113883.15.6"/>
 	<code value="pN0bA489" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 7. Edition" codeSystem="2.16.840.1.113883.15.6"/>
 	<code value="pN1" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 7. Edition" codeSystem="2.16.840.1.113883.15.6"/>
-	<code value="pNla" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 7. Edition" codeSystem="2.16.840.1.113883.15.6"/>
+	<code value="pN1a" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 7. Edition" codeSystem="2.16.840.1.113883.15.6"/>
 	<code value="pN1b" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 7. Edition" codeSystem="2.16.840.1.113883.15.6"/>
 	<code value="pN1c" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 7. Edition" codeSystem="2.16.840.1.113883.15.6"/>
 	<code value="pN2" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 7. Edition" codeSystem="2.16.840.1.113883.15.6"/>
@@ -4856,7 +4856,7 @@
 	<code value="cN0i+" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 8. Edition" codeSystem="2.16.840.1.113883.3.520.3.18"/>
 	<code value="cN1" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 8. Edition" codeSystem="2.16.840.1.113883.3.520.3.18"/>
 	<code value="cN1mi" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 8. Edition" codeSystem="2.16.840.1.113883.3.520.3.18"/>
-	<code value="cNla" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 8. Edition" codeSystem="2.16.840.1.113883.3.520.3.18"/>
+	<code value="cN1a" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 8. Edition" codeSystem="2.16.840.1.113883.3.520.3.18"/>
 	<code value="cN1b" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 8. Edition" codeSystem="2.16.840.1.113883.3.520.3.18"/>
 	<code value="cN1c" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 8. Edition" codeSystem="2.16.840.1.113883.3.520.3.18"/>
 	<code value="cN2" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 8. Edition" codeSystem="2.16.840.1.113883.3.520.3.18"/>
@@ -7550,7 +7550,7 @@
 	<code value="pN1mi" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 8. Edition" codeSystem="2.16.840.1.113883.3.520.3.18"/>
 	<code value="pN1a(sn)" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 8. Edition" codeSystem="2.16.840.1.113883.3.520.3.18"/>
 	<code value="pN1asn" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 8. Edition" codeSystem="2.16.840.1.113883.3.520.3.18"/>
-	<code value="pNla" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 8. Edition" codeSystem="2.16.840.1.113883.3.520.3.18"/>
+	<code value="pN1a" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 8. Edition" codeSystem="2.16.840.1.113883.3.520.3.18"/>
 	<code value="pN1b" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 8. Edition" codeSystem="2.16.840.1.113883.3.520.3.18"/>
 	<code value="pN1c" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 8. Edition" codeSystem="2.16.840.1.113883.3.520.3.18"/>
 	<code value="pN2" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 8. Edition" codeSystem="2.16.840.1.113883.3.520.3.18"/>
@@ -7970,7 +7970,7 @@
 	<code value="cN0i+" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 8. Edition" codeSystem="2.16.840.1.113883.3.520.3.18"/>
 	<code value="cN1" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 8. Edition" codeSystem="2.16.840.1.113883.3.520.3.18"/>
 	<code value="cN1mi" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 8. Edition" codeSystem="2.16.840.1.113883.3.520.3.18"/>
-	<code value="cNla" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 8. Edition" codeSystem="2.16.840.1.113883.3.520.3.18"/>
+	<code value="cN1a" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 8. Edition" codeSystem="2.16.840.1.113883.3.520.3.18"/>
 	<code value="cN1b" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 8. Edition" codeSystem="2.16.840.1.113883.3.520.3.18"/>
 	<code value="cN1c" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 8. Edition" codeSystem="2.16.840.1.113883.3.520.3.18"/>
 	<code value="cN2" displayName="Site specific descriptions prevent listing of text equivalents" codeSystemName="TNM 8. Edition" codeSystem="2.16.840.1.113883.3.520.3.18"/>

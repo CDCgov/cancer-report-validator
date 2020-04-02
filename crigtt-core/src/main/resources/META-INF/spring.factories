@@ -1,0 +1,7 @@
+org.springframework.boot.SpringApplicationRunListener=\
+    gov.hhs.onc.crigtt.context.impl.MetadataApplicationRunListener,\
+    gov.hhs.onc.crigtt.context.impl.ProfileApplicationRunListener,\
+    gov.hhs.onc.crigtt.logging.impl.LoggingApplicationRunListener
+
+org.springframework.context.ApplicationListener=\
+    ch.qos.logback.ext.spring.ApplicationContextHolder

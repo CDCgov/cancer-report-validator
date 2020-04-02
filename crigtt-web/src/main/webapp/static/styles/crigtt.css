@@ -1,0 +1,282 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    padding-top: 72px;
+    margin-bottom: 24px;
+    font-family: "Tahoma", sans-serif;
+    font-size: 11px;
+}
+
+h1 {
+    font-size: 18px;
+}
+
+h2 {
+    font-size: 16px;
+}
+
+h3 {
+    font-size: 14px;
+}
+
+h1 i.fa,
+h2 i.fa,
+h3 i.fa {
+    font-size: inherit;
+}
+
+a:focus {
+    outline-style: none;
+}
+
+a.link:hover {
+    cursor: pointer;
+}
+
+pre {
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-break: normal;
+    word-wrap: normal;
+    font: normal 9px monospace;
+}
+
+*.form-control {
+    font-size: 13px;
+}
+
+*.btn {
+    font-size: 13px;
+}
+
+*.well {
+    margin-bottom: 0;
+}
+
+ul.select2-results li.select2-result {
+    font-size: 9px;
+}
+
+nav.navbar {
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.176);
+}
+
+nav.navbar ul.nav-tabs {
+    border-bottom: none;
+}
+
+ul.nav-tabs li,
+ul.nav-tabs li a,
+ul.nav li.dropdown,
+ul.nav li.dropdown a,
+ul.nav li.dropdown a ul.dropdown-menu {
+    font-size: 13px;
+}
+
+ul.nav-tabs li a:hover {
+    cursor: pointer;
+}
+
+ul.nav-tabs li a i.fa,
+ul.nav li.dropdown a i.fa {
+    font-size: 18px;
+}
+
+a.navbar-brand img {
+    display: inline-block;
+}
+
+span#btn-file-doc {
+    position: relative;
+    overflow: hidden;
+}
+
+input#input-file-doc {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0;
+    outline: none;
+}
+
+input#input-file-doc:hover,
+input#input-file-doc-display:hover,
+span#btn-file-doc:hover {
+    cursor: pointer;
+}
+
+div#well-validator-results-processing {
+    display: none;
+    margin-bottom: 5px;
+}
+
+div#panel-group-validator-results {
+    display: none;
+}
+
+div.panel-heading:hover {
+    cursor: pointer;
+}
+
+div.panel-title {
+    font-size: 11px;
+}
+
+div.panel-title a:focus,
+div.panel-title a:hover {
+    text-decoration: none;
+}
+
+div.panel-title span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+div.panel-title span.well {
+    margin-left: 25px;
+    padding-left: 25px;
+    border-left: 1px solid inherit;
+    color: black;
+}
+
+div.panel-title span.well button.btn {
+    font-size: 11px;
+}
+
+div.panel-title span.well i.fa {
+    font-size: 13px;
+}
+
+div.panel-title span.well button.btn i.fa {
+    margin-right: 5px;
+}
+
+div.panel-title > span:nth-of-type(2):hover {
+    cursor: pointer;
+}
+
+div.panel-title span.well,
+div.panel-title a span:nth-of-type(1) {
+    text-align: center;
+}
+
+div.panel-title a span:nth-of-type(1) i.fa {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+div.panel-body div.tab-content {
+    padding: 5px;
+    border: 1px solid rgb(221, 221, 221);
+    border-top: none;
+}
+
+div.panel-body div.tab-content div.alert,
+div.panel-body div.tab-content div.tab-pane {
+    position: relative;
+    max-height: 400px;
+    overflow-x: auto;
+}
+
+div.panel-body div.tab-content div.tab-pane:nth-of-type(n + 2) caption ul {
+    display: inline-block;
+    list-style: none;
+}
+
+div.panel-body div.tab-content div.tab-pane:nth-of-type(n + 2) caption ul li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+div.panel-body div.tab-content div.tab-pane:nth-of-type(n + 2) caption ul li:nth-of-type(1) {
+    margin-left: 0;
+}
+
+div.panel-body div.tab-content div.tab-pane:nth-of-type(n + 2) caption ul li span strong {
+    display: inline-block;
+    text-align: right;
+}
+
+div.panel-body div.tab-content div.tab-pane:nth-of-type(n + 2) caption ul li span strong i.fa {
+    margin-right: 5px;
+    font-size: 13px;
+}
+
+div.panel-body div.tab-content div.tab-pane:nth-of-type(n + 2) table.table tr.tablesorter-filter-row td label {
+    margin-right: 5px;
+}
+
+div.panel-body div.tab-content div.tab-pane:nth-of-type(n + 2) table.table tr.tablesorter-filter-row td div.select2 {
+    min-width: 120px;
+}
+
+div.panel-body div.tab-content div.tab-pane:nth-of-type(n + 2) table.table tr.tablesorter-filter-row td div.select2 input {
+    font-family: "Tahoma", sans-serif;
+    font-size: 9px;
+}
+
+div.panel-body div.tab-content div.tab-pane:nth-of-type(n + 2) table.table th,
+div.panel-body div.tab-content div.tab-pane:nth-of-type(n + 2) table.table td {
+    min-width: 110px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+div.panel-body div.tab-content div.tab-pane:nth-of-type(n + 2) table.table td ul {
+    margin-left: 20px;
+    padding-left: 0;
+    text-align: left;
+}
+
+div.panel-body div.tab-content div.tab-pane:nth-of-type(n + 2) table.table th:nth-of-type(n + 2),
+div.panel-body div.tab-content div.tab-pane:nth-of-type(n + 2) table.table td:nth-of-type(n + 2) {
+    min-width: 160px;
+}
+
+div.panel-body div.tab-content div.tab-pane:nth-of-type(2) table.table th:nth-of-type(n + 3),
+div.panel-body div.tab-content div.tab-pane:nth-of-type(2) table.table td:nth-of-type(n + 3) {
+    min-width: 200px;
+}
+
+div.panel-body div.tab-content div.tab-pane:nth-of-type(n + 2) table.table th:nth-of-type(11),
+div.panel-body div.tab-content div.tab-pane:nth-of-type(n + 2) table.table td:nth-of-type(11) {
+    min-width: 90px;
+}
+
+div.panel-body div.tab-content div.tab-pane:nth-of-type(n + 2) table.table th div,
+div.panel-body div.tab-content div.tab-pane:nth-of-type(n + 2) table.table td {
+    padding: 2px;
+    font-size: 9px;
+}
+
+div.panel-body div.tab-content div.tab-pane:nth-of-type(n + 2) table.table th button.btn-filter {
+    padding: 2px;
+}
+
+div.panel-body div.tab-content div.tab-pane:nth-of-type(n + 2) table.table td pre {
+    max-width: 500px;
+    max-height: 75px;
+    margin: auto;
+}
+
+footer.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 24px;
+    padding-top: 2px;
+    background-color: rgb(248, 248, 248);
+    color: rgb(119, 119, 119);
+    border-color: rgb(231, 231, 231);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.176);
+}
+
+footer.footer div.container {
+    text-align: center;
+}

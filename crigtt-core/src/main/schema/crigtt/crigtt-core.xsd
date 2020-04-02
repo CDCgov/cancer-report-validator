@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema
+    elementFormDefault="qualified"
+    targetNamespace="urn:gov.hhs.onc.crigtt"
+    xmlns:crigtt="urn:gov.hhs.onc.crigtt"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    
+    <!--====================================================================================================
+    = GROUPS
+    =====================================================================================================-->
+    <xsd:group name="IdElements">
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:group>
+    
+    <xsd:group name="NameElements">
+        <xsd:sequence>
+            <xsd:group ref="crigtt:IdElements"/>
+            <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:group>
+    
+    <xsd:group name="VersionElements">
+        <xsd:sequence>
+            <xsd:element name="version" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:group>
+</xsd:schema>

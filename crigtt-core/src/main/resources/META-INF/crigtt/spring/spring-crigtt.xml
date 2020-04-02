@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:lang="http://www.springframework.org/schema/lang"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:task="http://www.springframework.org/schema/task"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    
+    <!--====================================================================================================
+    = CONTEXT
+    =====================================================================================================-->
+    <context:spring-configured/>
+    
+    <context:component-scan base-package="gov.hhs.onc.crigtt"/>
+    
+    <!--====================================================================================================
+    = CHARACTER SETS
+    =====================================================================================================-->
+    <beans:bean id="charset" class="java.nio.charset.Charset" abstract="true"/>
+    
+    <beans:bean id="charsetUtf8" parent="charset" factory-method="forName">
+        <beans:constructor-arg index="0" value="UTF-8"/>
+    </beans:bean>
+    
+    <!--====================================================================================================
+    = LOCALES
+    =====================================================================================================-->
+    <beans:bean id="locale" class="java.util.Locale" abstract="true"/>
+    
+    <lang:groovy id="localeRoot">
+        <lang:inline-script><![CDATA[
+        import org.springframework.context.i18n.LocaleContextHolder
+        import org.springframework.context.i18n.SimpleLocaleContext
+        
+        LocaleContextHolder.setLocaleContext(new SimpleLocaleContext(Locale.ROOT))
+        
+        return Locale.ROOT
+        ]]></lang:inline-script>
+    </lang:groovy>
+    
+    <!--====================================================================================================
+    = TIME ZONES
+    =====================================================================================================-->
+    <beans:bean id="timeZone" class="java.util.TimeZone" abstract="true"/>
+    
+    <lang:groovy id="timeZoneUtc">
+        <lang:inline-script><![CDATA[
+        import org.joda.time.DateTimeZone
+
+        return DateTimeZone.UTC.toTimeZone()
+        ]]></lang:inline-script>
+    </lang:groovy>
+    
+    <lang:groovy id="timeZoneDefault">
+        <lang:inline-script><![CDATA[
+        import org.joda.time.DateTimeZone
+
+        return DateTimeZone.getDefault().toTimeZone()
+        ]]></lang:inline-script>
+    </lang:groovy>
+    
+    <!--====================================================================================================
+    = PROPERTY SOURCES PLACEHOLDER CONFIGURERS
+    =====================================================================================================-->
+    <beans:bean id="propSourcesPlaceholderConfigurer" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer"
+        p:fileEncoding="#{ charsetUtf8.name() }"
+        p:ignoreUnresolvablePlaceholders="true">
+        <beans:property name="locations">
+            <beans:array>
+                <beans:value>classpath*:META-INF/crigtt/crigtt*.properties</beans:value>
+            </beans:array>
+        </beans:property>
+    </beans:bean>
+    
+    <!--====================================================================================================
+    = MESSAGE SOURCES
+    =====================================================================================================-->
+    <beans:bean id="msgSrc" class="org.springframework.context.MessageSource" abstract="true"/>
+    
+    <beans:bean id="msgSrcPropSources" class="gov.hhs.onc.crigtt.context.impl.PropertySourcesMessageSource" parent="msgSrc" abstract="true"/>
+    
+    <beans:bean id="messageSource" parent="msgSrcPropSources" primary="true"
+        p:alwaysUseMessageFormat="true"
+        p:fileEncoding="#{ charsetUtf8.name() }">
+        <beans:property name="locations">
+            <beans:array>
+                <beans:value>classpath*:META-INF/crigtt/crigtt*-messages.properties</beans:value>
+            </beans:array>
+        </beans:property>
+    </beans:bean>
+    
+    <!--====================================================================================================
+    = CONVERSION SERVICES
+    =====================================================================================================-->
+    <beans:bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean" primary="true">
+        <beans:property name="converters">
+            <beans:set>
+                <beans:ref bean="convDocUri"/>
+                <beans:ref bean="convResourceSrc"/>
+            </beans:set>
+        </beans:property>
+    </beans:bean>
+    
+    <!--====================================================================================================
+    = THREAD GROUPS
+    =====================================================================================================-->
+    <beans:bean id="threadGroup" class="java.lang.ThreadGroup" abstract="true"/>
+    
+    <beans:bean id="threadGroupCrigtt" parent="threadGroup">
+        <beans:constructor-arg index="0" type="java.lang.String" value="crigtt"/>
+    </beans:bean>
+    
+    <!--====================================================================================================
+    = TASK EXECUTORS
+    =====================================================================================================-->
+    <beans:bean id="taskExecThreadPool" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor" abstract="true"/>
+    
+    <beans:bean id="taskExecCrigtt" parent="taskExecThreadPool" abstract="true"
+        p:allowCoreThreadTimeOut="true"
+        p:daemon="true"/>
+    
+    <!--====================================================================================================
+    = EVENT LISTENERS
+    =====================================================================================================-->
+    <beans:bean id="eventListener" class="java.util.EventListener" abstract="true"/>
+</beans:beans>

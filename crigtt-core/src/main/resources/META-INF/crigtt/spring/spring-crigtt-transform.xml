@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:lang="http://www.springframework.org/schema/lang"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:task="http://www.springframework.org/schema/task"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    
+    <!--====================================================================================================
+    = PROCESSORS
+    =====================================================================================================-->
+    <beans:bean id="processor" class="net.sf.saxon.s9api.Processor" abstract="true"/>
+    
+    <beans:bean id="processorCrigtt" class="gov.hhs.onc.crigtt.transform.impl.CrigttProcessor" parent="processor"
+        c:config-ref="configCrigtt"/>
+    
+    <!--====================================================================================================
+    = DOCUMENT BUILDERS
+    =====================================================================================================-->
+    <beans:bean id="docBuilder" class="net.sf.saxon.s9api.DocumentBuilder" abstract="true"/>
+    
+    <beans:bean id="docBuilderBase" class="gov.hhs.onc.crigtt.transform.impl.CrigttDocumentBuilder" parent="docBuilder" abstract="true"/>
+    
+    <beans:bean id="docBuilderCrigtt" parent="docBuilderBase" factory-bean="processorCrigtt" factory-method="newDocumentBuilder"/>
+    
+    <!--====================================================================================================
+    = DOCUMENTS
+    =====================================================================================================-->
+    <beans:bean id="doc" class="gov.hhs.onc.crigtt.xml.impl.XdmDocument" abstract="true"/>
+    
+    <!--====================================================================================================
+    = SERIALIZER FACTORIES
+    =====================================================================================================-->
+    <beans:bean id="serializerFactory" class="net.sf.saxon.lib.SerializerFactory" abstract="true"/>
+    
+    <beans:bean id="serializerFactoryCrigtt" class="gov.hhs.onc.crigtt.transform.impl.CrigttSerializerFactory" parent="serializerFactory"
+        c:config-ref="configCrigtt"/>
+    
+    <!--====================================================================================================
+    = SERIALIZERS
+    =====================================================================================================-->
+    <beans:bean id="serializer" class="net.sf.saxon.s9api.Serializer" abstract="true"/>
+    
+    <beans:bean id="serializerCrigtt" class="gov.hhs.onc.crigtt.transform.impl.CrigttSerializer" parent="serializer" abstract="true"/>
+    
+    <beans:bean id="serializerHtml" parent="serializerCrigtt" factory-bean="processorCrigtt" factory-method="newSerializer" lazy-init="true" scope="prototype">
+        <beans:constructor-arg name="outProps">
+            <beans:map>
+                <beans:entry key="#{ T(javax.xml.transform.OutputKeys).METHOD }" value="#{ T(gov.hhs.onc.crigtt.transform.CrigttOutputMethods).HTML }"/>
+                <beans:entry key="#{ T(javax.xml.transform.OutputKeys).OMIT_XML_DECLARATION }"
+                    value="#{ T(gov.hhs.onc.crigtt.config.CrigttConfigurationValues).YES }"/>
+            </beans:map>
+        </beans:constructor-arg>
+    </beans:bean>
+    
+    <!--suppress SpringBeanConstructorArgInspection -->
+    <beans:bean id="serializerHtmlDisplay" parent="serializerHtml" factory-bean="processorCrigtt" factory-method="newSerializer" lazy-init="true"
+        scope="prototype">
+        <beans:constructor-arg name="outProps">
+            <beans:map merge="true">
+                <beans:entry key="#{ T(javax.xml.transform.OutputKeys).INDENT }" value="#{ T(gov.hhs.onc.crigtt.config.CrigttConfigurationValues).YES }"/>
+                <!--suppress SpringPlaceholdersInspection -->
+                <beans:entry key="#{ T(net.sf.saxon.lib.SaxonOutputKeys).INDENT_SPACES }" value="${crigtt.transform.serialize.indent.spaces}"/>
+            </beans:map>
+        </beans:constructor-arg>
+    </beans:bean>
+    
+    <beans:bean id="serializerXml" parent="serializerCrigtt" factory-bean="processorCrigtt" factory-method="newSerializer" lazy-init="true" scope="prototype">
+        <beans:constructor-arg name="outProps">
+            <beans:map>
+                <beans:entry key="#{ T(javax.xml.transform.OutputKeys).METHOD }" value="#{ T(gov.hhs.onc.crigtt.transform.CrigttOutputMethods).XML }"/>
+                <beans:entry key="#{ T(javax.xml.transform.OutputKeys).OMIT_XML_DECLARATION }"
+                    value="#{ T(gov.hhs.onc.crigtt.config.CrigttConfigurationValues).NO }"/>
+            </beans:map>
+        </beans:constructor-arg>
+    </beans:bean>
+    
+    <!--suppress SpringBeanConstructorArgInspection -->
+    <beans:bean id="serializerXmlDisplay" parent="serializerXml" factory-bean="processorCrigtt" factory-method="newSerializer" lazy-init="true"
+        scope="prototype">
+        <beans:constructor-arg name="outProps">
+            <beans:map merge="true">
+                <beans:entry key="#{ T(javax.xml.transform.OutputKeys).INDENT }" value="#{ T(gov.hhs.onc.crigtt.config.CrigttConfigurationValues).YES }"/>
+                <!--suppress SpringPlaceholdersInspection -->
+                <beans:entry key="#{ T(net.sf.saxon.lib.SaxonOutputKeys).INDENT_SPACES }" value="${crigtt.transform.serialize.indent.spaces}"/>
+            </beans:map>
+        </beans:constructor-arg>
+    </beans:bean>
+    
+    <!--====================================================================================================
+    = XPATH COMPILERS
+    =====================================================================================================-->
+    <beans:bean id="xpathCompiler" class="net.sf.saxon.s9api.XPathCompiler" abstract="true"/>
+    
+    <beans:bean id="xpathCompilerBase" class="gov.hhs.onc.crigtt.transform.impl.CrigttXpathCompiler" parent="xpathCompiler" abstract="true"/>
+    
+    <beans:bean id="xpathCompilerCrigtt" parent="xpathCompilerBase" factory-bean="processorCrigtt" factory-method="newXPathCompiler" lazy-init="true"
+        scope="prototype"/>
+    
+    <!--====================================================================================================
+    = XPATH EXECUTABLES
+    =====================================================================================================-->
+    <beans:bean id="xpathExec" class="net.sf.saxon.s9api.XPathExecutable" abstract="true"/>
+    
+    <beans:bean id="xpathExecCrigtt" class="gov.hhs.onc.crigtt.transform.impl.CrigttXpathExecutable" parent="xpathExec" abstract="true"/>
+    
+    <!--====================================================================================================
+    = XSLT COMPILERS
+    =====================================================================================================-->
+    <beans:bean id="xsltCompiler" class="net.sf.saxon.s9api.XsltCompiler" abstract="true"/>
+    
+    <beans:bean id="xsltCompilerBase" class="gov.hhs.onc.crigtt.transform.impl.CrigttXsltCompiler" parent="xsltCompiler" abstract="true"/>
+    
+    <beans:bean id="xsltCompilerCrigtt" parent="xsltCompilerBase" factory-bean="processorCrigtt" factory-method="newXsltCompiler"/>
+    
+    <!--====================================================================================================
+    = XSLT EXECUTABLES
+    =====================================================================================================-->
+    <beans:bean id="xsltExec" class="net.sf.saxon.s9api.XsltExecutable" abstract="true"/>
+    
+    <beans:bean id="xsltExecCrigtt" class="gov.hhs.onc.crigtt.transform.impl.CrigttXsltExecutable" parent="xsltExec" abstract="true"/>
+</beans:beans>

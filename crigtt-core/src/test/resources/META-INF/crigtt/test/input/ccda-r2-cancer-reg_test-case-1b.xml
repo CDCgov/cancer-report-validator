@@ -1,0 +1,1745 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<realmCode code="US"/>
+	<typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
+	<!-- US Realm Header template -->
+	<templateId root="2.16.840.1.113883.10.20.22.1.1" extension="2014-06-09"/>
+	<!-- Cancer Event Report Document template -->
+	<templateId root="2.16.840.1.113883.10.13.1" extension="2015-01-29"/>
+	<!-- Globally unique identifier for the document  -->
+	<id extension="TT988" root="2.16.840.1.113883.19.5.99999.1"/>
+	<code code="72134-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Cancer event report"/>
+	<!-- Title of the document -->
+	<title>Cancer Event Report</title>
+	<effectiveTime value="201411011030-0800"/>
+	<confidentialityCode code="N" displayName="normal" codeSystem="2.16.840.1.113883.5.25" codeSystemName="Confidentiality"/>
+	<languageCode code="en"/>
+	<setId extension="sTT988" root="2.16.840.1.113883.19.5.99999.19"/>
+	<!-- Version of the document -->
+	<versionNumber value="1"/>
+	<recordTarget>
+		<patientRole>
+			<id extension="333-44-5555" root="2.16.840.1.113883.4.1"/>
+			<!-- Example Social Security Number using the actual SSN OID. -->
+			<id extension="325941988" root="2.16.840.1.113883.19"/>
+			<!--Patient's Medical Record Number, using the HL7 example OID for the root-->
+			<addr use="HP">
+				<streetAddressLine>111 Main Street</streetAddressLine>
+				<city>Seattle</city>
+				<state>WA</state>
+				<postalCode>98101</postalCode>
+				<country>US</country>
+				<useablePeriod xsi:type="IVL_TS">
+					<low value="20050623"/>
+				</useablePeriod>
+			</addr>
+			<addr use="HP">
+				<streetAddressLine>222 Broad Street</streetAddressLine>
+				<city>Seattle</city>
+				<state>WA</state>
+				<postalCode>98101</postalCode>
+				<country>US</country>
+				<useablePeriod xsi:type="IVL_TS">
+					<low value="19900105"/>
+				</useablePeriod>
+			</addr>
+			<telecom value="tel:+1(206)555-1313" use="HP"/>
+			<!-- HP is "primary home" from HL7 AddressUse 2.16.840.1.113883.5.1119 -->
+			<patient>
+				<!-- The first name element represents what the patient is known as -->
+				<name use="L">
+					<given>Meredith</given>
+					<given>Lynn</given>
+					<family>Shepherd</family>
+				</name>
+				<name>
+					<given/>
+					<!-- The "BR" is "Birth" from HL7 Code System EntityNamePartQualifier 2.16.840.1.113883.5.43 -->
+					<family qualifier="BR">Grey</family>
+				</name>
+				<administrativeGenderCode code="F" displayName="Female" codeSystem="2.16.840.1.113883.5.1" codeSystemName="AdministrativeGender"/>
+				<!-- Date of birth need only be precise to the day -->
+				<birthTime value="19600220"/>
+				<sdtc:deceasedInd value="false"/>
+				<maritalStatusCode code="M" displayName="Married" codeSystem="2.16.840.1.113883.5.2" codeSystemName="MaritalStatusCode"/>
+				<religiousAffiliationCode code="1013" displayName="Christian (non-Catholic, non-specific)" codeSystem="2.16.840.1.113883.5.1076" codeSystemName="HL7 Religious Affiliation"/>
+				<raceCode code="2054-5" displayName="Black or African American" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race &amp; Ethnicity - CDC"/>
+				<!-- The raceCode extension is only used if raceCode is valued -->
+				<sdtc:raceCode code="2106-3" displayName="White" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race &amp; Ethnicity - CDC"/>
+				<ethnicGroupCode code="2186-5" displayName="Not Hispanic or Latino" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race &amp; Ethnicity - CDC"/>
+				<birthplace>
+					<place>
+						<addr>
+							<state>PA</state>
+							<country>US</country>
+						</addr>
+					</place>
+				</birthplace>
+				<languageCommunication>
+					<languageCode code="eng"/>
+					<!-- "eng" is ISO 639-2 alpha-3 code for "English" -->
+					<modeCode code="ESP" displayName="Expressed spoken" codeSystem="2.16.840.1.113883.5.60" codeSystemName="LanguageAbilityMode"/>
+					<proficiencyLevelCode code="G" displayName="Good" codeSystem="2.16.840.1.113883.5.61" codeSystemName="LanguageAbilityProficiency"/>
+					<!-- Patient's preferred language -->
+					<preferenceInd value="true"/>
+				</languageCommunication>
+			</patient>
+		</patientRole>
+	</recordTarget>
+	<author>
+		<time value="201209151030-0800"/>
+		<assignedAuthor>
+			<id extension="1234567893" root="2.16.840.1.113883.4.6"/>
+			<code code="207RX0202X" displayName="Medical Oncology" codeSystem="2.16.840.1.113883.6.101" codeSystemName="Healthcare Provider Taxonomy (HIPAA)"/>
+			<addr use="WP">
+				<streetAddressLine>999 Ellis Way</streetAddressLine>
+				<city>Seattle</city>
+				<state>WA</state>
+				<postalCode>98101</postalCode>
+				<country>US</country>
+				<useablePeriod xsi:type="IVL_TS">
+					<low nullFlavor="NA"/>
+				</useablePeriod>
+			</addr>
+			<telecom use="WP" value="tel:+1(206)555-3921"/>
+			<telecom value="mailto:Akarev@GraceOnc.com"/>
+			<assignedPerson>
+				<name>
+					<given>Alex</given>
+					<given qualifier="CL">Alex</given>
+					<family>Karev</family>
+					<suffix qualifier="AC">MD</suffix>
+				</name>
+			</assignedPerson>
+		</assignedAuthor>
+	</author>
+	<author>
+		<time value="201209151030-0800"/>
+		<assignedAuthor>
+			<id nullFlavor="NA"/>
+			<addr use="WP">
+				<streetAddressLine>999 Ellis Way</streetAddressLine>
+				<city>Seattle</city>
+				<state>WA</state>
+				<postalCode>98101</postalCode>
+				<country>US</country>
+			</addr>
+			<telecom use="WP" value="tel:+1(555)555-1004"/>
+			<assignedAuthoringDevice classCode="DEV" determinerCode="INSTANCE">
+				<manufacturerModelName>Generic EHR Clinical System 2.0.0.0.0.0</manufacturerModelName>
+				<softwareName>Generic EHR CDA Factory 2.0.0.0.0.0 - CDA Transform 2.0.0.0.0</softwareName>
+			</assignedAuthoringDevice>
+		</assignedAuthor>
+	</author>
+	<custodian>
+		<assignedCustodian>
+			<representedCustodianOrganization>
+				<id extension="2987654326" root="2.16.840.1.113883.4.6"/>
+				<id extension="321CX" root="1.1.1.1.1.1.1.1.3"/>
+				<name>Seattle Grace Oncology Clinic</name>
+				<telecom use="WP" value="tel:+1(206)555-3900"/>
+				<addr use="WP">
+					<streetAddressLine>999 Ellis Way</streetAddressLine>
+					<city>Seattle</city>
+					<state>WA</state>
+					<postalCode>98101</postalCode>
+					<country>US</country>
+				</addr>
+			</representedCustodianOrganization>
+		</assignedCustodian>
+	</custodian>
+	<documentationOf>
+		<serviceEvent>
+			<effectiveTime>
+				<low value="20120915"/>
+			</effectiveTime>
+			<performer typeCode="PRF">
+				<functionCode code="PCP" displayName="Primary Care Provider" codeSystem="2.16.840.1.113883.5.88" codeSystemName="ParticipationFunction">
+					<originalText>Primary Care Provider</originalText>
+				</functionCode>
+				<assignedEntity>
+					<id extension="1234567893" root="2.16.840.1.113883.4.6"/>
+					<id extension="1234" root="2.16.840.1.113883.19"/>
+					<code code="207RX0202X" displayName="Medical Oncology" codeSystem="2.16.840.1.113883.6.101" codeSystemName="Healthcare Provider Taxonomy (HIPAA)"/>
+					<addr use="WP">
+						<streetAddressLine>999 Ellis Way</streetAddressLine>
+						<city>Seattle</city>
+						<state>WA</state>
+						<postalCode>98101</postalCode>
+						<country>US</country>
+					</addr>
+					<telecom use="WP" value="tel:+1(206)555-3921"/>
+					<assignedPerson>
+						<name>
+							<given>Alex</given>
+							<given qualifier="CL">Alex</given>
+							<family>Karev</family>
+							<suffix qualifier="AC">MD</suffix>
+						</name>
+					</assignedPerson>
+					<representedOrganization classCode="ORG">
+						<id extension="219BX" root="1.1.1.1.1.1.1.1.2"/>
+						<name>Seattle Grace Oncology</name>
+						<telecom use="WP" value="tel:+1(206)555-3900"/>
+						<addr use="WP">
+							<streetAddressLine>999 Ellis Way</streetAddressLine>
+							<city>Seattle</city>
+							<state>WA</state>
+							<postalCode>98101</postalCode>
+							<country>US</country>
+						</addr>
+					</representedOrganization>
+				</assignedEntity>
+			</performer>
+		</serviceEvent>
+	</documentationOf>
+	<componentOf>
+		<!-- componentOf element records the provider that referred the patient to the reporting facility-->
+		<encompassingEncounter>
+			<id extension="9937012" root="2.16.840.1.113883.19"/>
+			<effectiveTime>
+				<low nullFlavor="NA"/>
+				<high value="20140912"/>
+				<!-- High value indicates the date when this patient was referred by the provider. Since the referral action completed at a point in time in the past, 
+					<low> element is not applicable and only <high> element is specified.-->
+			</effectiveTime>
+			<encounterParticipant typeCode="REF">
+				<assignedEntity>
+					<id extension="1590101014" root="2.16.840.1.113883.4.6"/>
+					<id extension="1111" root="2.16.840.1.113883.19"/>
+					<addr use="WP">
+						<streetAddressLine>1004 Health Drive</streetAddressLine>
+						<city>Seattle</city>
+						<state>WA</state>
+						<postalCode>98101</postalCode>
+						<country>US</country>
+					</addr>
+					<telecom use="WP" value="tel:+1(555)555-1004"/>
+					<representedOrganization classCode="ORG">
+						<id extension="1590101014" root="2.16.840.1.113883.4.6"/>
+						<id extension="219BX" root="1.1.1.1.1.1.1.1.2"/>
+						<name>Seattle Grace Hospital</name>
+						<telecom use="WP" value="tel: +(555)-555-5000"/>
+						<addr use="WP">
+							<streetAddressLine>888 Grey Road</streetAddressLine>
+							<city>Seattle</city>
+							<state>WA</state>
+							<postalCode>98101</postalCode>
+							<country>US</country>
+						</addr>
+					</representedOrganization>
+				</assignedEntity>
+			</encounterParticipant>
+			<location>
+				<healthCareFacility>
+					<id extension="1590101014" root="2.16.840.1.113883.4.6"/>
+					<serviceProviderOrganization>
+						<name>Seattle Grace Hospital</name>
+						<telecom use="WP" value="tel: +(555)-555-5000"/>
+						<addr use="WP">
+							<streetAddressLine>888 Grey Road</streetAddressLine>
+							<city>Seattle</city>
+							<state>WA</state>
+							<postalCode>98101</postalCode>
+							<country>US</country>
+						</addr>
+					</serviceProviderOrganization>
+				</healthCareFacility>
+			</location>
+		</encompassingEncounter>
+	</componentOf>
+	<component>
+		<structuredBody>
+			<!--*****Cancer Diagnosis section*****-->
+			<component>
+				<section>
+					<templateId root="2.16.840.1.113883.10.13.2" extension="2015-02-05"/>
+					<code code="72135-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Cancer diagnosis"/>
+					<title>Cancer Diagnosis</title>
+					<text>
+						<content ID="Diagnosis_1">Infiltrating ductal carcinoma of the right breast diagnosed 1/26/2014</content>
+						<table>
+							<thead>
+								<tr>
+									<th>Diagnosis Date</th>
+									<th>Primary Site</th>
+									<th>Laterality</th>
+									<th>Histology</th>
+									<th>Behavior</th>
+									<th>Diagnostic Confirmation</th>
+									<th>Grade</th>
+									<th>Stage</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1/26/2014</td>
+									<td ID="PrimarySite_1">Breast</td>
+									<td ID="Laterality_1">Right</td>
+									<td ID="Histology_1">Infiltrating duct carcinoma</td>
+									<td ID="Behavior_1">Malignant, Primary</td>
+									<td ID="Confirmation_1">Positive Histology</td>
+									<td ID="Grade_1">1</td>
+									<td ID="StageGroup_1">IIIA</td>
+								</tr>
+							</tbody>
+						</table>
+						<table>
+							<thead>
+								<tr>
+									<th>Clinical Stage Group</th>
+									<th>Clinical Narrative</th>
+									<th>Clinical Primary Tumor</th>
+									<th>Clinical Node</th>
+									<th>Clinical Metastases</th>
+									<th>Clinical Staged By</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td ID="ClinicalStageGroup_1">IIIA</td>
+									<td ID="ClinicalNarrative_1">None</td>
+									<td ID="ClinicalPrimaryTumor_1">T2</td>
+									<td ID="ClinicalNode_1">N2</td>
+									<td ID="ClinicalMetastases_1">M0</td>
+									<td ID="ClinicalStagedBy_1">Pathologist and managing physician</td>
+								</tr>
+							</tbody>
+						</table>
+						<table>
+							<thead>
+								<tr>
+									<th>Pathologic Stage Group</th>
+									<th>Pathologic Narrative</th>
+									<th>Pathologic Primary Tumor</th>
+									<th>Pathologic Node</th>
+									<th>Pathologic Metastases</th>
+									<th>Pathologic Staged By</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td ID="PathologicStageGroup_1">IIIA</td>
+									<td ID="PathologicNarrative_1">None</td>
+									<td ID="PathologicPrimaryTumor_1">T2</td>
+									<td ID="PathologicNode_1">N2</td>
+									<td ID="PathologicMetastases_1">M0</td>
+									<td ID="PathologicStagedBy_1">Pathologist</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<entry typeCode="DRIV">
+						<act classCode="ACT" moodCode="EVN">
+							<!-- ** Cancer Diagnosis concern act ** -->
+							<templateId root="2.16.840.1.113883.10.13.3" extension="2015-02-05"/>
+							<id root="ec8a6ff8-ed4b-4f7e-82c3-e98e58b45de7"/>
+							<code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+							<!-- The statusCode represents the need to continue tracking the problem -->
+							<!-- This is of ongoing concern to the provider -->
+							<statusCode code="active"/>
+							<effectiveTime>
+								<!-- The low value represents when the problem was first recorded in the patient's chart -->
+								<low value="20140126"/>
+							</effectiveTime>
+							<entryRelationship typeCode="SUBJ">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.13.4" extension="2015-02-05"/>
+									<id root="5e0584ad-b4b0-421f-85f9-2c2c83c510cc"/>
+									<code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosis"/>
+									<text>
+										<reference value="#Diagnosis_1"/>
+									</text>
+									<statusCode code="completed"/>
+									<effectiveTime>
+										<low value="20140126"/>
+										<high nullFlavor="NA"/>
+									</effectiveTime>
+									<value xsi:type="CD" code="8500/3" codeSystem="2.16.840.1.113883.6.43.1" codeSystemName="ICD-O-3" displayName="Infiltrating duct carcinoma, NOS">
+                                    <!-- Other options for value (Histologic Type)
+                                    <value xsi:type="CD" code="8500" codeSystem="2.16.840.1.113883.6.43.1" codeSystemName="ICD-O-3" displayName="Infiltrating duct carcinoma, NOS">
+                                    <value xsi:type="CD" code="82711006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" displayName="Infiltrating duct carcinoma (morphologic abnormality)" sdtc:valueSet="2.16.840.1.114222.4.11.7256">
+                                    <value xsi:type="CD" code="M8500/3" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9-CM" displayName="Infiltrating duct carcinoma" sdtc:valueSet="2.16.840.1.114222.4.11.6038">
+                                    -->
+										<originalText>
+											<reference value="#Histology_1"/>
+										</originalText>
+										<qualifier>
+											<name code="31206-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Behavior ICD-O-3 Cancer"/>
+											<value xsi:type="CD" code="3" codeSystem="2.16.840.1.113883.3.520.3.14" codeSystemName="NAACCR Behavior Code" displayName="Malignant, primary site" sdtc:valueSet="2.16.840.1.113883.3.520.4.14">
+												<originalText>
+													<reference value="#Behavior_1"/>
+												</originalText>
+											</value>
+										</qualifier>
+										<qualifier>
+											<name code="21858-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Grade Cancer"/>
+											<value code="1" codeSystem="2.16.840.1.113883.3.520.3.15" codeSystemName="NAACCR Grade" displayName="Grade I" sdtc:valueSet="2.16.840.1.113883.3.520.4.15">
+												<originalText>
+													<reference value="#Grade_1"/>
+												</originalText>
+											</value>
+										</qualifier>
+										<qualifier>
+											<name code="21861-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Dx confirmed by Cancer"/>
+											<value xsi:type="CD" code="1" codeSystem="2.16.840.1.113883.3.520.3.3" codeSystemName="NAACCR Diagnostic Confirmation" displayName="Positive histology" sdtc:valueSet="2.16.840.1.113883.3.520.4.3">
+												<originalText>
+													<reference value="#Confirmation_1"/>
+												</originalText>
+											</value>
+										</qualifier>
+									</value>
+									<targetSiteCode code="C50.411" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD-10-CM" displayName="Malignant neoplasm of upper-outer quadrant of right female breast">
+                                    <!-- Other options for targetSiteCode (Primary Site)
+                                    <targetSiteCode code="174.4" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9-CM" displayName="Malignant neoplasm of upper-outer quadrant of female breast">
+                                    <targetSiteCode code="C50.4" codeSystem="2.16.840.1.113883.6.43.1" codeSystemName="ICD-O-3" displayName="Upper-outer quadrant of breast">
+                                    <targetSiteCode code="110496004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" displayName="Upper outer quadrant of right breast" sdtc:valueSet="2.16.840.1.113883.3.88.12.3221.8.9">
+                                    -->
+										<originalText>
+											<reference value="#PrimarySite_1"/>
+										</originalText>
+										<qualifier>
+											<name code="20228-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Anatomic part Laterality "/>
+											<value code="24028007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Right (qualifier value)" sdtc:valueSet="2.16.840.1.113883.3.520.4.22">
+												<originalText>
+													<reference value="#Laterality_1"/>
+												</originalText>
+											</value>
+										</qualifier>
+									</targetSiteCode>
+									<entryRelationship typeCode="SUBJ" inversionInd="true">
+										<observation classCode="OBS" moodCode="EVN">
+											<templateId root="2.16.840.1.113883.10.13.5" extension="2015-02-05"/>
+											<id root="91473759-6678-48a2-a0d5-084c5ded5afc"/>
+											<code code="75620-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="TNM clinical staging before treatment panel Cancer"/>
+											<statusCode code="completed"/>
+											<effectiveTime>
+												<low value="20140211"/>
+											</effectiveTime>
+											<entryRelationship typeCode="COMP">
+												<observation classCode="OBS" moodCode="EVN">
+													<templateId root="2.16.840.1.113883.10.13.35" extension="2015-02-05"/>
+													<code code="21908-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Stage group.clinical"/>
+													<statusCode code="completed"/>
+													<value xsi:type="CD" code="IIIA" codeSystem="2.16.840.1.113883.15.6" codeSystemName="TNM 7. Edition" sdtc:valueSet="2.16.840.1.113883.3.520.4.9">
+														<originalText>
+															<reference value="#ClinicalStageGroup_1"/>
+														</originalText>
+														<qualifier>
+															<name code="21909-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Descriptor.clinical Cancer Narrative"/>
+															<value code="0" codeSystem="2.16.840.1.113883.15.6" codeSystemName="TNM 7. Edition" displayName="None" sdtc:valueSet="2.16.840.1.113883.3.520.4.10">
+																<originalText>
+																	<reference value="#ClinicalNarrative_1"/>
+																</originalText>
+															</value>
+														</qualifier>
+													</value>
+													<entryRelationship typeCode="COMP">
+														<observation classCode="OBS" moodCode="EVN">
+															<templateId root="2.16.840.1.113883.10.13.36" extension="2015-02-05"/>
+															<code code="21905-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Primary tumor.clinical [Class] Cancer"/>
+															<value xsi:type="CD" code="T2" codeSystem="2.16.840.1.113883.15.6" codeSystemName="TNM 7. Edition" sdtc:valueSet="2.16.840.1.113883.3.520.4.6">
+																<originalText>
+																	<reference value="#ClinicalPrimaryTumor_1"/>
+																</originalText>
+															</value>
+														</observation>
+													</entryRelationship>
+													<entryRelationship typeCode="COMP">
+														<observation classCode="OBS" moodCode="EVN">
+															<templateId root="2.16.840.1.113883.10.13.37" extension="2015-02-05"/>
+															<code code="21906-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Regional lymph nodes.clinical [Class] Cancer"/>
+															<value xsi:type="CD" code="N2" codeSystem="2.16.840.1.113883.15.6" codeSystemName="TNM 7. Edition" sdtc:valueSet="2.16.840.1.113883.3.520.4.7">
+																<originalText>
+																	<reference value="#ClinicalNode_1"/>
+																</originalText>
+															</value>
+														</observation>
+													</entryRelationship>
+													<entryRelationship typeCode="COMP">
+														<observation classCode="OBS" moodCode="EVN">
+															<templateId root="2.16.840.1.113883.10.13.38" extension="2015-02-05"/>
+															<code code="21907-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Distant metastases.clinical [Class] Cancer"/>
+															<value xsi:type="CD" code="M0" codeSystem="2.16.840.1.113883.15.6" codeSystemName="TNM 7. Edition" sdtc:valueSet="2.16.840.1.113883.3.520.4.8">
+																<originalText>
+																	<reference value="#ClinicalMetastases_1"/>
+																</originalText>
+															</value>
+														</observation>
+													</entryRelationship>
+													<entryRelationship typeCode="COMP">
+														<observation classCode="OBS" moodCode="EVN">
+															<templateId root="2.16.840.1.113883.10.13.39" extension="2015-02-05"/>
+															<code code="21910-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Stager.clinical Cancer"/>
+															<value xsi:type="CD" code="3" codeSystem="2.16.840.1.113883.3.520.3.4" codeSystemName="NAACCR TNM Clinical Staged By" displayName="Pathologist and managing physician" sdtc:valueSet="2.16.840.1.113883.3.520.4.4">
+																<originalText>
+																	<reference value="#ClinicalStagedBy_1"/>
+																</originalText>
+															</value>
+														</observation>
+													</entryRelationship>
+												</observation>
+											</entryRelationship>
+										</observation>
+									</entryRelationship>
+									<entryRelationship typeCode="SUBJ" inversionInd="true">
+										<observation classCode="OBS" moodCode="EVN">
+											<templateId root="2.16.840.1.113883.10.13.7" extension="2015-02-06"/>
+											<id root="6d064a91-fdae-4acf-9eb8-e1695cf301c9"/>
+											<code code="75621-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="TNM pathologic staging after surgery panel"/>
+											<statusCode code="completed"/>
+											<effectiveTime>
+												<low value="20140211"/>
+											</effectiveTime>
+											<entryRelationship typeCode="COMP">
+												<observation classCode="OBS" moodCode="EVN">
+													<templateId root="2.16.840.1.113883.10.13.40" extension="2015-02-05"/>
+													<code code="21902-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Stage group.pathology Cancer"/>
+													<statusCode code="completed"/>
+													<value xsi:type="CD" code="IIIA" codeSystem="2.16.840.1.113883.15.6" codeSystemName="TNM 7. Edition" sdtc:valueSet="2.16.840.1.113883.3.520.4.20">
+														<originalText>
+															<reference value="#PathologicStageGroup_1"/>
+														</originalText>
+														<qualifier>
+															<name code="21903-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Descriptor.pathology Cancer Narrative "/>
+															<value code="0" codeSystem="2.16.840.1.113883.15.6" codeSystemName="TNM 7. Edition" displayName="None" sdtc:valueSet="2.16.840.1.113883.3.520.4.21">
+																<originalText>
+																	<reference value="#PathologicNarrative_1"/>
+																</originalText>
+															</value>
+														</qualifier>
+													</value>
+													<entryRelationship typeCode="COMP">
+														<observation classCode="OBS" moodCode="EVN">
+															<templateId root="2.16.840.1.113883.10.13.41" extension="2015-02-05"/>
+															<code code="21899-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Primary tumor.pathology Cancer"/>
+															<value xsi:type="CD" code="T2" codeSystem="2.16.840.1.113883.15.6" codeSystemName="TNM 7. Edition" sdtc:valueSet="2.16.840.1.113883.3.520.4.17">
+																<originalText>
+																	<reference value="#PathologicPrimaryTumor_1"/>
+																</originalText>
+															</value>
+														</observation>
+													</entryRelationship>
+													<entryRelationship typeCode="COMP">
+														<observation classCode="OBS" moodCode="EVN">
+															<templateId root="2.16.840.1.113883.10.13.42" extension="2015-02-05"/>
+															<code code="21900-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Regional lymph nodes.pathology [Class] Cancer"/>
+															<value xsi:type="CD" code="N2" codeSystem="2.16.840.1.113883.15.6" codeSystemName="TNM 7. Edition" sdtc:valueSet="2.16.840.1.113883.3.520.4.18">
+																<originalText>
+																	<reference value="#PathologicNode_1"/>
+																</originalText>
+															</value>
+														</observation>
+													</entryRelationship>
+													<entryRelationship typeCode="COMP">
+														<observation classCode="OBS" moodCode="EVN">
+															<templateId root="2.16.840.1.113883.10.13.43" extension="2015-02-05"/>
+															<code code="21901-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Distant metastases.pathology [Class] Cancer"/>
+															<value xsi:type="CD" code="M0" codeSystem="2.16.840.1.113883.15.6" codeSystemName="TNM 7. Edition" sdtc:valueSet="2.16.840.1.113883.3.520.4.19">
+																<originalText>
+																	<reference value="#PathologicMetastases_1"/>
+																</originalText>
+															</value>
+														</observation>
+													</entryRelationship>
+													<entryRelationship typeCode="COMP">
+														<observation classCode="OBS" moodCode="EVN">
+															<templateId root="2.16.840.1.113883.10.13.44" extension="2015-02-05"/>
+															<code code="21904-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Stager.pathology Cancer"/>
+															<value xsi:type="CD" code="2" codeSystem="2.16.840.1.113883.3.520.3.17" codeSystemName="NAACCR TNM Pathologic Staged By" displayName="Pathologist" sdtc:valueSet="2.16.840.1.113883.3.520.4.27">
+																<originalText>
+																	<reference value="#PathologicStagedBy_1"/>
+																</originalText>
+															</value>
+														</observation>
+													</entryRelationship>
+												</observation>
+											</entryRelationship>
+										</observation>
+									</entryRelationship>
+									<entryRelationship typeCode="REFR">
+										<observation classCode="OBS" moodCode="EVN">
+											<id root="ab1791b0-5c71-11db-b0de-0800200c9a66"/>
+											<code code="64572001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Condition"/>
+										</observation>
+									</entryRelationship>
+								</observation>
+							</entryRelationship>
+						</act>
+					</entry>
+				</section>
+			</component>
+			<!--*****Assessment*****-->
+			<component>
+				<section>
+					<!-- Assessment -->
+					<templateId root="2.16.840.1.113883.10.20.22.2.8"/>
+					<code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="51848-0" displayName="ASSESSMENT"/>
+					<title>ASSESSMENT</title>
+					<text>
+						<paragraph>Patient given chemotherapy. Was also evaluated for back pain. Patient may have metastasis; also may have depression. Referred to psychiatry, scheduled a bone scan and prescribed medication for sleeping.</paragraph>
+					</text>
+				</section>
+			</component>
+			<!--*****Family History section (V2) section*****-->
+			<component>
+				<section>
+					<!-- *** Family history section (V2) *** -->
+					<templateId root="2.16.840.1.113883.10.20.22.2.15" extension="2014-06-09"/>
+					<code code="10157-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+					<title>FAMILY HISTORY</title>
+					<text>
+						<paragraph>Aunt</paragraph>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th>Diagnosis</th>
+									<th>Age At Onset</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Breast Cancer</td>
+									<td>42</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<entry typeCode="DRIV">
+						<organizer moodCode="EVN" classCode="CLUSTER">
+							<!-- ** Family history organizer ** -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.45" extension="2014-06-09"/>
+							<id root="d42ebf70-5c89-11db-b0de-0855200c9a66"/>
+							<statusCode code="completed"/>
+							<subject>
+								<relatedSubject classCode="PRS">
+									<code code="AUNT" displayName="aunt" codeSystemName="FamilyRelationshipRoleType" codeSystem="2.16.840.1.113883.5.111">
+									</code>
+								</relatedSubject>
+							</subject>
+							<component>
+								<observation classCode="OBS" moodCode="EVN">
+									<!-- ** Family history observation ** -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.46" extension="2014-06-09"/>
+									<id root="d42ebf70-5c89-11db-b0de-0800200c9a66"/>
+									<code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosis"/>
+									<statusCode code="completed"/>
+									<value xsi:type="CD" code="372064008" codeSystem="2.16.840.1.113883.6.96" displayName="Malignant neoplasm of female breast" sdtc:valueSet="2.16.840.1.113883.3.88.12.3221.7.4"/>
+								</observation>
+							</component>
+						</organizer>
+					</entry>
+				</section>
+			</component>
+			<!--*****Medications Administered Section (V2) - Cancer IG Specific Constraints*****-->
+			<component>
+				<section>
+					<templateId root="2.16.840.1.113883.10.20.22.2.38" extension="2014-06-09"/>
+					<templateId root="2.16.840.1.113883.10.13.12" extension="2014-08-08"/>
+					<code code="29549-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="MEDICATIONS ADMINISTERED"/>
+					<title>MEDICATIONS ADMINISTERED</title>
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th>Medication</th>
+									<th>Start Date</th>
+									<th>Stop Date</th>
+									<th>Dose</th>
+									<th>Notes</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td ID="MedicationAdminName_1">Gemcitabine</td>
+									<td>11/01/2014 8:00am</td>
+									<td>11/01/2014 8:30am</td>
+									<td ID="MedicationAdminDose_1">2,225 mg</td>
+									<td>ChemoTx calculated based on BSA=1.78, duBois formula</td>
+								</tr>
+								<tr>
+									<td ID="MedicationAdminName_2">Cisplatin</td>
+									<td>11/01/2014 8:00am</td>
+									<td>11/01/2014 2:00pm</td>
+									<td ID="MedicationAdminDose_2">133.5 mg</td>
+									<td>ChemoTx calculated based on BSA=1.78, duBois formula</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<entry typeCode="DRIV">
+						<substanceAdministration classCode="SBADM" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.16" extension="2014-06-09"/>
+							<templateId root="2.16.840.1.113883.10.13.14" extension="2014-08-08"/>
+							<id root="6c844c75-aa34-411c-b7bd-5e4a9f206e29"/>
+							<!-- ** Medication Activity (V2) - Cancer IG Specific Constraints  ** -->
+							<text>
+								<reference value="#MedicationsAdmin_1 "/>
+							</text>
+							<statusCode code="completed"/>
+							<!-- ** effective time indicates that the drug was administered over a period of 30 minutes ** -->
+							<effectiveTime xsi:type="IVL_TS">
+								<low value="201411010800"/>
+								<high value="201411010830"/>
+							</effectiveTime>
+							<!-- ** doseQuantity in this instance indicates the total amount of drug that was administered during this encounter ** -->
+							<doseQuantity value="2225" unit="mg">
+								<translation>
+									<originalText>
+										<reference value="#MedicationAdminDose_1"/>
+									</originalText>
+								</translation>
+							</doseQuantity>
+							<consumable>
+								<manufacturedProduct classCode="MANU">
+									<!-- ** Medication information ** -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09"/>
+									<id root="2a620155-9d11-439e-92b3-5d9815ff4ee8"/>
+									<manufacturedMaterial>
+										<code code="1720960" displayName="26.3 ML gemcitabine 38 MG/ML Injection" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm">
+										<!-- Other options for value
+										<code code="1720977" displayName="5.26 ML gemcitabine 38 MG/ML Injection" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm">
+										<code code="1720975" displayName="52.6 ML gemcitabine 38 MG/ML Injection" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm">
+										-->
+										<originalText>
+												<reference value="#MedicationAdminName_1"/>
+											</originalText>
+										</code>
+									</manufacturedMaterial>
+								</manufacturedProduct>
+							</consumable>
+							<entryRelationship typeCode="RSON">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.19" extension="2014-06-09"/>
+									<templateId root="2.16.840.1.113883.10.13.19" extension="2014-08-08"/>
+									<id root="ab1791b0-5c71-11db-b0de-0800200c9a66"/>
+									<code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosis"/>
+									<statusCode code="completed"/>
+									<value xsi:type="CD" code="C50.411" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD-10-CM" displayName="Malignant neoplasm of upper-outer quadrant of right female breast"/>
+								</observation>
+							</entryRelationship>
+						</substanceAdministration>
+					</entry>
+					<entry typeCode="DRIV">
+						<substanceAdministration classCode="SBADM" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.16" extension="2014-06-09"/>
+							<templateId root="2.16.840.1.113883.10.13.14" extension="2014-08-08"/>
+							<id root="6c844c75-aa34-411c-b7bd-5e4a9f206e29"/>
+							<!-- ** Medication Activity (V2) - Cancer IG Specific Constraints  ** -->
+							<text>
+								<reference value="#MedicationsAdmin_2 "/>
+							</text>
+							<statusCode code="completed"/>
+							<!-- ** effective time indicates that the drug was administered over a period of 6 hours ** -->
+							<effectiveTime xsi:type="IVL_TS">
+								<low value="201411010800"/>
+								<high value="201411011400"/>
+							</effectiveTime>
+							<!-- ** doseQuantity in this instance indicates the total amount of drug that was administered during this encounter ** -->
+							<doseQuantity value="133.5" unit="mg">
+								<translation>
+									<originalText>
+										<reference value="#MedicationAdminDose_2"/>
+									</originalText>
+								</translation>
+							</doseQuantity>
+							<consumable>
+								<manufacturedProduct classCode="MANU">
+									<!-- ** Medication information ** -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09"/>
+									<id root="2a620155-9d11-439e-92b3-5d9815ff4ee8"/>
+									<manufacturedMaterial>
+										<code code="309311" displayName="Cisplatin 1 MG/ML Injectable Solution" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm">
+											<originalText>
+												<reference value="#MedicationAdminName_2"/>
+											</originalText>
+										</code>
+									</manufacturedMaterial>
+								</manufacturedProduct>
+							</consumable>
+							<entryRelationship typeCode="RSON">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.19" extension="2014-06-09"/>
+									<templateId root="2.16.840.1.113883.10.13.19" extension="2014-08-08"/>
+									<id root="ab1791b0-5c71-11db-b0de-0800200c9a66"/>
+									<code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosis"/>
+									<statusCode code="completed"/>
+									<value xsi:type="CD" code="C50.411" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD-10-CM" displayName="Malignant neoplasm of upper-outer quadrant of right female breast"/>
+								</observation>
+							</entryRelationship>
+						</substanceAdministration>
+					</entry>
+				</section>
+			</component>
+			<!--*****Medications Section (entries required) (V2) - Cancer IG Specific Constraints*****-->
+			<component>
+				<section>
+					<!--**MEDICATION SECTION (coded entries required) ** -->
+					<templateId root="2.16.840.1.113883.10.20.22.2.1.1" extension="2014-06-09"/>
+					<!-- Medications Section (entries optional) -->
+					<templateId root="2.16.840.1.113883.10.20.22.2.1" extension="2014-06-09"/>
+					<!-- Medications Section (entries required) (V2) - Cancer IG Specific Constraints -->
+					<templateId root="2.16.840.1.113883.10.13.13" extension="2014-08-08"/>
+					<code code="10160-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="HISTORY OF MEDICATION USE"/>
+					<title>MEDICATIONS</title>
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th>Medication</th>
+									<th>Start Date</th>
+									<th>Stop Date</th>
+									<th>Dose</th>
+									<th>Notes</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td colspan="5">
+									Patient was previously administered two cycles of Gemcitabine 2,225 mg (1,250 mg/m2), 
+									and Cisplatin 133.5 mg (75mg/m2).
+									BSA=1.78 based on duBois formula. 
+									The intent is to administer one more cycle of Gemcitabine 2,225 mg (1,250 mg/m2), 
+									and Cisplatin 133.5 mg (75mg/m2) 
+									as part of a four-cycle chemotherapeutic treatment.
+									</td>
+								</tr>
+								<tr>
+									<td ID="MedicationName_1">Gemcitabine</td>
+									<td>10/25/2014 8:00am</td>
+									<td>10/25/2014 8:30am</td>
+									<td ID="MedicationDose_1">2,225 mg</td>
+									<td>ChemoTx calculated based on BSA=1.78, duBois formula</td>
+								</tr>
+								<tr>
+									<td ID="MedicationName_2">Cisplatin</td>
+									<td>10/25/2014 8:00am</td>
+									<td>10/25/2014 2:00pm</td>
+									<td ID="MedicationDose_2">133.5 mg</td>
+									<td>ChemoTx calculated based on BSA=1.78, duBois formula</td>
+								</tr>
+								<tr>
+									<td ID="MedicationName_3">Gemcitabine</td>
+									<td>10/18/2014 10:00am</td>
+									<td>10/18/2014 10:30am</td>
+									<td ID="MedicationDose_3">2,225 mg</td>
+									<td>ChemoTx calculated based on BSA=1.78, duBois formula</td>
+								</tr>
+								<tr>
+									<td ID="MedicationName_4">Cisplatin</td>
+									<td>10/18/2014 10:00am</td>
+									<td>10/18/2014 4:00pm</td>
+									<td ID="MedicationDose_4">133.5 mg</td>
+									<td>ChemoTx calculated based on BSA=1.78, duBois formula</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<entry typeCode="DRIV">
+						<substanceAdministration classCode="SBADM" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.16" extension="2014-06-09"/>
+							<templateId root="2.16.840.1.113883.10.13.14" extension="2014-08-08"/>
+							<id root="6c844c75-aa34-411c-b7bd-5e4a9f206e29"/>
+							<!-- ** Medication Activity (V2) - Cancer IG Specific Constraints  ** -->
+							<text>
+								<reference value="#Medications_1"/>
+							</text>
+							<statusCode code="completed"/>
+							<effectiveTime xsi:type="IVL_TS">
+								<low value="201410250800"/>
+								<high value="201410250830"/>
+							</effectiveTime>
+							<doseQuantity value="2225" unit="mg">
+								<translation>
+									<originalText>
+										<reference value="#MedicationDose_1"/>
+									</originalText>
+								</translation>
+							</doseQuantity>
+							<consumable>
+								<manufacturedProduct classCode="MANU">
+									<!-- ** Medication information ** -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09"/>
+									<id root="2a620155-9d11-439e-92b3-5d9815ff4ee8"/>
+									<manufacturedMaterial>
+										<code code="1720960" displayName="26.3 ML gemcitabine 38 MG/ML Injection" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm">
+										<!-- Other options for value
+										<code code="1720977" displayName="5.26 ML gemcitabine 38 MG/ML Injection" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm">
+										<code code="1720975" displayName="52.6 ML gemcitabine 38 MG/ML Injection" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm">
+										-->
+											<originalText>
+												<reference value="#MedicationName_1"/>
+											</originalText>
+										</code>
+									</manufacturedMaterial>
+								</manufacturedProduct>
+							</consumable>
+							<entryRelationship typeCode="RSON">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.19" extension="2014-06-09"/>
+									<templateId root="2.16.840.1.113883.10.13.19" extension="2014-08-08"/>
+									<id root="ab1791b0-5c71-11db-b0de-0800200c9a66"/>
+									<code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosis"/>
+									<statusCode code="completed"/>
+									<value xsi:type="CD" code="C50.411" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD-10-CM" displayName="Malignant neoplasm of upper-outer quadrant of right female breast"/>
+								</observation>
+							</entryRelationship>
+						</substanceAdministration>
+					</entry>
+					<entry>
+						<substanceAdministration classCode="SBADM" moodCode="EVN">
+							<!--**MEDICATION ACTIVITY V2 ** -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.16" extension="2014-06-09"/>
+							<!--Medication Activity (V2) - Cancer IG Specific Constraints -->
+							<templateId root="2.16.840.1.113883.10.13.14" extension="2014-08-08"/>
+							<!-- ** Medication Activity (V2) - Cancer IG Specific Constraints  ** -->
+							<id root="bc152409-65fc-4c5e-a498-ad3450f08981"/>
+							<text>
+								<reference value="#Medications_2"/>
+							</text>
+							<statusCode code="completed"/>
+							<effectiveTime xsi:type="IVL_TS">
+									<low value="201410250800"/>
+									<high value="201410251400"/>
+							</effectiveTime>
+							<doseQuantity value="133.5" unit="mg">
+								<translation>
+									<originalText>
+										<reference value="#MedicationDose_2"/>
+									</originalText>
+								</translation>
+							</doseQuantity>
+							<consumable>
+								<manufacturedProduct classCode="MANU">
+									<!-- ** Medication information ** -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09"/>
+									<id root="2a620155-9d11-439e-92b3-5d9815ff4ee8"/>
+									<manufacturedMaterial>
+										<code code="309311" displayName="Cisplatin 1 MG/ML Injectable Solution" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm">
+											<originalText>
+												<reference value="#MedicationName_2"/>
+											</originalText>
+										</code>
+									</manufacturedMaterial>
+								</manufacturedProduct>
+							</consumable>
+							<entryRelationship typeCode="RSON">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.19" extension="2014-06-09"/>
+									<templateId root="2.16.840.1.113883.10.13.19" extension="2014-08-08"/>
+									<id root="ab1791b0-5c71-11db-b0de-0800200c9a66"/>
+									<code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosis"/>
+									<statusCode code="completed"/>
+									<value xsi:type="CD" code="C50.411" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD-10-CM" displayName="Malignant neoplasm of upper-outer quadrant of right female breast"/>
+								</observation>
+							</entryRelationship>
+						</substanceAdministration>
+					</entry>
+					<entry typeCode="DRIV">
+						<substanceAdministration classCode="SBADM" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.16" extension="2014-06-09"/>
+							<templateId root="2.16.840.1.113883.10.13.14" extension="2014-08-08"/>
+							<id root="6c844c75-aa34-411c-b7bd-5e4a9f206e29"/>
+							<!-- ** Medication Activity (V2) - Cancer IG Specific Constraints  ** -->
+							<text>
+								<reference value="#Medications_3"/>
+							</text>
+							<statusCode code="completed"/>
+							<effectiveTime xsi:type="IVL_TS">
+								<low value="201410181000"/>
+								<high value="201410181030"/>
+							</effectiveTime>
+							<doseQuantity value="2225" unit="mg">
+								<translation>
+									<originalText>
+										<reference value="#MedicationDose_3"/>
+									</originalText>
+								</translation>
+							</doseQuantity>
+							<consumable>
+								<manufacturedProduct classCode="MANU">
+									<!-- ** Medication information ** -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09"/>
+									<id root="2a620155-9d11-439e-92b3-5d9815ff4ee8"/>
+									<manufacturedMaterial>
+										<code code="1720960" displayName="26.3 ML gemcitabine 38 MG/ML Injection" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm">
+										<!-- Other options for value
+										<code code="1720977" displayName="5.26 ML gemcitabine 38 MG/ML Injection" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm">
+										<code code="1720975" displayName="52.6 ML gemcitabine 38 MG/ML Injection" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm">
+										-->
+											<originalText>
+												<reference value="#MedicationName_3"/>
+											</originalText>
+										</code>
+									</manufacturedMaterial>
+								</manufacturedProduct>
+							</consumable>
+							<entryRelationship typeCode="RSON">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.19" extension="2014-06-09"/>
+									<templateId root="2.16.840.1.113883.10.13.19" extension="2014-08-08"/>
+									<id root="ab1791b0-5c71-11db-b0de-0800200c9a66"/>
+									<code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosis"/>
+									<statusCode code="completed"/>
+									<value xsi:type="CD" code="C50.411" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD-10-CM" displayName="Malignant neoplasm of upper-outer quadrant of right female breast"/>
+								</observation>
+							</entryRelationship>
+						</substanceAdministration>
+					</entry>
+					<entry>
+						<substanceAdministration classCode="SBADM" moodCode="EVN">
+							<!--**MEDICATION ACTIVITY V2 ** -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.16" extension="2014-06-09"/>
+							<!--Medication Activity (V2) - Cancer IG Specific Constraints -->
+							<templateId root="2.16.840.1.113883.10.13.14" extension="2014-08-08"/>
+							<!-- ** Medication Activity (V2) - Cancer IG Specific Constraints  ** -->
+							<id root="bc152409-65fc-4c5e-a498-ad3450f08981"/>
+							<text>
+								<reference value="#Medications_4"/>
+							</text>
+							<statusCode code="completed"/>
+							<effectiveTime xsi:type="IVL_TS">
+									<low value="201410181000"/>
+									<high value="201410181600"/>
+							</effectiveTime>
+							<doseQuantity value="133.5" unit="mg">
+								<translation>
+									<originalText>
+										<reference value="#MedicationDose_4"/>
+									</originalText>
+								</translation>
+							</doseQuantity>
+							<consumable>
+								<manufacturedProduct classCode="MANU">
+									<!-- ** Medication information ** -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09"/>
+									<id root="2a620155-9d11-439e-92b3-5d9815ff4ee8"/>
+									<manufacturedMaterial>
+										<code code="309311" displayName="Cisplatin 1 MG/ML Injectable Solution" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm">
+											<originalText>
+												<reference value="#MedicationName_4"/>
+											</originalText>
+										</code>
+									</manufacturedMaterial>
+								</manufacturedProduct>
+							</consumable>
+							<entryRelationship typeCode="RSON">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.19" extension="2014-06-09"/>
+									<templateId root="2.16.840.1.113883.10.13.19" extension="2014-08-08"/>
+									<id root="ab1791b0-5c71-11db-b0de-0800200c9a66"/>
+									<code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosis"/>
+									<statusCode code="completed"/>
+									<value xsi:type="CD" code="C50.411" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD-10-CM" displayName="Malignant neoplasm of upper-outer quadrant of right female breast"/>
+								</observation>
+							</entryRelationship>
+						</substanceAdministration>
+					</entry>
+				</section>
+			</component>
+			<!--*****Payers section (V2)*****-->
+			<component>
+				<section>
+					<!-- *** Payers Section (V2) *** -->
+					<templateId root="2.16.840.1.113883.10.20.22.2.18" extension="2014-06-09"/>
+					<code code="48768-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Payer"/>
+					<title>INSURANCE PROVIDERS</title>
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th>Payer name</th>
+									<th>Policy type / Coverage type</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Blue Cross Blue Shield</td>
+									<td>Managed Care</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<entry typeCode="DRIV">
+						<act classCode="ACT" moodCode="EVN">
+							<!-- ** Coverage activity ** -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.60" extension="2014-06-09"/>
+							<id root="1fe2cdd0-7aad-11db-9fe1-0800200c9a66"/>
+							<code code="48768-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Payment sources"/>
+							<statusCode code="completed"/>
+							<entryRelationship typeCode="COMP">
+								<sequenceNumber value="2"/>
+								<act classCode="ACT" moodCode="EVN">
+									<!-- ** Policy activity ** -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.61" extension="2014-06-09"/>
+									<id root="3e676a50-7aac-11db-9fe1-0800200c9a66"/>
+									<code code="61" displayName="BC Managed Care" codeSystemName="Source of Payment Typology (PHDSC)" codeSystem="2.16.840.1.113883.3.221.5"/>
+									<statusCode code="completed"/>
+									<!-- Insurance Company Information -->
+									<performer typeCode="PRF">
+										<templateId root="2.16.840.1.113883.10.20.22.4.87"/>
+										<assignedEntity>
+											<id root="2.16.840.1.113883.19"/>
+											<code code="PAYOR" codeSystem="2.16.840.1.113883.5.110" codeSystemName="HL7 RoleCode"/>
+											<addr use="WP">
+												<streetAddressLine>9009 Health Drive</streetAddressLine>
+												<city>Portland</city>
+												<state>OR</state>
+												<postalCode>99123</postalCode>
+												<country>US</country>
+											</addr>
+											<telecom value="tel:+1(555)555-1515" use="WP"/>
+											<representedOrganization classCode="ORG">
+												<name>Blue Cross Blue Shield</name>
+												<telecom value="tel:+1(555)555-1515" use="WP"/>
+												<addr use="WP">
+													<streetAddressLine>9009 Health Drive</streetAddressLine>
+													<city>Portland</city>
+													<state>OR</state>
+													<postalCode>99123</postalCode>
+												</addr>
+											</representedOrganization>
+										</assignedEntity>
+									</performer>
+									<participant typeCode="COV">
+										<!-- Covered Party Participant -->
+										<templateId root="2.16.840.1.113883.10.20.22.4.89"/>
+										<time>
+											<low nullFlavor="UNK"/>
+											<high nullFlavor="UNK"/>
+										</time>
+										<participantRole classCode="PAT">
+											<!-- Health plan ID for patient. -->
+											<id root="14d4a520-7aae-11db-9fe1-0800200c9a66" extension="1138345"/>
+											<code code="SELF" codeSystem="2.16.840.1.113883.5.111" displayName="Self"/>
+											<addr use="HP">
+												<streetAddressLine>2222 Home Street</streetAddressLine>
+												<city>Beaverton</city>
+												<state>OR</state>
+												<postalCode>97867</postalCode>
+												<country>US</country>
+											</addr>
+											<playingEntity>
+												<name>
+													<!-- Name is needed if different than health plan name. -->
+													<given>Boris</given>
+													<family>Betterhalf</family>
+												</name>
+												<sdtc:birthTime value="19750501"/>
+											</playingEntity>
+										</participantRole>
+									</participant>
+									<!-- Policy Holder -->
+									<participant typeCode="HLD">
+										<templateId root="2.16.840.1.113883.10.20.22.4.90"/>
+										<participantRole>
+											<id extension="1138345" root="2.16.840.1.113883.19"/>
+											<addr use="HP">
+												<streetAddressLine>2222 Home Street</streetAddressLine>
+												<city>Beaverton</city>
+												<state>OR</state>
+												<postalCode>97867</postalCode>
+												<country>US</country>
+											</addr>
+										</participantRole>
+									</participant>
+									<entryRelationship typeCode="REFR">
+										<act classCode="ACT" moodCode="EVN">
+											<!-- ** Authorization activity ** -->
+											<templateId root="2.16.840.1.113883.10.20.1.19"/>
+											<id root="f4dce790-8328-11db-9fe1-0800200c9a66"/>
+											<code nullFlavor="NA"/>
+											<entryRelationship typeCode="SUBJ">
+												<procedure classCode="PROC" moodCode="PRMS">
+													<code code="73761001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Colonoscopy"/>
+												</procedure>
+											</entryRelationship>
+										</act>
+									</entryRelationship>
+								</act>
+							</entryRelationship>
+						</act>
+					</entry>
+				</section>
+			</component>
+			<!--*****Plan of Treatment Section (V2) - Cancer IG Specific Constraints*****-->
+			<component>
+				<section>
+					<templateId root="2.16.840.1.113883.10.20.22.2.10" extension="2014-06-09"/>
+					<!--  **** Plan of Treatment section V2 template  **** -->
+					<templateId root="2.16.840.1.113883.10.13.9" extension="2014-08-08"/>
+					<!--  Plan of Treatment Section (V2) - Cancer IG Specific Constraints  -->
+					<code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Plan of treatment"/>
+					<title>TREATMENT PLAN</title>
+					<text>Scheduled MRI of thoracic spine. Patient was referred to Dr. Mentalis for assessment of possible depression. Prescribed Ramelteon 8 mg oral table to aid in sleeping.</text>
+					<entry>
+						<encounter moodCode="APT" classCode="ENC">
+							<templateId root="2.16.840.1.113883.10.20.22.4.40" extension="2014-06-09"/>
+							<!-- Planned Encounter V2 template -->
+							<templateId root="2.16.840.1.113883.10.13.20" extension="2014-08-08"/>
+							<id root="9a6d1bac-17d3-4195-89a4-1121bc809b4d"/>
+							<code code="14736009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="patient evaluation and management"/>
+							<statusCode code="active"/>
+							<effectiveTime value="201411"/>
+							<performer typeCode="PRF">
+								<assignedEntity classCode="ASSIGNED">
+									<id extension="2901010340" root="2.16.840.1.113883.4.6"/>
+									<id extension="111111111" root="2.16.840.1.113883.19.5"/>
+									<code code="2084P0800X" codeSystem="2.16.840.1.113883.6.101" codeSystemName="Healthcare Provider Taxonomy (HIPAA)" displayName="Psychiatry"/>
+									<addr use="WP">
+										<streetAddressLine>4444 Healthcare Drive</streetAddressLine>
+										<city>Seattle</city>
+										<state>WA</state>
+										<postalCode>98101</postalCode>
+										<country>US</country>
+									</addr>
+									<telecom use="WP" value="tel:+1(555)555-3001"/>
+									<assignedPerson>
+										<name>
+											<given>Milton</given>
+											<family>Mentalis</family>
+											<suffix qualifier="AC">M.D.</suffix>
+										</name>
+									</assignedPerson>
+								</assignedEntity>
+							</performer>
+							<participant typeCode="LOC">
+								<participantRole classCode="SDLOC">
+									<templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+									<code code="1141-1" codeSystem="2.16.840.1.113883.6.259" codeSystemName="HealthcareServiceLocation" displayName="Physician's Office"/>
+									<addr>
+										<streetAddressLine>4444 Healthcare Drive</streetAddressLine>
+										<city>Seattle</city>
+										<state>WA</state>
+										<postalCode>98101</postalCode>
+										<country>US</country>
+									</addr>
+									<telecom use="WP" value="tel:+1(555)555-3001"/>
+								</participantRole>
+							</participant>
+						</encounter>
+					</entry>
+					<entry>
+						<substanceAdministration moodCode="INT" classCode="SBADM">
+							<templateId root="2.16.840.1.113883.10.20.22.4.42" extension="2014-06-09"/>
+							<!-- Planned Medicaton Activity (V2)-->
+							<id root="cdbd33f0-6cde-11db-9fe1-0800200c9a66"/>
+							<text>ramelteon 8 MG Oral Tablet</text>
+							<statusCode code="active"/>
+							<!-- The effectiveTime in a planned medication activity
+								  represents the time that the medication activity should occur. -->
+							<effectiveTime value="201411"/>
+							<consumable>
+								<manufacturedProduct classCode="MANU">
+									<!-- Medication Information (V2) -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09"/>
+									<id root="2a620155-9d11-439e-92b3-5d9815ff4ee8"/>
+									<manufacturedMaterial>
+										<code code="603162" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm" displayName="ramelteon 8 MG Oral Tablet [Rozerem]"/>
+									</manufacturedMaterial>
+								</manufacturedProduct>
+							</consumable>
+						</substanceAdministration>
+					</entry>
+					<entry>
+						<procedure moodCode="INT" classCode="PROC">
+							<templateId root="2.16.840.1.113883.10.20.22.4.41" extension="2014-06-09"/>
+							<!-- Planned Procedure (V2) -->
+							<id root="9a6d1bac-17d3-4195-89c4-1121bc809b5a"/>
+							<code code="72146" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT-4" displayName="MRI SPINAL CANAL THORACIC W/O CONTRAST MATRL"/>
+							<!-- Other options for code:
+							<code code="241647000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Magnetic resonance imaging of thoracic spine"/>
+                            <code code="BR37ZZZ" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10 PCS" displayName="Magnetic Resonance Imaging (MRI) of Thoracic Spine"/>
+                            -->
+							<statusCode code="active"/>
+							<effectiveTime value="20141104"/>
+							<author typeCode="AUT">
+								<templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+								<time value="20141104"/>
+								<assignedAuthor>
+									<!-- This id points back to a participant in the header -->
+									<id extension="1234567893" root="2.16.840.1.113883.4.6"/>
+									<code code="207RX0202X" displayName="Medical Oncology" codeSystem="2.16.840.1.113883.6.101" codeSystemName="Healthcare Provider Taxonomy (HIPAA)"/>
+								</assignedAuthor>
+							</author>
+						</procedure>
+					</entry>
+				</section>
+			</component>
+			<!--*****Problem Section (entries required) (V2) - Cancer IG Specific Constraints *****-->
+			<component>
+				<section>
+					<templateId root="2.16.840.1.113883.10.20.22.2.5" extension="2014-06-09"/>
+					<templateId root="2.16.840.1.113883.10.20.22.2.5.1" extension="2014-06-09"/>
+					<templateId root="2.16.840.1.113883.10.13.21" extension="2014-08-08"/>
+					<code code="11450-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="PROBLEM LIST"/>
+					<title>PROBLEMS</title>
+					<text>Patient has breast cancer and diabetes</text>
+					<entry>
+						<act classCode="ACT" moodCode="EVN">
+							<!-- ** Problem concern act ** -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.3" extension="2014-06-09"/>
+							<!-- Problem Concern Act (V2) - Cancer IG Specific Constraints -->
+							<templateId root="2.16.840.1.113883.10.13.22" extension="2014-08-08"/>
+							<id root="ec8a6ff8-ed4b-4f7e-82c3-e98e58b45de7"/>
+							<code code="CONC" codeSystem="2.16.840.1.113883.5.6" displayName="Concern"/>
+							<!-- The statusCode represents the need to continue tracking the problem -->
+							<!-- This is of ongoing concern to the provider -->
+							<statusCode code="active"/>
+							<effectiveTime>
+								<!-- The low value represents when the problem was first recorded in the patient's chart -->
+								<low value="20140126"/>
+							</effectiveTime>
+							<entryRelationship typeCode="SUBJ">
+								<observation classCode="OBS" moodCode="EVN">
+									<!-- ** Problem observation ** -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2014-06-09"/>
+									<!-- ** Problem observation - Cancer IG Specific Constraints ** -->
+									<templateId root="2.16.840.1.113883.10.13.23" extension="2014-08-08"/>
+									<id root="ab1791b0-5c71-11db-b0de-0800200c8b99"/>
+									<code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosis"/>
+									<!-- The statusCode reflects the status of the observation itself -->
+									<statusCode code="completed"/>
+									<effectiveTime>
+										<!-- The low value reflects the date of onset -->
+										<low value="19900512"/>
+									</effectiveTime>
+									<value xsi:type="CD" code="E11.9" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD-10-CM" displayName="Type 2 diabetes mellitus without complications"/>
+									<!-- Other options for value (Problem)
+                                    <value xsi:type="CD" code="44054006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Diabetes mellitus type 2" sdtc:valueSet="2.16.840.1.113883.3.88.12.3221.7.4"/>
+                                    <value xsi:type="CD" code="250.00" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9-CM" displayName="Diabetes mellitus without mention of complication or manifestation; type II or unspecified type, not stated as uncontrolled"/>
+                                    -->
+								</observation>
+							</entryRelationship>
+						</act>
+					</entry>
+					<entry typeCode="DRIV">
+						<act classCode="ACT" moodCode="EVN">
+							<!-- ** Problem concern act ** -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.3" extension="2014-06-09"/>
+							<!-- Problem Concern Act (V2) - Cancer IG Specific Constraints -->
+							<templateId root="2.16.840.1.113883.10.13.22" extension="2014-08-08"/>
+							<id root="ec8a6ff8-ed4b-4f7e-82c3-e98e58b45de7"/>
+							<code code="CONC" codeSystem="2.16.840.1.113883.5.6" displayName="Concern"/>
+							<!-- The statusCode represents the need to continue tracking the problem -->
+							<!-- This is of ongoing concern to the provider -->
+							<statusCode code="active"/>
+							<effectiveTime>
+								<!-- The low value represents when the problem was first recorded in the patient's chart -->
+								<low value="20140126"/>
+							</effectiveTime>
+							<entryRelationship typeCode="SUBJ">
+								<observation classCode="OBS" moodCode="EVN">
+									<!-- ** Problem observation ** -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2014-06-09"/>
+									<!-- ** Problem observation - Cancer IG Specific Constraints ** -->
+									<templateId root="2.16.840.1.113883.10.13.23" extension="2014-08-08"/>
+									<id root="ab1791b0-5c71-11db-b0de-0800200c9a66"/>
+									<code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosis"/>
+									<!-- The statusCode reflects the status of the observation itself -->
+									<statusCode code="completed"/>
+									<effectiveTime>
+										<!-- The low value reflects the date of onset -->
+										<low value="20140126"/>
+									</effectiveTime>
+									<value xsi:type="CD" code="C50.411" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD-10-CM" displayName="Malignant neoplasm of upper-outer quadrant of right female breast"/>
+									<!-- Other options for value (Problem)
+                                    <value xsi:type="CD" code="373083005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Malignant neoplasm of breast upper outer quadrant" sdtc:valueSet="2.16.840.1.113883.3.88.12.3221.7.4"/>
+                                    <value xsi:type="CD" code="174.4" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9-CM" displayName="Malignant neoplasm of upper-outer quadrant of female breast"/>
+                                    -->
+								</observation>
+							</entryRelationship>
+						</act>
+					</entry>
+				</section>
+			</component>
+			<!--*****Procedures Section (entries required) (V2) - Cancer IG Specific Constraints *****-->
+			<component>
+				<section>
+					<templateId root="2.16.840.1.113883.10.20.22.2.7" extension="2014-06-09"/>
+					<templateId root="2.16.840.1.113883.10.20.22.2.7.1" extension="2014-06-09"/>
+					<!-- Procedures section template -->
+					<templateId root="2.16.840.1.113883.10.13.10" extension="2014-08-08"/>
+					<!-- Procedures Section (entries required) (V2) - Cancer IG Specific Constraints template -->
+					<code code="47519-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="History of procedures"/>
+					<title>Procedures</title>
+					<text ID="Proc1">Patient has undergone Ultrasound guided percutaneous needle biopsy of the right breast and a radical mastectomy and axillary node dissection of the right breast.</text>
+					<entry>
+						<procedure classCode="PROC" moodCode="EVN">
+							<!-- Procedure Activity Procedure V2-->
+							<templateId root="2.16.840.1.113883.10.20.22.4.14" extension="2014-06-09"/>
+							<!-- Procedure Activity Procedure (V2) - Cancer IG Specific Constraints-->
+							<templateId root="2.16.840.1.113883.10.13.15" extension="2014-08-08"/>
+							<id root="d5b614bd-01ce-410d-8726-e1fd01dcc72a"/>
+							<code code="19083" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT-4" displayName="Biopsy, breast, with placement of breast localization device(s) (eg, clip, metallic pellet), when performed, and imaging of the biopsy specimen, when performed, percutaneous; first lesion, including ultrasound guidance">
+							<!-- Other options for code (Procedure Code):
+							<code code="442963006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" displayName="Percutaneous needle biopsy of breast using ultrasound guidance">
+                            <code code="0HBT3ZX" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10 PCS" displayName="Excision of Right Breast, Percutaneous Approach, Diagnostic">
+		                    -->
+								<originalText>
+									<reference value="#Proc1"/>
+								</originalText>
+							</code>
+							<statusCode code="completed"/>
+							<effectiveTime>
+								<low value="20140126"/>
+							</effectiveTime>
+							<participant typeCode="LOC">
+								<participantRole classCode="SDLOC">
+									<templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+									<code code="1166-8" codeSystem="2.16.840.1.113883.6.259" codeSystemName="HealthcareServiceLocation" displayName="Ambulatory surgical setting"/>
+								</participantRole>
+							</participant>
+							<entryRelationship typeCode="RSON">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.19" extension="2014-06-09"/>
+									<templateId root="2.16.840.1.113883.10.13.19" extension="2014-08-08"/>
+									<id root="ab1791b0-5c71-11db-b0de-0800200c9a66"/>
+									<code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosis"/>
+									<statusCode code="completed"/>
+									<value xsi:type="CD" code="C50.411" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD-10-CM" displayName="Malignant neoplasm of upper-outer quadrant of right female breast"/>
+								</observation>
+							</entryRelationship>
+						</procedure>
+					</entry>
+					<entry>
+						<procedure classCode="PROC" moodCode="EVN">
+							<!-- Procedure Activity Procedure V2-->
+							<templateId root="2.16.840.1.113883.10.20.22.4.14" extension="2014-06-09"/>
+							<!-- Procedure Activity Procedure (V2) - Cancer IG Specific Constraints-->
+							<templateId root="2.16.840.1.113883.10.13.15" extension="2014-08-08"/>
+							<id root="d5b614bd-01ce-410d-8726-e1fd01dcc72a"/>
+							<code code="19307" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT-4" displayName="Mastectomy, modified radical, including axillary lymph nodes, with or without pectoralis minor muscle, but excluding pectoralis major muscle">
+							<!-- Other options for code (Procedure Code):
+							<code code="406505007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" displayName="Modified radical mastectomy">
+                            <code code="0HTT0ZZ" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10 PCS" displayName="Resection of Right Breast, Open Approach">
+		                    -->
+								<originalText>
+									<reference value="#Proc1"/>
+								</originalText>
+							</code>
+							<statusCode code="completed"/>
+							<effectiveTime>
+								<low value="20140211"/>
+							</effectiveTime>
+							<participant typeCode="LOC">
+								<participantRole classCode="SDLOC">
+									<templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+									<code code="1061-1" codeSystem="2.16.840.1.113883.6.259" codeSystemName="HealthcareServiceLocation" displayName="Inpatient medical/surgical ward"/>
+								</participantRole>
+							</participant>
+							<entryRelationship typeCode="RSON">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.19" extension="2014-06-09"/>
+									<templateId root="2.16.840.1.113883.10.13.19" extension="2014-08-08"/>
+									<id root="ab1791b0-5c71-11db-b0de-0800200c9a66"/>
+									<code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosis"/>
+									<statusCode code="completed"/>
+									<value xsi:type="CD" code="C50.411" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD-10-CM" displayName="Malignant neoplasm of upper-outer quadrant of right female breast"/>
+								</observation>
+							</entryRelationship>
+						</procedure>
+					</entry>
+					<component>
+						<section>
+							<templateId root="2.16.840.1.113883.10.13.24" extension="2014-08-08"/>
+							<!-- Radiation Oncology Section -->
+							<code code="34832-6" codeSystem="2.16.840.1.113883.6.1" displayName="Radiation Oncology Evaluation And Management Note"/>
+							<title>RADIATION ONCOLOGY</title>
+							<text ID="Rad1">Patient received 5 MeV radiation treatment</text>
+							<entry>
+								<organizer classCode="CLUSTER" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.13.29" extension="2014-08-08"/>
+									<!-- Radiation Regional Treatment Modality Organizer Constraints -->
+									<code code="21964-2" codeSystem="2.16.840.1.113883.6.1" displayName="Modality Radiation treatment"/>
+									<statusCode code="completed"/>
+									<component typeCode="COMP">
+										<procedure classCode="PROC" moodCode="EVN">
+											<templateId root="2.16.840.1.113883.10.13.25" extension="2014-08-08"/>
+											<id root="4a7eed3b-d1d4-4f67-80fa-4972c563606c"/>
+											<code nullFlavor="NA">
+												<originalText>
+													<reference value="#Rad1"/>
+												</originalText>
+											</code>
+											<statusCode code="completed"/>
+											<effectiveTime>
+												<low value="20140914"/>
+											</effectiveTime>
+											<entryRelationship typeCode="RSON">
+												<observation classCode="OBS" moodCode="EVN">
+													<templateId root="2.16.840.1.113883.10.20.22.4.19" extension="2014-06-09"/>
+													<templateId root="2.16.840.1.113883.10.13.19" extension="2014-08-08"/>
+													<id nullFlavor="NA"/>
+													<code nullFlavor="NA"/>
+													<statusCode code="completed"/>
+												</observation>
+											</entryRelationship>
+										</procedure>
+									</component>
+								</organizer>
+							</entry>
+							<entry>
+								<organizer classCode="CLUSTER" moodCode="EVN">
+									<!-- Radiation Boost Modality Organizer Constraints -->
+									<templateId root="2.16.840.1.113883.10.13.30" extension="2014-08-08"/>
+									<code code="42128-9" codeSystem="2.16.840.1.113883.6.1" displayName="Boost radiation treatment modality Radiation treatment"/>
+									<statusCode code="active"/>
+									<component typeCode="COMP">
+										<procedure classCode="PROC" moodCode="EVN">
+											<templateId root="2.16.840.1.113883.10.13.26" extension="2014-08-08"/>
+											<id root="87cb6d8e-b33f-4b8b-a19e-443db01bde15"/>
+											<code nullFlavor="NA">
+												<originalText>
+													<reference value="#Rad1"/>
+												</originalText>
+											</code>
+											<statusCode code="completed"/>
+											<effectiveTime>
+												<low value="20141222"/>
+											</effectiveTime>
+											<entryRelationship typeCode="RSON">
+												<observation classCode="OBS" moodCode="EVN">
+													<templateId root="2.16.840.1.113883.10.20.22.4.19" extension="2014-06-09"/>
+													<templateId root="2.16.840.1.113883.10.13.19" extension="2014-08-08"/>
+													<id nullFlavor="NA"/>
+													<code nullFlavor="NA"/>
+													<statusCode code="completed"/>
+												</observation>
+											</entryRelationship>
+										</procedure>
+									</component>
+								</organizer>
+							</entry>
+						</section>
+					</component>
+				</section>
+			</component>
+			<!--*****Results Section (entries required) (V2) *****-->
+			<component>
+				<section>
+					<!-- Results Section (entries required) (V2) -->
+					<templateId root="2.16.840.1.113883.10.20.22.2.3" extension="2014-06-09"/>
+					<templateId root="2.16.840.1.113883.10.20.22.2.3.1" extension="2014-06-09"/>
+					<code code="30954-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Relevant diagnostic tests &amp;or laboratory data"/>
+					<title>RESULTS</title>
+					<text>
+						<table>
+							<thead>
+								<tr>
+									<th>Result Type</th>
+									<th>Result Value</th>
+									<th>Date</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td ID="result1">Estrogen and Progesterone Receptor</td>
+									<td ID="resultvalue1">Positive</td>
+									<td>1/26/2014</td>
+								</tr>
+								<tr>
+									<td ID="result2">HER2</td>
+									<td ID="resultvalue2">Positive</td>
+									<td>1/26/2014</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<entry typeCode="DRIV">
+						<organizer classCode="BATTERY" moodCode="EVN">
+							<!-- ** Result organizer ** -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.1" extension="2014-06-09"/>
+							<id root="7d5a02b0-67a4-11db-bd13-0800200c9a66"/>
+							<code code="11526-1" displayName="Pathology Study" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+							<statusCode code="completed"/>
+							<!-- Mark Roche: option 1 -->
+							<effectiveTime>
+								<low value="20140126"/>
+								<high nullFlavor="NA"/>
+							</effectiveTime>
+							<!-- Mark Roche: option 2
+							<effectiveTime value="20140126">
+								<low nullFlavor="NA"/>
+								<high nullFlavor="NA"/>
+							</effectiveTime>
+							
+							-->
+							
+							<component>
+								<observation classCode="OBS" moodCode="EVN">
+									<!-- ** Result observation ** -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.2" extension="2014-06-09"/>
+									<id root="107c2dc0-67a5-11db-bd13-0800200c9a66"/>
+									<code code="10480-2" displayName="Estrogen+Progesterone receptor Ag [Presence] in Tissue by Immune stain" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+									<statusCode code="completed"/>
+									<effectiveTime value="20140126"/>
+									<value xsi:type="ST">Positive</value>
+								</observation>
+							</component>
+							<component>
+								<observation classCode="OBS" moodCode="EVN">
+									<!-- ** Result observation ** -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.2" extension="2014-06-09"/>
+									<id root="a69b3d60-2ffd-4440-958b-72b3335ff35f"/>
+									<code code="48676-1" displayName="HER2 [interpretation] in Tissue" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+									<statusCode code="completed"/>
+									<effectiveTime value="20140126"/>
+									<value xsi:type="ST">Positive</value>
+								</observation>
+							</component>
+						</organizer>
+					</entry>
+				</section>
+			</component>
+			<!--*****Social History Section (V2) - Cancer IG Specific Constraints *****-->
+			<component>
+				<section>
+					<templateId root="2.16.840.1.113883.10.20.22.2.17" extension="2014-06-09"/>
+					<!-- Social History Section -->
+					<templateId root="2.16.840.1.113883.10.13.11" extension="2015-01-29"/>
+					<!-- Social History Section (V2) - Cancer IG Specific Constraints -->
+					<code code="29762-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Social History"/>
+					<title>SOCIAL HISTORY</title>
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th>Social History Observation</th>
+									<th>Description</th>
+									<th>Dates Observed</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Current Smoking Status</td>
+									<td>Former smoker</td>
+									<td>8/7/2015</td>
+								</tr>
+								<tr>
+									<td ID="Industry_1">Usual Industry History</td>
+									<td>Motion Pictures and Video Industries</td>
+									<td>April 1985 - present</td>
+								</tr>
+								<tr>
+									<td ID="Occupation_1">Usual Occupation History</td>
+									<td>Actors</td>
+									<td>April 1985 - present</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<entry typeCode="DRIV">
+						<observation classCode="OBS" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.78" extension="2014-06-09"/>
+							<id extension="123456789" root="2.16.840.1.113883.19"/>
+							<code code="72166-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Tobacco smoking status"/>
+							<statusCode code="completed"/>
+							<!-- The effectiveTime reflects when the current smoking status was observed. -->
+							<effectiveTime value="20141101"/>
+							<!-- The value represents the patient's smoking status currently observed. -->
+							<value xsi:type="CD" code="8517006" displayName="Former smoker" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT"/>
+						</observation>
+					</entry>
+					<entry>
+						<organizer classCode="CLUSTER" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.13.16" extension="2015-01-29"/>
+							<!-- Employment history observation organizer -->
+							<statusCode code="completed"/>
+							<component typeCode="COMP" contextConductionInd="true">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.13.33" extension="2015-01-29"/>
+									<code code="21844-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Usual industry Hx"/>
+									<effectiveTime>
+										<low value="198504"/>
+									</effectiveTime>
+									<value xsi:type="CD" code="6570" codeSystem="2.16.840.1.114222.4.5.315" codeSystemName="Industry CDC Census 2010" displayName="Motion pictures and video industries" sdtc:valueSet="2.16.840.1.114222.4.11.7187">
+										<originalText>
+											<reference value="#Industry_1"/>
+										</originalText>
+									</value>
+								</observation>
+							</component>
+							<component typeCode="COMP" contextConductionInd="true">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.13.34" extension="2015-01-29"/>
+									<code code="21843-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Usual occupation Hx"/>
+									<effectiveTime>
+										<low value="198504"/>
+									</effectiveTime>
+									<value xsi:type="CD" code="2700" codeSystem="2.16.840.1.114222.4.5.314" codeSystemName="Occupation CDC Census 2010" displayName="Actors" sdtc:valueSet="2.16.840.1.114222.4.11.7186">
+										<originalText>
+											<reference value="#Occupation_1"/>
+										</originalText>
+									</value>
+								</observation>
+							</component>
+						</organizer>
+					</entry>
+				</section>
+			</component>
+			<!--*****Vital Signs Section (entries required) (V2) *****-->
+			<component>
+				<section>
+					<!-- ** Vital Signs Section (entries required) (V2) ** -->
+					<templateId root="2.16.840.1.113883.10.20.22.2.4" extension="2014-06-09"/>
+					<templateId root="2.16.840.1.113883.10.20.22.2.4.1" extension="2014-06-09"/>
+					<code code="8716-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="VITAL SIGNS"/>
+					<title>VITAL SIGNS</title>
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th align="right">Date/Time: </th>
+									<th>11/1/2014</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th align="left">Height</th>
+									<td ID="vit1">162.5 cm</td>
+								</tr>
+								<tr>
+									<th align="left">Weight</th>
+									<td ID="vit3">72.5 kg</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<entry typeCode="DRIV">
+						<organizer classCode="CLUSTER" moodCode="EVN">
+							<!-- ** Vital signs organizer ** -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.26" extension="2014-06-09"/>
+							<id root="31b73bd0-cffc-4599-902e-dbe54bc56cb4"/>
+							<code code="74728-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Vital signs"/>
+							<statusCode code="completed"/>
+							<effectiveTime value="20141101"/>
+							<component>
+								<observation classCode="OBS" moodCode="EVN">
+									<!-- ** Vital sign observation ** -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.27" extension="2014-06-09"/>
+									<id root="ed9589fd-fda0-41f7-a3d0-dc537554f5c2"/>
+									<code code="8302-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Height"/>
+									<statusCode code="completed"/>
+									<effectiveTime value="20141101"/>
+									<value xsi:type="PQ" value="162.5" unit="cm"/>
+								</observation>
+							</component>
+							<component>
+								<observation classCode="OBS" moodCode="EVN">
+									<!-- ** Vital sign observation ** -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.27" extension="2014-06-09"/>
+									<id root="f4e729e2-a97f-4a7e-8e23-c92f9b6b55cf"/>
+									<code code="3141-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Weight Measured"/>
+									<statusCode code="completed"/>
+									<effectiveTime value="20141101"/>
+									<value xsi:type="PQ" value="72.5" unit="kg"/>
+								</observation>
+							</component>
+						</organizer>
+					</entry>
+				</section>
+			</component>
+		</structuredBody>
+	</component>
+</ClinicalDocument>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:lang="http://www.springframework.org/schema/lang"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:task="http://www.springframework.org/schema/task"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    
+    <!--====================================================================================================
+    = VALIDATOR RENDERERS
+    =====================================================================================================-->
+    <beans:bean id="validatorRenderer" class="gov.hhs.onc.crigtt.validate.render.ValidatorRenderer" abstract="true">
+        <beans:property name="defaultOptions">
+            <beans:map>
+                <beans:entry key="#{ T(gov.hhs.onc.crigtt.validate.render.ValidatorRenderOptions).FORMAT_NAME }" value="false" value-type="java.lang.Boolean"/>
+                <beans:entry key="#{ T(gov.hhs.onc.crigtt.validate.render.ValidatorRenderOptions).TIME_ZONE_NAME }" value-ref="timeZoneDefault"/>
+            </beans:map>
+        </beans:property>
+    </beans:bean>
+    
+    <!--====================================================================================================
+    = JSON VALIDATOR RENDERERS
+    =====================================================================================================-->
+    <beans:bean id="validatorRendererJson" class="gov.hhs.onc.crigtt.validate.render.JsonValidatorRenderer" parent="validatorRenderer"
+        abstract="true"/>
+    
+    <beans:bean id="validatorRendererJsonImpl" class="gov.hhs.onc.crigtt.validate.render.impl.JsonValidatorRendererImpl" parent="validatorRendererJson"/>
+    
+    <!--====================================================================================================
+    = XML VALIDATOR RENDERERS
+    =====================================================================================================-->
+    <beans:bean id="validatorRendererXml" class="gov.hhs.onc.crigtt.validate.render.XmlValidatorRenderer" parent="validatorRenderer"
+        abstract="true"/>
+    
+    <beans:bean id="validatorRendererXmlImpl" class="gov.hhs.onc.crigtt.validate.render.impl.XmlValidatorRendererImpl" parent="validatorRendererXml"/>
+    
+    <!--====================================================================================================
+    = XML TRANSFORM VALIDATOR RENDERERS
+    =====================================================================================================-->
+    <beans:bean id="validatorRendererXmlTransform" class="gov.hhs.onc.crigtt.validate.render.XmlTransformValidatorRenderer" parent="validatorRenderer"
+        abstract="true"/>
+    
+    <!--====================================================================================================
+    = HTML VALIDATOR RENDERERS
+    =====================================================================================================-->
+    <beans:bean id="validatorRendererHtml" class="gov.hhs.onc.crigtt.validate.render.HtmlValidatorRenderer" parent="validatorRendererXmlTransform"
+        abstract="true"
+        p:xsltExecutable-ref="xsltExecValidatorResponseHtml"/>
+    
+    <beans:bean id="validatorRendererHtmlImpl" class="gov.hhs.onc.crigtt.validate.render.impl.HtmlValidatorRendererImpl" parent="validatorRendererHtml"/>
+</beans:beans>

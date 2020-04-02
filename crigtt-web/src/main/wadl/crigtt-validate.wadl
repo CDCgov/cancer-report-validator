@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wadl:application
+    xmlns:crigtt-validate="urn:gov.hhs.onc.crigtt:validate"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    
+    <!--====================================================================================================
+    = GRAMMARS
+    =====================================================================================================-->
+    <wadl:grammars>
+        <wadl:include href="../schema/crigtt/crigtt-validate.xsd"/>
+    </wadl:grammars>
+    
+    <!--====================================================================================================
+    = RESOURCES
+    =====================================================================================================-->
+    <wadl:resources base="/">
+        <wadl:resource id="validator" path="/validator">
+            <wadl:method id="validate" name="POST">
+                <wadl:request>
+                    <wadl:representation mediaType="multipart/form-data">
+                        <wadl:param name="format" style="query" type="xsd:boolean" default="true"/>
+                        <wadl:param name="timeZone" style="query" type="crigtt-validate:TimeZoneOffset"/>
+                    </wadl:representation>
+                </wadl:request>
+                <wadl:response status="200">
+                    <wadl:representation mediaType="application/json" element="crigtt-validate:report">
+                        <wadl:param name="X-Crigtt-Response-File-Name" style="header" type="xsd:string"/>
+                    </wadl:representation>
+                    <wadl:representation mediaType="text/html" element="crigtt-validate:report">
+                        <wadl:param name="X-Crigtt-Response-File-Name" style="header" type="xsd:string"/>
+                    </wadl:representation>
+                    <wadl:representation mediaType="text/xml" element="crigtt-validate:report">
+                        <wadl:param name="X-Crigtt-Response-File-Name" style="header" type="xsd:string"/>
+                    </wadl:representation>
+                </wadl:response>
+                <wadl:response>
+                    <wadl:representation mediaType="application/json" element="crigtt-validate:error">
+                        <wadl:param name="X-Crigtt-Response-File-Name" style="header" type="xsd:string"/>
+                    </wadl:representation>
+                    <wadl:representation mediaType="text/html" element="crigtt-validate:error">
+                        <wadl:param name="X-Crigtt-Response-File-Name" style="header" type="xsd:string"/>
+                    </wadl:representation>
+                    <wadl:representation mediaType="text/xml" element="crigtt-validate:error">
+                        <wadl:param name="X-Crigtt-Response-File-Name" style="header" type="xsd:string"/>
+                    </wadl:representation>
+                </wadl:response>
+            </wadl:method>
+        </wadl:resource>
+    </wadl:resources>
+</wadl:application>

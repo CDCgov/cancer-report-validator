@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:lang="http://www.springframework.org/schema/lang"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:task="http://www.springframework.org/schema/task"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    
+    <!--====================================================================================================
+    = DATABASE SERVER CONFIGURATIONS
+    =====================================================================================================-->
+    <!--suppress SpringPlaceholdersInspection -->
+    <beans:bean id="dbServerConfigValidateVocabDynamic" parent="dbServerConfig"
+        p:ipAddress="${crigtt.db.validate.vocab.dynamic.ip.addr}"
+        p:port="${crigtt.db.validate.vocab.dynamic.port}">
+        <beans:property name="globals">
+            <beans:map>
+                <!-- TODO: impl -->
+                <!--
+                <beans:entry key="#{ T(com.orientechnologies.orient.core.config.OGlobalConfiguration).LOG_CONSOLE_LEVEL }"
+                    value="#{ T(java.util.logging.Level).ALL.name }"/>
+                -->
+                <beans:entry key="#{ T(com.orientechnologies.orient.core.config.OGlobalConfiguration).NETWORK_MAX_CONCURRENT_SESSIONS }" value="10000"
+                    value-type="java.lang.Integer"/>
+                <beans:entry key="#{ T(com.orientechnologies.orient.core.config.OGlobalConfiguration).TX_USE_LOG }" value="false"
+                    value-type="java.lang.Boolean"/>
+                <beans:entry key="#{ T(com.orientechnologies.orient.core.config.OGlobalConfiguration).USE_WAL }" value="false" value-type="java.lang.Boolean"/>
+            </beans:map>
+        </beans:property>
+        <beans:property name="properties">
+            <beans:map>
+                <!--suppress SpringPlaceholdersInspection -->
+                <beans:entry key="server.database.path" value="${crigtt.data.db.dir}"/>
+            </beans:map>
+        </beans:property>
+        <beans:property name="storages">
+            <beans:array>
+                <!--suppress SpringPlaceholdersInspection -->
+                <beans:bean parent="dbServerStorageConfig"
+                    c:name="${crigtt.db.validate.vocab.dynamic.storage.primary.name}"
+                    c:pass="${crigtt.db.validate.vocab.dynamic.storage.primary.user.pass}"
+                    c:path="${crigtt.db.validate.vocab.dynamic.storage.primary.path}"
+                    c:user="${crigtt.db.validate.vocab.dynamic.storage.primary.user.name}"/>
+                <!--suppress SpringPlaceholdersInspection -->
+                <beans:bean parent="dbServerStorageConfig"
+                    c:name="${crigtt.db.validate.vocab.dynamic.storage.secondary.name}"
+                    c:pass="${crigtt.db.validate.vocab.dynamic.storage.secondary.user.pass}"
+                    c:path="${crigtt.db.validate.vocab.dynamic.storage.secondary.path}"
+                    c:user="${crigtt.db.validate.vocab.dynamic.storage.secondary.user.name}"/>
+            </beans:array>
+        </beans:property>
+        <beans:property name="users">
+            <beans:array>
+                <!--suppress SpringPlaceholdersInspection -->
+                <beans:bean parent="dbServerUserConfig"
+                    c:pass="${crigtt.db.validate.vocab.dynamic.user.root.pass}"
+                    c:user="${crigtt.db.validate.vocab.dynamic.user.root.name}"/>
+            </beans:array>
+        </beans:property>
+    </beans:bean>
+    
+    <!--====================================================================================================
+    = DYNAMIC VOCABULARY SERVICES
+    =====================================================================================================-->
+    <beans:bean id="vocabServiceDynamic" class="gov.hhs.onc.crigtt.validate.vocab.DynamicVocabService" parent="vocabService" abstract="true"/>
+    
+    <beans:bean id="vocabServiceDynamicImpl" class="gov.hhs.onc.crigtt.validate.vocab.impl.DynamicVocabServiceImpl" parent="vocabServiceDynamic"
+        abstract="true"/>
+    
+    <beans:bean id="vocabServiceDynamicCrigtt" parent="vocabServiceDynamicImpl"
+        p:assertionSource="classpath*:META-INF/crigtt/data/validate/vocab/crigtt-validate-vocab-assertions-dynamic.xml">
+        <beans:property name="codeLoaders">
+            <beans:map>
+                <beans:entry key="#{ T(gov.hhs.onc.crigtt.validate.vocab.model.impl.IcdO3Model).TYPE }" value-ref="codeLoaderIcdO3"/>
+            </beans:map>
+        </beans:property>
+        <beans:property name="codeModelDefinitions">
+            <beans:set>
+                <beans:value>#{ T(gov.hhs.onc.crigtt.validate.vocab.model.impl.IcdO3Model).DEF }</beans:value>
+            </beans:set>
+        </beans:property>
+    </beans:bean>
+</beans:beans>

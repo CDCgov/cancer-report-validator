@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<crigtt-validate-testcases:testcase
+    xmlns:crigtt="urn:gov.hhs.onc.crigtt"
+    xmlns:crigtt-validate-testcases="urn:gov.hhs.onc.crigtt:validate-testcases">
+    <crigtt:id>testcase0</crigtt:id>
+    <crigtt:name>No test case selected (IG Conformance Validation Only)</crigtt:name>
+</crigtt-validate-testcases:testcase>

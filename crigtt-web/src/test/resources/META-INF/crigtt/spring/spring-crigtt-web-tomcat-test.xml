@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+    profile="crigtt.profile.app.context.web"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:lang="http://www.springframework.org/schema/lang"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:task="http://www.springframework.org/schema/task"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    
+    <!--====================================================================================================
+    = LIFECYCLE LISTENERS
+    =====================================================================================================-->
+    <beans:bean id="lifecycleListener" class="org.apache.catalina.LifecycleListener" abstract="true"/>
+    
+    <!--====================================================================================================
+    = EMBEDDED SERVLET CONTAINER FACTORIES
+    =====================================================================================================-->
+    <beans:bean id="embeddedServletContainerFactory" class="org.springframework.boot.context.embedded.EmbeddedServletContainerFactory" abstract="true"/>
+    
+    <beans:bean id="embeddedServletContainerFactoryTomcat" class="org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory"
+        parent="embeddedServletContainerFactory" abstract="true"/>
+    
+    <!--suppress SpringPlaceholdersInspection -->
+    <beans:bean id="embeddedServletContainerFactoryTomcatCrigtt" parent="embeddedServletContainerFactoryTomcat"
+        p:baseDirectory="${crigtt.tomcat.dir}"
+        p:contextPath="${crigtt.tomcat.context.path}"
+        p:documentRoot="#{ T(org.apache.commons.lang3.SystemUtils).userDir }"
+        p:port="${crigtt.tomcat.port.http}"
+        p:uriEncoding="#{ charsetUtf8.name() }">
+        <beans:property name="contextLifecycleListeners">
+            <beans:list>
+                <beans:bean class="org.apache.catalina.core.JreMemoryLeakPreventionListener" parent="lifecycleListener"/>
+                <beans:bean class="org.apache.catalina.core.ThreadLocalLeakPreventionListener" parent="lifecycleListener"/>
+            </beans:list>
+        </beans:property>
+    </beans:bean>
+</beans:beans>

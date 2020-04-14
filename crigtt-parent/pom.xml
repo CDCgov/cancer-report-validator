@@ -7,7 +7,7 @@
     
     <groupId>gov.hhs.onc.crigtt</groupId>
     <artifactId>crigtt-parent</artifactId>
-    <version>1.0.5-RELEASE</version>
+    <version>1.0.5</version>
     <packaging>pom</packaging>
     
     <name>${project.artifactId}</name>

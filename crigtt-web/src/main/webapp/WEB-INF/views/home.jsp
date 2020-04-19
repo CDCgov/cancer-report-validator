@@ -99,6 +99,11 @@
         <div id="content" class="container-fluid">
             <div id="content-tabs" class="tab-content">
                 <div id="content-tab-home" class="active tab-pane" role="tabpanel">
+				    <!--02/18/2020 new content-->
+					<strong>Important Notice: Due to patient confidentiality issues (e.g., HIPAA requirements regarding Protected Health Information), 
+					        this software should not be used via the NIST Web site for validation of messages containing real patient information. 
+							With proper precautions in place to maintain patient confidentiality, if an organization downloads the Validation Tool 
+							and uses it locally the Tool can validate messages with real patient information.</strong>
                     <h1>
                         <i class="fa fa-fw fa-info-circle"></i>
                         <strong>Introduction</strong>
@@ -135,13 +140,14 @@
                     <h2><strong>Test Data</strong></h2>
                     <spring:message code="crigtt.msg.test.data.url" var="testDataUrl"/>
                     <p>
-                        Test cases have been developed in conjunction with the validator. The test data can be obtained <a href="${testDataUrl}">here</a>.
+                        Test cases have been developed in conjunction with the validator. The test data can be obtained <a href="https://oncprojectracking.healthit.gov/wiki/display/CRIGTT/Test+Data+Documentation" target="_blank">here</a>.
                     </p>
                     <h2><strong>Documentation</strong></h2>
                     <spring:message code="crigtt.msg.juror.document.url" var="jurorDocumentUrl"/>
                     <p>
                         Links for the project documentation can be found <a target="_blank" href="${gitHubRepositoryUrl}">here</a>.
-                        The Juror Document can be found <a href="${jurorDocumentUrl}">here</a>.
+                        The Juror Document can be found <a href="https://oncprojectracking.healthit.gov/wiki/display/CRIGTT/CRV+Juror+Document" target="_blank">here</a>.
+						Questions may be directed to the Cancer Registry Testing Tool Google Group <a href="http://groups.google.com/group/cancer-reg-testing-tool" target="_blank">here</a>
                     </p>
                 </div>
                 <div id="content-tab-validator" class="tab-pane" role="tabpanel">

@@ -258,12 +258,14 @@
                         <crigtt-validate-testcases:subExpression>/patient/raceCode[@code='2054-5']/@displayName</crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
                             <crigtt-validate-testcases:expectedResult>Black or African American</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>White</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
                         <crigtt-validate-testcases:subExpression>/patient/sdtc:raceCode[@code='2106-3']/@displayName</crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
                             <crigtt-validate-testcases:expectedResult>White</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Black or African American</crigtt-validate-testcases:expectedResult>                                               
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                 </crigtt-validate-testcases:elementSet>
@@ -548,7 +550,7 @@
                             <crigtt-validate-testcases:matchingLevel>SUBSTRING</crigtt-validate-testcases:matchingLevel>
                         </crigtt-validate-testcases:matchingCondition>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>20140126</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>20180126</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
@@ -693,7 +695,7 @@
                 <crigtt-validate-testcases:matchingLevel>SUBSTRING</crigtt-validate-testcases:matchingLevel>
             </crigtt-validate-testcases:matchingCondition>
             <crigtt-validate-testcases:expectedResults>
-                <crigtt-validate-testcases:expectedResult>20140211</crigtt-validate-testcases:expectedResult>
+                <crigtt-validate-testcases:expectedResult>20180211</crigtt-validate-testcases:expectedResult>
             </crigtt-validate-testcases:expectedResults>
         </crigtt-validate-testcases:xPathSet>
 
@@ -733,8 +735,8 @@
                             @extension='2015-02-05']]/value/@code
                         </crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>T2</crigtt-validate-testcases:expectedResult>
-                            <crigtt-validate-testcases:expectedResult>2</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>cT2</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>c2</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
@@ -742,8 +744,8 @@
                             @extension='2015-02-05']]/value/@code
                         </crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>N2</crigtt-validate-testcases:expectedResult>
-                            <crigtt-validate-testcases:expectedResult>2</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>cN2</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>c2</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
@@ -751,24 +753,40 @@
                             @extension='2015-02-05']]/value/@code
                         </crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>M0</crigtt-validate-testcases:expectedResult>
-                            <crigtt-validate-testcases:expectedResult>0</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>cM0</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>c0</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
+                    
                     <crigtt-validate-testcases:subExpressionSet>
                         <crigtt-validate-testcases:subExpression>/entryRelationship/observation[templateId[@root='2.16.840.1.113883.10.13.39' and
-                            @extension='2015-02-05']]/value/@code
-                        </crigtt-validate-testcases:subExpression>
+                            @extension='2015-02-05']]/value/@code</crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
+                            <crigtt-validate-testcases:expectedResult>0</crigtt-validate-testcases:expectedResult>                            
+                            <crigtt-validate-testcases:expectedResult>1</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>2</crigtt-validate-testcases:expectedResult>
                             <crigtt-validate-testcases:expectedResult>3</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>4</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>5</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>6</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>7</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>8</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>9</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
                         <crigtt-validate-testcases:subExpression>/entryRelationship/observation[templateId[@root='2.16.840.1.113883.10.13.39' and
-                            @extension='2015-02-05']]/value/@displayName
-                        </crigtt-validate-testcases:subExpression>
+                            @extension='2015-02-05']]/value/@displayName</crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
+                            <crigtt-validate-testcases:expectedResult>Not Staged</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Managing physician</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Pathologist</crigtt-validate-testcases:expectedResult>
                             <crigtt-validate-testcases:expectedResult>Pathologist and managing physician</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Cancer Committee chair, cancer liaison physician, or registry physician advisor</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Cancer registrar</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Cancer registrar and physician</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Staging assigned at another facility</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Unknown; not stated in patient’s record</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                 </crigtt-validate-testcases:elementSet>
@@ -788,7 +806,7 @@
                 <crigtt-validate-testcases:matchingLevel>SUBSTRING</crigtt-validate-testcases:matchingLevel>
             </crigtt-validate-testcases:matchingCondition>
             <crigtt-validate-testcases:expectedResults>
-                <crigtt-validate-testcases:expectedResult>20140211</crigtt-validate-testcases:expectedResult>
+                <crigtt-validate-testcases:expectedResult>20180211</crigtt-validate-testcases:expectedResult>
             </crigtt-validate-testcases:expectedResults>
         </crigtt-validate-testcases:xPathSet>
 
@@ -828,8 +846,8 @@
                             @extension='2015-02-05']]/value/@code
                         </crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>T2</crigtt-validate-testcases:expectedResult>
-                            <crigtt-validate-testcases:expectedResult>2</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>pT2</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>p2</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
@@ -837,8 +855,8 @@
                             @extension='2015-02-05']]/value/@code
                         </crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>N2</crigtt-validate-testcases:expectedResult>
-                            <crigtt-validate-testcases:expectedResult>2</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>pN2</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>p2</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
@@ -846,26 +864,47 @@
                             @extension='2015-02-05']]/value/@code
                         </crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>M0</crigtt-validate-testcases:expectedResult>
-                            <crigtt-validate-testcases:expectedResult>0</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>cM0</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>c0</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
+                    
                     <crigtt-validate-testcases:subExpressionSet>
                         <crigtt-validate-testcases:subExpression>/entryRelationship/observation[templateId[@root='2.16.840.1.113883.10.13.44' and
                             @extension='2015-02-05']]/value/@code
                         </crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
+                            <crigtt-validate-testcases:expectedResult>0</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>1</crigtt-validate-testcases:expectedResult>
                             <crigtt-validate-testcases:expectedResult>2</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>3</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>4</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>5</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>6</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>7</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>8</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>9</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
+                    
                     <crigtt-validate-testcases:subExpressionSet>
                         <crigtt-validate-testcases:subExpression>/entryRelationship/observation[templateId[@root='2.16.840.1.113883.10.13.44' and
                             @extension='2015-02-05']]/value/@displayName
                         </crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
+                            <crigtt-validate-testcases:expectedResult>Not Staged</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Managing physician</crigtt-validate-testcases:expectedResult>
                             <crigtt-validate-testcases:expectedResult>Pathologist</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Pathologist and managing physician</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Cancer Committee chair, cancer liaison, physician, or registry physician advisor</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Cancer registrar</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Cancer registrar and physician</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Staging assigned at another facility</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Case is not eligible for staging</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Unknown; not stated in patient’s record</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
+                    
                 </crigtt-validate-testcases:elementSet>
             </crigtt-validate-testcases:elementSets>
         </crigtt-validate-testcases:xPathSet>
@@ -906,29 +945,6 @@
                 </crigtt-validate-testcases:elementSet>
 
                 <crigtt-validate-testcases:elementSet>
-                    <crigtt-validate-testcases:optional>true</crigtt-validate-testcases:optional>
-                    <crigtt-validate-testcases:subExpressionPrefix>/substanceAdministration/consumable/manufacturedProduct/manufacturedMaterial</crigtt-validate-testcases:subExpressionPrefix>
-                    <crigtt-validate-testcases:subExpressionSet>
-                        <crigtt-validate-testcases:subExpression>/code[@code='1720960']/@displayName</crigtt-validate-testcases:subExpression>
-                        <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>26.3 ML gemcitabine 38 MG/ML Injection</crigtt-validate-testcases:expectedResult>
-                        </crigtt-validate-testcases:expectedResults>
-                    </crigtt-validate-testcases:subExpressionSet>
-                    <crigtt-validate-testcases:subExpressionSet>
-                        <crigtt-validate-testcases:subExpression>/code[@code='1720977']/@displayName</crigtt-validate-testcases:subExpression>
-                        <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>5.26 ML gemcitabine 38 MG/ML Injection</crigtt-validate-testcases:expectedResult>
-                        </crigtt-validate-testcases:expectedResults>
-                    </crigtt-validate-testcases:subExpressionSet>
-                    <crigtt-validate-testcases:subExpressionSet>
-                        <crigtt-validate-testcases:subExpression>/code[@code='1720975']/@displayName</crigtt-validate-testcases:subExpression>
-                        <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>52.6 ML gemcitabine 38 MG/ML Injection</crigtt-validate-testcases:expectedResult>
-                        </crigtt-validate-testcases:expectedResults>
-                    </crigtt-validate-testcases:subExpressionSet>
-                </crigtt-validate-testcases:elementSet>
-
-                <crigtt-validate-testcases:elementSet>
                     <crigtt-validate-testcases:subExpressionSet>
                         <crigtt-validate-testcases:subExpression>/substanceAdministration/@moodCode</crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
@@ -960,13 +976,7 @@
                             <crigtt-validate-testcases:expectedResult>309311</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
-                    <crigtt-validate-testcases:subExpressionSet>
-                        <crigtt-validate-testcases:subExpression>/substanceAdministration/consumable/manufacturedProduct/manufacturedMaterial/code/@displayName
-                        </crigtt-validate-testcases:subExpression>
-                        <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>Cisplatin 1 MG/ML Injectable Solution</crigtt-validate-testcases:expectedResult>
-                        </crigtt-validate-testcases:expectedResults>
-                    </crigtt-validate-testcases:subExpressionSet>
+             
                     <crigtt-validate-testcases:subExpressionSet>
                         <crigtt-validate-testcases:subExpression>/substanceAdministration/@moodCode</crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
@@ -999,7 +1009,7 @@
             <crigtt-validate-testcases:xPathExpression>
                 /ClinicalDocument/component/structuredBody/component/section[templateId[@root='2.16.840.1.113883.10.13.13' and
                 @extension='2014-08-08']]/entry[substanceAdministration[consumable[manufacturedProduct[manufacturedMaterial[code[@code='1720960' or
-                @code='1720977' or @code='1720975']]]]][effectiveTime[low[starts-with(@value,'20141025')]]]]
+                @code='1720977' or @code='1720975']]]]][effectiveTime[low[starts-with(@value,'20180925')]]]]
             </crigtt-validate-testcases:xPathExpression>
             <crigtt-validate-testcases:elementSets>
                 <crigtt-validate-testcases:elementSet>
@@ -1025,28 +1035,6 @@
                     </crigtt-validate-testcases:subExpressionSet>
                 </crigtt-validate-testcases:elementSet>
 
-                <crigtt-validate-testcases:elementSet>
-                    <crigtt-validate-testcases:optional>true</crigtt-validate-testcases:optional>
-                    <crigtt-validate-testcases:subExpressionPrefix>/substanceAdministration/consumable/manufacturedProduct/manufacturedMaterial</crigtt-validate-testcases:subExpressionPrefix>
-                    <crigtt-validate-testcases:subExpressionSet>
-                        <crigtt-validate-testcases:subExpression>/code[@code='1720960']/@displayName</crigtt-validate-testcases:subExpression>
-                        <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>26.3 ML gemcitabine 38 MG/ML Injection</crigtt-validate-testcases:expectedResult>
-                        </crigtt-validate-testcases:expectedResults>
-                    </crigtt-validate-testcases:subExpressionSet>
-                    <crigtt-validate-testcases:subExpressionSet>
-                        <crigtt-validate-testcases:subExpression>/code[@code='1720977']/@displayName</crigtt-validate-testcases:subExpression>
-                        <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>5.26 ML gemcitabine 38 MG/ML Injection</crigtt-validate-testcases:expectedResult>
-                        </crigtt-validate-testcases:expectedResults>
-                    </crigtt-validate-testcases:subExpressionSet>
-                    <crigtt-validate-testcases:subExpressionSet>
-                        <crigtt-validate-testcases:subExpression>/code[@code='1720975']/@displayName</crigtt-validate-testcases:subExpression>
-                        <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>52.6 ML gemcitabine 38 MG/ML Injection</crigtt-validate-testcases:expectedResult>
-                        </crigtt-validate-testcases:expectedResults>
-                    </crigtt-validate-testcases:subExpressionSet>
-                </crigtt-validate-testcases:elementSet>
 
                 <crigtt-validate-testcases:elementSet>
                     <crigtt-validate-testcases:subExpressionSet>
@@ -1062,7 +1050,7 @@
                             <crigtt-validate-testcases:matchLength>8</crigtt-validate-testcases:matchLength>
                         </crigtt-validate-testcases:matchingCondition>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>20141025</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>20180925</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
@@ -1087,7 +1075,7 @@
         <crigtt-validate-testcases:xPathSet>
             <crigtt-validate-testcases:xPathExpression>
                 /ClinicalDocument/component/structuredBody/component/section[templateId[@root='2.16.840.1.113883.10.13.13' and
-                @extension='2014-08-08']]/entry[substanceAdministration[consumable[manufacturedProduct[manufacturedMaterial[code[@code='309311']]]]][effectiveTime[low[starts-with(@value,'20141025')]]]]
+                @extension='2014-08-08']]/entry[substanceAdministration[consumable[manufacturedProduct[manufacturedMaterial[code[@code='309311']]]]][effectiveTime[low[starts-with(@value,'20180925')]]]]
             </crigtt-validate-testcases:xPathExpression>
             <crigtt-validate-testcases:elementSets>
                 <crigtt-validate-testcases:elementSet>
@@ -1099,13 +1087,7 @@
                             <crigtt-validate-testcases:expectedResult>309311</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
-                    <crigtt-validate-testcases:subExpressionSet>
-                        <crigtt-validate-testcases:subExpression>/substanceAdministration/consumable/manufacturedProduct/manufacturedMaterial/code/@displayName
-                        </crigtt-validate-testcases:subExpression>
-                        <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>Cisplatin 1 MG/ML Injectable Solution</crigtt-validate-testcases:expectedResult>
-                        </crigtt-validate-testcases:expectedResults>
-                    </crigtt-validate-testcases:subExpressionSet>
+          
                     <crigtt-validate-testcases:subExpressionSet>
                         <crigtt-validate-testcases:subExpression>/substanceAdministration/@moodCode</crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
@@ -1119,7 +1101,7 @@
                             <crigtt-validate-testcases:matchLength>8</crigtt-validate-testcases:matchLength>
                         </crigtt-validate-testcases:matchingCondition>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>20141025</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>20180925</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
@@ -1145,7 +1127,7 @@
             <crigtt-validate-testcases:xPathExpression>
                 /ClinicalDocument/component/structuredBody/component/section[templateId[@root='2.16.840.1.113883.10.13.13' and
                 @extension='2014-08-08']]/entry[substanceAdministration[consumable[manufacturedProduct[manufacturedMaterial[code[@code='1720960' or
-                @code='1720977' or @code='1720975']]]]][effectiveTime[low[starts-with(@value,'20141018')]]]]
+                @code='1720977' or @code='1720975']]]]][effectiveTime[low[starts-with(@value,'20180918')]]]]
             </crigtt-validate-testcases:xPathExpression>
             <crigtt-validate-testcases:elementSets>
                 <crigtt-validate-testcases:elementSet>
@@ -1171,28 +1153,6 @@
                     </crigtt-validate-testcases:subExpressionSet>
                 </crigtt-validate-testcases:elementSet>
 
-                <crigtt-validate-testcases:elementSet>
-                    <crigtt-validate-testcases:optional>true</crigtt-validate-testcases:optional>
-                    <crigtt-validate-testcases:subExpressionPrefix>/substanceAdministration/consumable/manufacturedProduct/manufacturedMaterial</crigtt-validate-testcases:subExpressionPrefix>
-                    <crigtt-validate-testcases:subExpressionSet>
-                        <crigtt-validate-testcases:subExpression>/code[@code='1720960']/@displayName</crigtt-validate-testcases:subExpression>
-                        <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>26.3 ML gemcitabine 38 MG/ML Injection</crigtt-validate-testcases:expectedResult>
-                        </crigtt-validate-testcases:expectedResults>
-                    </crigtt-validate-testcases:subExpressionSet>
-                    <crigtt-validate-testcases:subExpressionSet>
-                        <crigtt-validate-testcases:subExpression>/code[@code='1720977']/@displayName</crigtt-validate-testcases:subExpression>
-                        <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>5.26 ML gemcitabine 38 MG/ML Injection</crigtt-validate-testcases:expectedResult>
-                        </crigtt-validate-testcases:expectedResults>
-                    </crigtt-validate-testcases:subExpressionSet>
-                    <crigtt-validate-testcases:subExpressionSet>
-                        <crigtt-validate-testcases:subExpression>/code[@code='1720975']/@displayName</crigtt-validate-testcases:subExpression>
-                        <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>52.6 ML gemcitabine 38 MG/ML Injection</crigtt-validate-testcases:expectedResult>
-                        </crigtt-validate-testcases:expectedResults>
-                    </crigtt-validate-testcases:subExpressionSet>
-                </crigtt-validate-testcases:elementSet>
 
                 <crigtt-validate-testcases:elementSet>
                     <crigtt-validate-testcases:subExpressionSet>
@@ -1208,7 +1168,7 @@
                             <crigtt-validate-testcases:matchLength>8</crigtt-validate-testcases:matchLength>
                         </crigtt-validate-testcases:matchingCondition>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>20141018</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>20180918</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
@@ -1233,7 +1193,7 @@
         <crigtt-validate-testcases:xPathSet>
             <crigtt-validate-testcases:xPathExpression>
                 /ClinicalDocument/component/structuredBody/component/section[templateId[@root='2.16.840.1.113883.10.13.13' and
-                @extension='2014-08-08']]/entry[substanceAdministration[consumable[manufacturedProduct[manufacturedMaterial[code[@code='309311']]]]][effectiveTime[low[starts-with(@value,'20141018')]]]]
+                @extension='2014-08-08']]/entry[substanceAdministration[consumable[manufacturedProduct[manufacturedMaterial[code[@code='309311']]]]][effectiveTime[low[starts-with(@value,'20180918')]]]]
             </crigtt-validate-testcases:xPathExpression>
             <crigtt-validate-testcases:elementSets>
                 <crigtt-validate-testcases:elementSet>
@@ -1245,13 +1205,7 @@
                             <crigtt-validate-testcases:expectedResult>309311</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
-                    <crigtt-validate-testcases:subExpressionSet>
-                        <crigtt-validate-testcases:subExpression>/substanceAdministration/consumable/manufacturedProduct/manufacturedMaterial/code/@displayName
-                        </crigtt-validate-testcases:subExpression>
-                        <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>Cisplatin 1 MG/ML Injectable Solution</crigtt-validate-testcases:expectedResult>
-                        </crigtt-validate-testcases:expectedResults>
-                    </crigtt-validate-testcases:subExpressionSet>
+
                     <crigtt-validate-testcases:subExpressionSet>
                         <crigtt-validate-testcases:subExpression>/substanceAdministration/@moodCode</crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
@@ -1265,7 +1219,7 @@
                             <crigtt-validate-testcases:matchLength>8</crigtt-validate-testcases:matchLength>
                         </crigtt-validate-testcases:matchingCondition>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>20141018</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>20180918</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
@@ -1286,7 +1240,7 @@
 
         <!--====================================================================================================
         = PAYERS SECTION
-        =====================================================================================================-->
+        =====================================================================================================
         <crigtt-validate-testcases:xPathSet>
             <crigtt-validate-testcases:xPathExpression>
                 /ClinicalDocument/component/structuredBody/component/section[templateId[@root='2.16.840.1.113883.10.20.22.2.18' and @extension =
@@ -1304,7 +1258,7 @@
                 </crigtt-validate-testcases:elementSet>
             </crigtt-validate-testcases:elementSets>
         </crigtt-validate-testcases:xPathSet>
-
+-->
         <!--====================================================================================================
         = PLAN OF TREATMENT SECTION
         =====================================================================================================-->
@@ -1372,15 +1326,10 @@
                         </crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
                             <crigtt-validate-testcases:expectedResult>603162</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>577348</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
-                    <crigtt-validate-testcases:subExpressionSet>
-                        <crigtt-validate-testcases:subExpression>/consumable/manufacturedProduct/manufacturedMaterial/code/@displayName
-                        </crigtt-validate-testcases:subExpression>
-                        <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>ramelteon 8 MG Oral Tablet [Rozerem]</crigtt-validate-testcases:expectedResult>
-                        </crigtt-validate-testcases:expectedResults>
-                    </crigtt-validate-testcases:subExpressionSet>
+           
                 </crigtt-validate-testcases:elementSet>
             </crigtt-validate-testcases:elementSets>
         </crigtt-validate-testcases:xPathSet>
@@ -1403,9 +1352,9 @@
                     <crigtt-validate-testcases:subExpressionSet>
                         <crigtt-validate-testcases:subExpression>/code/@code</crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>241647000</crigtt-validate-testcases:expectedResult>
-                            <crigtt-validate-testcases:expectedResult>72146</crigtt-validate-testcases:expectedResult>
-                            <crigtt-validate-testcases:expectedResult>BR37ZZZ</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>406505007</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>19307</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>0HTU0ZZ</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                 </crigtt-validate-testcases:elementSet>
@@ -1413,22 +1362,21 @@
                 <crigtt-validate-testcases:elementSet>
                     <crigtt-validate-testcases:optional>true</crigtt-validate-testcases:optional>
                     <crigtt-validate-testcases:subExpressionSet>
-                        <crigtt-validate-testcases:subExpression>/code[@code='241647000']/@displayName</crigtt-validate-testcases:subExpression>
+                        <crigtt-validate-testcases:subExpression>/code[@code='406505007']/@displayName</crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>Magnetic resonance imaging of thoracic spine</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Modified radical mastectomy</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
-                        <crigtt-validate-testcases:subExpression>/code[@code='72146']/@displayName</crigtt-validate-testcases:subExpression>
+                        <crigtt-validate-testcases:subExpression>/code[@code='19307']/@displayName</crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>MRI SPINAL CANAL THORACIC W/O CONTRAST MATRL</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Mastectomy, modified radical, including axillary lymph nodes, with or without pectoralis minor muscle, but excluding pectoralis major muscle</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
-                        <crigtt-validate-testcases:subExpression>/code[@code='BR37ZZZ']/@displayName</crigtt-validate-testcases:subExpression>
+                        <crigtt-validate-testcases:subExpression>/code[@code='0HTU0ZZ']/@displayName</crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>Magnetic Resonance Imaging MRI of Thoracic Spine
-                            </crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Resection of Left Breast, Open Approach</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                 </crigtt-validate-testcases:elementSet>
@@ -1525,7 +1473,7 @@
                             <crigtt-validate-testcases:matchingLevel>SUBSTRING</crigtt-validate-testcases:matchingLevel>
                         </crigtt-validate-testcases:matchingCondition>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>20140126</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>20180126</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                 </crigtt-validate-testcases:elementSet>
@@ -1590,7 +1538,7 @@
                             <crigtt-validate-testcases:matchingLevel>SUBSTRING</crigtt-validate-testcases:matchingLevel>
                         </crigtt-validate-testcases:matchingCondition>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>20140126</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>20180126</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
@@ -1658,7 +1606,7 @@
                             <crigtt-validate-testcases:matchingLevel>SUBSTRING</crigtt-validate-testcases:matchingLevel>
                         </crigtt-validate-testcases:matchingCondition>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>20140211</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>20180211</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
@@ -1730,7 +1678,7 @@
                             <crigtt-validate-testcases:matchingLevel>SUBSTRING</crigtt-validate-testcases:matchingLevel>
                         </crigtt-validate-testcases:matchingCondition>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>20140914</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>20180914</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                 </crigtt-validate-testcases:elementSet>
@@ -1785,7 +1733,7 @@
                             <crigtt-validate-testcases:matchingLevel>SUBSTRING</crigtt-validate-testcases:matchingLevel>
                         </crigtt-validate-testcases:matchingCondition>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>20141222</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>20181031</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                 </crigtt-validate-testcases:elementSet>
@@ -1880,7 +1828,7 @@
                             <crigtt-validate-testcases:matchingLevel>SUBSTRING</crigtt-validate-testcases:matchingLevel>
                         </crigtt-validate-testcases:matchingCondition>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>20140126</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>20180126</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
@@ -1935,7 +1883,7 @@
                             <crigtt-validate-testcases:matchingLevel>SUBSTRING</crigtt-validate-testcases:matchingLevel>
                         </crigtt-validate-testcases:matchingCondition>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>20140126</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>20180126</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
@@ -2199,7 +2147,7 @@
             <crigtt-validate-testcases:xPathExpression>
                 /ClinicalDocument/component/structuredBody/component/section[templateId[@root='2.16.840.1.113883.10.13.13' and
                 @extension='2014-08-08']]/entry/substanceAdministration[consumable[manufacturedProduct[manufacturedMaterial[code[@code='1720960' or
-                @code='1720977' or @code='1720975']]]]][effectiveTime[low[starts-with(@value,'20141025')]]]/entryRelationship/observation[templateId[@root='2.16.840.1.113883.10.13.19'
+                @code='1720977' or @code='1720975']]]]][effectiveTime[low[starts-with(@value,'20180925')]]]/entryRelationship/observation[templateId[@root='2.16.840.1.113883.10.13.19'
                 and @extension='2014-08-08']]/id
             </crigtt-validate-testcases:xPathExpression>
             <crigtt-validate-testcases:xPathResultComparison>true</crigtt-validate-testcases:xPathResultComparison>
@@ -2217,7 +2165,7 @@
         <crigtt-validate-testcases:xPathSet>
             <crigtt-validate-testcases:xPathExpression>
                 /ClinicalDocument/component/structuredBody/component/section[templateId[@root='2.16.840.1.113883.10.13.13' and
-                @extension='2014-08-08']]/entry/substanceAdministration[consumable[manufacturedProduct[manufacturedMaterial[code[@code='309311']]]]][effectiveTime[low[starts-with(@value,'20141025')]]]/entryRelationship/observation[templateId[@root='2.16.840.1.113883.10.13.19'
+                @extension='2014-08-08']]/entry/substanceAdministration[consumable[manufacturedProduct[manufacturedMaterial[code[@code='309311']]]]][effectiveTime[low[starts-with(@value,'20180925')]]]/entryRelationship/observation[templateId[@root='2.16.840.1.113883.10.13.19'
                 and @extension='2014-08-08']]/id
             </crigtt-validate-testcases:xPathExpression>
             <crigtt-validate-testcases:xPathResultComparison>true</crigtt-validate-testcases:xPathResultComparison>
@@ -2236,7 +2184,7 @@
             <crigtt-validate-testcases:xPathExpression>
                 /ClinicalDocument/component/structuredBody/component/section[templateId[@root='2.16.840.1.113883.10.13.13' and
                 @extension='2014-08-08']]/entry/substanceAdministration[consumable[manufacturedProduct[manufacturedMaterial[code[@code='1720960' or
-                @code='1720977' or @code='1720975']]]]][effectiveTime[low[starts-with(@value,'20141018')]]]/entryRelationship/observation[templateId[@root='2.16.840.1.113883.10.13.19'
+                @code='1720977' or @code='1720975']]]]][effectiveTime[low[starts-with(@value,'20180918')]]]/entryRelationship/observation[templateId[@root='2.16.840.1.113883.10.13.19'
                 and @extension='2014-08-08']]/id
             </crigtt-validate-testcases:xPathExpression>
             <crigtt-validate-testcases:xPathResultComparison>true</crigtt-validate-testcases:xPathResultComparison>
@@ -2254,7 +2202,7 @@
         <crigtt-validate-testcases:xPathSet>
             <crigtt-validate-testcases:xPathExpression>
                 /ClinicalDocument/component/structuredBody/component/section[templateId[@root='2.16.840.1.113883.10.13.13' and
-                @extension='2014-08-08']]/entry/substanceAdministration[consumable[manufacturedProduct[manufacturedMaterial[code[@code='309311']]]]][effectiveTime[low[starts-with(@value,'20141018')]]]/entryRelationship/observation[templateId[@root='2.16.840.1.113883.10.13.19'
+                @extension='2014-08-08']]/entry/substanceAdministration[consumable[manufacturedProduct[manufacturedMaterial[code[@code='309311']]]]][effectiveTime[low[starts-with(@value,'20180918')]]]/entryRelationship/observation[templateId[@root='2.16.840.1.113883.10.13.19'
                 and @extension='2014-08-08']]/id
             </crigtt-validate-testcases:xPathExpression>
             <crigtt-validate-testcases:xPathResultComparison>true</crigtt-validate-testcases:xPathResultComparison>

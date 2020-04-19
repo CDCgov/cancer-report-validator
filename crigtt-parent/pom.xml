@@ -4,16 +4,16 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     
     <modelVersion>4.0.0</modelVersion>
-    
     <groupId>gov.hhs.onc.crigtt</groupId>
     <artifactId>crigtt-parent</artifactId>
-    <version>1.0.5</version>
+    <version>1.1.0</version>
     <packaging>pom</packaging>
-    
+
+
     <name>${project.artifactId}</name>
     <description>Cancer Registry IG Test Tool (CRIGTT) parent Maven project.</description>
-    <url>http://github.com/esacinc/crigtt/</url>
-    
+    <!--<url>http://github.com/esacinc/crigtt/</url>-->
+    <url>https://github.com/CDCgov/Cancer-Report-Validator</url>
     <licenses>
         <license>
             <name>The Apache License, Version 2.0</name>
@@ -60,6 +60,7 @@
     
     <distributionManagement>
         <snapshotRepository>
+
             <id>ossrh</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
@@ -410,10 +411,21 @@
                 <artifactId>logback-ext-spring</artifactId>
                 <version>0.1.4</version>
             </dependency>
+
+
             <dependency>
                 <groupId>org.sitenv.vocabulary</groupId>
                 <artifactId>codevalidator-api</artifactId>
                 <version>1.0-SNAPSHOT</version>
+
+                <!--this lets build successfully but the jar file does not get included in war file-->
+                <!--<scope>system</scope>
+                <systemPath>C:\Customers\CDC\crigtt-master\crigtt-master\lib\codevalidator-api-1.0-SNAPSHOT.jar</systemPath>
+
+                correct way - first run the following command to install the jar file in the local repository, then build
+                mvn install:install-file -Dfile="C:\Customers\CDC\crigtt-master\crigtt-master\lib\codevalidator-api-1.0-SNAPSHOT.jar" -DgroupId=org.sitenv.vocabulary -DartifactId=codevalidator-api -Dversion=1.0-SNAPSHOT -Dpackaging=jar
+
+                -->
                 <exclusions>
                     <exclusion>
                         <groupId>javax.servlet</groupId>
@@ -429,6 +441,8 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+
+
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>jcl-over-slf4j</artifactId>

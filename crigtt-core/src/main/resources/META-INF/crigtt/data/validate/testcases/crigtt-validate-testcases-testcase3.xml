@@ -14,6 +14,7 @@
             <crigtt-validate-testcases:xPathExpression>/ClinicalDocument/versionNumber/@value</crigtt-validate-testcases:xPathExpression>
             <crigtt-validate-testcases:expectedResults>
                 <crigtt-validate-testcases:expectedResult>1</crigtt-validate-testcases:expectedResult>
+                <crigtt-validate-testcases:expectedResult>1</crigtt-validate-testcases:expectedResult>
             </crigtt-validate-testcases:expectedResults>
         </crigtt-validate-testcases:xPathSet>
 
@@ -471,7 +472,7 @@
                             <crigtt-validate-testcases:matchingLevel>SUBSTRING</crigtt-validate-testcases:matchingLevel>
                         </crigtt-validate-testcases:matchingCondition>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>20150804</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>20180804</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
@@ -600,7 +601,7 @@
                 <crigtt-validate-testcases:matchingLevel>SUBSTRING</crigtt-validate-testcases:matchingLevel>
             </crigtt-validate-testcases:matchingCondition>
             <crigtt-validate-testcases:expectedResults>
-                <crigtt-validate-testcases:expectedResult>20150804</crigtt-validate-testcases:expectedResult>
+                <crigtt-validate-testcases:expectedResult>20180804</crigtt-validate-testcases:expectedResult>
             </crigtt-validate-testcases:expectedResults>
         </crigtt-validate-testcases:xPathSet>
 
@@ -639,8 +640,8 @@
                             @extension='2015-02-05']]/value/@code
                         </crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>Tis</crigtt-validate-testcases:expectedResult>
-                            <crigtt-validate-testcases:expectedResult>IS</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>cTis</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>cIS</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
@@ -648,8 +649,8 @@
                             @extension='2015-02-05']]/value/@code
                         </crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>N0</crigtt-validate-testcases:expectedResult>
-                            <crigtt-validate-testcases:expectedResult>0</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>cN0</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>c0</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
@@ -657,26 +658,43 @@
                             @extension='2015-02-05']]/value/@code
                         </crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>M0</crigtt-validate-testcases:expectedResult>
-                            <crigtt-validate-testcases:expectedResult>0</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>cM0</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>c0</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
+
                     <crigtt-validate-testcases:subExpressionSet>
                         <crigtt-validate-testcases:subExpression>/entryRelationship/observation[templateId[@root='2.16.840.1.113883.10.13.39' and
-                            @extension='2015-02-05']]/value/@code
-                        </crigtt-validate-testcases:subExpression>
+                            @extension='2015-02-05']]/value/@code</crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
+                            <crigtt-validate-testcases:expectedResult>0</crigtt-validate-testcases:expectedResult>                          
+                            <crigtt-validate-testcases:expectedResult>1</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>2</crigtt-validate-testcases:expectedResult>
                             <crigtt-validate-testcases:expectedResult>3</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>4</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>5</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>6</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>7</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>8</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>9</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
                         <crigtt-validate-testcases:subExpression>/entryRelationship/observation[templateId[@root='2.16.840.1.113883.10.13.39' and
-                            @extension='2015-02-05']]/value/@displayName
-                        </crigtt-validate-testcases:subExpression>
+                            @extension='2015-02-05']]/value/@displayName</crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
+                            <crigtt-validate-testcases:expectedResult>Not Staged</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Managing physician</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Pathologist</crigtt-validate-testcases:expectedResult>
                             <crigtt-validate-testcases:expectedResult>Pathologist and managing physician</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Cancer Committee chair, cancer liaison physician, or registry physician advisor</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Cancer registrar</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Cancer registrar and physician</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Staging assigned at another facility</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Unknown; not stated in patient’s record</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
+
                 </crigtt-validate-testcases:elementSet>
             </crigtt-validate-testcases:elementSets>
         </crigtt-validate-testcases:xPathSet>
@@ -694,7 +712,7 @@
                 <crigtt-validate-testcases:matchingLevel>SUBSTRING</crigtt-validate-testcases:matchingLevel>
             </crigtt-validate-testcases:matchingCondition>
             <crigtt-validate-testcases:expectedResults>
-                <crigtt-validate-testcases:expectedResult>20150804</crigtt-validate-testcases:expectedResult>
+                <crigtt-validate-testcases:expectedResult>20180804</crigtt-validate-testcases:expectedResult>
             </crigtt-validate-testcases:expectedResults>
         </crigtt-validate-testcases:xPathSet>
 
@@ -733,8 +751,8 @@
                             @extension='2015-02-05']]/value/@code
                         </crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>Tis</crigtt-validate-testcases:expectedResult>
-                            <crigtt-validate-testcases:expectedResult>IS</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>pTis</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>pIS</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
@@ -742,35 +760,56 @@
                             @extension='2015-02-05']]/value/@code
                         </crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>N0</crigtt-validate-testcases:expectedResult>
-                            <crigtt-validate-testcases:expectedResult>0</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>pN0</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>p0</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
+                    
                     <crigtt-validate-testcases:subExpressionSet>
                         <crigtt-validate-testcases:subExpression>/entryRelationship/observation[templateId[@root='2.16.840.1.113883.10.13.43' and
                             @extension='2015-02-05']]/value/@code
                         </crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>M0</crigtt-validate-testcases:expectedResult>
-                            <crigtt-validate-testcases:expectedResult>0</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>NotRecorded</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
+
                     <crigtt-validate-testcases:subExpressionSet>
                         <crigtt-validate-testcases:subExpression>/entryRelationship/observation[templateId[@root='2.16.840.1.113883.10.13.44' and
                             @extension='2015-02-05']]/value/@code
                         </crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
+                            <crigtt-validate-testcases:expectedResult>0</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>1</crigtt-validate-testcases:expectedResult>
                             <crigtt-validate-testcases:expectedResult>2</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>3</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>4</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>5</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>6</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>7</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>8</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>9</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
+                    
                     <crigtt-validate-testcases:subExpressionSet>
                         <crigtt-validate-testcases:subExpression>/entryRelationship/observation[templateId[@root='2.16.840.1.113883.10.13.44' and
                             @extension='2015-02-05']]/value/@displayName
                         </crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
+                            <crigtt-validate-testcases:expectedResult>Not Staged</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Managing physician</crigtt-validate-testcases:expectedResult>
                             <crigtt-validate-testcases:expectedResult>Pathologist</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Pathologist and managing physician</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Cancer Committee chair, cancer liaison, physician, or registry physician advisor</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Cancer registrar</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Cancer registrar and physician</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Staging assigned at another facility</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Case is not eligible for staging</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>Unknown; not stated in patient’s record</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
+
                 </crigtt-validate-testcases:elementSet>
             </crigtt-validate-testcases:elementSets>
         </crigtt-validate-testcases:xPathSet>
@@ -809,7 +848,7 @@
                             <crigtt-validate-testcases:matchingLevel>SUBSTRING</crigtt-validate-testcases:matchingLevel>
                         </crigtt-validate-testcases:matchingCondition>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>20150804</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>20180804</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
@@ -959,7 +998,7 @@
                 <crigtt-validate-testcases:matchingLevel>SUBSTRING</crigtt-validate-testcases:matchingLevel>
             </crigtt-validate-testcases:matchingCondition>
             <crigtt-validate-testcases:expectedResults>
-                <crigtt-validate-testcases:expectedResult>20150804</crigtt-validate-testcases:expectedResult>
+                <crigtt-validate-testcases:expectedResult>20180804</crigtt-validate-testcases:expectedResult>
             </crigtt-validate-testcases:expectedResults>
         </crigtt-validate-testcases:xPathSet>
 
@@ -999,8 +1038,8 @@
                             @extension='2015-02-05']]/value/@code
                         </crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>T4a</crigtt-validate-testcases:expectedResult>
-                            <crigtt-validate-testcases:expectedResult>4A</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>pT4a</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>p4A</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
@@ -1008,8 +1047,8 @@
                             @extension='2015-02-05']]/value/@code
                         </crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>N0</crigtt-validate-testcases:expectedResult>
-                            <crigtt-validate-testcases:expectedResult>0</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>pN0</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>p0</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
@@ -1017,8 +1056,7 @@
                             @extension='2015-02-05']]/value/@code
                         </crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>M0</crigtt-validate-testcases:expectedResult>
-                            <crigtt-validate-testcases:expectedResult>0</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>NotRecorded</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
@@ -1043,7 +1081,7 @@
 
         <!--====================================================================================================
         = PAYERS SECTION
-        =====================================================================================================-->
+        =====================================================================================================
         <crigtt-validate-testcases:xPathSet>
             <crigtt-validate-testcases:xPathExpression>
                 /ClinicalDocument/component/structuredBody/component/section[templateId[@root='2.16.840.1.113883.10.20.22.2.18' and @extension =
@@ -1060,7 +1098,7 @@
                 </crigtt-validate-testcases:elementSet>
             </crigtt-validate-testcases:elementSets>
         </crigtt-validate-testcases:xPathSet>
-
+-->
         <!--====================================================================================================
         = PROBLEM SECTION
         =====================================================================================================-->
@@ -1094,7 +1132,7 @@
                             <crigtt-validate-testcases:matchingLevel>SUBSTRING</crigtt-validate-testcases:matchingLevel>
                         </crigtt-validate-testcases:matchingCondition>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>20150804</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>20180804</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                 </crigtt-validate-testcases:elementSet>
@@ -1151,7 +1189,7 @@
                             <crigtt-validate-testcases:matchingLevel>SUBSTRING</crigtt-validate-testcases:matchingLevel>
                         </crigtt-validate-testcases:matchingCondition>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>20150804</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>20180804</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                 </crigtt-validate-testcases:elementSet>
@@ -1215,7 +1253,7 @@
                             <crigtt-validate-testcases:matchingLevel>SUBSTRING</crigtt-validate-testcases:matchingLevel>
                         </crigtt-validate-testcases:matchingCondition>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>20150804</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>20180804</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
@@ -1283,7 +1321,7 @@
                             <crigtt-validate-testcases:matchingLevel>SUBSTRING</crigtt-validate-testcases:matchingLevel>
                         </crigtt-validate-testcases:matchingCondition>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>20150804</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>20180804</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
@@ -1331,10 +1369,11 @@
 
         <!--====================================================================================================
         = RADIATION ONCOLOGY SECTION
-        =====================================================================================================-->
-        <!--====================================================================================================
+			9/21/18: WB: Commenting out entire section because we will no longer be checking for null flavors when radiation information is not provided
+        =====================================================================================================
+       ====================================================================================================
         = RADIATION REGIONAL TREATMENT MODALITY PROCEDURE
-        =====================================================================================================-->
+        =====================================================================================================
         <crigtt-validate-testcases:xPathSet>
             <crigtt-validate-testcases:xPathExpression>
                 /ClinicalDocument/component/structuredBody/component/section[templateId[@root='2.16.840.1.113883.10.13.10' and
@@ -1369,9 +1408,9 @@
             </crigtt-validate-testcases:elementSets>
         </crigtt-validate-testcases:xPathSet>
 
-        <!--====================================================================================================
+        ====================================================================================================
         = RADIATION BOOST MODALITY PROCEDURE
-        =====================================================================================================-->
+        =====================================================================================================
         <crigtt-validate-testcases:xPathSet>
             <crigtt-validate-testcases:xPathExpression>
                 /ClinicalDocument/component/structuredBody/component/section[templateId[@root='2.16.840.1.113883.10.13.10' and
@@ -1405,7 +1444,7 @@
                 </crigtt-validate-testcases:elementSet>
             </crigtt-validate-testcases:elementSets>
         </crigtt-validate-testcases:xPathSet>
-
+-->
         <!--====================================================================================================
         = ID COMPARISONS
         =====================================================================================================-->

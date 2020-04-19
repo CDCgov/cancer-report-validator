@@ -97,7 +97,8 @@ public class LoggingApplicationRunListener extends AbstractCrigttApplicationRunL
         if (statusUtil.getHighestLevel(lastResetTime) >= Status.WARN) {
             StatusPrinter.print(statusManager, lastResetTime);
 
-            throw new ApplicationContextException(String.format("Unable to initialize Logback using configuration file (path=%s).", configFileUrlPath));
+            //
+            //  cd throw new ApplicationContextException(String.format("Unable to initialize Logback using configuration file (path=%s).", configFileUrlPath));
         }
 
         loggingInit.postProcessContext(loggerContext);

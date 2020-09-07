@@ -108,7 +108,7 @@
                         <crigtt-validate-testcases:subExpression>/telecom/@value</crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:matchingCondition>
                             <crigtt-validate-testcases:matchingLevel>REGEXP</crigtt-validate-testcases:matchingLevel>
-                            <crigtt-validate-testcases:matchingRegexpElementType>PHONE_NUM</crigtt-validate-testcases:matchingRegexpElementType>
+                            <crigtt-validate-testcases:matchingRegexpElementType>TELECOM</crigtt-validate-testcases:matchingRegexpElementType>
                         </crigtt-validate-testcases:matchingCondition>
                         <crigtt-validate-testcases:expectedResults>
                             <crigtt-validate-testcases:expectedResult>tel:+12065552414</crigtt-validate-testcases:expectedResult>
@@ -241,7 +241,7 @@
                         <crigtt-validate-testcases:subExpression>/telecom/@value</crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:matchingCondition>
                             <crigtt-validate-testcases:matchingLevel>REGEXP</crigtt-validate-testcases:matchingLevel>
-                            <crigtt-validate-testcases:matchingRegexpElementType>PHONE_NUM</crigtt-validate-testcases:matchingRegexpElementType>
+                            <crigtt-validate-testcases:matchingRegexpElementType>TELECOM</crigtt-validate-testcases:matchingRegexpElementType>
                         </crigtt-validate-testcases:matchingCondition>
                         <crigtt-validate-testcases:expectedResults>
                             <crigtt-validate-testcases:expectedResult>tel:+12065553892</crigtt-validate-testcases:expectedResult>
@@ -351,7 +351,7 @@
                         <crigtt-validate-testcases:subExpression>/telecom/@value</crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:matchingCondition>
                             <crigtt-validate-testcases:matchingLevel>REGEXP</crigtt-validate-testcases:matchingLevel>
-                            <crigtt-validate-testcases:matchingRegexpElementType>PHONE_NUM</crigtt-validate-testcases:matchingRegexpElementType>
+                            <crigtt-validate-testcases:matchingRegexpElementType>TELECOM</crigtt-validate-testcases:matchingRegexpElementType>
                         </crigtt-validate-testcases:matchingCondition>
                         <crigtt-validate-testcases:expectedResults>
                             <crigtt-validate-testcases:expectedResult>tel:+12065553800</crigtt-validate-testcases:expectedResult>

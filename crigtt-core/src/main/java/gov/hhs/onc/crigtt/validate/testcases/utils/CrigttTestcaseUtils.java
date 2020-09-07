@@ -58,6 +58,13 @@ public final class CrigttTestcaseUtils {
     public final static String PHONE_NUM_URI_SEPARATOR_REPLACEMENT = "[-.()]";
     public final static Pattern PHONE_NUM_EXPR_PATTERN = Pattern.compile(CrigttTestcaseUtils.PHONE_NUM_URI_PATTERN_FORMAT);
 
+    public final static String US_PHONE_NUMBER_REGEX = "^(?:\\+?1[-.● ]?)?\\(?([0-9]{3})\\)?[ -.●]?([0-9]{3})[ -.●]?([0-9]{4})$";
+    public final static String EMAIL_VALIDATOR_REGEX = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"" +
+            "(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:" +
+            "[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.)" +
+            "{3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|" +
+            "\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
+
     public final static String EMPTY_RESULT = "()";
 
     public final static int MATCHING_CONDITION_MATCH_LEN_DEFAULT = 8;
@@ -210,6 +217,8 @@ public final class CrigttTestcaseUtils {
                                 }
 
                                 break;
+                            case TELECOM:
+                                return validateTelecom(actualResult);
                             default:
                                 matchingPredicate = expectedResult -> Pattern.matches(expectedResult, actualResult);
                                 break;
@@ -223,6 +232,21 @@ public final class CrigttTestcaseUtils {
         }
 
         return expectedResults.stream().anyMatch(matchingPredicate);
+    }
+
+    private static boolean validateTelecom(String actualResult) {
+        boolean isValid = false;
+        if (actualResult != null) {
+            actualResult = actualResult.trim();
+            if (actualResult.startsWith(PHONE_NUM_URI_PREFIX)) {
+                String sanitizedResult = actualResult.replace(PHONE_NUM_URI_PREFIX, "").trim();
+                isValid = sanitizedResult.matches(US_PHONE_NUMBER_REGEX);
+            } else if (actualResult.startsWith(EMAIL_ADDR_URI_PREFIX)) {
+                String sanitizedResult = actualResult.replace(EMAIL_ADDR_URI_PREFIX, "").trim();
+                isValid = sanitizedResult.matches(EMAIL_VALIDATOR_REGEX);
+            }
+        }
+        return isValid;
     }
 
     public static boolean getAssertionStatus(List<XdmNode> expectedResults, XdmNode actualResult, Configuration config) throws XPathException {

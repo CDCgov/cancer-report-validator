@@ -28,6 +28,7 @@
         <xsd:restriction base="xsd:string">
             <xsd:enumeration value="EMAIL_ADDR"/>
             <xsd:enumeration value="PHONE_NUM"/>
+            <xsd:enumeration value="TELECOM" />
         </xsd:restriction>
     </xsd:simpleType>
 

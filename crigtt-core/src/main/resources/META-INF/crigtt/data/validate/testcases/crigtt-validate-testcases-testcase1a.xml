@@ -324,15 +324,6 @@
                         </crigtt-validate-testcases:matchingCondition>
                         <crigtt-validate-testcases:expectedResults>
                             <crigtt-validate-testcases:expectedResult>tel:+12065553921</crigtt-validate-testcases:expectedResult>
-                        </crigtt-validate-testcases:expectedResults>
-                    </crigtt-validate-testcases:subExpressionSet>
-                    <crigtt-validate-testcases:subExpressionSet>
-                        <crigtt-validate-testcases:subExpression>/telecom/@value</crigtt-validate-testcases:subExpression>
-                        <crigtt-validate-testcases:matchingCondition>
-                            <crigtt-validate-testcases:matchingLevel>REGEXP</crigtt-validate-testcases:matchingLevel>
-                            <crigtt-validate-testcases:matchingRegexpElementType>EMAIL_ADDR</crigtt-validate-testcases:matchingRegexpElementType>
-                        </crigtt-validate-testcases:matchingCondition>
-                        <crigtt-validate-testcases:expectedResults>
                             <crigtt-validate-testcases:expectedResult>mailto:Akarev@GraceOnc.com</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>

@@ -3398,7 +3398,7 @@ Note: The effectiveTime is an interval that spans the effectiveTimes of the cont
 	<sch:pattern id="p-urn-hl7ii-2.16.840.1.113883.10.13.26-2014-08-08-infos">
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.26-2014-08-08-infos" context="cda:procedure[cda:templateId[@root='2.16.840.1.113883.10.13.26' and @extension = '2014-08-08']]">
 			<sch:assert id="a-1126-33337" test="exists(cda:participant)">MAY contain zero or more [0..*] participant (CONF:1126-33337).</sch:assert>
-			<sch:assert id="a-1126-33338" test="count(cda:entryRelationship[@typeCode='SUBJ'][@inversion='true'][count(cda:observaton[cda:templateId[@root='2.16.840.1.113883.10.13.28' and @extension='2014-08-08']])=1])=1">MAY contain zero or one [0..1] entryRelationship (CONF:1126-33338) such that it
+			<sch:assert id="a-1126-33338" test="count(cda:entryRelationship[@typeCode='SUBJ'][@inversion='true'][count(cda:observation[cda:templateId[@root='2.16.840.1.113883.10.13.28' and @extension='2014-08-08']])=1])=1">MAY contain zero or one [0..1] entryRelationship (CONF:1126-33338) such that it
 SHALL contain exactly one [1..1] @typeCode="SUBJ" subject (CodeSystem: HL7ActRelationshipType urn:oid:2.16.840.1.113883.5.1002) (CONF:1126-33358). SHALL contain exactly one [1..1] @inversionInd="true" (CONF:1126-33359). SHALL contain exactly one [1..1] Radiation Boost Dose - cGy (identifier:urn:hl7ii:2.16.840.1.113883.10.13.28:2014-08-08) (CONF:1126-33360).</sch:assert>
 		</sch:rule>
 		<sch:rule id="r-urn-hl7ii-2.16.840.1.113883.10.13.26-2014-08-08-branch-1126-33335-infos" context="cda:procedure[cda:templateId[@root='2.16.840.1.113883.10.13.26' and @extension = '2014-08-08']]/cda:performer/cda:assignedEntity">

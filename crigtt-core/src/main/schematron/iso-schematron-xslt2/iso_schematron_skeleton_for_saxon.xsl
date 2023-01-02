@@ -5,7 +5,7 @@
    
    ASCC/Schematron.com Skeleton Module for ISO Schematron (for XSLT2 systems)
    
-   ISO Schematron is a language for making assertion about the presence or absense
+   ISO Schematron is a language for making assertion about the presence or absence
    of patterns in XML documents. It is typically used for as a schema language, or
    to augment existing schema languages, and to check business rules. It is very
    powerful, yet quite simple: a developer only need know XPath and about five other
@@ -47,7 +47,7 @@
    
    If you create your own meta-stylesheet to override this one, it is a
    good idea to have both in the same directory and to run the stylesheet
-   from that directory, as many XSLT implementations have ideosyncratic
+   from that directory, as many XSLT implementations have idiosyncratic
    handling of URLs: keep it simple.
 -->
  
@@ -76,7 +76,7 @@
     archiveDirParameter string	  In case of ZIP files	 
     
  Experimental: USE AT YOUR OWN RISK   
-    visit-text "true" "false"   Also visist text nodes for context. WARNING: NON_STARDARD.
+    visit-text "true" "false"   Also visist text nodes for context. WARNING: NON_STANDARD.
     select-contents '' | 'key' | '//'   Select different implementation strategies
  
  Conventions: Meta-stylesheets that override this may use the following parameters
@@ -461,7 +461,7 @@ which require a preprocess.
 
 <!-- DPC set to true if contexts should be checked on attribute nodes
          defaults to true if there is any possibility that a context could match an attribute,
-         err on the side if caution, a context of *[.='@'] would cause this param to defualt to true
+         err on the side if caution, a context of *[.='@'] would cause this param to default to true
          even though @ is in a string
 -->
 <xsl:param name="attributes">
@@ -473,7 +473,7 @@ which require a preprocess.
 
 <!-- DPC set to true if contexts should be checked on just elements in the child axis
          defaults to true if there is any possibility that a context could match an comment or PI
-         err on the side if caution, a context of *[.='('] would cause this param to defualt to true
+         err on the side if caution, a context of *[.='('] would cause this param to default to true
          even though ( is in a string, but node() comment() and processing-instruction()  all have a (
 -->
 <xsl:param name="only-child-elements">
@@ -498,7 +498,7 @@ which require a preprocess.
       @*|*
       *
   instead for schema for which they are equivalent.
-  If the params are set explictly the above may be used, and also either if
+  If the params are set explicitly the above may be used, and also either if
       @*
       @*|node()
    in all cases the result may not be equivalent, for example if you specify no attributes and the schema 
@@ -519,8 +519,8 @@ which require a preprocess.
 
 <!-- DPC if this is set to 
     '' use recursive templates to iterate over document tree,
-    'key' select  all contexts with a key rather than walking the tree explictly in each mode
-    '//' select all contexts with // a key rather than walking the tree explictly in each mode (XSLT2 only)
+    'key' select  all contexts with a key rather than walking the tree explicitly in each mode
+    '//' select all contexts with // a key rather than walking the tree explicitly in each mode (XSLT2 only)
 -->
 <xsl:param name="select-contexts" select="''"/>
 
@@ -1057,7 +1057,7 @@ which require a preprocess.
 
 
 	<!-- ISO DIAGNOSTIC -->
-	<!-- We use a mode here to maintain backwards compatability, instead of adding it
+	<!-- We use a mode here to maintain backwards compatibility, instead of adding it
 	     to the other mode.
 	-->
 	<xsl:template match="iso:diagnostic" mode="check-diagnostics">
@@ -1568,7 +1568,7 @@ which require a preprocess.
 	
 	
 	<!-- PROPERTY Experiemental -->
-	<!-- We use a mode here to maintain backwards compatability, instead of adding it
+	<!-- We use a mode here to maintain backwards compatibility, instead of adding it
 	     to the other mode.
 	-->
 	<xsl:template match="iso:property" mode="check-property">
@@ -2185,7 +2185,7 @@ which require a preprocess.
 		message text is taken from the strings below. We use XHTML, to provide
 		the namespace. 
 		
-		If the $langCode is somethign else, then the XSLT engine will try to
+		If the $langCode is something else, then the XSLT engine will try to
 		find a file called  sch-messages-$langCode.xhtml in the same directory
 		as this stylesheet. Expect a fatal error if the file does not exist.
 		
@@ -2240,7 +2240,7 @@ which require a preprocess.
 	
 <xhtml:div class="ErrorMessages">	
 	<!-- Where the error message contains dynamic information, the message has been split into an "a" and a "b" section.
-	     This has been done even when the English does not require it, in order to accomodate different language grammars
+	     This has been done even when the English does not require it, in order to accommodate different language grammars
 	     that might position the dynamic information differently.
 	-->
 	<xhtml:p id="sch-message-1">Schema error: Schematron elements in old and new namespaces found</xhtml:p>

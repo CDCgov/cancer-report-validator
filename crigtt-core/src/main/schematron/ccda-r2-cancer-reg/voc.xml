@@ -150,7 +150,7 @@
         <code value="1031-4" displayName="Neurosurgical critical care unit" codeSystemName="HL7 HealthcareServiceLocation" codeSystem="2.16.840.1.113883.6.259" />
         <code value="1151-0" displayName="Occupational health clinic" codeSystemName="HL7 HealthcareServiceLocation" codeSystem="2.16.840.1.113883.6.259" />
         <code value="1152-8" displayName="Occupational therapy clinic" codeSystemName="HL7 HealthcareServiceLocation" codeSystem="2.16.840.1.113883.6.259" />
-        <code value="1124-7" displayName="Opthalmology clinic" codeSystemName="HL7 HealthcareServiceLocation" codeSystem="2.16.840.1.113883.6.259" />
+        <code value="1124-7" displayName="Ophthalmology clinic" codeSystemName="HL7 HealthcareServiceLocation" codeSystem="2.16.840.1.113883.6.259" />
         <code value="1125-4" displayName="Orthopedics clinic" codeSystemName="HL7 HealthcareServiceLocation" codeSystem="2.16.840.1.113883.6.259" />
         <code value="1149-4" displayName="Ostomy clinic" codeSystemName="HL7 HealthcareServiceLocation" codeSystem="2.16.840.1.113883.6.259" />
         <code value="1126-2" displayName="Otorhinolaryngology clinic" codeSystemName="HL7 HealthcareServiceLocation" codeSystem="2.16.840.1.113883.6.259" />
@@ -270,7 +270,7 @@
         <code value="N" displayName="normal" codeSystemName="HITSP-CS-83" codeSystem="2.16.840.1.113883.5.83" />
         <code value="NEG" displayName="negative" codeSystemName="HITSP-CS-83" codeSystem="2.16.840.1.113883.5.83" />
         <code value="POS" displayName="positive" codeSystemName="HITSP-CS-83" codeSystem="2.16.840.1.113883.5.83" />
-        <code value="R" displayName="resistent" codeSystemName="HITSP-CS-83" codeSystem="2.16.840.1.113883.5.83" />
+        <code value="R" displayName="resistant" codeSystemName="HITSP-CS-83" codeSystem="2.16.840.1.113883.5.83" />
         <code value="S" displayName="susceptible" codeSystemName="HITSP-CS-83" codeSystem="2.16.840.1.113883.5.83" />
         <code value="U" displayName="increased" codeSystemName="HITSP-CS-83" codeSystem="2.16.840.1.113883.5.83" />
         <code value="VS" displayName="very susceptible" codeSystemName="HITSP-CS-83" codeSystem="2.16.840.1.113883.5.83" />

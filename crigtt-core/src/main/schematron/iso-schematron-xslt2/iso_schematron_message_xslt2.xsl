@@ -1,5 +1,5 @@
 <?xml version="1.0" ?><?xar XSLT?>
-<!-- Implmentation for the Schematron XML Schema Language.
+<!-- Implementation for the Schematron XML Schema Language.
 	http://www.ascc.net/xml/resource/schematron/schematron.html
  
  Copyright (c) 2000,2001 Rick Jelliffe and Academia Sinica Computing Center, Taiwan
@@ -36,7 +36,7 @@
    <axsl:output method="text" />
 </xsl:template>
 
-<!-- use default rule for process-root:  copy contens / ignore title -->
+<!-- use default rule for process-root:  copy contents / ignore title -->
 <!-- use default rule for process-pattern: ignore name and see -->
 <!-- use default rule for process-name:  output name -->
 <!-- use default rule for process-assert and process-report:

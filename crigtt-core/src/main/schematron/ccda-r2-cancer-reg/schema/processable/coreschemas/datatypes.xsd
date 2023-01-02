@@ -53,7 +53,7 @@
             all of the attributes and elements accepted for T are also
             accepted by this definition.  However, they are NOT allowed
             by the normative description of this type.  Unfortunately,
-            we cannot write a general purpose schematron contraints to
+            we cannot write a general purpose schematron constraints to
             provide that extra validation, thus applications must be
             aware that instance (fragments) that pass validation with
             this might might still not be legal.
@@ -111,7 +111,7 @@
             all of the attributes and elements accepted for T are also
             accepted by this definition.  However, they are NOT allowed
             by the normative description of this type.  Unfortunately,
-            we cannot write a general purpose schematron contraints to
+            we cannot write a general purpose schematron constraints to
             provide that extra validation, thus applications must be
             aware that instance (fragments) that pass validation with
             this might might still not be legal.
@@ -349,7 +349,7 @@
             all of the attributes and elements accepted for T are also
             accepted by this definition.  However, they are NOT allowed
             by the normative description of this type.  Unfortunately,
-            we cannot write a general purpose schematron contraints to
+            we cannot write a general purpose schematron constraints to
             provide that extra validation, thus applications must be
             aware that instance (fragments) that pass validation with
             this might might still not be legal.
@@ -527,7 +527,7 @@
             all of the attributes and elements accepted for T are also
             accepted by this definition.  However, they are NOT allowed
             by the normative description of this type.  Unfortunately,
-            we cannot write a general purpose schematron contraints to
+            we cannot write a general purpose schematron constraints to
             provide that extra validation, thus applications must be
             aware that instance (fragments) that pass validation with
             this might might still not be legal.
@@ -1323,7 +1323,7 @@
                <xs:element name="denominator" type="PQ">
                   <xs:annotation>
                      <xs:documentation>
-                        The quantity that devides the numerator in the ratio.
+                        The quantity that divides the numerator in the ratio.
                         The default is the integer number 1 (one).
                         The denominator must not be zero.
                      </xs:documentation>
@@ -1353,7 +1353,7 @@
                <xs:element name="denominator" type="PQ">
                   <xs:annotation>
                      <xs:documentation>
-                        The quantity that devides the numerator in the ratio.
+                        The quantity that divides the numerator in the ratio.
                         The default is the integer number 1 (one).
                         The denominator must not be zero.
                      </xs:documentation>

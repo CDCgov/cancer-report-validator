@@ -99,11 +99,6 @@
         <div id="content" class="container-fluid">
             <div id="content-tabs" class="tab-content">
                 <div id="content-tab-home" class="active tab-pane" role="tabpanel">
-				    <!--02/18/2020 new content-->
-					<strong>Important Notice: Due to patient confidentiality issues (e.g., HIPAA requirements regarding Protected Health Information), 
-					        this software should not be used via the NIST Web site for validation of messages containing real patient information. 
-							With proper precautions in place to maintain patient confidentiality, if an organization downloads the Validation Tool 
-							and uses it locally the Tool can validate messages with real patient information.</strong>
                     <h1>
                         <i class="fa fa-fw fa-info-circle"></i>
                         <strong>Introduction</strong>

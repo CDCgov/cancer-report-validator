@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crigtt-validate-vocab:vocabAssertions
-    xmlns:crigtt="urn:gov.hhs.onc.crigtt"
-    xmlns:crigtt-validate-vocab="urn:gov.hhs.onc.crigtt:validate-vocab">
-    
+        xmlns:crigtt="urn:gov.hhs.onc.crigtt"
+        xmlns:crigtt-validate-vocab="urn:gov.hhs.onc.crigtt:validate-vocab">
+
     <!--====================================================================================================
     = VOCABULARY ASSERTIONS
     =====================================================================================================-->
@@ -18,7 +18,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:statusCode</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-7525</crigtt:id>
         <crigtt-validate-vocab:optional>true</crigtt-validate-vocab:optional>
@@ -33,7 +33,7 @@
         <crigtt-validate-vocab:vocabContextExpression>cda:rateQuantity</crigtt-validate-vocab:vocabContextExpression>
         <crigtt-validate-vocab:codeIdExpression>@unit</crigtt-validate-vocab:codeIdExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-6394</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -46,7 +46,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:administrativeGenderCode</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-5322</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -59,7 +59,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:raceCode</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-5323</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -72,7 +72,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:ethnicGroupCode</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-16082</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -84,7 +84,7 @@
             </crigtt-validate-vocab:vocabSet>
         </crigtt-validate-vocab:expectedVocabSets>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-9058-c</crigtt:id>
         <!--
@@ -125,7 +125,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:value[@xsi:type='CD']</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-31579</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -139,7 +139,7 @@
         <crigtt-validate-vocab:vocabContextExpression>cda:value</crigtt-validate-vocab:vocabContextExpression>
         <crigtt-validate-vocab:codeIdExpression>@unit</crigtt-validate-vocab:codeIdExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-31484-c</crigtt:id>
         <crigtt-validate-vocab:optional>true</crigtt-validate-vocab:optional>
@@ -155,7 +155,7 @@
         <crigtt-validate-vocab:codeIdExpression>@unit</crigtt-validate-vocab:codeIdExpression>
         <crigtt-validate-vocab:testExpressionOverride>empty(cda:value[@xsi:type='PQ'])</crigtt-validate-vocab:testExpressionOverride>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-7412</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -182,7 +182,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:manufacturedMaterial/cda:code</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-7365</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -195,7 +195,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:value</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-16563</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -208,7 +208,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:value</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-15992-v</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -220,7 +220,7 @@
             </crigtt-validate-vocab:vocabSet>
         </crigtt-validate-vocab:expectedVocabSets>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-8591</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -233,7 +233,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:value</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-15975</crigtt:id>
         <crigtt-validate-vocab:optional>true</crigtt-validate-vocab:optional>
@@ -247,7 +247,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:subject/cda:administrativeGenderCode</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1126-33347</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -259,7 +259,7 @@
             </crigtt-validate-vocab:vocabSet>
         </crigtt-validate-vocab:expectedVocabSets>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1126-33594-c</crigtt:id>
         <crigtt-validate-vocab:active>false</crigtt-validate-vocab:active>
@@ -296,7 +296,7 @@
             </crigtt-validate-vocab:vocabSet>
         </crigtt-validate-vocab:expectedVocabSets>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1126-33662-c</crigtt:id>
         <crigtt-validate-vocab:active>false</crigtt-validate-vocab:active>
@@ -334,7 +334,7 @@
             </crigtt-validate-vocab:vocabSet>
         </crigtt-validate-vocab:expectedVocabSets>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1126-33380</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -346,7 +346,7 @@
             </crigtt-validate-vocab:vocabSet>
         </crigtt-validate-vocab:expectedVocabSets>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1169-34375</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -360,7 +360,7 @@
         <crigtt-validate-vocab:vocabContextExpression>cda:assignedEntity</crigtt-validate-vocab:vocabContextExpression>
         <crigtt-validate-vocab:codeIdExpression>@nullFlavor</crigtt-validate-vocab:codeIdExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1169-34137</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -372,7 +372,7 @@
             </crigtt-validate-vocab:vocabSet>
         </crigtt-validate-vocab:expectedVocabSets>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1169-34243</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -384,7 +384,7 @@
             </crigtt-validate-vocab:vocabSet>
         </crigtt-validate-vocab:expectedVocabSets>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-81-7294</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -398,7 +398,7 @@
         <crigtt-validate-vocab:vocabContextExpression>cda:postalCode</crigtt-validate-vocab:vocabContextExpression>
         <crigtt-validate-vocab:codeIdExpression>text()</crigtt-validate-vocab:codeIdExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-81-7295</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -412,7 +412,7 @@
         <crigtt-validate-vocab:vocabContextExpression>cda:country</crigtt-validate-vocab:vocabContextExpression>
         <crigtt-validate-vocab:codeIdExpression>text()</crigtt-validate-vocab:codeIdExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-7514</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -425,7 +425,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:routeCode</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-7526</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -439,7 +439,7 @@
         <crigtt-validate-vocab:vocabContextExpression>cda:doseQuantity</crigtt-validate-vocab:vocabContextExpression>
         <crigtt-validate-vocab:codeIdExpression>@unit</crigtt-validate-vocab:codeIdExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-5375</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -452,7 +452,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:codeIdExpression>@use</crigtt-validate-vocab:codeIdExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-7994</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -465,7 +465,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:codeIdExpression>@use</crigtt-validate-vocab:codeIdExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-7999</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -478,7 +478,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:codeIdExpression>@use</crigtt-validate-vocab:codeIdExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-8000</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -491,7 +491,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:codeIdExpression>@use</crigtt-validate-vocab:codeIdExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-9965</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -504,7 +504,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:proficiencyLevelCode</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-5404</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -518,7 +518,7 @@
         <crigtt-validate-vocab:vocabContextExpression>cda:country</crigtt-validate-vocab:vocabContextExpression>
         <crigtt-validate-vocab:codeIdExpression>text()</crigtt-validate-vocab:codeIdExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-5402-c</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -532,7 +532,7 @@
         <crigtt-validate-vocab:vocabContextExpression>cda:state</crigtt-validate-vocab:vocabContextExpression>
         <crigtt-validate-vocab:codeIdExpression>text()</crigtt-validate-vocab:codeIdExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-5326</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -545,7 +545,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:code</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-7993</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -585,7 +585,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:codeIdExpression>@use</crigtt-validate-vocab:codeIdExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-7996</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -598,7 +598,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:codeIdExpression>@use</crigtt-validate-vocab:codeIdExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-7998</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -611,7 +611,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:codeIdExpression>@use</crigtt-validate-vocab:codeIdExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-14842</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -638,7 +638,7 @@
         <crigtt-validate-vocab:vocabContextExpression>cda:doseQuantity</crigtt-validate-vocab:vocabContextExpression>
         <crigtt-validate-vocab:codeIdExpression>@unit</crigtt-validate-vocab:codeIdExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-32134</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -652,7 +652,7 @@
         <crigtt-validate-vocab:vocabContextExpression>cda:rateQuantity</crigtt-validate-vocab:vocabContextExpression>
         <crigtt-validate-vocab:codeIdExpression>@unit</crigtt-validate-vocab:codeIdExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-7301-v</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -665,7 +665,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:code</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-8903-v</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -678,7 +678,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:code</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-16078-c</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -691,7 +691,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:participantRole/cda:code</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-31671</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -704,7 +704,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:assignedAuthor/cda:code</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-15247-v</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -742,7 +742,7 @@
             </crigtt-validate-vocab:vocabSet>
         </crigtt-validate-vocab:expectedVocabSets>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1169-32483</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -754,7 +754,7 @@
             </crigtt-validate-vocab:vocabSet>
         </crigtt-validate-vocab:expectedVocabSets>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1169-32620</crigtt:id>
         <crigtt-validate-vocab:target>CODE_NAME</crigtt-validate-vocab:target>
@@ -767,7 +767,7 @@
             </crigtt-validate-vocab:vocabSet>
         </crigtt-validate-vocab:expectedVocabSets>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-7515</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -780,7 +780,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:approachSiteCode</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-7519</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -793,7 +793,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:administrationUnitCode</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-5317</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -806,7 +806,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:religiousAffiliationCode</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-5403</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -820,7 +820,7 @@
         <crigtt-validate-vocab:vocabContextExpression>cda:postalCode</crigtt-validate-vocab:vocabContextExpression>
         <crigtt-validate-vocab:codeIdExpression>text()</crigtt-validate-vocab:codeIdExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-5409</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -833,7 +833,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:modeCode</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-32173</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -846,7 +846,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:code</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-32174</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -859,7 +859,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:code</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-17000</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -872,7 +872,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:assignedEntity/cda:code</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-7668</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -885,7 +885,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:priorityCode</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-31981</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -898,7 +898,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:targetSiteCode</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-32067</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -911,7 +911,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:routeCode</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-32078</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -924,7 +924,7 @@
         </crigtt-validate-vocab:expectedVocabSets>
         <crigtt-validate-vocab:vocabContextExpression>cda:approachSiteCode</crigtt-validate-vocab:vocabContextExpression>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-32081</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>
@@ -1223,7 +1223,7 @@
                 </crigtt-validate-vocab:codeSystem>
             </crigtt-validate-vocab:vocabSet>
         </crigtt-validate-vocab:expectedVocabSets>
-     </crigtt-validate-vocab:vocabAssertion>
+    </crigtt-validate-vocab:vocabAssertion>
 
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1169-32639-c</crigtt:id>
@@ -1395,7 +1395,7 @@
             </crigtt-validate-vocab:vocabSet>
         </crigtt-validate-vocab:expectedVocabSets>
     </crigtt-validate-vocab:vocabAssertion>
-    
+
     <crigtt-validate-vocab:vocabAssertion>
         <crigtt:id>a-1098-19207-c</crigtt:id>
         <crigtt-validate-vocab:expectedVocabSets>

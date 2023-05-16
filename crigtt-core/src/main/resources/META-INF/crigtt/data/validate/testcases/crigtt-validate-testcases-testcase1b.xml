@@ -1500,20 +1500,6 @@
 							<crigtt-validate-testcases:expectedResult>20180126</crigtt-validate-testcases:expectedResult>
 						</crigtt-validate-testcases:expectedResults>
 					</crigtt-validate-testcases:subExpressionSet>
-					<crigtt-validate-testcases:subExpressionSet>
-						<crigtt-validate-testcases:subExpression>[code/@code='19083']/participant/participantRole/code/@code</crigtt-validate-testcases:subExpression>
-						<crigtt-validate-testcases:expectedResults>
-							<crigtt-validate-testcases:expectedResult>1243-5</crigtt-validate-testcases:expectedResult>
-							<crigtt-validate-testcases:expectedResult>1166-8</crigtt-validate-testcases:expectedResult>
-						</crigtt-validate-testcases:expectedResults>
-					</crigtt-validate-testcases:subExpressionSet>
-					<crigtt-validate-testcases:subExpressionSet>
-						<crigtt-validate-testcases:subExpression>/participant/participantRole/code/@displayName
-                        </crigtt-validate-testcases:subExpression>
-						<crigtt-validate-testcases:expectedResults>
-							<crigtt-validate-testcases:expectedResult>Ambulatory surgical setting</crigtt-validate-testcases:expectedResult>
-						</crigtt-validate-testcases:expectedResults>
-					</crigtt-validate-testcases:subExpressionSet>
 				</crigtt-validate-testcases:elementSet>
 				<crigtt-validate-testcases:elementSet>
 					<crigtt-validate-testcases:optional>true</crigtt-validate-testcases:optional>
@@ -1521,22 +1507,33 @@
 						<crigtt-validate-testcases:subExpression>/code[@code='442963006']/@displayName</crigtt-validate-testcases:subExpression>
 						<crigtt-validate-testcases:expectedResults>
 							<crigtt-validate-testcases:expectedResult>Percutaneous needle biopsy of breast using ultrasound guidance
-                            </crigtt-validate-testcases:expectedResult>
+							</crigtt-validate-testcases:expectedResult>
 						</crigtt-validate-testcases:expectedResults>
 					</crigtt-validate-testcases:subExpressionSet>
 					<crigtt-validate-testcases:subExpressionSet>
 						<crigtt-validate-testcases:subExpression>/code[@code='19083']/@displayName</crigtt-validate-testcases:subExpression>
 						<crigtt-validate-testcases:expectedResults>
 							<crigtt-validate-testcases:expectedResult>Biopsy, breast, with placement of breast localization device(s) (eg, clip, metallic pellet),
-                                when performed, and imaging of the biopsy specimen, when performed, percutaneous; first lesion, including ultrasound guidance
-                            </crigtt-validate-testcases:expectedResult>
+								when performed, and imaging of the biopsy specimen, when performed, percutaneous; first lesion, including ultrasound guidance
+							</crigtt-validate-testcases:expectedResult>
 						</crigtt-validate-testcases:expectedResults>
 					</crigtt-validate-testcases:subExpressionSet>
 					<crigtt-validate-testcases:subExpressionSet>
 						<crigtt-validate-testcases:subExpression>/code[@code='0HBT3ZX']/@displayName</crigtt-validate-testcases:subExpression>
 						<crigtt-validate-testcases:expectedResults>
 							<crigtt-validate-testcases:expectedResult>Excision of Right Breast, Percutaneous Approach, Diagnostic
-                            </crigtt-validate-testcases:expectedResult>
+							</crigtt-validate-testcases:expectedResult>
+						</crigtt-validate-testcases:expectedResults>
+					</crigtt-validate-testcases:subExpressionSet>
+				</crigtt-validate-testcases:elementSet>
+				<crigtt-validate-testcases:elementSet>
+					<crigtt-validate-testcases:subExpressionSet>
+						<crigtt-validate-testcases:subExpression>[code[@code='442963006' or @code='19083' or @code='0HBT3ZX']]/participant/participantRole/code[@code='1166-8']/@displayName</crigtt-validate-testcases:subExpression>
+						<crigtt-validate-testcases:matchingCondition>
+							<crigtt-validate-testcases:matchingLevel>EQUALS_IGNORE_CASE</crigtt-validate-testcases:matchingLevel>
+						</crigtt-validate-testcases:matchingCondition>
+						<crigtt-validate-testcases:expectedResults>
+							<crigtt-validate-testcases:expectedResult>Ambulatory surgical setting</crigtt-validate-testcases:expectedResult>
 						</crigtt-validate-testcases:expectedResults>
 					</crigtt-validate-testcases:subExpressionSet>
 				</crigtt-validate-testcases:elementSet>
@@ -1567,19 +1564,6 @@
 							<crigtt-validate-testcases:expectedResult>20180211</crigtt-validate-testcases:expectedResult>
 						</crigtt-validate-testcases:expectedResults>
 					</crigtt-validate-testcases:subExpressionSet>
-					<crigtt-validate-testcases:subExpressionSet>
-						<crigtt-validate-testcases:subExpression>[code/@code='19307']/participant/participantRole/code/@code</crigtt-validate-testcases:subExpression>
-						<crigtt-validate-testcases:expectedResults>
-							<crigtt-validate-testcases:expectedResult>1061-1</crigtt-validate-testcases:expectedResult>
-						</crigtt-validate-testcases:expectedResults>
-					</crigtt-validate-testcases:subExpressionSet>
-					<crigtt-validate-testcases:subExpressionSet>
-						<crigtt-validate-testcases:subExpression>/participant/participantRole/code/@displayName
-                        </crigtt-validate-testcases:subExpression>
-						<crigtt-validate-testcases:expectedResults>
-							<crigtt-validate-testcases:expectedResult>Inpatient medical/surgical ward</crigtt-validate-testcases:expectedResult>
-						</crigtt-validate-testcases:expectedResults>
-					</crigtt-validate-testcases:subExpressionSet>
 				</crigtt-validate-testcases:elementSet>
 				<crigtt-validate-testcases:elementSet>
 					<crigtt-validate-testcases:optional>true</crigtt-validate-testcases:optional>
@@ -1593,14 +1577,25 @@
 						<crigtt-validate-testcases:subExpression>/code[@code='19307']/@displayName</crigtt-validate-testcases:subExpression>
 						<crigtt-validate-testcases:expectedResults>
 							<crigtt-validate-testcases:expectedResult>Mastectomy, modified radical, including axillary lymph nodes, with or without pectoralis
-                                minor muscle, but excluding pectoralis major muscle
-                            </crigtt-validate-testcases:expectedResult>
+								minor muscle, but excluding pectoralis major muscle
+							</crigtt-validate-testcases:expectedResult>
 						</crigtt-validate-testcases:expectedResults>
 					</crigtt-validate-testcases:subExpressionSet>
 					<crigtt-validate-testcases:subExpressionSet>
 						<crigtt-validate-testcases:subExpression>/code[@code='0HTT0ZZ']/@displayName</crigtt-validate-testcases:subExpression>
 						<crigtt-validate-testcases:expectedResults>
 							<crigtt-validate-testcases:expectedResult>Resection of Right Breast, Open Approach</crigtt-validate-testcases:expectedResult>
+						</crigtt-validate-testcases:expectedResults>
+					</crigtt-validate-testcases:subExpressionSet>
+				</crigtt-validate-testcases:elementSet>
+				<crigtt-validate-testcases:elementSet>
+					<crigtt-validate-testcases:subExpressionSet>
+						<crigtt-validate-testcases:subExpression>[code[@code='406505007' or @code='19307' or @code='0HTT0ZZ']]/participant/participantRole/code[@code='1061-1']/@displayName</crigtt-validate-testcases:subExpression>
+						<crigtt-validate-testcases:matchingCondition>
+							<crigtt-validate-testcases:matchingLevel>EQUALS_IGNORE_CASE</crigtt-validate-testcases:matchingLevel>
+						</crigtt-validate-testcases:matchingCondition>
+						<crigtt-validate-testcases:expectedResults>
+							<crigtt-validate-testcases:expectedResult>Inpatient medical/surgical ward</crigtt-validate-testcases:expectedResult>
 						</crigtt-validate-testcases:expectedResults>
 					</crigtt-validate-testcases:subExpressionSet>
 				</crigtt-validate-testcases:elementSet>

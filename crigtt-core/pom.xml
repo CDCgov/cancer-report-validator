@@ -2,20 +2,20 @@
     xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    
+
     <modelVersion>4.0.0</modelVersion>
-    
+
     <parent>
         <groupId>gov.hhs.onc.crigtt</groupId>
         <artifactId>crigtt-parent</artifactId>
-        <version>1.1.1</version>
+        <version>1.2.0</version>
         <relativePath>../crigtt-parent</relativePath>
     </parent>
-    
+
     <artifactId>crigtt-core</artifactId>
-    
+
     <description>Cancer Registry IG Test Tool (CRIGTT) common components Maven project.</description>
-    
+
     <properties>
         <!-- Project properties -->
         <project.basedir.all>${project.basedir}/..</project.basedir.all>
@@ -27,7 +27,18 @@
         <!-- Project build Schematron source properties -->
         <project.build.schematronSourceDirectory>${project.basedir}/src/main/schematron</project.build.schematronSourceDirectory>
     </properties>
-    
+    <repositories>
+	<repository>
+  <id>maven-local-builds</id>
+  <url>https://pkgs.dev.azure.com/katmai-cdc/95dc14b8-6b25-4906-bfc9-bdf9f860c1d8/_packaging/maven-local-builds/maven/v1</url>
+  <releases>
+    <enabled>true</enabled>
+  </releases>
+  <snapshots>
+    <enabled>true</enabled>
+  </snapshots>
+</repository>
+</repositories>
     <dependencies>
         <!-- Compile dependencies (inherited) -->
         <dependency>
@@ -198,13 +209,12 @@
             <groupId>org.logback-extensions</groupId>
             <artifactId>logback-ext-spring</artifactId>
         </dependency>
-
-
         <dependency>
             <groupId>org.sitenv.vocabulary</groupId>
             <artifactId>codevalidator-api</artifactId>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/ext-lib/codevalidator-api-1.0-SNAPSHOT.jar</systemPath>
         </dependency>
-
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>

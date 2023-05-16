@@ -209,16 +209,32 @@
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
                         <crigtt-validate-testcases:subExpression>/patient/raceCode/@code</crigtt-validate-testcases:subExpression>
+                        <crigtt-validate-testcases:customEvalExpression xquery="true">
+                            <crigtt-validate-testcases:expression>
+                                <![CDATA[
+                                    for $raceCode in //patientRole/patient/raceCode
+                                        return concat($raceCode/@code, '::', $raceCode/@displayName)
+                                ]]>
+                            </crigtt-validate-testcases:expression>
+                        </crigtt-validate-testcases:customEvalExpression>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>2054-5</crigtt-validate-testcases:expectedResult>
-                            <crigtt-validate-testcases:expectedResult>2106-3</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>2054-5::Black or African American</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>2106-3::White</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
-                     <crigtt-validate-testcases:subExpressionSet>
+                    <crigtt-validate-testcases:subExpressionSet>
                         <crigtt-validate-testcases:subExpression>/patient/sdtc:raceCode/@code</crigtt-validate-testcases:subExpression>
+                        <crigtt-validate-testcases:customEvalExpression xquery="true">
+                            <crigtt-validate-testcases:expression>
+                                <![CDATA[
+                                    for $raceCode in //patientRole/patient/sdtc:raceCode
+                                        return concat($raceCode/@code, '::', $raceCode/@displayName)
+                                ]]>
+                            </crigtt-validate-testcases:expression>
+                        </crigtt-validate-testcases:customEvalExpression>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>2106-3</crigtt-validate-testcases:expectedResult>
-                            <crigtt-validate-testcases:expectedResult>2054-5</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>2054-5::Black or African American</crigtt-validate-testcases:expectedResult>
+                            <crigtt-validate-testcases:expectedResult>2106-3::White</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
@@ -252,29 +268,14 @@
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                 </crigtt-validate-testcases:elementSet>
-                <crigtt-validate-testcases:elementSet>
-                    <crigtt-validate-testcases:optional>true</crigtt-validate-testcases:optional>
-                    <crigtt-validate-testcases:subExpressionSet>
-                        <crigtt-validate-testcases:subExpression>/patient/raceCode[@code='2054-5']/@displayName</crigtt-validate-testcases:subExpression>
-                        <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>Black or African American</crigtt-validate-testcases:expectedResult>
-                            <crigtt-validate-testcases:expectedResult>White</crigtt-validate-testcases:expectedResult>
-                        </crigtt-validate-testcases:expectedResults>
-                    </crigtt-validate-testcases:subExpressionSet>
-                    <crigtt-validate-testcases:subExpressionSet>
-                        <crigtt-validate-testcases:subExpression>/patient/sdtc:raceCode[@code='2106-3']/@displayName</crigtt-validate-testcases:subExpression>
-                        <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>White</crigtt-validate-testcases:expectedResult>
-                            <crigtt-validate-testcases:expectedResult>Black or African American</crigtt-validate-testcases:expectedResult>                                               
-                        </crigtt-validate-testcases:expectedResults>
-                    </crigtt-validate-testcases:subExpressionSet>
-                </crigtt-validate-testcases:elementSet>
             </crigtt-validate-testcases:elementSets>
         </crigtt-validate-testcases:xPathSet>
 
         <!--====================================================================================================
         = RACE CODE VALUE DOES NOT MATCH SDTC:RACE CODE VALUE
         =====================================================================================================-->
+        <!--
+
         <crigtt-validate-testcases:xPathSet>
             <crigtt-validate-testcases:xPathExpression>
                 /ClinicalDocument/recordTarget/patientRole/patient/raceCode/@code
@@ -291,6 +292,7 @@
             </crigtt-validate-testcases:expectedResults>
         </crigtt-validate-testcases:xPathSet>
 
+        -->
         <!--====================================================================================================
         = AUTHOR PARTICIPATION
         =====================================================================================================-->
@@ -317,7 +319,7 @@
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
-                        <crigtt-validate-testcases:subExpression>/telecom/@value</crigtt-validate-testcases:subExpression>
+                        <crigtt-validate-testcases:subExpression>[string-length(assignedPerson) > 0]/telecom/@value</crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:matchingCondition>
                             <crigtt-validate-testcases:matchingLevel>REGEXP</crigtt-validate-testcases:matchingLevel>
                             <crigtt-validate-testcases:matchingRegexpElementType>TELECOM</crigtt-validate-testcases:matchingRegexpElementType>
@@ -328,7 +330,6 @@
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                 </crigtt-validate-testcases:elementSet>
-
                 <crigtt-validate-testcases:elementSet>
                     <crigtt-validate-testcases:subExpressionPrefix>/addr</crigtt-validate-testcases:subExpressionPrefix>
                     <crigtt-validate-testcases:subExpressionSet>
@@ -1533,9 +1534,8 @@
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
-                        <crigtt-validate-testcases:subExpression>[code/@code='19083']/participant/participantRole/code/@code</crigtt-validate-testcases:subExpression>
+                        <crigtt-validate-testcases:subExpression>/participant/participantRole/code/@code</crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
-                            <crigtt-validate-testcases:expectedResult>1243-5</crigtt-validate-testcases:expectedResult>
                             <crigtt-validate-testcases:expectedResult>1166-8</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
@@ -1602,7 +1602,7 @@
                         </crigtt-validate-testcases:expectedResults>
                     </crigtt-validate-testcases:subExpressionSet>
                     <crigtt-validate-testcases:subExpressionSet>
-                        <crigtt-validate-testcases:subExpression>[code/@code='19307']/participant/participantRole/code/@code</crigtt-validate-testcases:subExpression>
+                        <crigtt-validate-testcases:subExpression>/participant/participantRole/code/@code</crigtt-validate-testcases:subExpression>
                         <crigtt-validate-testcases:expectedResults>
                             <crigtt-validate-testcases:expectedResult>1061-1</crigtt-validate-testcases:expectedResult>
                         </crigtt-validate-testcases:expectedResults>

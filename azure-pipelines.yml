@@ -1,0 +1,42 @@
+# Maven
+
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- checkout: self
+  submodules: true
+
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'settingsxml'
+
+- script: |
+    mkdir ~/.m2
+    cp $(DownloadSecureFile.secureFilePath) ~/.m2/settings.xml
+
+
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    goals: 'clean install package'
+
+- script: |
+   find . -name *.war
+
+   
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: './crigtt-web/target/crigtt-web-1.1.1.war'
+    ArtifactName: 'crv_tool'
+    publishLocation: 'Container'

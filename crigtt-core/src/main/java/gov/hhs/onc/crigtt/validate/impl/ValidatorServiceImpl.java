@@ -143,7 +143,14 @@ public class ValidatorServiceImpl implements ValidatorService {
         results.setEvents(events);
 
         ByteArraySource docSrc = new ByteArraySource(docContent, docFileName);
-        XdmDocument doc = this.docBuilder.build(docSrc);
+        XdmDocument doc;
+        try {
+            doc = this.docBuilder.build(docSrc);
+        } catch (Exception e) {
+            final String errorMessage = "An error occurred while attempting to parse the provided test case. Please check the syntax / schema and try again";
+            LOGGER.error(errorMessage, e.getMessage());
+            throw new Exception(errorMessage);
+        }
         NodeInfo docElemInfo = ((ElementOverNodeInfo) doc.getDocument().getDocumentElement()).getUnderlyingNodeInfo();
         NamespaceBinding[] docElemNsBindings = docElemInfo.getDeclaredNamespaces(null);
 

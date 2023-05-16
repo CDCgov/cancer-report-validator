@@ -1,18 +1,26 @@
 package gov.hhs.onc.crigtt.transform.impl;
 
 import gov.hhs.onc.crigtt.utils.CrigttIteratorUtils;
+import gov.hhs.onc.crigtt.validate.impl.CustomEvalNodeInfo;
+import gov.hhs.onc.crigtt.xml.impl.XdmDocument;
 import gov.hhs.onc.crigtt.xml.utils.CrigttXpathUtils;
 import javax.annotation.Nullable;
-import net.sf.saxon.s9api.SaxonApiException;
-import net.sf.saxon.s9api.XPathCompiler;
-import net.sf.saxon.s9api.XPathSelector;
-import net.sf.saxon.s9api.XdmItem;
-import net.sf.saxon.s9api.XdmNode;
-import net.sf.saxon.s9api.XdmValue;
+
+import net.sf.saxon.expr.StaticContext;
+import net.sf.saxon.om.NodeInfo;
+import net.sf.saxon.query.DynamicQueryContext;
+import net.sf.saxon.query.StaticQueryContext;
+import net.sf.saxon.query.XQueryExpression;
+import net.sf.saxon.s9api.*;
 import net.sf.saxon.sxpath.IndependentContext;
 import net.sf.saxon.sxpath.XPathEvaluator;
 import net.sf.saxon.trans.XPathException;
 import org.apache.commons.collections4.IteratorUtils;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public class CrigttXpathCompiler extends XPathCompiler {
     public CrigttXpathCompiler(CrigttProcessor proc) {
@@ -33,8 +41,74 @@ public class CrigttXpathCompiler extends XPathCompiler {
 
     public XdmNode[] evaluateNodes(String expr, IndependentContext context, @Nullable XdmItem contextItem) throws SaxonApiException {
         XdmValue value = this.evaluate(expr, context, contextItem);
-
         return ((value != null) ? IteratorUtils.toArray(CrigttIteratorUtils.instances(value.iterator(), XdmNode.class), XdmNode.class) : new XdmNode[0]);
+    }
+
+    public XdmNode[] evaluateNodesWithCustomEvaluator(String contextRootEvalExpression, IndependentContext context,
+                                                      @Nullable XdmItem contextItem,
+                                                      String customEvalExpression, boolean isXquery)
+        throws SaxonApiException {
+        XdmNode[] nodes = evaluateNodes(contextRootEvalExpression, context, contextItem);
+        if (nodes.length > 0) {
+            NodeInfo sourceNodeInfo = nodes[0].getUnderlyingNode();
+            if (isXquery) {
+                nodes = evaluateCustomEvalXQueryStatement(contextItem, customEvalExpression, context, sourceNodeInfo);
+            } else {
+                nodes = evaluateCustomEvalSimpleExpression(context, contextItem, customEvalExpression, sourceNodeInfo);
+            }
+        }
+        return nodes;
+    }
+
+    private XdmNode[] evaluateCustomEvalSimpleExpression(IndependentContext context, @Nullable XdmItem contextItem, String customEvaluator,
+                                                         NodeInfo sourceNodeInfo) throws SaxonApiException {
+        XdmValue value = this.evaluate(customEvaluator, context, contextItem);
+        XdmNode[] nodes = new XdmNode[0];
+        if (value instanceof XdmAtomicValue) {
+            CustomEvalNodeInfo nodeInfo = new CustomEvalNodeInfo(sourceNodeInfo, value.toString());
+            XdmNode node = new XdmNode(nodeInfo);
+            nodes = new XdmNode[1];
+            nodes[0] = node;
+        }
+        return nodes;
+    }
+
+    private XdmNode[] evaluateCustomEvalXQueryStatement(XdmItem contextItem, String expression,
+                                                        IndependentContext context,
+                                                        NodeInfo sourceNodeInfo) throws SaxonApiException {
+        try {
+
+            XdmNode[] resultNodes;
+            Processor proc = new Processor(false);
+            Iterator<String> namespacePrefixes = context.iteratePrefixes();
+
+            DynamicQueryContext dc = new DynamicQueryContext(proc.getUnderlyingConfiguration());
+            dc.setContextItem(proc.getUnderlyingConfiguration().buildDocument(((XdmDocument)contextItem).asSource()));
+            StaticQueryContext staticContext = proc.newXQueryCompiler().getUnderlyingStaticContext();
+
+            while (namespacePrefixes.hasNext()) {
+                String prefix = namespacePrefixes.next();
+                String uri = context.getNamespaceResolver().getURIForPrefix(prefix, true);
+                staticContext.declareNamespace(prefix, uri);
+            }
+            XQueryExpression xqExpression = staticContext.compileQuery(expression);
+
+            List<Object> resultList = xqExpression.evaluate(dc);
+            resultNodes = new XdmNode[resultList.size()];
+
+            int i = 0;
+            for (Object result : resultList) {
+                CustomEvalNodeInfo nodeInfo = new CustomEvalNodeInfo(sourceNodeInfo, result.toString());
+                XdmNode node = new XdmNode(nodeInfo);
+                resultNodes[i] = node;
+                i++;
+            }
+
+            return resultNodes;
+
+        } catch (Exception e) {
+            throw new SaxonApiException(e);
+        }
     }
 
     @Nullable

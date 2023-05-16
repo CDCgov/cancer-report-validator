@@ -33,6 +33,7 @@ import net.sf.saxon.expr.sort.GenericAtomicComparer;
 import net.sf.saxon.functions.DeepEqual;
 import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.s9api.XdmNode;
+import net.sf.saxon.s9api.XdmNodeKind;
 import net.sf.saxon.trans.XPathException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.ApplicationContext;
@@ -68,6 +69,8 @@ public final class CrigttTestcaseUtils {
     public final static String EMPTY_RESULT = "()";
 
     public final static int MATCHING_CONDITION_MATCH_LEN_DEFAULT = 8;
+
+    private static final int NODE_INFO_TEXT_KIND = 3;
 
     private CrigttTestcaseUtils() {
     }
@@ -128,9 +131,10 @@ public final class CrigttTestcaseUtils {
 
     public static void setLocationInfo(ValidatorLocation loc, NodeInfo nodeInfo, String xPathExpression) {
         CrigttLocation locObj;
-
-        loc.setColumnNumber((locObj = new CrigttLocation(nodeInfo)).getColumnNumber());
-        loc.setLineNumber(locObj.getLineNumber());
+        if(nodeInfo.getNodeKind() != NODE_INFO_TEXT_KIND) {
+            loc.setColumnNumber((locObj = new CrigttLocation(nodeInfo)).getColumnNumber());
+            loc.setLineNumber(locObj.getLineNumber());
+        }
         loc.setNodeExpression(xPathExpression);
     }
 

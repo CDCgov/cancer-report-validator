@@ -3,6 +3,7 @@ package gov.hhs.onc.crigtt.validate.impl;
 import com.github.sebhoss.warnings.CompilerWarnings;
 import gov.hhs.onc.crigtt.beans.IdentifiedBean;
 import gov.hhs.onc.crigtt.io.impl.ByteArraySource;
+import gov.hhs.onc.crigtt.transform.impl.CrigttXpathExecutable;
 import gov.hhs.onc.crigtt.utils.CrigttStreamUtils;
 import gov.hhs.onc.crigtt.validate.ContextSpecificValidatorTask;
 import gov.hhs.onc.crigtt.validate.ValidatorEvent;
@@ -39,6 +40,7 @@ import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.s9api.SaxonApiException;
 import net.sf.saxon.s9api.XdmNode;
 import net.sf.saxon.s9api.XdmNodeKind;
+import net.sf.saxon.s9api.XdmValue;
 import net.sf.saxon.trans.XPathException;
 import net.sf.saxon.tree.tiny.TinyDocumentImpl;
 import net.sf.saxon.tree.tiny.TinyTree;
@@ -193,7 +195,17 @@ public class ContextSpecificValidatorTaskImpl extends AbstractValidatorTask impl
                         Map<String, List<NodeInfo>> nodeInfoResults = new HashMap<>();
                         String xPathExpression = baseSubExpression + subExpressionSet.getSubExpression();
                         MatchingCondition matchingCondition = subExpressionSet.getMatchingCondition();
-                        List<XdmNode> subExprLocNodes = Arrays.asList(this.xpathCompiler.evaluateNodes(xPathExpression, this.xpathContext, this.doc));
+                        XdmNode[] evaluatedNodes;
+                        if (subExpressionSet.getCustomEvalExpression() != null && subExpressionSet.getCustomEvalExpression().getExpression() != null &&
+                                !subExpressionSet.getCustomEvalExpression().getExpression().trim().isEmpty()) {
+                            evaluatedNodes = this.xpathCompiler.evaluateNodesWithCustomEvaluator(xPathExpression,
+                                    this.xpathContext, this.doc, subExpressionSet.getCustomEvalExpression().getExpression(),
+                                    subExpressionSet.getCustomEvalExpression().isSetXquery());
+                        } else {
+                            evaluatedNodes = this.xpathCompiler.evaluateNodes(xPathExpression, this.xpathContext, this.doc);
+                        }
+
+                        List<XdmNode> subExprLocNodes = Arrays.asList(evaluatedNodes);
 
                         for (XdmNode locNode : subExprLocNodes) {
                             if (locNode != null) {
@@ -210,6 +222,7 @@ public class ContextSpecificValidatorTaskImpl extends AbstractValidatorTask impl
                         List<String> expectedResults = CrigttTestcaseUtils.addNullFlavors(subExpressionSet.getExpectedResults().getIncludeNullFlavors(),
                             this.nullFlavors, subExpressionSet.getExpectedResults().getExpectedResults());
 
+
                         for (Entry<String, List<NodeInfo>> entry : nodeInfoResults.entrySet()) {
                             String actualResult = entry.getKey();
                             boolean assertionStatus = CrigttTestcaseUtils.getAssertionStatus(expectedResults, actualResult, xPathExpression, matchingCondition);
@@ -221,7 +234,6 @@ public class ContextSpecificValidatorTaskImpl extends AbstractValidatorTask impl
                                     indexCount.putIfAbsent(xPathExpressionPrefix, 0);
                                     indexCount.put(xPathExpressionPrefix, (indexCount.get(xPathExpressionPrefix)) + 1);
                                 }
-
                                 break;
                             }
                         }

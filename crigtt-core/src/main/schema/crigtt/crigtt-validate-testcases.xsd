@@ -80,9 +80,17 @@
     <xsd:complexType name="SubExpressionSet">
         <xsd:sequence>
             <xsd:element name="subExpression" type="xsd:string" default=""/>
+            <xsd:element name="customEvalExpression" type="crigtt-validate-testcases:CustomEvalExpression" minOccurs="0" />
             <xsd:element name="matchingCondition" type="crigtt-validate-testcases:MatchingCondition" minOccurs="0"/>
             <xsd:element name="expectedResults" type="crigtt-validate-testcases:ExpectedResults"/>
         </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="CustomEvalExpression">
+        <xsd:sequence>
+            <xsd:element name="expression" type="xsd:string" minOccurs="1" />
+        </xsd:sequence>
+        <xsd:attribute name="xquery" default="false" type="xsd:boolean" />
     </xsd:complexType>
 
     <xsd:complexType name="XPathSet">

@@ -21,14 +21,16 @@ physicians and it is not intended to be used for hospital or laboratory reportin
 
 This initiative has been sponsored by the CDC and is being managed by the [Office of the National Coordinator for Healthcare IT](http://www.healthit.gov/).
 
+## Change Logs
+
+PLEASE NOTE THAT YOU REQUIRE JAVA 11 TO BUILD THIS VERSION. DO NOT INSTALL IF YOU DO HAVE JAVA VERSION LESS THAN 11
+This version contains major libraries and SDK updates to the CRV project and some CDA validation plus V1 feature parity updates including, NPI number validation, CPT validation
+
+
 # Resources
+The complete documentation of the project including necessary resources, build and deployment instructions are available in the link below.
+https://oncprojectracking.healthit.gov/wiki/display/CRIGTT/Test+Data+Documentation
 
-## Links
-
-* [JIRA Project](http://jira.oncprojectracking.org/browse/CRIGTT)
-* [Crucible Project](https://crucible.oncprojectracking.org/cru/browse/CRIGTT)
-* [Confluence Space](http://confluence.siframework.org/display/CRIGTT)
-
-## Groups
+## Discussion Group
 
 * [Discussion](http://groups.google.com/group/cancer-reg-testing-tool)

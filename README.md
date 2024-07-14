@@ -29,7 +29,7 @@ This version contains major libraries and SDK updates to the CRV project and som
 
 # Resources
 The complete documentation of the project including necessary resources, build and deployment instructions are available in the link below.
-https://oncprojectracking.healthit.gov/wiki/display/CRIGTT/Test+Data+Documentation
+[Project guide and documentation]https://oncprojectracking.healthit.gov/wiki/display/CRIGTT/Test+Data+Documentation
 
 ## Discussion Group
 

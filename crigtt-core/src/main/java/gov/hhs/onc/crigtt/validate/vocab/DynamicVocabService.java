@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package gov.hhs.onc.crigtt.validate.vocab;
 
 import java.util.Map;
@@ -9,19 +14,19 @@ import org.sitenv.vocabularies.model.ValueSetModelDefinition;
 import org.springframework.beans.factory.DisposableBean;
 
 public interface DynamicVocabService extends DisposableBean, VocabService {
-    public Map<String, VocabularyLoader<?>> getCodeLoaders();
+    Map<String, VocabularyLoader<?>> getCodeLoaders();
 
-    public void setCodeLoaders(Map<String, VocabularyLoader<?>> codeLoaders);
+    void setCodeLoaders(Map<String, VocabularyLoader<?>> codeLoaders);
 
-    public Set<CodeModelDefinition<?>> getCodeModelDefinitions();
+    Set<CodeModelDefinition<?>> getCodeModelDefinitions();
 
-    public void setCodeModelDefinitions(Set<CodeModelDefinition<?>> codeModelDefs);
+    void setCodeModelDefinitions(Set<CodeModelDefinition<?>> codeModelDefs);
 
-    public Map<String, VocabularyLoader<? extends ValueSetCodeModel>> getValueSetCodeLoaders();
+    Map<String, VocabularyLoader<? extends ValueSetCodeModel>> getValueSetCodeLoaders();
 
-    public void setValueSetCodeLoaders(Map<String, VocabularyLoader<? extends ValueSetCodeModel>> valueSetCodeLoaders);
+    void setValueSetCodeLoaders(Map<String, VocabularyLoader<? extends ValueSetCodeModel>> valueSetCodeLoaders);
 
-    public Set<ValueSetModelDefinition<?>> getValueSetModelDefinitions();
+    Set<ValueSetModelDefinition<?>> getValueSetModelDefinitions();
 
-    public void setValueSetModelDefinitions(Set<ValueSetModelDefinition<?>> valueSetModelDefs);
+    void setValueSetModelDefinitions(Set<ValueSetModelDefinition<?>> valueSetModelDefs);
 }

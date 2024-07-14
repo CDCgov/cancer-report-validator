@@ -3,11 +3,9 @@ package gov.hhs.onc.crigtt.validate.impl;
 import com.github.sebhoss.warnings.CompilerWarnings;
 import gov.hhs.onc.crigtt.beans.IdentifiedBean;
 import gov.hhs.onc.crigtt.io.impl.ByteArraySource;
-import gov.hhs.onc.crigtt.transform.impl.CrigttXpathExecutable;
 import gov.hhs.onc.crigtt.utils.CrigttStreamUtils;
-import gov.hhs.onc.crigtt.validate.ContextSpecificValidatorTask;
-import gov.hhs.onc.crigtt.validate.ValidatorEvent;
-import gov.hhs.onc.crigtt.validate.ValidatorLocation;
+import gov.hhs.onc.crigtt.validate.*;
+import gov.hhs.onc.crigtt.validate.impl.common.NPIValidatorTaskImpl;
 import gov.hhs.onc.crigtt.validate.testcases.ElementSet;
 import gov.hhs.onc.crigtt.validate.testcases.ElementSets;
 import gov.hhs.onc.crigtt.validate.testcases.ExpectedResults;
@@ -40,7 +38,6 @@ import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.s9api.SaxonApiException;
 import net.sf.saxon.s9api.XdmNode;
 import net.sf.saxon.s9api.XdmNodeKind;
-import net.sf.saxon.s9api.XdmValue;
 import net.sf.saxon.trans.XPathException;
 import net.sf.saxon.tree.tiny.TinyDocumentImpl;
 import net.sf.saxon.tree.tiny.TinyTree;
@@ -53,7 +50,7 @@ public class ContextSpecificValidatorTaskImpl extends AbstractValidatorTask impl
     private List<Source> testcaseSources;
     private Map<String, Testcase> testcases;
     private List<String> nullFlavors;
-
+    private NPIValidatorTaskImpl npiValidatorTask;
     public ContextSpecificValidatorTaskImpl(XdmDocument doc, ByteArraySource docSrc, String docFileName, Map<String, String> docNamespaces,
         String testcaseId) {
         super(doc, docSrc, docFileName, docNamespaces, testcaseId);
@@ -63,7 +60,7 @@ public class ContextSpecificValidatorTaskImpl extends AbstractValidatorTask impl
     public List<ValidatorEvent> call() throws Exception {
         List<XPathSet> xPathSets = this.testcases.get(this.testcaseId).getXPathSets();
         List<ValidatorEvent> events = new ArrayList<>(xPathSets.size());
-
+        events.addAll(npiValidatorTask.call());
         for (XPathSet xPathSet : xPathSets) {
             String baseXPathExpression = xPathSet.getXPathExpression();
             Object xPathSetContent = xPathSet.getContent();
@@ -391,5 +388,8 @@ public class ContextSpecificValidatorTaskImpl extends AbstractValidatorTask impl
         }
 
         this.nullFlavors = Arrays.stream(NullFlavor.values()).map(NullFlavor::value).collect(Collectors.toList());
+
+        this.npiValidatorTask = new NPIValidatorTaskImpl(this.doc, this.xpathContext, this.xpathCompiler);
     }
+
 }

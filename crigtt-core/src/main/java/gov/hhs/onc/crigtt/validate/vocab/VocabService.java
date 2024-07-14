@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package gov.hhs.onc.crigtt.validate.vocab;
 
 import java.util.List;
@@ -6,29 +11,29 @@ import javax.xml.transform.Source;
 import org.springframework.beans.factory.InitializingBean;
 
 public interface VocabService extends InitializingBean {
-    public List<Code> findCodesByCodeSystem(String codeSystemId, String codeId);
+    List<Code> findCodesByCodeSystem(String codeSystemId, String codeId);
 
-    public List<Code> findCodesByCodeSystem(boolean forValueSet, String codeSystemId, String codeId);
+    List<Code> findCodesByCodeSystem(boolean forValueSet, String codeSystemId, String codeId);
 
-    public List<Code> findCodesByValueSet(String valueSetId, String codeId);
+    List<Code> findCodesByValueSet(String valueSetId, String codeId);
 
-    public List<Code> findCodesByValueSet(String valueSetId, String codeSystemId, String codeId);
+    List<Code> findCodesByValueSet(String valueSetId, String codeSystemId, String codeId);
 
-    public List<Code> findNamedCodesByCodeSystem(String codeSystemId, String codeName);
+    List<Code> findNamedCodesByCodeSystem(String codeSystemId, String codeName);
 
-    public List<Code> findNamedCodesByCodeSystem(boolean forValueSet, String codeSystemId, String codeName);
+    List<Code> findNamedCodesByCodeSystem(boolean forValueSet, String codeSystemId, String codeName);
 
-    public List<Code> findNamedCodesByValueSet(String valueSetId, String codeName);
+    List<Code> findNamedCodesByValueSet(String valueSetId, String codeName);
 
-    public List<Code> findNamedCodesByValueSet(String valueSetId, String codeSystemId, String codeName);
+    List<Code> findNamedCodesByValueSet(String valueSetId, String codeSystemId, String codeName);
 
-    public String processTestExpression(String assertionId, String testExpr);
+    String processTestExpression(String assertionId, String testExpr);
 
-    public Map<String, VocabAssertion> getAssertions();
+    Map<String, VocabAssertion> getAssertions();
 
-    public Source getAssertionSource();
+    Source getAssertionSource();
 
-    public void setAssertionSource(Source assertionSrc);
+    void setAssertionSource(Source assertionSrc);
 
-    public Map<String, String> getInitialTestExpressions();
+    Map<String, String> getInitialTestExpressions();
 }

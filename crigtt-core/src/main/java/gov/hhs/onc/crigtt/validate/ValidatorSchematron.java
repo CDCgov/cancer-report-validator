@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package gov.hhs.onc.crigtt.validate;
 
 import gov.hhs.onc.crigtt.beans.NamedBean;
@@ -11,55 +16,55 @@ import net.sf.saxon.lib.ExtensionFunctionDefinition;
 import org.springframework.beans.factory.InitializingBean;
 
 public interface ValidatorSchematron extends NamedBean, InitializingBean {
-    public XdmDocument transform(Source docSrc) throws Exception;
+    XdmDocument transform(Source docSrc) throws Exception;
 
-    public XdmDocument transform(Source docSrc, @Nullable Map<Object, Object> contextData) throws Exception;
+    XdmDocument transform(Source docSrc, @Nullable Map<Object, Object> contextData) throws Exception;
 
-    public Map<String, ValidatorAssertion> getActiveAssertions();
+    Map<String, ValidatorAssertion> getActiveAssertions();
 
-    public Map<String, ValidatorPattern> getActivePatterns();
+    Map<String, ValidatorPattern> getActivePatterns();
 
-    public Map<String, ValidatorPhase> getActivePhases();
+    Map<String, ValidatorPhase> getActivePhases();
 
-    public Map<String, ValidatorRule> getActiveRules();
+    Map<String, ValidatorRule> getActiveRules();
 
-    public ValidatorSchema getActiveSchema();
+    ValidatorSchema getActiveSchema();
 
-    public Map<String, VocabService> getActiveVocabServices();
+    Map<String, VocabService> getActiveVocabServices();
 
-    public ExtensionFunctionDefinition[] getExtensionFunctions();
+    ExtensionFunctionDefinition[] getExtensionFunctions();
 
-    public void setExtensionFunctions(ExtensionFunctionDefinition ... extFuncs);
+    void setExtensionFunctions(ExtensionFunctionDefinition... extFuncs);
 
-    public Map<String, String> getNamespaces();
+    Map<String, String> getNamespaces();
 
-    public Map<String, ?> getParameters();
+    Map<String, ?> getParameters();
 
-    public void setParameters(Map<String, ?> params);
+    void setParameters(Map<String, ?> params);
 
-    public Map<String, String> getPatternPhases();
+    Map<String, String> getPatternPhases();
 
-    public String getQueryBinding();
+    String getQueryBinding();
 
-    public void setQueryBinding(String queryBinding);
+    void setQueryBinding(String queryBinding);
 
-    public XdmDocument[] getReferencedDocuments();
+    XdmDocument[] getReferencedDocuments();
 
-    public void setReferencedDocuments(XdmDocument ... referencedDocs);
+    void setReferencedDocuments(XdmDocument... referencedDocs);
 
-    public String getSchemaVersion();
+    String getSchemaVersion();
 
-    public void setSchemaVersion(String schemaVersion);
+    void setSchemaVersion(String schemaVersion);
 
-    public Source getSource();
+    Source getSource();
 
-    public void setSource(Source src);
+    void setSource(Source src);
 
-    public VocabService[] getVocabServices();
+    VocabService[] getVocabServices();
 
-    public void setVocabServices(VocabService ... vocabServices);
+    void setVocabServices(VocabService... vocabServices);
 
-    public CrigttXsltExecutable[] getXsltExecutables();
+    CrigttXsltExecutable[] getXsltExecutables();
 
-    public void setXsltExecutables(CrigttXsltExecutable ... xsltExecs);
+    void setXsltExecutables(CrigttXsltExecutable... xsltExecs);
 }

@@ -196,7 +196,7 @@
 
     <!--suppress SpringBeanConstructorArgInspection -->
     <beans:bean id="validatorTaskContextSpecificCrigtt" parent="validatorTaskContextSpecificImpl" lazy-init="true" scope="prototype"
-        p:testcaseSources-ref="testcaseSources"/>
+        p:testcaseSources-ref="testcaseSources" />
 
     <!--====================================================================================================
     = VALIDATOR SERVICES

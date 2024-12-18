@@ -19,6 +19,8 @@ import org.testng.annotations.Test;
 
 @Test(groups = { "crigtt.test.it.all" })
 public abstract class AbstractCrigttIntegrationTests extends AbstractCrigttTests {
+
+
     protected final static String TEST_INPUT_DOC_SRCS_BEAN_NAME = "listTestInputDocSrcs";
 
     @Value("${crigtt.test.output.dir.path}")

@@ -1,12 +1,12 @@
 package gov.hhs.onc.crigtt.validate.render;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import gov.hhs.onc.crigtt.io.CrigttFileExtensions;
 import org.springframework.http.MediaType;
 
 public enum ValidatorRenderType {
-    HTML(MediaType.TEXT_HTML, CrigttFileExtensions.HTML), JSON(MediaType.APPLICATION_JSON, CrigttFileExtensions.JSON), XML(MediaType.TEXT_XML,
-        CrigttFileExtensions.XML);
+    HTML(MediaType.TEXT_HTML, "html"),
+    JSON(MediaType.APPLICATION_JSON, "json"),
+    XML(MediaType.TEXT_XML, "xml");
 
     private final MediaType contentType;
     private final String ext;

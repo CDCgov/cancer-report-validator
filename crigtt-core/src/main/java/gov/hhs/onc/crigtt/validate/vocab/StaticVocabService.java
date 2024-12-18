@@ -1,9 +1,14 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package gov.hhs.onc.crigtt.validate.vocab;
 
 import gov.hhs.onc.crigtt.xml.impl.XdmDocument;
 
 public interface StaticVocabService extends VocabService {
-    public XdmDocument getDocument();
+    XdmDocument getDocument();
 
-    public void setDocument(XdmDocument doc);
+    void setDocument(XdmDocument doc);
 }

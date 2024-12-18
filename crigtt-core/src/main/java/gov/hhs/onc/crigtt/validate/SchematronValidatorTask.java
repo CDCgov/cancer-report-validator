@@ -1,13 +1,18 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package gov.hhs.onc.crigtt.validate;
 
 import java.util.Map;
 
 public interface SchematronValidatorTask extends ValidatorTask {
-    public Map<String, ValidatorLevel> getPhaseLevels();
+    Map<String, ValidatorLevel> getPhaseLevels();
 
-    public void setPhaseLevels(Map<String, ValidatorLevel> phaseLevels);
+    void setPhaseLevels(Map<String, ValidatorLevel> phaseLevels);
 
-    public ValidatorSchematron getSchematron();
+    ValidatorSchematron getSchematron();
 
-    public void setSchematron(ValidatorSchematron schematron);
+    void setSchematron(ValidatorSchematron schematron);
 }

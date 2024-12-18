@@ -4,13 +4,13 @@ import gov.hhs.onc.crigtt.validate.ValidatorResponse;
 import java.util.Map;
 
 public interface ValidatorRenderer {
-    public byte[] render(ValidatorResponse resp) throws Exception;
+    byte[] render(ValidatorResponse resp) throws Exception;
 
-    public byte[] render(ValidatorResponse resp, Map<String, Object> opts) throws Exception;
+    byte[] render(ValidatorResponse resp, Map<String, Object> opts) throws Exception;
 
-    public Map<String, Object> getDefaultOptions();
+    Map<String, Object> getDefaultOptions();
 
-    public void setDefaultOptions(Map<String, Object> defaultOpts);
+    void setDefaultOptions(Map<String, Object> defaultOpts);
 
-    public ValidatorRenderType getType();
+    ValidatorRenderType getType();
 }

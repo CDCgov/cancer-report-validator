@@ -22,6 +22,7 @@ import org.testng.annotations.Test;
 public class ValidatorServiceIntegrationTests extends AbstractCrigttIntegrationTests {
     private final static Map<String, Object> RENDER_OPTS = Collections.singletonMap(ValidatorRenderOptions.FORMAT_NAME, true);
 
+
     @Resource(name = "validatorRendererJsonImpl")
     @SuppressWarnings({ "SpringJavaAutowiringInspection" })
     private JsonValidatorRenderer jsonRenderer;

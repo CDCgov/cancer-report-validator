@@ -8,7 +8,7 @@
     <parent>
         <groupId>gov.hhs.onc.crigtt</groupId>
         <artifactId>crigtt-parent</artifactId>
-        <version>1.2.0</version>
+        <version>1.2.2</version>
         <relativePath>../crigtt-parent</relativePath>
     </parent>
 

@@ -1,13 +1,19 @@
 package gov.hhs.onc.crigtt.web.controller.impl;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.io.IOUtils;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,8 +64,8 @@ public class WebJarLocatorController {
 
         try {
             assetPath =
-                ASSET_LOCATOR.getFullPath(webjar,
-                    ((String) servletReq.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE)).substring((PATH_AFFIX_LEN + webjar.length())));
+                    ASSET_LOCATOR.getFullPath(webjar,
+                            ((String) servletReq.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE)).substring((PATH_AFFIX_LEN + webjar.length())));
         } catch (IllegalArgumentException ignored) {
             return ResponseEntity.notFound().build();
         }
@@ -76,6 +82,21 @@ public class WebJarLocatorController {
             assetResource = ASSET_CACHE.get(assetPath);
         }
 
-        return ResponseEntity.ok().contentLength(assetResource.getContent().length).body(assetResource);
+        String contentType = Files.probeContentType(Paths.get(assetPath));
+
+        if (contentType == null) {
+            if (assetPath.endsWith(".css")) {
+                contentType = "text/css";
+            } else {
+                contentType = MediaType.APPLICATION_OCTET_STREAM_VALUE;
+            }
+        }
+
+        // Set response headers
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.CONTENT_TYPE, contentType);
+        headers.add(HttpHeaders.CONTENT_LENGTH, String.valueOf(assetResource.getContent().length));
+
+        return ResponseEntity.ok().headers(headers).body(assetResource);
     }
 }

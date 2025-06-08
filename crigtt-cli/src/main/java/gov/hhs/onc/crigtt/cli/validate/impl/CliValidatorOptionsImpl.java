@@ -4,7 +4,7 @@ import com.beust.jcommander.Parameter;
 import gov.hhs.onc.crigtt.cli.validate.CliValidatorOptions;
 import gov.hhs.onc.crigtt.validate.render.ValidatorRenderType;
 import java.io.File;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.WritableResource;
 

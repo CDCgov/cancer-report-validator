@@ -1,7 +1,7 @@
 package gov.hhs.onc.crigtt.beans.impl;
 
 import gov.hhs.onc.crigtt.beans.IdentifiedBean;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 
 public abstract class AbstractIdentifiedBean implements IdentifiedBean {
     protected String id;

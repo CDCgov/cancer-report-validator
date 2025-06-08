@@ -1,7 +1,7 @@
 package gov.hhs.onc.crigtt.cli.validate;
 
 import gov.hhs.onc.crigtt.cli.context.CliExitStatus;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 
 public class CliValidatorException extends RuntimeException {
     private final static long serialVersionUID = 0L;

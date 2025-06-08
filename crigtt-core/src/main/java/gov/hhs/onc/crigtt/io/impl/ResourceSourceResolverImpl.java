@@ -2,7 +2,7 @@ package gov.hhs.onc.crigtt.io.impl;
 
 import gov.hhs.onc.crigtt.io.ResourceSourceResolver;
 import java.io.IOException;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.io.support.ResourcePatternResolver;

@@ -1,6 +1,6 @@
 package gov.hhs.onc.crigtt.xml.utils;
 
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import net.sf.saxon.om.Item;
 import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.s9api.XdmAtomicValue;

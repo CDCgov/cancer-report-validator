@@ -2,7 +2,7 @@ package gov.hhs.onc.crigtt.io.impl;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 
 public class ByteArraySource extends AbstractCrigttSource {
     protected byte[] bytes;

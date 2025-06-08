@@ -1,90 +1,85 @@
 package gov.hhs.onc.crigtt.data.cache.impl;
 
-import gov.hhs.onc.crigtt.utils.CrigttStreamUtils;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import javax.annotation.Nonnegative;
-import javax.annotation.Nullable;
-import net.sf.ehcache.Ehcache;
-import net.sf.ehcache.search.Query;
-import net.sf.ehcache.search.Results;
-import net.sf.ehcache.search.expression.Criteria;
-import org.apache.commons.collections4.CollectionUtils;
-import org.springframework.cache.ehcache.EhCacheCache;
+import java.util.concurrent.Callable;
+import jakarta.annotation.Nullable;
+import org.ehcache.Cache;
+import org.springframework.cache.support.AbstractValueAdaptingCache;
+import org.springframework.cache.support.SimpleValueWrapper;
 
-public class CrigttCache extends EhCacheCache {
-    public CrigttCache(Ehcache cache) {
-        super(cache);
+public class CrigttCache extends AbstractValueAdaptingCache {
+    private final String name;
+    private final Cache<Object, Object> nativeCache;
+
+    public CrigttCache(String name, Cache<Object, Object> nativeCache) {
+        super(true);
+        this.name = name;
+        this.nativeCache = nativeCache;
     }
 
-    public boolean containsKey(Object key) {
-        return this.getNativeCache().isKeyInCache(key);
+    @Override
+    protected Object lookup(Object key) {
+        return this.nativeCache.get(key);
     }
 
-    @Nullable
-    public <T> T getValue(Class<T> valueClass, Criteria ... criteria) {
-        List<T> values = this.getValues(valueClass, 1, criteria);
-
-        return (!CollectionUtils.isEmpty(values) ? values.get(0) : null);
+    @Override
+    public String getName() {
+        return this.name;
     }
 
-    public <T> List<T> getValues(Class<T> valueClass, Criteria ... criteria) {
-        return this.getValues(valueClass, -1, criteria);
+    @Override
+    public Cache<Object, Object> getNativeCache() {
+        return this.nativeCache;
     }
 
-    public <T> List<T> getValues(Class<T> valueClass, int numMax, Criteria ... criteria) {
-        Results results = this.buildQuery(numMax, criteria).includeValues().execute();
-
-        return results.all().stream().map(result -> valueClass.cast(result.getValue())).collect(Collectors.toList());
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> T get(Object key, Class<T> type) {
+        Object value = lookup(key);
+        if (value != null && type != null && !type.isInstance(value)) {
+            throw new IllegalStateException("Cached value is not of required type [" + type.getName() + "]: " + value);
+        }
+        return (T) value;
     }
 
-    public <T> List<T> getValues(Class<T> valueClass) {
-        if (this.isEmpty()) {
-            return Collections.emptyList();
+    @Override
+    public void put(Object key, @Nullable Object value) {
+        this.nativeCache.put(key, value);
+    }
+
+    @Override
+    public ValueWrapper putIfAbsent(Object key, @Nullable Object value) {
+        Object existing = this.nativeCache.get(key);
+        if (existing == null) {
+            this.nativeCache.put(key, value);
+            return null;
+        }
+        return new SimpleValueWrapper(existing);
+    }
+
+    @Override
+    public void evict(Object key) {
+        this.nativeCache.remove(key);
+    }
+
+    @Override
+    public void clear() {
+        this.nativeCache.clear();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> T get(Object key, Callable<T> valueLoader) {
+        Object value = lookup(key);
+        if (value != null) {
+            return (T) value;
         }
 
-        Ehcache nativeCache = this.getNativeCache();
-
-        return nativeCache.getAll(nativeCache.getKeys()).values().stream().map(elem -> valueClass.cast(elem.getObjectValue())).collect(Collectors.toList());
-    }
-
-    @Nullable
-    public <T> T getKey(Class<T> keyClass, Criteria ... criteria) {
-        List<T> keys = this.getValues(keyClass, 1, criteria);
-
-        return (!CollectionUtils.isEmpty(keys) ? keys.get(0) : null);
-    }
-
-    public <T> List<T> getKeys(Class<T> keyClass, Criteria ... criteria) {
-        return this.getKeys(keyClass, -1, criteria);
-    }
-
-    public <T> List<T> getKeys(Class<T> keyClass, int numMax, Criteria ... criteria) {
-        Results results = this.buildQuery(numMax, criteria).includeKeys().execute();
-
-        return results.all().stream().map(result -> keyClass.cast(result.getKey())).collect(Collectors.toList());
-    }
-
-    public <T> List<T> getKeys(Class<T> keyClass) {
-        return CrigttStreamUtils.instances(((List<?>) this.getNativeCache().getKeys()).stream(), keyClass).collect(Collectors.toList());
-    }
-
-    public Query buildQuery(int numMax, Criteria ... criteria) {
-        Query query = this.getNativeCache().createQuery().maxResults(numMax);
-
-        Stream.of(criteria).forEach(query::addCriteria);
-
-        return query;
-    }
-
-    public boolean isEmpty() {
-        return (this.getSize() == 0);
-    }
-
-    @Nonnegative
-    public int getSize() {
-        return this.getNativeCache().getSize();
+        try {
+            T newValue = valueLoader.call();
+            put(key, newValue);
+            return newValue;
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
     }
 }

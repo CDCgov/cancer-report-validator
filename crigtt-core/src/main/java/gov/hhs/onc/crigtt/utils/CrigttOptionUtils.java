@@ -1,6 +1,6 @@
 package gov.hhs.onc.crigtt.utils;
 
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.BooleanUtils;
 
 public final class CrigttOptionUtils {

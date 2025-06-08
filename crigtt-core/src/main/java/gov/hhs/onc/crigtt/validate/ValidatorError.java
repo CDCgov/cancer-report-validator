@@ -1,4 +1,3 @@
-
 package gov.hhs.onc.crigtt.validate;
 
 import java.util.List;
@@ -20,6 +19,7 @@ import gov.hhs.onc.crigtt.validate.impl.ValidatorErrorImpl;
  *       &lt;sequence&gt;
  *         &lt;element name="message" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="stackTrace" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *         &lt;element name="location" type="{http://www.w3.org/2001/XMLSchema}ValidatorLocation"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
@@ -90,4 +90,24 @@ public interface ValidatorError
 
     void setStackTrace(List<String> values);
 
+    /**
+     * Gets the value of the location property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ValidatorLocation }
+     *     
+     */
+    @JsonProperty
+    ValidatorLocation getLocation();
+
+    /**
+     * Sets the value of the location property.
+     * 
+     * @param location
+     *     allowed object is
+     *     {@link ValidatorLocation }
+     *     
+     */
+    void setLocation(ValidatorLocation location);
 }

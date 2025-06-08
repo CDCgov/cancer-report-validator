@@ -1,58 +1,59 @@
-
 package gov.hhs.onc.crigtt.validate.testcases.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.annotation.Generated;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 import gov.hhs.onc.crigtt.validate.testcases.ElementSet;
 import gov.hhs.onc.crigtt.validate.testcases.SubExpressionSet;
+import gov.hhs.onc.crigtt.xml.CrigttXmlNs;
+import jakarta.annotation.Generated;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.adapters.CollapsedStringAdapter;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.util.ArrayList;
+import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ElementSet", propOrder = {
-    "optional",
-    "subExpressionPrefix",
-    "subExpressionSets"
+@XmlType(name = "element-set", namespace = CrigttXmlNs.VALIDATE_TESTCASES_URI, propOrder = {
+    "element", "subExpressions", "optional", "subExpressionPrefix"
 })
 @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
-@JsonTypeName("elementSet")
-public class ElementSetImpl implements ElementSet
-{
-
-    @XmlElement(defaultValue = "false")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
-    protected Boolean optional = false;
-    @XmlElement(defaultValue = "")
+public class ElementSetImpl implements ElementSet {
+    @XmlElement(namespace = CrigttXmlNs.VALIDATE_TESTCASES_URI, required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
-    protected String subExpressionPrefix = "";
-    @XmlElement(name = "subExpressionSet", required = true, type = SubExpressionSetImpl.class)
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
-    protected List<SubExpressionSet> subExpressionSets;
-    private final static long serialVersionUID = 0L;
+    protected String element;
 
-    /**
-     * Default no-arg constructor
-     * 
-     */
-    public ElementSetImpl() {
-        super();
+    @XmlElement(name = "sub-expressions", namespace = CrigttXmlNs.VALIDATE_TESTCASES_URI)
+    protected List<SubExpressionSet> subExpressions;
+
+    @XmlElement(namespace = CrigttXmlNs.VALIDATE_TESTCASES_URI)
+    protected Boolean optional;
+
+    @XmlElement(name = "sub-expression-prefix", namespace = CrigttXmlNs.VALIDATE_TESTCASES_URI)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    protected String subExpressionPrefix;
+
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
+    public String getElement() {
+        return element;
     }
 
-    /**
-     * Fully-initialising value constructor
-     * 
-     */
-    public ElementSetImpl(final Boolean optional, final String subExpressionPrefix, final List<SubExpressionSet> subExpressionSets) {
-        this.optional = optional;
-        this.subExpressionPrefix = subExpressionPrefix;
-        this.subExpressionSets = subExpressionSets;
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
+    public void setElement(String value) {
+        this.element = value;
+    }
+
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
+    public List<SubExpressionSet> getSubExpressionSets() {
+        if (subExpressions == null) {
+            subExpressions = new ArrayList<>();
+        }
+        return this.subExpressions;
+    }
+
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
+    public void setSubExpressionSets(List<SubExpressionSet> value) {
+        this.subExpressions = value;
     }
 
     @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
@@ -67,7 +68,7 @@ public class ElementSetImpl implements ElementSet
 
     @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     public boolean isSetOptional() {
-        return (this.optional!= null);
+        return (this.optional != null);
     }
 
     @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
@@ -82,29 +83,16 @@ public class ElementSetImpl implements ElementSet
 
     @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     public boolean isSetSubExpressionPrefix() {
-        return (this.subExpressionPrefix!= null);
-    }
-
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
-    public List<SubExpressionSet> getSubExpressionSets() {
-        if (subExpressionSets == null) {
-            subExpressionSets = new ArrayList<SubExpressionSet>();
-        }
-        return this.subExpressionSets;
+        return (this.subExpressionPrefix != null);
     }
 
     @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     public boolean isSetSubExpressionSets() {
-        return ((this.subExpressionSets!= null)&&(!this.subExpressionSets.isEmpty()));
+        return ((this.subExpressions != null) && (!this.subExpressions.isEmpty()));
     }
 
     @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     public void unsetSubExpressionSets() {
-        this.subExpressionSets = null;
+        this.subExpressions = null;
     }
-
-    public void setSubExpressionSets(List<SubExpressionSet> value) {
-        this.subExpressionSets = value;
-    }
-
 }

@@ -3,7 +3,7 @@ package gov.hhs.onc.crigtt.cli.logging.impl;
 import gov.hhs.onc.crigtt.context.impl.CrigttApplication;
 import gov.hhs.onc.crigtt.logging.impl.AbstractCrigttLoggingInitializer;
 import java.io.File;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 

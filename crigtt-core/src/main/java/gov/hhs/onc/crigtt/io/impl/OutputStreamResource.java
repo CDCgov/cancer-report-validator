@@ -3,7 +3,7 @@ package gov.hhs.onc.crigtt.io.impl;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.io.AbstractResource;
 import org.springframework.core.io.WritableResource;

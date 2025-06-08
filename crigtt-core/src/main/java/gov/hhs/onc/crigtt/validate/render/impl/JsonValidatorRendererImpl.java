@@ -11,7 +11,7 @@ import gov.hhs.onc.crigtt.validate.ValidatorResponse;
 import gov.hhs.onc.crigtt.validate.render.JsonValidatorRenderer;
 import gov.hhs.onc.crigtt.validate.render.ValidatorRenderType;
 import java.util.Map;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 public class JsonValidatorRendererImpl extends AbstractValidatorRenderer implements JsonValidatorRenderer {
     @Resource(

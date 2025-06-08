@@ -1,15 +1,15 @@
 package gov.hhs.onc.crigtt.web.jaxrs.impl;
 
 import gov.hhs.onc.crigtt.transform.impl.CrigttSerializer;
-import javax.annotation.Nullable;
-import javax.annotation.Priority;
-import javax.annotation.Resource;
-import javax.servlet.ServletContext;
-import javax.ws.rs.container.ContainerRequestContext;
-import javax.ws.rs.container.PreMatching;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
+import jakarta.annotation.Nullable;
+import jakarta.annotation.Priority;
+import jakarta.annotation.Resource;
+import jakarta.servlet.ServletContext;
+import jakarta.ws.rs.container.ContainerRequestContext;
+import jakarta.ws.rs.container.PreMatching;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.UriInfo;
 import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
 import net.sf.saxon.event.CommentStripper;

@@ -11,7 +11,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import javax.xml.transform.stream.StreamResult;
 import net.sf.saxon.lib.Logger;
 import org.apache.commons.lang3.ArrayUtils;

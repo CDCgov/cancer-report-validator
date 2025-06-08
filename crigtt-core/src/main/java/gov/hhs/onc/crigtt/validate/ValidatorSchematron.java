@@ -10,7 +10,7 @@ import gov.hhs.onc.crigtt.transform.impl.CrigttXsltExecutable;
 import gov.hhs.onc.crigtt.validate.vocab.VocabService;
 import gov.hhs.onc.crigtt.xml.impl.XdmDocument;
 import java.util.Map;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import javax.xml.transform.Source;
 import net.sf.saxon.lib.ExtensionFunctionDefinition;
 import org.springframework.beans.factory.InitializingBean;

@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.OutputStream;
 import java.io.Writer;
 import java.util.Properties;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import net.sf.saxon.s9api.Processor;
 
 public class CrigttProcessor extends Processor {

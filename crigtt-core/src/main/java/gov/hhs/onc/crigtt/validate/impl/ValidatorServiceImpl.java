@@ -25,8 +25,8 @@ import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import javax.annotation.Nullable;
-import javax.annotation.Resource;
+import jakarta.annotation.Nullable;
+import jakarta.annotation.Resource;
 import net.sf.saxon.dom.ElementOverNodeInfo;
 import net.sf.saxon.om.NamespaceBinding;
 import net.sf.saxon.om.NodeInfo;
@@ -37,7 +37,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.cache.ehcache.EhCacheCache;
+import org.springframework.cache.Cache;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.util.concurrent.ListenableFutureTask;
@@ -88,7 +88,7 @@ public class ValidatorServiceImpl implements ValidatorService {
 
     @Resource(name = "cacheValidateResults")
     @SuppressWarnings({ "SpringJavaAutowiringInspection" })
-    private EhCacheCache cache;
+    private Cache cache;
 
     @Resource(name = "taskExecValidateService")
     private ThreadPoolTaskExecutor taskExecutor;

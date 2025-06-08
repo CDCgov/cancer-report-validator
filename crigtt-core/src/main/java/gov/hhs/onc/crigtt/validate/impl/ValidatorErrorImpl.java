@@ -1,94 +1,90 @@
-
 package gov.hhs.onc.crigtt.validate.impl;
 
+import gov.hhs.onc.crigtt.validate.ValidatorError;
+import gov.hhs.onc.crigtt.validate.ValidatorLocation;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.Generated;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import gov.hhs.onc.crigtt.validate.ValidatorError;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Error", propOrder = {
-    "message",
-    "stackTrace"
-})
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
-@JsonTypeName("validatorError")
+@XmlType(name = "validatorError")
 @XmlRootElement(name = "error")
-public class ValidatorErrorImpl
-    extends AbstractValidatorResponse
-    implements ValidatorError
-{
+public class ValidatorErrorImpl extends AbstractValidatorResponse implements ValidatorError {
+    @XmlAttribute(name = "message", required = true)
+    private String message;
 
-    @XmlElement(required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
-    protected String message;
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
-    protected List<String> stackTrace;
-    private final static long serialVersionUID = 0L;
+    @XmlElement(name = "location", required = true)
+    private ValidatorLocation location;
 
-    /**
-     * Default no-arg constructor
-     * 
-     */
-    public ValidatorErrorImpl() {
-        super();
-    }
+    @XmlElement(name = "stackTrace")
+    private List<String> stackTrace;
 
-    /**
-     * Fully-initialising value constructor
-     * 
-     */
-    public ValidatorErrorImpl(final String message, final List<String> stackTrace) {
-        super();
-        this.message = message;
-        this.stackTrace = stackTrace;
-    }
+    @XmlElement(name = "error")
+    private List<ValidatorError> errors;
 
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
+    @Override
     public String getMessage() {
-        return message;
+        return this.message;
     }
 
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
-    public void setMessage(String value) {
-        this.message = value;
+    @Override
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
+    @Override
     public boolean isSetMessage() {
-        return (this.message!= null);
+        return this.message != null;
     }
 
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
+    @Override
+    public ValidatorLocation getLocation() {
+        return this.location;
+    }
+
+    @Override
+    public void setLocation(ValidatorLocation location) {
+        this.location = location;
+    }
+
+    @Override
     public List<String> getStackTrace() {
         if (stackTrace == null) {
-            stackTrace = new ArrayList<String>();
+            stackTrace = new ArrayList<>();
         }
-        return this.stackTrace;
+        return stackTrace;
     }
 
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
+    @Override
     public boolean isSetStackTrace() {
-        return ((this.stackTrace!= null)&&(!this.stackTrace.isEmpty()));
+        return this.stackTrace != null && !this.stackTrace.isEmpty();
     }
 
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
+    @Override
     public void unsetStackTrace() {
         this.stackTrace = null;
     }
 
-    public void setStackTrace(List<String> value) {
-        this.stackTrace = value;
+    @Override
+    public void setStackTrace(List<String> values) {
+        this.stackTrace = values;
     }
 
+    @Override
+    public List<ValidatorError> getErrors() {
+        if (errors == null) {
+            errors = new ArrayList<>();
+        }
+        return errors;
+    }
+
+    @Override
+    public void setErrors(List<ValidatorError> errors) {
+        this.errors = errors;
+    }
 }

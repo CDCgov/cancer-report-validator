@@ -1,7 +1,6 @@
-
 package gov.hhs.onc.crigtt.schematron.impl;
 
-import javax.xml.bind.annotation.XmlRegistry;
+import jakarta.xml.bind.annotation.XmlRegistry;
 import com.github.sebhoss.warnings.CompilerWarnings;
 import gov.hhs.onc.crigtt.schematron.Active;
 import gov.hhs.onc.crigtt.schematron.Assertion;

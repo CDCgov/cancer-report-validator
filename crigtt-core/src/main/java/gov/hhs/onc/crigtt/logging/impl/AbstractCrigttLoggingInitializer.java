@@ -6,7 +6,7 @@ import gov.hhs.onc.crigtt.context.impl.AbstractCrigttContextComponent;
 import gov.hhs.onc.crigtt.context.impl.CrigttApplication;
 import gov.hhs.onc.crigtt.logging.CrigttLoggingInitializer;
 import java.io.File;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.ApplicationContextException;
 

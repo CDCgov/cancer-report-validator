@@ -87,10 +87,10 @@ public class CliValidatorServiceImpl implements CliValidatorService {
     @SuppressWarnings({ "SpringJavaAutowiringInspection" })
     private CrigttApplication app;
 
-    @javax.annotation.Resource(name = "resourceSrcResolverImpl")
+    @jakarta.annotation.Resource(name = "resourceSrcResolverImpl")
     private ResourceSourceResolver resourceSrcResolver;
 
-    @javax.annotation.Resource(name = "validatorServiceImpl")
+    @jakarta.annotation.Resource(name = "validatorServiceImpl")
     private ValidatorService service;
 
     @Autowired

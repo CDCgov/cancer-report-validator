@@ -1,7 +1,7 @@
-
 package gov.hhs.onc.crigtt.schematron;
 
-import javax.xml.bind.annotation.XmlRegistry;
+import jakarta.annotation.Generated;
+import jakarta.xml.bind.annotation.XmlRegistry;
 import com.github.sebhoss.warnings.CompilerWarnings;
 import gov.hhs.onc.crigtt.schematron.impl.ActiveImpl;
 import gov.hhs.onc.crigtt.schematron.impl.AssertionImpl;
@@ -45,6 +45,7 @@ import gov.hhs.onc.crigtt.schematron.impl.ValueOfImpl;
     CompilerWarnings.RAWTYPES,
     CompilerWarnings.UNCHECKED
 })
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2023-10-05T10:15:30-04:00", comments = "JAXB RI v2.3.0")
 public class ObjectFactory {
 
     private final static Void _useJAXBProperties = null;

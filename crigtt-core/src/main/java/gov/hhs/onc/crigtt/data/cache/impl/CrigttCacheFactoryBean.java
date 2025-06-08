@@ -1,74 +1,46 @@
 package gov.hhs.onc.crigtt.data.cache.impl;
 
-import java.util.Optional;
-import java.util.stream.Stream;
-import net.sf.ehcache.Cache;
-import net.sf.ehcache.config.CacheConfiguration;
-import net.sf.ehcache.config.PersistenceConfiguration;
-import net.sf.ehcache.config.PersistenceConfiguration.Strategy;
-import net.sf.ehcache.event.CacheEventListener;
-import net.sf.ehcache.event.RegisteredEventListeners;
-import org.apache.commons.lang3.ArrayUtils;
-import org.springframework.cache.ehcache.EhCacheCacheManager;
+import org.ehcache.Cache;
+import org.ehcache.CacheManager;
+import org.ehcache.config.CacheConfiguration;
+import org.ehcache.config.builders.CacheConfigurationBuilder;
+import org.ehcache.config.builders.ResourcePoolsBuilder;
+import org.springframework.beans.factory.FactoryBean;
 
-public class CrigttCacheFactoryBean extends AbstractCrigttCacheComponentFactoryBean<CrigttCache, CacheConfiguration> {
-    private CacheEventListener[] listeners;
-    private Strategy persistenceStrategy;
-
-    public CrigttCacheFactoryBean() {
-        super(CrigttCache.class);
-    }
+public class CrigttCacheFactoryBean implements FactoryBean<CrigttCache> {
+    private String name;
+    private CacheManager cacheManager;
+    private CacheConfiguration<Object, Object> configuration;
 
     @Override
     public CrigttCache getObject() throws Exception {
-        String name = this.config.getName();
+        CacheConfiguration<Object, Object> cacheConfig = this.configuration != null ? this.configuration
+            : CacheConfigurationBuilder.newCacheConfigurationBuilder(Object.class, Object.class, ResourcePoolsBuilder.heap(10000))
+                .build();
 
-        if (name == null) {
-            this.config.setName((name = this.beanName));
-        }
-
-        Optional.ofNullable(this.maxBytesLocalDisk).ifPresent(this.config::setMaxBytesLocalDisk);
-        Optional.ofNullable(this.maxBytesLocalHeap).ifPresent(this.config::setMaxBytesLocalHeap);
-        Optional.ofNullable(this.maxBytesLocalOffHeap).ifPresent(this.config::setMaxBytesLocalOffHeap);
-        Optional.ofNullable(this.persistenceStrategy).ifPresent(
-            persistenceStrategy -> this.config.addPersistence(new PersistenceConfiguration().strategy(persistenceStrategy)));
-
-        Cache cache = new Cache(this.config);
-        cache.setName(name);
-        cache.setCacheManager(this.manager.getCacheManager());
-
-        if (!ArrayUtils.isEmpty(this.listeners)) {
-            RegisteredEventListeners registeredListeners = cache.getCacheEventNotificationService();
-
-            Stream.of(this.listeners).forEach(registeredListeners::registerListener);
-        }
-
-        cache.initialise();
-
-        return new CrigttCache(cache);
+        Cache<Object, Object> cache = this.cacheManager.createCache(this.name, cacheConfig);
+        return new CrigttCache(this.name, cache);
     }
 
-    public CacheEventListener[] getListeners() {
-        return this.listeners;
+    @Override
+    public Class<?> getObjectType() {
+        return CrigttCache.class;
     }
 
-    public void setListeners(CacheEventListener ... listeners) {
-        this.listeners = listeners;
+    @Override
+    public boolean isSingleton() {
+        return true;
     }
 
-    public EhCacheCacheManager getManager() {
-        return this.manager;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setManager(EhCacheCacheManager manager) {
-        this.manager = manager;
+    public void setCacheManager(CacheManager cacheManager) {
+        this.cacheManager = cacheManager;
     }
 
-    public Strategy getPersistenceStrategy() {
-        return this.persistenceStrategy;
-    }
-
-    public void setPersistenceStrategy(Strategy persistenceStrategy) {
-        this.persistenceStrategy = persistenceStrategy;
+    public void setConfiguration(CacheConfiguration<Object, Object> configuration) {
+        this.configuration = configuration;
     }
 }

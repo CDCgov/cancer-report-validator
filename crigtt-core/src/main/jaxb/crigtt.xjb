@@ -3,8 +3,8 @@
     jaxb:extensionBindingPrefixes="annox xjc"
     jaxb:version="2.0"
     xmlns:annox="http://annox.dev.java.net"
-    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
-    xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+    xmlns:jaxb="https://jakarta.ee/xml/ns/jaxb"
+    xmlns:xjc="https://jakarta.ee/xml/ns/jaxb/xjc"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     
     <!--====================================================================================================
@@ -15,7 +15,7 @@
         <xjc:javaType
             name="java.lang.String"
             xmlType="xsd:string"
-            adapter="javax.xml.bind.annotation.adapters.CollapsedStringAdapter"/>
+            adapter="jakarta.xml.bind.annotation.adapters.CollapsedStringAdapter"/>
         <xjc:smartWildcardDefaultBinding/>
     </jaxb:globalBindings>
  </jaxb:bindings>

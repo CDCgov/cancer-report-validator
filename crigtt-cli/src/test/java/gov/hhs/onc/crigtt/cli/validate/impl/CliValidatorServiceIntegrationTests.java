@@ -5,7 +5,7 @@ import gov.hhs.onc.crigtt.cli.validate.CliValidatorService;
 import gov.hhs.onc.crigtt.io.impl.ResourceSource;
 import gov.hhs.onc.crigtt.io.utils.CrigttResourceUtils;
 import gov.hhs.onc.crigtt.validate.render.ValidatorRenderType;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import org.apache.commons.lang3.ArrayUtils;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;

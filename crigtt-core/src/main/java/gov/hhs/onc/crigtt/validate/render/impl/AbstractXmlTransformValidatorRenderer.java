@@ -13,7 +13,7 @@ import gov.hhs.onc.crigtt.validate.render.ValidatorRenderType;
 import gov.hhs.onc.crigtt.validate.render.XmlTransformValidatorRenderer;
 import gov.hhs.onc.crigtt.validate.render.XmlValidatorRenderer;
 import java.util.Map;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import net.sf.saxon.s9api.Destination;
 
 public abstract class AbstractXmlTransformValidatorRenderer extends AbstractValidatorRenderer implements XmlTransformValidatorRenderer {

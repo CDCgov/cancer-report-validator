@@ -5,8 +5,8 @@
     node="/xsd:schema"
     schemaLocation="../../schema/iso-schematron/svrl.xsd"
     xmlns:annox="http://annox.dev.java.net"
-    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
-    xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+    xmlns:jaxb="https://jakarta.ee/xml/ns/jaxb"
+    xmlns:xjc="https://jakarta.ee/xml/ns/jaxb/xjc"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     
     <!--====================================================================================================

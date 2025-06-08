@@ -1,7 +1,7 @@
 package gov.hhs.onc.crigtt.io.impl;
 
 import java.io.ByteArrayOutputStream;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 
 public class ByteArrayResult extends AbstractCrigttResult {
     public ByteArrayResult() {

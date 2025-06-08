@@ -14,6 +14,7 @@ import gov.hhs.onc.crigtt.io.CrigttFileExtensions;
 import gov.hhs.onc.crigtt.logging.CrigttLoggingInitializer;
 import java.io.IOException;
 import java.net.URL;
+import java.time.Duration;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.bridge.SLF4JBridgeHandler;
@@ -21,6 +22,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextException;
 import org.springframework.context.ApplicationEvent;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.context.event.SmartApplicationListener;
 import org.springframework.core.Ordered;
@@ -57,7 +59,7 @@ public class LoggingApplicationRunListener extends AbstractCrigttApplicationRunL
     }
 
     @Override
-    public void started() {
+    public void started(ConfigurableApplicationContext context, Duration timeTaken) {
         SLF4JBridgeHandler.removeHandlersForRootLogger();
         SLF4JBridgeHandler.install();
 
@@ -82,9 +84,7 @@ public class LoggingApplicationRunListener extends AbstractCrigttApplicationRunL
 
         try {
             GafferConfigurator configurator = new GafferConfigurator(loggerContext);
-
             loggerContext.putObject(ClassicConstants.GAFFER_CONFIGURATOR_FQCN, configurator);
-
             configurator.run(IOUtils.toString((configFileUrl = ResourceUtils.getURL(configFileUrlPath))));
         } catch (IOException e) {
             throw new ApplicationContextException(String.format("Unable to process Logback configuration file (path=%s).", configFileUrlPath), e);
@@ -96,9 +96,6 @@ public class LoggingApplicationRunListener extends AbstractCrigttApplicationRunL
 
         if (statusUtil.getHighestLevel(lastResetTime) >= Status.WARN) {
             StatusPrinter.print(statusManager, lastResetTime);
-
-            //
-            //  cd throw new ApplicationContextException(String.format("Unable to initialize Logback using configuration file (path=%s).", configFileUrlPath));
         }
 
         loggingInit.postProcessContext(loggerContext);

@@ -1,7 +1,7 @@
 package gov.hhs.onc.crigtt.utils;
 
 import java.util.TimeZone;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.time.FastDateFormat;
 
 public final class CrigttDateUtils {

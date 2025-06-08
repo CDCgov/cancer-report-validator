@@ -1,5 +1,5 @@
-<project
-    xmlns="http://maven.apache.org/POM/4.0.0"
+<project 
+    xmlns="http://maven.apache.org/POM/4.0.0" 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     
@@ -10,18 +10,13 @@
         <artifactId>crigtt-parent</artifactId>
         <version>1.2.0</version>
         <relativePath>crigtt-parent</relativePath>
-    </parent>
-    
+    </parent>    
     <artifactId>crigtt-all</artifactId>
     <packaging>pom</packaging>
-    
-    <description>Cancer Registry IG Test Tool (CRIGTT) aggregate Maven project.</description>
-    
+    <description>Cancer Registry IG Test Tool (CRIGTT) aggregate Maven project.</description>    
     <properties>
-        <!-- Project properties -->
         <project.basedir.all>${project.basedir}</project.basedir.all>
-    </properties>
-    
+    </properties>    
     <modules>
         <module>crigtt-parent</module>
         <module>crigtt-core</module>

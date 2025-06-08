@@ -1,6 +1,6 @@
 package gov.hhs.onc.crigtt.xml.impl;
 
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import javax.xml.transform.dom.DOMSource;
 import net.sf.saxon.dom.DocumentOverNodeInfo;
 import net.sf.saxon.dom.NodeOverNodeInfo;

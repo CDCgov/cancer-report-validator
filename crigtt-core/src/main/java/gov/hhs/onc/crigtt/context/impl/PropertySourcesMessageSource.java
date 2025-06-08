@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.UUID;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.support.AbstractMessageSource;
 import org.springframework.core.env.MutablePropertySources;

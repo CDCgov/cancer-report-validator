@@ -5,8 +5,8 @@
     node="/xsd:schema"
     schemaLocation="../../schema/crigtt/crigtt-validate-vocab.xsd"
     xmlns:annox="http://annox.dev.java.net"
-    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
-    xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+    xmlns:jaxb="https://jakarta.ee/xml/ns/jaxb"
+    xmlns:xjc="https://jakarta.ee/xml/ns/jaxb/xjc"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     
     <!--====================================================================================================
@@ -151,7 +151,7 @@
             @com.fasterxml.jackson.annotation.JsonTypeName("vocabAssertions")
         </annox:annotate>
         <annox:annotate target="class">
-            @javax.xml.bind.annotation.XmlRootElement(name = "vocabAssertions")
+            @jakarta.xml.bind.annotation.XmlRootElement(name = "vocabAssertions")
         </annox:annotate>
         <jaxb:bindings node="xsd:sequence">
             <jaxb:bindings node="xsd:element[@name='vocabAssertion']">

@@ -10,7 +10,7 @@ import gov.hhs.onc.crigtt.validate.utils.ValidatorUtils;
 import gov.hhs.onc.crigtt.xml.impl.CrigttJaxbMarshaller;
 import java.io.File;
 import java.util.List;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;

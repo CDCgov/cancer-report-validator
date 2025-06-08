@@ -1,28 +1,23 @@
-
 package gov.hhs.onc.crigtt.validate.impl;
 
-import javax.annotation.Generated;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.github.sebhoss.warnings.CompilerWarnings;
 import gov.hhs.onc.crigtt.validate.ValidatorRule;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.adapters.CollapsedStringAdapter;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Rule", propOrder = {
     "id"
 })
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
-@JsonTypeName("validatorRule")
 public class ValidatorRuleImpl implements ValidatorRule
 {
 
-    @XmlElement(namespace = "urn:gov.hhs.onc.crigtt", required = true)
+    @XmlAttribute(namespace = "urn:gov.hhs.onc.crigtt", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     protected String id;
     private final static long serialVersionUID = 0L;
 
@@ -42,17 +37,14 @@ public class ValidatorRuleImpl implements ValidatorRule
         this.id = id;
     }
 
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     public String getId() {
         return id;
     }
 
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     public void setId(String value) {
         this.id = value;
     }
 
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     public boolean isSetId() {
         return (this.id!= null);
     }

@@ -6,15 +6,14 @@ import org.springframework.oxm.XmlMappingException;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
 public class CrigttJaxbMarshaller extends Jaxb2Marshaller {
+    @SuppressWarnings("unchecked")
     public <T> T unmarshal(Source src, Class<T> resultClass) throws XmlMappingException {
         return resultClass.cast(super.unmarshal(src));
     }
 
     public byte[] marshal(Object src) throws XmlMappingException {
         ByteArrayResult result = new ByteArrayResult();
-
-        this.marshal(src, result);
-
+        this.marshal(src, null);
         return result.getBytes();
     }
 }

@@ -1,7 +1,7 @@
 package gov.hhs.onc.crigtt.io.utils;
 
 import java.io.IOException;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.PathResource;

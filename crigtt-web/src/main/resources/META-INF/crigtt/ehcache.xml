@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xmlns='http://www.ehcache.org/v3'
+        xsi:schemaLocation="http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core-3.10.xsd">
+
+    <persistence directory="${java.io.tmpdir}/ehcache-crigtt-web"/>
+
+    <cache-template name="defaultTemplate">
+        <expiry>
+            <ttl unit="hours">24</ttl>
+        </expiry>
+        <resources>
+            <heap unit="entries">1000</heap>
+            <offheap unit="MB">10</offheap>
+        </resources>
+    </cache-template>
+
+    <!-- Cache configurations for the application -->
+    <cache alias="validatorCache" uses-template="defaultTemplate"/>
+    <cache alias="schematronCache" uses-template="defaultTemplate"/>
+    <cache alias="vocabularyCache" uses-template="defaultTemplate">
+        <expiry>
+            <ttl unit="hours">72</ttl>
+        </expiry>
+        <resources>
+            <heap unit="entries">2000</heap>
+            <offheap unit="MB">20</offheap>
+        </resources>
+    </cache>
+
+</config>

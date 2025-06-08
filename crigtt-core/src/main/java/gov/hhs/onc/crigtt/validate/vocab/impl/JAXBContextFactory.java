@@ -45,8 +45,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
 
 /**
  * This class implements the actual logic of {@link JAXBContext#newInstance}.
@@ -93,17 +93,17 @@ public class JAXBContextFactory {
     /**
      * The JAXB API will invoke this method via reflection
      */
-    public static JAXBContext createContext( Class[] classes, Map properties ) throws JAXBException {
-        Class[] r = new Class[classes.length];
+    public static JAXBContext createContext( Class<?>[] classes, Map<String,?> properties ) throws JAXBException {
+        Class<?>[] r = new Class<?>[classes.length];
         boolean modified = false;
 
         // find any reference to our 'public' ObjectFactory and
         // replace that to our 'private' ObjectFactory.
         for( int i=0; i<r.length; i++ ) {
-            Class c = classes[i];
+            Class<?> c = classes[i];
             String name = c.getName();
             if(name.endsWith(DOT_OBJECT_FACTORY)
-            && !name.endsWith(IMPL_DOT_OBJECT_FACTORY)) {
+                    && !name.endsWith(IMPL_DOT_OBJECT_FACTORY)) {
                 // we never generate into the root package, so no need to worry about FQCN "ObjectFactory"
 
                 // if we find one, tell the real JAXB provider to
@@ -147,9 +147,9 @@ public class JAXBContextFactory {
      * The JAXB API will invoke this method via reflection
      */
     public static JAXBContext createContext( String contextPath,
-                                             ClassLoader classLoader, Map properties ) throws JAXBException {
+                                             ClassLoader classLoader, Map<String,?> properties ) throws JAXBException {
 
-        List<Class> classes = new ArrayList<Class>();
+        List<Class<?>> classes = new ArrayList<>();
         StringTokenizer tokens = new StringTokenizer(contextPath,":");
 
         // each package should be pointing to a JAXB RI generated
@@ -166,19 +166,19 @@ public class JAXBContextFactory {
         }
 
         // delegate to the JAXB provider in the system
-        return JAXBContext.newInstance(classes.toArray(new Class[classes.size()]),properties);
+        return JAXBContext.newInstance(classes.toArray(new Class<?>[0]),properties);
     }
     
-    private static ClassLoader getClassClassLoader(final Class c) {
+    private static ClassLoader getClassClassLoader(final Class<?> c) {
         if (System.getSecurityManager() == null) {
             return c.getClassLoader();
         } else {
-            return (ClassLoader) java.security.AccessController.doPrivileged(
-                    new java.security.PrivilegedAction() {
-                        public java.lang.Object run() {
-                            return c.getClassLoader();
-                        }
-                    });
+            return java.security.AccessController.doPrivileged(
+                new java.security.PrivilegedAction<ClassLoader>() {
+                    public ClassLoader run() {
+                        return c.getClassLoader();
+                    }
+                });
         }
     }
 

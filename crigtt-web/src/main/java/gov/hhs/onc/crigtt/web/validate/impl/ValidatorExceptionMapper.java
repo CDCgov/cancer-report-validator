@@ -4,9 +4,9 @@ import gov.hhs.onc.crigtt.validate.ValidatorError;
 import gov.hhs.onc.crigtt.validate.impl.ValidatorErrorImpl;
 import java.util.Arrays;
 import java.util.Optional;
-import javax.annotation.Priority;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.ext.ExceptionMapper;
+import jakarta.annotation.Priority;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.ext.ExceptionMapper;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.stereotype.Component;
 

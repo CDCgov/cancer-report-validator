@@ -1,7 +1,7 @@
 package gov.hhs.onc.crigtt.io.impl;
 
 import java.io.IOException;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import javax.xml.transform.stream.StreamResult;
 import org.springframework.core.io.WritableResource;
 

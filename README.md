@@ -23,8 +23,8 @@ This initiative has been sponsored by the CDC and is being managed by the [Offic
 
 ## Change Logs
 
-PLEASE NOTE THAT YOU REQUIRE JAVA 11 TO BUILD THIS VERSION. DO NOT INSTALL IF YOU DO HAVE JAVA VERSION LESS THAN 11
-This version contains major libraries and SDK updates to the CRV project and some CDA validation plus V1 feature parity updates including, NPI number validation, CPT validation
+PLEASE NOTE THAT YOU REQUIRE JAVA 21 TO BUILD THIS VERSION. DO NOT INSTALL IF YOU HAVE JAVA VERSION LESS THAN 21
+This version contains major libraries and SDK updates to the CRV project including Spring Boot 3.x and Jakarta EE support, plus CDA validation and V1 feature parity updates including NPI number validation and CPT validation
 
 
 # Resources

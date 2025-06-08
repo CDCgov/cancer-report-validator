@@ -1,8 +1,8 @@
 package gov.hhs.onc.crigtt.logging.impl;
 
 import gov.hhs.onc.crigtt.xml.impl.CrigttLocation;
-import javax.annotation.Nullable;
-import javax.annotation.Resource;
+import jakarta.annotation.Nullable;
+import jakarta.annotation.Resource;
 import javax.xml.stream.Location;
 import javax.xml.stream.XMLStreamException;
 import net.sf.saxon.Configuration;

@@ -18,39 +18,32 @@
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
     
     <!--====================================================================================================
-    = CACHE MANAGER CONFIGURATIONS
-    =====================================================================================================-->
-    <beans:bean id="cacheManagerConfig" class="net.sf.ehcache.config.Configuration" abstract="true"/>
-    
-    <!--====================================================================================================
     = CACHE MANAGERS
     =====================================================================================================-->
-    <beans:bean id="cacheManager" class="org.springframework.cache.CacheManager" abstract="true"/>
-    
-    <beans:bean id="cacheManagerEhCache" class="org.springframework.cache.ehcache.EhCacheCacheManager" parent="cacheManager" abstract="true"/>
-    
-    <beans:bean id="cacheManagerCrigtt" class="gov.hhs.onc.crigtt.data.cache.impl.CrigttCacheManagerFactoryBean" parent="cacheManagerEhCache" abstract="true"/>
-    
-    <!--====================================================================================================
-    = CACHE CONFIGURATIONS
-    =====================================================================================================-->
-    <beans:bean id="cacheConfig" class="net.sf.ehcache.config.CacheConfiguration" abstract="true"/>
-    
-    <beans:bean id="cacheConfigCrigtt" parent="cacheConfig" abstract="true"
-        p:eternal="true"
-        p:memoryStoreEvictionPolicyFromObject="FIFO"/>
-    
+    <beans:bean id="cacheManager" class="gov.hhs.onc.crigtt.data.cache.impl.CrigttCacheManagerFactoryBean">
+        <beans:property name="cacheConfigurations">
+            <beans:map>
+                <beans:entry key="validateResultsCache">
+                    <beans:bean factory-method="newInstance" class="org.ehcache.config.builders.CacheConfigurationBuilder">
+                        <beans:constructor-arg value="java.lang.Object"/>
+                        <beans:constructor-arg value="java.lang.Object"/>
+                        <beans:constructor-arg>
+                            <beans:bean factory-method="heap" class="org.ehcache.config.builders.ResourcePoolsBuilder">
+                                <beans:constructor-arg value="10000"/>
+                            </beans:bean>
+                        </beans:constructor-arg>
+                    </beans:bean>
+                </beans:entry>
+            </beans:map>
+        </beans:property>
+    </beans:bean>
+
     <!--====================================================================================================
     = CACHES
     =====================================================================================================-->
     <beans:bean id="cache" class="gov.hhs.onc.crigtt.data.cache.impl.CrigttCache" abstract="true"/>
     
-    <beans:bean id="cacheCrigtt" class="gov.hhs.onc.crigtt.data.cache.impl.CrigttCacheFactoryBean" parent="cache" abstract="true"
-        p:persistenceStrategy="NONE">
-        <beans:property name="listeners">
-            <beans:array>
-                <beans:ref bean="cacheListener"/>
-            </beans:array>
-        </beans:property>
+    <beans:bean id="cacheCrigtt" class="gov.hhs.onc.crigtt.data.cache.impl.CrigttCacheFactoryBean" parent="cache" abstract="true">
+        <beans:property name="cacheManager" ref="cacheManager"/>
     </beans:bean>
 </beans:beans>

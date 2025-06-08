@@ -14,9 +14,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-import javax.annotation.Resource;
-import javax.xml.bind.JAXBElement;
+import jakarta.annotation.Resource;
 import javax.xml.transform.Source;
+import jakarta.xml.bind.JAXBElement;
 
 public abstract class AbstractVocabService implements VocabService {
     @Resource(name = "xpathCompilerCrigtt")

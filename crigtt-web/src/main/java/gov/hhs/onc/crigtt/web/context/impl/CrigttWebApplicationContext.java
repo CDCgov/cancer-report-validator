@@ -1,15 +1,15 @@
 package gov.hhs.onc.crigtt.web.context.impl;
 
 import java.util.Enumeration;
-import javax.annotation.Nullable;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
+import jakarta.annotation.Nullable;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletContext;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
-import org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext;
+import org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext;
 import org.springframework.web.context.ServletConfigAware;
 import org.springframework.web.context.support.AbstractRefreshableWebApplicationContext;
 
-public class CrigttWebApplicationContext extends AnnotationConfigEmbeddedWebApplicationContext {
+public class CrigttWebApplicationContext extends AnnotationConfigServletWebServerApplicationContext {
     private class CrigttServletConfig implements ServletConfig {
         @Nullable
         @Override

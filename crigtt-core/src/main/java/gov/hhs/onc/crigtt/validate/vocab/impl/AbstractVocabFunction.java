@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import net.sf.saxon.expr.XPathContext;
 import net.sf.saxon.om.StructuredQName;
 import net.sf.saxon.s9api.QName;

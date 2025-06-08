@@ -28,10 +28,10 @@ import java.lang.reflect.Method
 import java.util.regex.Pattern
 import java.util.stream.Collectors
 import java.util.stream.Stream
-import javax.annotation.Nullable
-import javax.xml.bind.annotation.XmlNs
-import javax.xml.bind.annotation.XmlRootElement
-import javax.xml.bind.annotation.XmlSchema
+import jakarta.annotation.Nullable
+import jakarta.xml.bind.annotation.XmlNs
+import jakarta.xml.bind.annotation.XmlRootElement
+import jakarta.xml.bind.annotation.XmlSchema
 import org.apache.commons.lang3.ArrayUtils
 import org.apache.commons.lang3.BooleanUtils
 import org.apache.commons.lang3.ClassUtils
@@ -254,7 +254,7 @@ implPkgNames.each{
     
     if (xmlSchemaAnno == null) {
         xmlSchemaAnno = implPkg.annotate(XmlSchema.class)
-        xmlSchemaAnno.param("elementFormDefault", codeModel.directClass("javax.xml.bind.annotation.XmlNsForm").staticRef("QUALIFIED"))
+        xmlSchemaAnno.param("elementFormDefault", codeModel.directClass("jakarta.xml.bind.annotation.XmlNsForm").staticRef("QUALIFIED"))
     }
     
     xmlSchemaAnno.param("namespace", xmlNsUriStaticRefs[it.key]).paramArray("xmlns").annotate(XmlNs.class)

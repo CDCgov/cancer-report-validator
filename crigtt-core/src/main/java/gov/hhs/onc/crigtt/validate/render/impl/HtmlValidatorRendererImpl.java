@@ -15,7 +15,7 @@ import gov.hhs.onc.crigtt.validate.render.ValidatorRenderType;
 import gov.hhs.onc.crigtt.xml.impl.CrigttXmlOutputFactory;
 import java.util.Map;
 import java.util.regex.Pattern;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import net.sf.saxon.event.ProxyReceiver;
 import net.sf.saxon.event.Receiver;
 import net.sf.saxon.lib.AugmentedSource;

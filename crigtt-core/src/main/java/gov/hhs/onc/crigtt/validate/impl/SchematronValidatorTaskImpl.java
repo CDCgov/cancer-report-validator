@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import net.sf.saxon.s9api.XdmNode;
 import org.apache.commons.collections4.keyvalue.MultiKey;
 

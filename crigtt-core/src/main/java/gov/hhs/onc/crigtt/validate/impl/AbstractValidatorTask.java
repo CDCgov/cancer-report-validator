@@ -5,7 +5,7 @@ import gov.hhs.onc.crigtt.transform.impl.CrigttXpathCompiler;
 import gov.hhs.onc.crigtt.validate.ValidatorTask;
 import gov.hhs.onc.crigtt.xml.impl.XdmDocument;
 import java.util.Map;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import net.sf.saxon.sxpath.IndependentContext;
 
 public abstract class AbstractValidatorTask implements ValidatorTask {

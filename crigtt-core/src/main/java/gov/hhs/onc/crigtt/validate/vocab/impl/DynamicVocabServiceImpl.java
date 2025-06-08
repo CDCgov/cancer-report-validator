@@ -61,7 +61,7 @@ public class DynamicVocabServiceImpl extends AbstractVocabService implements Dyn
     @Value("${crigtt.validate.vocab.dynamic.repo.value.set.dir}")
     private File valueSetRepoDir;
 
-    @javax.annotation.Resource(name = "dbServerConfigValidateVocabDynamic")
+    @jakarta.annotation.Resource(name = "dbServerConfigValidateVocabDynamic")
     private CrigttDbServerConfiguration dbServerConfig;
 
     private Map<String, VocabularyLoader<?>> codeLoaders = new LinkedHashMap<>();

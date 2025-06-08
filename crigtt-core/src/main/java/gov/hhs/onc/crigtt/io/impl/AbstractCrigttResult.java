@@ -1,7 +1,7 @@
 package gov.hhs.onc.crigtt.io.impl;
 
 import java.io.OutputStream;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import javax.xml.transform.stream.StreamResult;
 
 public abstract class AbstractCrigttResult extends StreamResult {

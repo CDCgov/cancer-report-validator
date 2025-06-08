@@ -2,6 +2,7 @@ package gov.hhs.onc.crigtt.context.impl;
 
 import java.io.File;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.ApplicationArguments;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 
@@ -12,12 +13,12 @@ public class CrigttApplication extends SpringApplication {
     private File home;
     private String name;
 
-    public CrigttApplication(Object ... srcs) {
-        super(srcs);
+    public CrigttApplication(Class<?>... primarySources) {
+        super(primarySources);
     }
 
     @Override
-    protected void afterRefresh(ConfigurableApplicationContext context, String[] args) {
+    protected void afterRefresh(ConfigurableApplicationContext context, ApplicationArguments args) {
         if (this.autorun) {
             super.afterRefresh(context, args);
         }

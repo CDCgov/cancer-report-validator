@@ -2,7 +2,7 @@ package gov.hhs.onc.crigtt.io.impl;
 
 import java.io.InputStream;
 import java.io.Reader;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import javax.xml.transform.stream.StreamSource;
 import org.xml.sax.InputSource;
 

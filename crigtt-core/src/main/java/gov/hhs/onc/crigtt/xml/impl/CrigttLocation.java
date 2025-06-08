@@ -1,7 +1,7 @@
 package gov.hhs.onc.crigtt.xml.impl;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import javax.xml.stream.Location;
 import javax.xml.transform.SourceLocator;
 import net.sf.saxon.event.LocationProvider;

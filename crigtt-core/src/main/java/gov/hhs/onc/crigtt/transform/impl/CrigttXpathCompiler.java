@@ -4,7 +4,7 @@ import gov.hhs.onc.crigtt.utils.CrigttIteratorUtils;
 import gov.hhs.onc.crigtt.validate.impl.CustomEvalNodeInfo;
 import gov.hhs.onc.crigtt.xml.impl.XdmDocument;
 import gov.hhs.onc.crigtt.xml.utils.CrigttXpathUtils;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 
 import net.sf.saxon.expr.StaticContext;
 import net.sf.saxon.om.NodeInfo;

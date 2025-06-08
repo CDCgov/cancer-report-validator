@@ -3,7 +3,7 @@ package gov.hhs.onc.crigtt.transform.impl;
 import gov.hhs.onc.crigtt.config.CrigttConfigurationValues;
 import gov.hhs.onc.crigtt.config.impl.CrigttConfiguration;
 import java.util.Properties;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Result;
 import net.sf.saxon.event.PipelineConfiguration;

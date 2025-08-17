@@ -1,0 +1,63 @@
+2025-08-17 11:30:09.193 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.null).
+2025-08-17 11:30:09.196 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.context.web).
+2025-08-17 11:30:09.198 [main] INFO  g.h.o.c.web.CrigttWebApplication - Starting CrigttWebApplication using Java 21.0.5 with PID 55978 (/Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web/target/classes started by sriniwas in /Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web)
+2025-08-17 11:30:09.198 [main] INFO  g.h.o.c.web.CrigttWebApplication - The following 2 profiles are active: "crigtt.profile.app.null", "crigtt.profile.app.context.web"
+2025-08-17 11:30:23.139 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.null).
+2025-08-17 11:30:23.143 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.context.web).
+2025-08-17 11:30:23.144 [main] INFO  g.h.o.c.web.CrigttWebApplication - Starting CrigttWebApplication using Java 21.0.5 with PID 56716 (/Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web/target/classes started by sriniwas in /Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web)
+2025-08-17 11:30:23.145 [main] INFO  g.h.o.c.web.CrigttWebApplication - The following 2 profiles are active: "crigtt.profile.app.null", "crigtt.profile.app.context.web"
+2025-08-17 11:33:07.002 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.null).
+2025-08-17 11:33:07.005 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.context.web).
+2025-08-17 11:33:07.007 [main] INFO  g.h.o.c.web.CrigttWebApplication - Starting CrigttWebApplication using Java 21.0.5 with PID 58815 (/Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web/target/classes started by sriniwas in /Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web)
+2025-08-17 11:33:07.007 [main] INFO  g.h.o.c.web.CrigttWebApplication - The following 2 profiles are active: "crigtt.profile.app.null", "crigtt.profile.app.context.web"
+2025-08-17 11:33:15.330 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.null).
+2025-08-17 11:33:15.333 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.context.web).
+2025-08-17 11:33:15.334 [main] INFO  g.h.o.c.web.CrigttWebApplication - Starting CrigttWebApplication using Java 21.0.5 with PID 59012 (/Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web/target/classes started by sriniwas in /Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web)
+2025-08-17 11:33:15.334 [main] INFO  g.h.o.c.web.CrigttWebApplication - The following 2 profiles are active: "crigtt.profile.app.null", "crigtt.profile.app.context.web"
+2025-08-17 11:33:45.522 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.null).
+2025-08-17 11:33:45.524 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.context.web).
+2025-08-17 11:33:45.526 [main] INFO  g.h.o.c.web.CrigttWebApplication - Starting CrigttWebApplication using Java 21.0.5 with PID 59465 (/Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web/target/classes started by sriniwas in /Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web)
+2025-08-17 11:33:45.526 [main] INFO  g.h.o.c.web.CrigttWebApplication - The following 2 profiles are active: "crigtt.profile.app.null", "crigtt.profile.app.context.web"
+2025-08-17 11:33:54.236 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.null).
+2025-08-17 11:33:54.239 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.context.web).
+2025-08-17 11:33:54.241 [main] INFO  g.h.o.c.web.CrigttWebApplication - Starting CrigttWebApplication using Java 21.0.5 with PID 59761 (/Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web/target/classes started by sriniwas in /Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web)
+2025-08-17 11:33:54.241 [main] INFO  g.h.o.c.web.CrigttWebApplication - The following 2 profiles are active: "crigtt.profile.app.null", "crigtt.profile.app.context.web"
+2025-08-17 11:34:18.978 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.null).
+2025-08-17 11:34:18.981 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.context.web).
+2025-08-17 11:34:18.982 [main] INFO  g.h.o.c.web.CrigttWebApplication - Starting CrigttWebApplication using Java 21.0.5 with PID 60845 (/Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web/target/classes started by sriniwas in /Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web)
+2025-08-17 11:34:18.982 [main] INFO  g.h.o.c.web.CrigttWebApplication - The following 2 profiles are active: "crigtt.profile.app.null", "crigtt.profile.app.context.web"
+2025-08-17 11:34:51.097 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.null).
+2025-08-17 11:34:51.100 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.context.web).
+2025-08-17 11:34:51.101 [main] INFO  g.h.o.c.web.CrigttWebApplication - Starting CrigttWebApplication using Java 21.0.5 with PID 61384 (/Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web/target/classes started by sriniwas in /Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web)
+2025-08-17 11:34:51.101 [main] DEBUG g.h.o.c.web.CrigttWebApplication - Running with Spring Boot v3.2.0, Spring v6.1.0
+2025-08-17 11:34:51.101 [main] INFO  g.h.o.c.web.CrigttWebApplication - The following 2 profiles are active: "crigtt.profile.app.null", "crigtt.profile.app.context.web"
+2025-08-17 11:36:18.880 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.null).
+2025-08-17 11:36:18.884 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.context.web).
+2025-08-17 11:36:18.885 [main] INFO  g.h.o.c.web.CrigttWebApplication - Starting CrigttWebApplication using Java 21.0.5 with PID 62814 (/Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web/target/classes started by sriniwas in /Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web)
+2025-08-17 11:36:18.885 [main] DEBUG g.h.o.c.web.CrigttWebApplication - Running with Spring Boot v3.2.0, Spring v6.1.0
+2025-08-17 11:36:18.886 [main] INFO  g.h.o.c.web.CrigttWebApplication - The following 2 profiles are active: "crigtt.profile.app.null", "crigtt.profile.app.context.web"
+2025-08-17 11:37:23.936 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.null).
+2025-08-17 11:37:23.940 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.context.web).
+2025-08-17 11:37:23.941 [main] INFO  g.h.o.c.web.CrigttWebApplication - Starting CrigttWebApplication using Java 21.0.5 with PID 64104 (/Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web/target/classes started by sriniwas in /Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web)
+2025-08-17 11:37:23.942 [main] DEBUG g.h.o.c.web.CrigttWebApplication - Running with Spring Boot v3.2.0, Spring v6.1.0
+2025-08-17 11:37:23.942 [main] INFO  g.h.o.c.web.CrigttWebApplication - The following 2 profiles are active: "crigtt.profile.app.null", "crigtt.profile.app.context.web"
+2025-08-17 11:37:57.095 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.null).
+2025-08-17 11:37:57.099 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.context.web).
+2025-08-17 11:37:57.100 [main] INFO  g.h.o.c.web.CrigttWebApplication - Starting CrigttWebApplication using Java 21.0.5 with PID 65453 (/Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web/target/classes started by sriniwas in /Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web)
+2025-08-17 11:37:57.100 [main] DEBUG g.h.o.c.web.CrigttWebApplication - Running with Spring Boot v3.2.0, Spring v6.1.0
+2025-08-17 11:37:57.101 [main] INFO  g.h.o.c.web.CrigttWebApplication - The following 2 profiles are active: "crigtt.profile.app.null", "crigtt.profile.app.context.web"
+2025-08-17 11:38:49.971 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.null).
+2025-08-17 11:38:49.975 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.context.web).
+2025-08-17 11:38:49.977 [main] INFO  g.h.o.c.web.CrigttWebApplication - Starting CrigttWebApplication using Java 21.0.5 with PID 66424 (/Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web/target/classes started by sriniwas in /Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web)
+2025-08-17 11:38:49.977 [main] DEBUG g.h.o.c.web.CrigttWebApplication - Running with Spring Boot v3.2.0, Spring v6.1.0
+2025-08-17 11:38:49.977 [main] INFO  g.h.o.c.web.CrigttWebApplication - The following 2 profiles are active: "crigtt.profile.app.null", "crigtt.profile.app.context.web"
+2025-08-17 11:55:47.636 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.null).
+2025-08-17 11:55:47.639 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.context.web).
+2025-08-17 11:55:47.640 [main] INFO  g.h.o.c.web.CrigttWebApplication - Starting CrigttWebApplication using Java 21.0.5 with PID 74315 (/Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web/target/classes started by sriniwas in /Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web)
+2025-08-17 11:55:47.640 [main] DEBUG g.h.o.c.web.CrigttWebApplication - Running with Spring Boot v3.2.0, Spring v6.1.0
+2025-08-17 11:55:47.641 [main] INFO  g.h.o.c.web.CrigttWebApplication - The following 2 profiles are active: "crigtt.profile.app.null", "crigtt.profile.app.context.web"
+2025-08-17 12:44:59.807 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.null).
+2025-08-17 12:44:59.811 [main] INFO  g.h.o.c.c.i.ProfileApplicationRunListener - Activated application Spring profile (name=crigtt.profile.app.context.web).
+2025-08-17 12:44:59.812 [main] INFO  g.h.o.c.web.CrigttWebApplication - Starting CrigttWebApplication using Java 21.0.5 with PID 5826 (/Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web/target/classes started by sriniwas in /Users/sriniwas/Development/Projects/CDC/crv-public-repo/cancer-report-validator/crigtt-web)
+2025-08-17 12:44:59.812 [main] DEBUG g.h.o.c.web.CrigttWebApplication - Running with Spring Boot v3.2.0, Spring v6.1.0
+2025-08-17 12:44:59.813 [main] INFO  g.h.o.c.web.CrigttWebApplication - The following 2 profiles are active: "crigtt.profile.app.null", "crigtt.profile.app.context.web"

@@ -18,32 +18,19 @@
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
     
     <!--====================================================================================================
-    = CACHE MANAGERS
+    = CACHE MANAGERS - Simplified configuration to avoid EHCache API compatibility issues
     =====================================================================================================-->
-    <beans:bean id="cacheManager" class="gov.hhs.onc.crigtt.data.cache.impl.CrigttCacheManagerFactoryBean">
-        <beans:property name="cacheConfigurations">
-            <beans:map>
-                <beans:entry key="validateResultsCache">
-                    <beans:bean factory-method="newInstance" class="org.ehcache.config.builders.CacheConfigurationBuilder">
-                        <beans:constructor-arg value="java.lang.Object"/>
-                        <beans:constructor-arg value="java.lang.Object"/>
-                        <beans:constructor-arg>
-                            <beans:bean factory-method="heap" class="org.ehcache.config.builders.ResourcePoolsBuilder">
-                                <beans:constructor-arg value="10000"/>
-                            </beans:bean>
-                        </beans:constructor-arg>
-                    </beans:bean>
-                </beans:entry>
-            </beans:map>
-        </beans:property>
+    <beans:bean id="cacheManagerCrigtt" class="gov.hhs.onc.crigtt.data.cache.impl.CrigttCacheManagerFactoryBean" abstract="true"/>
+    
+    <beans:bean id="cacheManager" class="gov.hhs.onc.crigtt.data.cache.impl.CrigttCacheManagerFactoryBean"
+        parent="cacheManagerCrigtt">
+        <!-- No properties needed - the factory bean creates a simple cache manager -->
     </beans:bean>
 
     <!--====================================================================================================
-    = CACHES
+    = CACHES - Simplified configuration for compatibility
     =====================================================================================================-->
-    <beans:bean id="cache" class="gov.hhs.onc.crigtt.data.cache.impl.CrigttCache" abstract="true"/>
-    
-    <beans:bean id="cacheCrigtt" class="gov.hhs.onc.crigtt.data.cache.impl.CrigttCacheFactoryBean" parent="cache" abstract="true">
+    <beans:bean id="cacheCrigtt" class="gov.hhs.onc.crigtt.data.cache.impl.CrigttCacheFactoryBean" abstract="true">
         <beans:property name="cacheManager" ref="cacheManager"/>
     </beans:bean>
 </beans:beans>

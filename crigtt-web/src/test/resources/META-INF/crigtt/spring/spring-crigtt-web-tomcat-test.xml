@@ -26,9 +26,9 @@
     <!--====================================================================================================
     = EMBEDDED SERVLET CONTAINER FACTORIES
     =====================================================================================================-->
-    <beans:bean id="embeddedServletContainerFactory" class="org.springframework.boot.context.embedded.EmbeddedServletContainerFactory" abstract="true"/>
+    <beans:bean id="embeddedServletContainerFactory" class="org.springframework.boot.web.servlet.server.ServletWebServerFactory" abstract="true"/>
     
-    <beans:bean id="embeddedServletContainerFactoryTomcat" class="org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory"
+    <beans:bean id="embeddedServletContainerFactoryTomcat" class="org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory"
         parent="embeddedServletContainerFactory" abstract="true"/>
     
     <!--suppress SpringPlaceholdersInspection -->

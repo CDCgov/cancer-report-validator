@@ -21,7 +21,7 @@
     <!--====================================================================================================
     = MULTIPART CONFIGURATION ELEMENTS
     =====================================================================================================-->
-    <beans:bean id="multipartConfigElem" class="javax.servlet.MultipartConfigElement" abstract="true"/>
+    <beans:bean id="multipartConfigElem" class="jakarta.servlet.MultipartConfigElement" abstract="true"/>
     
     <beans:bean id="multipartConfigElemMem" parent="multipartConfigElem" abstract="true">
         <beans:constructor-arg name="fileSizeThreshold" value="0"/>
@@ -31,12 +31,12 @@
     <!--====================================================================================================
     = SERVLETS
     =====================================================================================================-->
-    <beans:bean id="servlet" class="javax.servlet.Servlet" abstract="true"/>
+    <beans:bean id="servlet" class="jakarta.servlet.Servlet" abstract="true"/>
     
-    <beans:bean id="servletHttp" class="javax.servlet.http.HttpServlet" parent="servlet" abstract="true"/>
+    <beans:bean id="servletHttp" class="jakarta.servlet.http.HttpServlet" parent="servlet" abstract="true"/>
     
     <!--====================================================================================================
     = REGISTRATION BEANS: SERVLET
     =====================================================================================================-->
-    <beans:bean id="regBeanServlet" class="org.springframework.boot.context.embedded.ServletRegistrationBean" parent="regBean" abstract="true"/>
+    <beans:bean id="regBeanServlet" class="org.springframework.boot.web.servlet.ServletRegistrationBean" parent="regBean" abstract="true"/>
 </beans:beans>

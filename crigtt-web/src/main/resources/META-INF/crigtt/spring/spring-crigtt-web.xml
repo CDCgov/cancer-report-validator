@@ -26,14 +26,6 @@
         <!-- Enable caching -->
         <cache:annotation-driven/>
         
-        <!-- EhCache 3.x Configuration -->
-        <beans:bean id="cacheManager" class="org.springframework.cache.jcache.JCacheCacheManager">
-            <beans:property name="cacheManager">
-                <beans:bean class="org.springframework.cache.jcache.JCacheManagerFactoryBean"
-                    p:cacheManagerUri="classpath:META-INF/crigtt/ehcache.xml"/>
-            </beans:property>
-        </beans:bean>
-        
         <!--====================================================================================================
         = REGISTRATION BEANS
         =====================================================================================================-->

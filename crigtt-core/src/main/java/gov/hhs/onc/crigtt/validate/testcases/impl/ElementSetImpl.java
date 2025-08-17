@@ -23,7 +23,7 @@ public class ElementSetImpl implements ElementSet {
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String element;
 
-    @XmlElement(name = "sub-expressions", namespace = CrigttXmlNs.VALIDATE_TESTCASES_URI)
+    @XmlElement(name = "sub-expressions", namespace = CrigttXmlNs.VALIDATE_TESTCASES_URI, type = SubExpressionSetImpl.class)
     protected List<SubExpressionSet> subExpressions;
 
     @XmlElement(namespace = CrigttXmlNs.VALIDATE_TESTCASES_URI)

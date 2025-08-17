@@ -31,14 +31,13 @@ public class SubExpressionSetImpl implements SubExpressionSet {
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String subExpression;
     
-    @XmlElement(name = "matching-condition", namespace = CrigttXmlNs.VALIDATE_TESTCASES_URI)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlElement(name = "matching-condition", namespace = CrigttXmlNs.VALIDATE_TESTCASES_URI, type = MatchingConditionImpl.class)
     protected MatchingCondition matchingCondition;
     
-    @XmlElement(name = "expected-results", namespace = CrigttXmlNs.VALIDATE_TESTCASES_URI)
+    @XmlElement(name = "expected-results", namespace = CrigttXmlNs.VALIDATE_TESTCASES_URI, type = ExpectedResultsImpl.class)
     protected ExpectedResults expectedResults;
     
-    @XmlElement(name = "custom-eval-expression", namespace = CrigttXmlNs.VALIDATE_TESTCASES_URI)
+    @XmlElement(name = "custom-eval-expression", namespace = CrigttXmlNs.VALIDATE_TESTCASES_URI, type = CustomEvalExpressionImpl.class)
     protected CustomEvalExpression customEvalExpression;
     
     @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")

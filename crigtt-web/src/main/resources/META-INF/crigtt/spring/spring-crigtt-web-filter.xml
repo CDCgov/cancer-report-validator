@@ -21,10 +21,10 @@
     <!--====================================================================================================
     = FILTERS
     =====================================================================================================-->
-    <beans:bean id="filter" class="javax.servlet.Filter" abstract="true"/>
+    <beans:bean id="filter" class="jakarta.servlet.Filter" abstract="true"/>
     
     <!--====================================================================================================
     = REGISTRATION BEANS: FILTER
     =====================================================================================================-->
-    <beans:bean id="regBeanFilter" class="org.springframework.boot.context.embedded.FilterRegistrationBean" parent="regBean" abstract="true"/>
+    <beans:bean id="regBeanFilter" class="org.springframework.boot.web.servlet.FilterRegistrationBean" parent="regBean" abstract="true"/>
 </beans:beans>

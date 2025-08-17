@@ -120,21 +120,15 @@
     = CACHE MANAGERS
     =====================================================================================================-->
     <!--suppress SpringPlaceholdersInspection -->
-    <beans:bean id="cacheManagerValidateResults" parent="cacheManagerCrigtt"
-        p:maxBytesLocalHeap="${crigtt.cache.validate.results.heap.max.bytes}">
-        <beans:property name="configuration">
-            <beans:bean parent="cacheManagerConfig"/>
-        </beans:property>
+    <beans:bean id="cacheManagerValidateResults" parent="cacheManagerCrigtt">
     </beans:bean>
     
     <!--====================================================================================================
     = CACHES
     =====================================================================================================-->
     <beans:bean id="cacheValidateResults" parent="cacheCrigtt"
-        p:manager-ref="cacheManagerValidateResults">
-        <beans:property name="configuration">
-            <beans:bean parent="cacheConfig"/>
-        </beans:property>
+        p:name="validateResults"
+        p:cacheManager-ref="cacheManagerValidateResults">
     </beans:bean>
     
     <!--====================================================================================================

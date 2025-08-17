@@ -21,10 +21,10 @@
     <!--====================================================================================================
     = SERVLET LISTENERS
     =====================================================================================================-->
-    <beans:bean id="servletContextListener" class="javax.servlet.ServletContextListener" parent="eventListener" abstract="true"/>
+    <beans:bean id="servletContextListener" class="jakarta.servlet.ServletContextListener" parent="eventListener" abstract="true"/>
     
     <!--====================================================================================================
     = REGISTRATION BEANS: SERVLET LISTENER
     =====================================================================================================-->
-    <beans:bean id="regBeanServletListener" class="org.springframework.boot.context.embedded.ServletListenerRegistrationBean" parent="regBean" abstract="true"/>
+    <beans:bean id="regBeanServletListener" class="org.springframework.boot.web.servlet.ServletListenerRegistrationBean" parent="regBean" abstract="true"/>
 </beans:beans>

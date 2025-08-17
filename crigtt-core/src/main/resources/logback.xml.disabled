@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    
+    <!-- Status listener to suppress logback status messages -->
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+
+    <!-- Console appender -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- File appender -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/crigtt.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/crigtt.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Root logger - matching original groovy config (WARN level, no appenders) -->
+    <root level="WARN">
+        <!-- No appenders - matching original groovy config -->
+    </root>
+
+    <!-- Application specific loggers -->
+    <logger name="gov.hhs.onc.crigtt" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+    </logger>
+
+    <!-- Spring Boot loggers -->
+    <logger name="org.springframework" level="INFO" />
+    <logger name="org.springframework.web" level="DEBUG" />
+    <logger name="org.springframework.boot" level="INFO" />
+
+    <!-- Hibernate/JPA loggers -->
+    <logger name="org.hibernate" level="WARN" />
+    <logger name="org.hibernate.SQL" level="DEBUG" />
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE" />
+
+    <!-- Apache loggers -->
+    <logger name="org.apache" level="WARN" />
+
+    <!-- Ehcache loggers -->
+    <logger name="org.ehcache" level="WARN" />
+
+</configuration>

@@ -4,5 +4,5 @@ import gov.hhs.onc.crigtt.logging.utils.CrigttLoggingUtils
 /*====================================================================================================
 = INCLUDES
 =====================================================================================================*/
-CrigttLoggingUtils.include(context, "META-INF/crigtt/logback/logback-crigtt-include.${CrigttFileExtensions.GROOVY}",
-    "META-INF/crigtt/logback/logback-crigtt-web-include.${CrigttFileExtensions.GROOVY}")
+CrigttLoggingUtils.include(context, "META-INF/crigtt/logback/logback-crigtt-include.${CrigttFileExtensions.XML}",
+    "META-INF/crigtt/logback/logback-crigtt-web-include.${CrigttFileExtensions.XML}")

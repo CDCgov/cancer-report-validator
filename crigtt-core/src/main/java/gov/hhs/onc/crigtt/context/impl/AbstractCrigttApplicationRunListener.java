@@ -1,17 +1,12 @@
 package gov.hhs.onc.crigtt.context.impl;
 
-import java.lang.reflect.InvocationTargetException;
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
-import org.apache.commons.lang3.reflect.ConstructorUtils;
 import org.springframework.boot.ConfigurableBootstrapContext;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringApplicationRunListener;
-import org.springframework.context.ApplicationContextException;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.core.annotation.AnnotationAwareOrderComparator;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.io.support.SpringFactoriesLoader;
 
@@ -20,7 +15,13 @@ public abstract class AbstractCrigttApplicationRunListener implements SpringAppl
     protected String[] args;
 
     protected AbstractCrigttApplicationRunListener(SpringApplication app, String[] args) {
-        this.app = ((CrigttApplication) app);
+        // Handle both CrigttApplication and regular SpringApplication
+        if (app instanceof CrigttApplication) {
+            this.app = (CrigttApplication) app;
+        } else {
+            // Create a CrigttApplication wrapper when running in servlet container
+            this.app = new CrigttApplication(app.getAllSources().toArray(new Class<?>[0]));
+        }
         this.args = args;
     }
 
@@ -52,29 +53,14 @@ public abstract class AbstractCrigttApplicationRunListener implements SpringAppl
     public void failed(ConfigurableApplicationContext context, Throwable exception) {
     }
 
-    @SuppressWarnings("unchecked")
-    protected static <T> T buildComponent(Class<T> componentClass, Supplier<T> defaultSupplier, Object ... args) {
-        var factories = SpringFactoriesLoader
-            .forResourceLocation("META-INF/spring.factories", AbstractCrigttApplicationRunListener.class.getClassLoader())
-            .load(componentClass);
-            
-        List<T> components = new ArrayList<>(factories);
-        
+    protected static <T> T buildComponent(Class<T> componentType, Supplier<T> defaultSupplier, CrigttApplication app) {
+        List<T> components = SpringFactoriesLoader.forResourceLocation("META-INF/spring.factories")
+                .load(componentType);
+
         if (components.isEmpty()) {
             return defaultSupplier.get();
         }
 
-        components.sort(AnnotationAwareOrderComparator.INSTANCE);
-        T component = components.get(0);
-
-        if (args.length == 0) {
-            return component;
-        }
-
-        try {
-            return componentClass.cast(ConstructorUtils.invokeConstructor(component.getClass(), args));
-        } catch (IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException e) {
-            throw new ApplicationContextException(String.format("Unable to instantiate component (class=%s).", component.getClass().getName()), e);
-        }
+        return components.get(0);
     }
 }

@@ -1,21 +1,15 @@
 package gov.hhs.onc.crigtt.logging.impl;
 
 import ch.qos.logback.classic.Level;
-import ch.qos.logback.classic.spi.LoggingEvent;
 import java.io.IOException;
 import java.io.StringWriter;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import jakarta.annotation.Nullable;
 import javax.xml.transform.stream.StreamResult;
 import net.sf.saxon.lib.Logger;
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -33,9 +27,6 @@ public class CrigttLogger extends Logger {
 
     private final static Map<Integer, Level> SEVERITY_LEVELS = Stream.of(new ImmutablePair<>(INFO, Level.INFO), new ImmutablePair<>(WARNING, Level.WARN),
         new ImmutablePair<>(ERROR, Level.ERROR), new ImmutablePair<>(DISASTER, Level.ERROR)).collect(Collectors.toMap(Entry::getKey, Entry::getValue));
-
-    private final static Set<String> STACK_SKIP_CLASS_NAMES = new HashSet<>(ClassUtils.convertClassesToClassNames(Arrays.asList(Logger.class,
-        CrigttLogger.class)));
 
     private final static ch.qos.logback.classic.Logger LOGGER = ((ch.qos.logback.classic.Logger) LoggerFactory.getLogger(CrigttLogger.class));
 
@@ -102,20 +93,50 @@ public class CrigttLogger extends Logger {
     }
 
     public void log(Level level, @Nullable String msg, @Nullable Throwable cause) {
-        LoggingEvent event = new LoggingEvent(ch.qos.logback.classic.Logger.FQCN, LOGGER, level, msg, cause, null);
-
-        StackTraceElement[] stackFrames = new Throwable().getStackTrace();
-
-        for (int a = 1; a < stackFrames.length; a++) {
-            if (!STACK_SKIP_CLASS_NAMES.contains(stackFrames[a].getClassName())) {
-                stackFrames = ArrayUtils.subarray(stackFrames, a, stackFrames.length);
-
+        // Use standard SLF4J logger for compatibility with Logback 1.4+
+        switch (level.levelInt) {
+            case Level.ERROR_INT:
+                if (cause != null) {
+                    LOGGER.error(msg, cause);
+                } else {
+                    LOGGER.error(msg);
+                }
                 break;
-            }
+            case Level.WARN_INT:
+                if (cause != null) {
+                    LOGGER.warn(msg, cause);
+                } else {
+                    LOGGER.warn(msg);
+                }
+                break;
+            case Level.INFO_INT:
+                if (cause != null) {
+                    LOGGER.info(msg, cause);
+                } else {
+                    LOGGER.info(msg);
+                }
+                break;
+            case Level.DEBUG_INT:
+                if (cause != null) {
+                    LOGGER.debug(msg, cause);
+                } else {
+                    LOGGER.debug(msg);
+                }
+                break;
+            case Level.TRACE_INT:
+                if (cause != null) {
+                    LOGGER.trace(msg, cause);
+                } else {
+                    LOGGER.trace(msg);
+                }
+                break;
+            default:
+                if (cause != null) {
+                    LOGGER.info(msg, cause);
+                } else {
+                    LOGGER.info(msg);
+                }
+                break;
         }
-
-        event.setCallerData(stackFrames);
-
-        LOGGER.callAppenders(event);
     }
 }

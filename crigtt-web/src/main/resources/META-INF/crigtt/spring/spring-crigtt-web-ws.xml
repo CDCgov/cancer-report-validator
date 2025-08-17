@@ -84,23 +84,25 @@
     <!--====================================================================================================
     = CONTROLLERS
     =====================================================================================================-->
-    <!--suppress SpringPlaceholdersInspection -->
+    <!-- Temporarily disable service controller due to ServletConfig injection issues in Spring Boot 3.x
     <beans:bean id="controllerService" class="gov.hhs.onc.crigtt.web.controller.impl.ServiceController" parent="controller" lazy-init="true"
         p:bus-ref="busCrigtt"
         p:listPath="${crigtt.ws.service.list.path}"
         p:path="${crigtt.ws.service.path}"/>
+    -->
     
     <!--====================================================================================================
     = HANDLER MAPPINGS
     =====================================================================================================-->
+    <!-- Disable handler mapping that depends on controllerService
     <beans:bean id="handlerMappingService" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping" lazy-init="true"
         p:order="#{ T(org.springframework.core.Ordered).HIGHEST_PRECEDENCE + 1 }">
         <beans:property name="urlMap">
             <beans:map>
                 <beans:entry key="/schema/**" value-ref="controllerService"/>
-                <!--suppress SpringPlaceholdersInspection -->
                 <beans:entry key="${crigtt.ws.service.path}/**" value-ref="controllerService"/>
             </beans:map>
         </beans:property>
     </beans:bean>
+    -->
 </beans:beans>

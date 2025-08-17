@@ -14,6 +14,11 @@ import org.springframework.core.annotation.Order;
 public class WebLoggingInitializer extends AbstractCrigttLoggingInitializer {
     private final static String TOMCAT_LOG_DIR_PATH = "logs";
 
+    // Default constructor for Spring Factory loading
+    public WebLoggingInitializer() {
+        this(null);
+    }
+
     public WebLoggingInitializer(CrigttApplication app) {
         super(app);
     }

@@ -73,15 +73,18 @@
     <!--====================================================================================================
     = PROPERTY SOURCES PLACEHOLDER CONFIGURERS
     =====================================================================================================-->
+    <!-- Commented out XML-based property configurer to avoid conflicts with Java-based one
     <beans:bean id="propSourcesPlaceholderConfigurer" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer"
         p:fileEncoding="#{ charsetUtf8.name() }"
-        p:ignoreUnresolvablePlaceholders="true">
+        p:ignoreUnresolvablePlaceholders="true"
+        p:order="#{T(org.springframework.core.Ordered).HIGHEST_PRECEDENCE}">
         <beans:property name="locations">
             <beans:array>
                 <beans:value>classpath*:META-INF/crigtt/crigtt*.properties</beans:value>
             </beans:array>
         </beans:property>
     </beans:bean>
+    -->
     
     <!--====================================================================================================
     = MESSAGE SOURCES

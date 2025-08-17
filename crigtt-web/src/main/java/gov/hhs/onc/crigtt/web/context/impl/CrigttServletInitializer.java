@@ -27,7 +27,7 @@ public class CrigttServletInitializer extends SpringBootServletInitializer {
 
         return builder
             .sources(CrigttWebApplication.class)
-            .profiles("web")
+            .profiles("crigtt.profile.app.context.web")
             .initializers(applicationContext -> {
                 if (applicationContext instanceof ServletWebServerApplicationContext && homeDir != null) {
                     System.setProperty(CrigttProperties.APP_HOME_NAME, homeDir.getAbsolutePath());

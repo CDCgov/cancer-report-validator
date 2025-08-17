@@ -1,6 +1,5 @@
 package gov.hhs.onc.crigtt.data.db.utils;
 
-import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import java.util.List;
 import java.util.Map;
 import jakarta.annotation.Nullable;
@@ -34,7 +33,7 @@ public final class CrigttSqlUtils {
     private CrigttSqlUtils() {
     }
 
-    public static <T> OSQLSynchQuery<T> buildSelectQuery(Class<T> targetClass, @Nullable String targetClassName, @Nullable List<String> projections,
+    public static String buildSelectQuery(Class<?> targetClass, @Nullable String targetClassName, @Nullable List<String> projections,
         Map<String, String> params, @Nullable String groupByFieldName) {
         StrBuilder queryBuilder = new StrBuilder(SELECT_CMD);
         queryBuilder.append(StringUtils.SPACE);
@@ -87,7 +86,7 @@ public final class CrigttSqlUtils {
             queryBuilder.append(groupByFieldName);
         }
 
-        return new OSQLSynchQuery<>(queryBuilder.build());
+        return queryBuilder.build();
     }
 
     public static String buildFunctionCall(String funcName, String ... args) {

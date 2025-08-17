@@ -31,11 +31,15 @@
                 <beans:entry key="#{ T(com.orientechnologies.orient.core.config.OGlobalConfiguration).LOG_CONSOLE_LEVEL }"
                     value="#{ T(java.util.logging.Level).ALL.name }"/>
                 -->
+                <!-- Keeping essential network configuration for OrientDB 3.x compatibility -->
                 <beans:entry key="#{ T(com.orientechnologies.orient.core.config.OGlobalConfiguration).NETWORK_MAX_CONCURRENT_SESSIONS }" value="10000"
                     value-type="java.lang.Integer"/>
+                <!-- Commenting out potentially deprecated properties for OrientDB 3.x compatibility -->
+                <!--
                 <beans:entry key="#{ T(com.orientechnologies.orient.core.config.OGlobalConfiguration).TX_USE_LOG }" value="false"
                     value-type="java.lang.Boolean"/>
                 <beans:entry key="#{ T(com.orientechnologies.orient.core.config.OGlobalConfiguration).USE_WAL }" value="false" value-type="java.lang.Boolean"/>
+                -->
             </beans:map>
         </beans:property>
         <beans:property name="properties">

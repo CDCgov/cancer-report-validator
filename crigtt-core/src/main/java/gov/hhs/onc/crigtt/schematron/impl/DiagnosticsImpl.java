@@ -25,7 +25,7 @@ import gov.hhs.onc.crigtt.schematron.Diagnostics;
 public class DiagnosticsImpl implements Diagnostics {
 
     @XmlElementRefs({
-        @XmlElementRef(name = "diagnostic", namespace = "http://purl.oclc.org/dsdl/schematron", type = Object.class)
+        @XmlElementRef(name = "diagnostic", namespace = "http://purl.oclc.org/dsdl/schematron", type = DiagnosticImpl.class)
     })
     @XmlAnyElement(lax = true)
     protected List<Object> content;

@@ -16,7 +16,7 @@ import java.util.List;
 @XmlType(name = "validatorReport")
 @XmlRootElement(name = "report")
 public class ValidatorReportImpl extends AbstractValidatorResponse implements ValidatorReport {
-    @XmlElement(name = "error")
+    @XmlElement(name = "error", type = ValidatorErrorImpl.class)
     private List<ValidatorError> errors;
 
     @XmlAttribute(name = "id")
@@ -28,10 +28,10 @@ public class ValidatorReportImpl extends AbstractValidatorResponse implements Va
     @XmlElement(name = "processedTimestamp")
     private long processedTimestamp;
 
-    @XmlElement(name = "results")
+    @XmlElement(name = "results", type = ValidatorResultsImpl.class)
     private ValidatorResults results;
 
-    @XmlElement(name = "document")
+    @XmlElement(name = "document", type = ValidatorDocumentImpl.class)
     private ValidatorDocument document;
 
     @XmlElement(name = "testcaseId")

@@ -23,6 +23,9 @@
     <!--====================================================================================================
     = CONTEXT
     =====================================================================================================-->
+    <!-- Disable XML component scanning - let Spring Boot handle it with Java config
+    <context:component-scan base-package="gov.hhs.onc.crigtt.web.controller"/>
+    -->
     <mvc:annotation-driven conversion-service="conversionService"/>
     
     <!--====================================================================================================
@@ -51,9 +54,11 @@
     <!--====================================================================================================
     = VIEW RESOLVERS
     =====================================================================================================-->
+    <!-- Disable XML-based view resolver - using Java config instead
     <mvc:view-resolvers>
         <mvc:jsp prefix="/WEB-INF/views/" suffix=".jsp" view-class="org.springframework.web.servlet.view.JstlView"/>
     </mvc:view-resolvers>
+    -->
     
     <!--====================================================================================================
     = CONTROLLERS
@@ -63,15 +68,10 @@
     <!--====================================================================================================
     = REGISTRATION BEANS: SERVLET
     =====================================================================================================-->
+    <!-- Disable manual DispatcherServlet registration - let Spring Boot auto-configure it
     <beans:bean id="regBeanServletDispatcher" parent="regBeanServlet"
         p:loadOnStartup="1"
         p:name="dispatcherServlet">
-        <beans:property name="multipartConfig">
-            <!--suppress SpringPlaceholdersInspection -->
-            <beans:bean parent="multipartConfigElemMem"
-                c:maxFileSize="${crigtt.servlet.dispatcher.multipart.max.size.file}"
-                c:maxRequestSize="${crigtt.servlet.dispatcher.multipart.max.size.req}"/>
-        </beans:property>
         <beans:property name="servlet">
             <beans:bean class="org.springframework.web.servlet.DispatcherServlet" parent="servletHttp"/>
         </beans:property>
@@ -81,4 +81,5 @@
             </beans:list>
         </beans:property>
     </beans:bean>
+    -->
 </beans:beans>

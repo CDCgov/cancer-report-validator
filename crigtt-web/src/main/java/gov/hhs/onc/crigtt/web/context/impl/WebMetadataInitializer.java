@@ -9,12 +9,20 @@ import org.springframework.core.annotation.Order;
 
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class WebMetadataInitializer extends AbstractCrigttMetadataInitializer {
+    
+    // Default constructor for Spring Factory loading
+    public WebMetadataInitializer() {
+        this(null);
+    }
+    
     public WebMetadataInitializer(CrigttApplication app) {
         super(app, "crigtt-web");
     }
 
     @Override
     public File buildApplicationHome() {
-        return Optional.ofNullable(this.app.getHome()).orElseGet(super::buildApplicationHome);
+        return Optional.ofNullable(this.app)
+                .map(CrigttApplication::getHome)
+                .orElseGet(super::buildApplicationHome);
     }
 }

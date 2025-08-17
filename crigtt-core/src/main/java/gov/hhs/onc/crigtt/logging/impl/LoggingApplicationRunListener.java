@@ -54,7 +54,22 @@ public class LoggingApplicationRunListener extends AbstractCrigttApplicationRunL
 
         this.app.addListeners(this);
 
-        LoggerContext loggerContext = ContextSelectorStaticBinder.getSingleton().getContextSelector().getLoggerContext();
+        // Check if Logback context selector is available (may be null in servlet containers)
+        ch.qos.logback.classic.selector.ContextSelector contextSelector = 
+            ContextSelectorStaticBinder.getSingleton().getContextSelector();
+        
+        if (contextSelector == null) {
+            // In servlet containers, Logback may not be fully initialized yet
+            // Fall back to basic logging without custom configuration
+            return;
+        }
+        
+        LoggerContext loggerContext = contextSelector.getLoggerContext();
+        
+        if (loggerContext == null) {
+            // Context not available, skip custom logging setup
+            return;
+        }
 
         loggerContext.stop();
         loggerContext.reset();

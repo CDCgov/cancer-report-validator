@@ -111,24 +111,18 @@
         <beans:property name="vocabServices">
             <beans:array>
                 <beans:ref bean="vocabServiceStaticCrigtt"/>
-                <beans:ref bean="vocabServiceDynamicCrigtt"/>
+                <!-- Temporarily disabled due to OrientDB v2.1.2 incompatibility with Java 21 -->
+                <!-- <beans:ref bean="vocabServiceDynamicCrigtt"/> -->
             </beans:array>
         </beans:property>
     </beans:bean>
     
     <!--====================================================================================================
-    = CACHE MANAGERS
+    = CACHES - Spring Boot 3.x compatible configuration 
     =====================================================================================================-->
-    <!--suppress SpringPlaceholdersInspection -->
-    <beans:bean id="cacheManagerValidateResults" parent="cacheManagerCrigtt">
-    </beans:bean>
-    
-    <!--====================================================================================================
-    = CACHES
-    =====================================================================================================-->
-    <beans:bean id="cacheValidateResults" parent="cacheCrigtt"
-        p:name="validateResults"
-        p:cacheManager-ref="cacheManagerValidateResults">
+    <!-- Cache bean for ValidatorServiceImpl injection - uses the main cache manager -->
+    <beans:bean id="cacheValidateResults" factory-bean="cacheManager" factory-method="getCache"
+        c:name="validateResults">
     </beans:bean>
     
     <!--====================================================================================================

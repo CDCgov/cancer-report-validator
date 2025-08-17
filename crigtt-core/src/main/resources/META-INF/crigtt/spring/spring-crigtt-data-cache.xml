@@ -18,19 +18,32 @@
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
     
     <!--====================================================================================================
-    = CACHE MANAGERS - Simplified configuration to avoid EHCache API compatibility issues
+    = CACHE MANAGERS - Spring Boot 3.x compatible configuration
     =====================================================================================================-->
+    <!-- Use Spring's built-in ConcurrentMapCacheManager for simplicity and compatibility -->
+    <beans:bean id="cacheManager" class="org.springframework.cache.concurrent.ConcurrentMapCacheManager" primary="true">
+        <!-- This creates a simple in-memory cache manager compatible with Spring Boot 3.x -->
+    </beans:bean>
+
+    <!--====================================================================================================
+    = CACHE MANAGERS - Legacy configuration (commented out for Spring Boot 3.x compatibility)
+    =====================================================================================================-->
+    <!-- 
     <beans:bean id="cacheManagerCrigtt" class="gov.hhs.onc.crigtt.data.cache.impl.CrigttCacheManagerFactoryBean" abstract="true"/>
     
     <beans:bean id="cacheManager" class="gov.hhs.onc.crigtt.data.cache.impl.CrigttCacheManagerFactoryBean"
         parent="cacheManagerCrigtt">
-        <!-- No properties needed - the factory bean creates a simple cache manager -->
     </beans:bean>
+    -->
 
     <!--====================================================================================================
-    = CACHES - Simplified configuration for compatibility
+    = CACHES - Spring Boot 3.x compatible configuration
     =====================================================================================================-->
+    <!-- Cache beans are automatically created by ConcurrentMapCacheManager as needed -->
+    <!-- Legacy cache configuration commented out for Spring Boot 3.x compatibility -->
+    <!--
     <beans:bean id="cacheCrigtt" class="gov.hhs.onc.crigtt.data.cache.impl.CrigttCacheFactoryBean" abstract="true">
         <beans:property name="cacheManager" ref="cacheManager"/>
     </beans:bean>
+    -->
 </beans:beans>

@@ -29,7 +29,7 @@ import gov.hhs.onc.crigtt.schematron.Active;
 @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
 public class ActiveImpl implements Active {
     @XmlElementRefs({
-        @XmlElementRef(name = "name", namespace = "http://purl.oclc.org/dsdl/schematron", type = Object.class, required = false)
+        @XmlElementRef(name = "name", namespace = "http://purl.oclc.org/dsdl/schematron", type = NameImpl.class, required = false)
     })
     @XmlMixed
     @XmlAnyElement(lax = true)

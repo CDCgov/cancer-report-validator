@@ -18,7 +18,7 @@
     <description>Cancer Registry IG Test Tool (CRIGTT) web application Maven project.</description>
     
     <properties>
-        <orientdb.version>2.1.2</orientdb.version>
+        <orientdb.version>3.2.43</orientdb.version>
         <!-- Project properties -->
         <project.basedir.all>${project.basedir}/..</project.basedir.all>
         <!-- Project build WADL properties -->
@@ -139,6 +139,15 @@
             <groupId>org.glassfish.web</groupId>
             <artifactId>jakarta.servlet.jsp.jstl</artifactId>
             <version>3.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.servlet.jsp.jstl</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
         </dependency>
         
         <!-- Cache Dependencies -->

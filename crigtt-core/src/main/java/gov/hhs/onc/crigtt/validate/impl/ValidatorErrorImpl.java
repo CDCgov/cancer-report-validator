@@ -18,13 +18,13 @@ public class ValidatorErrorImpl extends AbstractValidatorResponse implements Val
     @XmlAttribute(name = "message", required = true)
     private String message;
 
-    @XmlElement(name = "location", required = true)
+    @XmlElement(name = "location", required = true, type = ValidatorLocationImpl.class)
     private ValidatorLocation location;
 
     @XmlElement(name = "stackTrace")
     private List<String> stackTrace;
 
-    @XmlElement(name = "error")
+    @XmlElement(name = "error", type = ValidatorErrorImpl.class)
     private List<ValidatorError> errors;
 
     @Override

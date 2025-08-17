@@ -33,7 +33,7 @@
     
     <beans:bean id="objMapperBase" class="gov.hhs.onc.crigtt.json.impl.CrigttObjectMapperFactoryBean" parent="objMapper" abstract="true"/>
     
-    <beans:bean id="objMapperCrigtt" parent="objMapperBase"
+    <beans:bean id="objMapperCrigtt" parent="objMapperBase" primary="true"
         p:autoDetectFields="false"
         p:autoDetectGettersSetters="false"
         p:serializationInclusion="NON_EMPTY">

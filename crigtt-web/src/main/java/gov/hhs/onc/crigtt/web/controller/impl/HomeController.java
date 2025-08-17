@@ -33,7 +33,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 
 @Controller("controllerHome")
 public class HomeController implements ApplicationContextAware, InitializingBean {
-    private final static String HOME_VIEW_NAME = "home";
+    private final static String HOME_VIEW_NAME = "index";
 
     @Value("${crigtt.build.timestamp}")
     private long buildTimestamp;
@@ -62,10 +62,13 @@ public class HomeController implements ApplicationContextAware, InitializingBean
 
     @RequestMapping(value = { "/", "/home" }, method = { RequestMethod.GET })
     public ModelAndView displayHome(HttpServletRequest servletReq) throws Exception {
-        return new ModelAndView(HOME_VIEW_NAME, Collections.singletonMap(
+        // Temporarily return a simple string to test if controller works
+        ModelAndView modelAndView = new ModelAndView(HOME_VIEW_NAME, Collections.singletonMap(
             CrigttModelAttributes.FORMATTED_BUILD_TIMESTAMP_NAME,
             CrigttDateUtils.format(CrigttDateUtils.DISPLAY_FORMAT, this.buildTimestamp,
                 ObjectUtils.defaultIfNull(RequestContextUtils.getTimeZone(servletReq), this.defaultTimeZone))));
+        
+        return modelAndView;
     }
 
     @Override

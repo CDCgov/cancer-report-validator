@@ -172,12 +172,14 @@ public class ContextSpecificValidatorTaskImpl extends AbstractValidatorTask impl
 
         if (baseExprLocNodes.isEmpty()) {
             for (ElementSet elementSet : xPathSetContent.getElementSets()) {
-                CrigttTestcaseUtils.addEventInfo(events, elementSet, baseXPathExpression + elementSet.getSubExpressionPrefix(), this.nullFlavors);
+                String subExpressionPrefix = elementSet.getSubExpressionPrefix() != null ? elementSet.getSubExpressionPrefix() : "";
+                CrigttTestcaseUtils.addEventInfo(events, elementSet, baseXPathExpression + subExpressionPrefix, this.nullFlavors);
             }
         } else {
             for (ElementSet elementSet : xPathSetContent.getElementSets()) {
                 Map<SubExpressionSet, Map<String, List<NodeInfo>>> subExpressionSetResults = new LinkedHashMap<>(elementSet.getSubExpressionSets().size());
-                String baseSubExpression = baseXPathExpression + elementSet.getSubExpressionPrefix();
+                String subExpressionPrefix = elementSet.getSubExpressionPrefix() != null ? elementSet.getSubExpressionPrefix() : "";
+                String baseSubExpression = baseXPathExpression + subExpressionPrefix;
 
                 List<XdmNode> exprLocNodes = Arrays.asList(this.xpathCompiler.evaluateNodes(baseSubExpression, this.xpathContext, this.doc));
 
@@ -190,7 +192,8 @@ public class ContextSpecificValidatorTaskImpl extends AbstractValidatorTask impl
 
                     for (SubExpressionSet subExpressionSet : elementSet.getSubExpressionSets()) {
                         Map<String, List<NodeInfo>> nodeInfoResults = new HashMap<>();
-                        String xPathExpression = baseSubExpression + subExpressionSet.getSubExpression();
+                        String subExpression = subExpressionSet.getSubExpression() != null ? subExpressionSet.getSubExpression() : "";
+                        String xPathExpression = baseSubExpression + subExpression;
                         MatchingCondition matchingCondition = subExpressionSet.getMatchingCondition();
                         XdmNode[] evaluatedNodes;
                         if (subExpressionSet.getCustomEvalExpression() != null && subExpressionSet.getCustomEvalExpression().getExpression() != null &&
@@ -236,7 +239,8 @@ public class ContextSpecificValidatorTaskImpl extends AbstractValidatorTask impl
                         }
                     }
 
-                    events.addAll(processResults(subExpressionSetResults, baseSubExpression, elementSet.getOptional(), indexCount));
+                    events.addAll(processResults(subExpressionSetResults, baseSubExpression, 
+                        elementSet.getOptional() != null ? elementSet.getOptional() : false, indexCount));
                 }
             }
         }

@@ -13,7 +13,7 @@ public class CrigttJaxbMarshaller extends Jaxb2Marshaller {
 
     public byte[] marshal(Object src) throws XmlMappingException {
         ByteArrayResult result = new ByteArrayResult();
-        this.marshal(src, null);
+        this.marshal(src, result);
         return result.getBytes();
     }
 }

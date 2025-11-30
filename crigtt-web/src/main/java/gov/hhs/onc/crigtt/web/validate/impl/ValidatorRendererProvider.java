@@ -31,10 +31,13 @@ import org.apache.cxf.jaxrs.model.ClassResourceInfo;
 import org.apache.cxf.jaxrs.provider.AbstractConfigurableProvider;
 import org.apache.cxf.jaxrs.utils.JAXRSUtils;
 import org.apache.cxf.message.Exchange;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Priority(2)
 public class ValidatorRendererProvider extends AbstractConfigurableProvider implements MessageBodyWriter<ValidatorResponse> {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ValidatorRendererProvider.class);
     @Autowired
     private List<ValidatorRenderer> renderers;
 
@@ -44,9 +47,29 @@ public class ValidatorRendererProvider extends AbstractConfigurableProvider impl
     @Override
     public void writeTo(ValidatorResponse resp, Class<?> type, Type genericType, Annotation[] annos, MediaType mediaType,
         MultivaluedMap<String, Object> headers, OutputStream entityStream) throws IOException, WebApplicationException {
+        LOGGER.info("writeTo called - mediaType: {}, renderers: {}, rendererContentTypes: {}", 
+            mediaType, renderers != null ? renderers.size() : "null", 
+            rendererContentTypes != null ? rendererContentTypes.size() : "null");
+        
         Exchange exchange = JAXRSUtils.getCurrentMessage().getExchange();
-        ValidatorRenderer renderer =
-            this.rendererContentTypes.keySet().stream().filter(mediaType::isCompatible).map(this.rendererContentTypes::get).findFirst().get();
+        
+        if (this.rendererContentTypes == null || this.rendererContentTypes.isEmpty()) {
+            LOGGER.error("No renderers configured! renderers list: {}", renderers);
+            throw new WebApplicationException("No renderers configured", Status.INTERNAL_SERVER_ERROR);
+        }
+        
+        LOGGER.debug("Available content types: {}", rendererContentTypes.keySet());
+        
+        ValidatorRenderer renderer = this.rendererContentTypes.keySet().stream()
+            .filter(mediaType::isCompatible)
+            .map(this.rendererContentTypes::get)
+            .findFirst()
+            .orElseThrow(() -> {
+                LOGGER.error("No compatible renderer found for media type: {}", mediaType);
+                return new WebApplicationException("No compatible renderer found for media type: " + mediaType, Status.INTERNAL_SERVER_ERROR);
+            });
+
+        LOGGER.info("Using renderer: {} for media type: {}", renderer.getClass().getSimpleName(), mediaType);
 
         headers.putSingle(ValidatorHeaders.RESP_FILE_NAME_NAME,
             ValidatorUtils.buildResponseFileName(true, exchange.get(ValidatorSubmission.class), renderer.getType()));
@@ -68,15 +91,21 @@ public class ValidatorRendererProvider extends AbstractConfigurableProvider impl
         }
 
         try {
-            entityStream.write(renderer.render(resp, renderOpts));
+            byte[] rendered = renderer.render(resp, renderOpts);
+            LOGGER.info("Successfully rendered response, size: {} bytes", rendered.length);
+            entityStream.write(rendered);
+            LOGGER.info("Successfully wrote response to output stream");
         } catch (Exception e) {
+            LOGGER.error("Error rendering response", e);
             throw new WebApplicationException(e, Status.INTERNAL_SERVER_ERROR);
         }
     }
 
     @Override
     public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annos, MediaType mediaType) {
-        return this.rendererContentTypes.keySet().stream().anyMatch(mediaType::isCompatible);
+        boolean writable = this.rendererContentTypes != null && this.rendererContentTypes.keySet().stream().anyMatch(mediaType::isCompatible);
+        LOGGER.debug("isWriteable called for type: {}, mediaType: {}, result: {}", type.getSimpleName(), mediaType, writable);
+        return writable;
     }
 
     @Override
@@ -86,9 +115,19 @@ public class ValidatorRendererProvider extends AbstractConfigurableProvider impl
 
     @Override
     public void init(List<ClassResourceInfo> classResourceInfos) {
+        LOGGER.info("Initializing ValidatorRendererProvider - renderers: {}", renderers != null ? renderers.size() : "null");
+        
+        if (this.renderers == null || this.renderers.isEmpty()) {
+            LOGGER.error("No renderers configured for ValidatorRendererProvider!");
+            throw new IllegalStateException("No renderers configured for ValidatorRendererProvider");
+        }
+        
         this.setProduceMediaTypes((this.rendererContentTypes =
             CrigttStreamUtils.toMap(renderer -> MediaType.valueOf(renderer.getType().getContentType().toString()), Function.<ValidatorRenderer> identity(),
                 this.renderers.stream())).keySet().stream().map(MediaType::toString).collect(Collectors.toList()));
+        
+        LOGGER.info("ValidatorRendererProvider initialized with {} renderers, content types: {}", 
+            rendererContentTypes.size(), rendererContentTypes.keySet());
     }
 
     public Map<String, String> getDefaultQueryParameters() {
@@ -98,5 +137,13 @@ public class ValidatorRendererProvider extends AbstractConfigurableProvider impl
     public void setDefaultQueryParameters(Map<String, String> defaultQueryParams) {
         this.defaultQueryParams.clear();
         this.defaultQueryParams.putAll(defaultQueryParams);
+    }
+
+    public List<ValidatorRenderer> getRenderers() {
+        return this.renderers;
+    }
+
+    public void setRenderers(List<ValidatorRenderer> renderers) {
+        this.renderers = renderers;
     }
 }

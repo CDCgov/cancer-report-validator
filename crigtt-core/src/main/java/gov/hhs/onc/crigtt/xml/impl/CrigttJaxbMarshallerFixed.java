@@ -58,6 +58,15 @@ public class CrigttJaxbMarshallerFixed extends CrigttJaxbMarshaller {
             gov.hhs.onc.crigtt.schematron.impl.IncludeImpl.class,
             gov.hhs.onc.crigtt.schematron.impl.DiagnosticImpl.class,
             
+            // Schematron SVRL classes - needed for validation output unmarshalling
+            gov.hhs.onc.crigtt.schematron.svrl.impl.OutputImpl.class,
+            gov.hhs.onc.crigtt.schematron.svrl.impl.ActivePatternImpl.class,
+            gov.hhs.onc.crigtt.schematron.svrl.impl.FiredRuleImpl.class,
+            gov.hhs.onc.crigtt.schematron.svrl.impl.FailedAssertionImpl.class,
+            gov.hhs.onc.crigtt.schematron.svrl.impl.SuccessfulReportImpl.class,
+            gov.hhs.onc.crigtt.schematron.svrl.impl.DiagnosticReferenceImpl.class,
+            gov.hhs.onc.crigtt.schematron.svrl.impl.AttributeValueNamespaceImpl.class,
+            
             // Validator classes - needed for validation reporting
             gov.hhs.onc.crigtt.validate.impl.ValidatorSchemaImpl.class,
             gov.hhs.onc.crigtt.validate.impl.ValidatorEventImpl.class,

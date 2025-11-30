@@ -27,11 +27,61 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link type="image/png" rel="icon" href="${urlStaticImages}/crigtt-logo-16x16.png"/>
         <link type="text/css" rel="stylesheet" href="${urlWebjarsLocatorBootstrap}/css/bootstrap.min.css"/>
-        <link type="text/css" rel="stylesheet" href="${urlWebjarsLocatorFontAwesome}/css/font-awesome.min.css"/>
+        <link type="text/css" rel="stylesheet" href="${urlWebjarsLocatorFontAwesome}/css/all.min.css"/>
         <link type="text/css" rel="stylesheet" href="${urlWebjarsLocatorSelect2}/select2.css"/>
         <link type="text/css" rel="stylesheet" href="${urlWebjarsLocatorSelect2}/select2-bootstrap.css"/>
         <link type="text/css" rel="stylesheet" href="${urlWebjarsLocatorTablesorter}/dist/css/theme.bootstrap.min.css"/>
         <link type="text/css" rel="stylesheet" href="${urlStaticStyles}/crigtt.css"/>
+        <style>
+            /* Custom Tab Styles */
+            .custom-tabs {
+                list-style: none;
+                padding: 0;
+                margin: 0 0 20px 0;
+                border-bottom: 2px solid #ddd;
+                display: flex;
+            }
+            .custom-tabs li {
+                margin: 0;
+                margin-bottom: -2px;
+            }
+            .custom-tabs li a {
+                display: block;
+                padding: 12px 24px;
+                text-decoration: none;
+                color: #555;
+                background: #f5f5f5;
+                border: 2px solid transparent;
+                border-bottom: none;
+                margin-right: 4px;
+                border-radius: 4px 4px 0 0;
+                transition: all 0.3s ease;
+                cursor: pointer;
+            }
+            .custom-tabs li a:hover {
+                background: #e9e9e9;
+                color: #333;
+            }
+            .custom-tabs li.active a {
+                background: #fff;
+                color: #333;
+                border-color: #ddd;
+                border-bottom-color: #fff;
+                font-weight: bold;
+            }
+            .custom-tabs li a i {
+                margin-right: 8px;
+            }
+            .tab-content-custom {
+                padding: 20px 0;
+            }
+            .tab-pane-custom {
+                display: none;
+            }
+            .tab-pane-custom.active {
+                display: block;
+            }
+        </style>
         <script type="text/javascript" src="${urlWebjarsLocatorJquery}/jquery.min.js"></script>
         <script type="text/javascript" src="${urlWebjarsLocatorBootstrap}/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="${urlWebjarsLocatorFileSaver}/FileSaver.min.js"></script>
@@ -51,6 +101,23 @@
         <script type="text/javascript" src="${urlStaticScripts}/crigtt.js"></script>
         <script type="text/javascript" src="${urlStaticScripts}/crigtt-ui.js"></script>
         <script type="text/javascript" src="${urlStaticScripts}/crigtt-validate.js"></script>
+        <script type="text/javascript">
+        // Custom tab functionality
+        $(document).ready(function() {
+            $('.custom-tabs a').on('click', function(e) {
+                e.preventDefault();
+                var targetTab = $(this).attr('href');
+                
+                // Remove active class from all tabs and panes
+                $('.custom-tabs li').removeClass('active');
+                $('.tab-pane-custom').removeClass('active');
+                
+                // Add active class to clicked tab and corresponding pane
+                $(this).parent().addClass('active');
+                $(targetTab).addClass('active');
+            });
+        });
+        </script>
         <title><spring:message code="crigtt.msg.title.home"/></title>
     </head>
     <body>
@@ -63,20 +130,6 @@
                         <strong><spring:message code="crigtt.msg.header.home"/></strong>
                     </a>
                 </div>
-                <ul class="nav navbar-nav nav-tabs" role="tablist">
-                    <li class="active" role="presentation">
-                        <a href="#content-tab-home" aria-controls="content-tab-home" role="tab" data-toggle="tab">
-                            <i class="fa fa-home"></i>
-                            <strong>Home</strong>
-                        </a>
-                    </li>
-                    <li role="presentation">
-                        <a href="#content-tab-validator" aria-controls="content-tab-validator" role="tab" data-toggle="tab">
-                            <i class="fa fa-check"></i>
-                            <strong>Validator</strong>
-                        </a>
-                    </li>
-                </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a class="link" data-toggle="dropdown">
@@ -96,9 +149,25 @@
                 </ul>
             </div>
         </nav>
+        <div class="container-fluid" style="margin-top: 60px;">
+            <ul class="custom-tabs">
+                <li class="active">
+                    <a href="#content-tab-home">
+                        <i class="fa fa-home"></i>
+                        <strong>Home</strong>
+                    </a>
+                </li>
+                <li>
+                    <a href="#content-tab-validator">
+                        <i class="fa fa-check"></i>
+                        <strong>Validator</strong>
+                    </a>
+                </li>
+            </ul>
+        </div>
         <div id="content" class="container-fluid">
-            <div id="content-tabs" class="tab-content">
-                <div id="content-tab-home" class="active tab-pane" role="tabpanel">
+            <div id="content-tabs" class="tab-content-custom">
+                <div id="content-tab-home" class="active tab-pane-custom">
                     <h1>
                         <i class="fa fa-fw fa-info-circle"></i>
                         <strong>Introduction</strong>
@@ -145,7 +214,7 @@
 						Questions may be directed to the Cancer Registry Testing Tool Google Group <a href="http://groups.google.com/group/cancer-reg-testing-tool" target="_blank">here</a>
                     </p>
                 </div>
-                <div id="content-tab-validator" class="tab-pane" role="tabpanel">
+                <div id="content-tab-validator" class="tab-pane-custom" role="tabpanel">
                     <h1>
                         <i class="fa fa-fw fa-paper-plane"></i>
                         <strong>Submit</strong>

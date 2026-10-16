@@ -1,6 +1,6 @@
 package gov.hhs.onc.crigtt.io.impl;
 
-import jakarta.annotation.Nullable;
+import javax.annotation.Nullable;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.core.io.ByteArrayResource;
 

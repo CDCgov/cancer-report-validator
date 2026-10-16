@@ -31,20 +31,17 @@
                 <beans:entry key="#{ T(com.orientechnologies.orient.core.config.OGlobalConfiguration).LOG_CONSOLE_LEVEL }"
                     value="#{ T(java.util.logging.Level).ALL.name }"/>
                 -->
-                <!-- Keeping essential network configuration for OrientDB 3.x compatibility -->
                 <beans:entry key="#{ T(com.orientechnologies.orient.core.config.OGlobalConfiguration).NETWORK_MAX_CONCURRENT_SESSIONS }" value="10000"
                     value-type="java.lang.Integer"/>
-                <!-- Commenting out potentially deprecated properties for OrientDB 3.x compatibility -->
-                <!--
                 <beans:entry key="#{ T(com.orientechnologies.orient.core.config.OGlobalConfiguration).TX_USE_LOG }" value="false"
                     value-type="java.lang.Boolean"/>
                 <beans:entry key="#{ T(com.orientechnologies.orient.core.config.OGlobalConfiguration).USE_WAL }" value="false" value-type="java.lang.Boolean"/>
-                -->
             </beans:map>
         </beans:property>
         <beans:property name="properties">
             <beans:map>
                 <!--suppress SpringPlaceholdersInspection -->
+                <!-- OrientDB 3.x: Set base database directory for on-demand database creation -->
                 <beans:entry key="server.database.path" value="${crigtt.data.db.dir}"/>
             </beans:map>
         </beans:property>
@@ -81,17 +78,51 @@
     
     <beans:bean id="vocabServiceDynamicImpl" class="gov.hhs.onc.crigtt.validate.vocab.impl.DynamicVocabServiceImpl" parent="vocabServiceDynamic"
         abstract="true"/>
+
+    <beans:bean id="codeLoaderIcd10Cm" class="org.sitenv.vocabularies.loader.code.icd10.Icd10CmLoader"/>
+    <beans:bean id="codeLoaderIcd10Pcs" class="org.sitenv.vocabularies.loader.code.icd10.Icd10PcsLoader"/>
+    <beans:bean id="codeLoaderIcd9CmDx" class="org.sitenv.vocabularies.loader.code.icd9.Icd9CmDxLoader"/>
+    <beans:bean id="codeLoaderLoinc" class="org.sitenv.vocabularies.loader.code.loinc.LoincLoader"/>
+    <beans:bean id="codeLoaderRxNorm" class="org.sitenv.vocabularies.loader.code.rxnorm.RxNormLoader"/>
+    <beans:bean id="codeLoaderSnomed" class="org.sitenv.vocabularies.loader.code.snomed.SnomedLoader"/>
+
+    <beans:bean id="valueSetLoaderPhinVads" class="org.sitenv.vocabularies.loader.valueset.phvs.PhinVadsLoader"/>
+    <beans:bean id="valueSetLoaderVsac" class="org.sitenv.vocabularies.loader.valueset.vsac.VsacLoader"/>
     
     <beans:bean id="vocabServiceDynamicCrigtt" parent="vocabServiceDynamicImpl"
         p:assertionSource="classpath*:META-INF/crigtt/data/validate/vocab/crigtt-validate-vocab-assertions-dynamic.xml">
         <beans:property name="codeLoaders">
             <beans:map>
+                <beans:entry key="ICD10CM" value-ref="codeLoaderIcd10Cm"/>
+                <beans:entry key="ICD10PCS" value-ref="codeLoaderIcd10Pcs"/>
+                <beans:entry key="ICD9CM_DX" value-ref="codeLoaderIcd9CmDx"/>
+                <beans:entry key="LOINC" value-ref="codeLoaderLoinc"/>
+                <beans:entry key="RXNORM" value-ref="codeLoaderRxNorm"/>
+                <beans:entry key="SNOMED-CT" value-ref="codeLoaderSnomed"/>
                 <beans:entry key="#{ T(gov.hhs.onc.crigtt.validate.vocab.model.impl.IcdO3Model).TYPE }" value-ref="codeLoaderIcdO3"/>
             </beans:map>
         </beans:property>
         <beans:property name="codeModelDefinitions">
             <beans:set>
+                <beans:value>#{ new org.sitenv.vocabularies.model.CodeModelDefinition(T(org.sitenv.vocabularies.model.impl.Icd10CmModel), 'ICD10CM', '2.16.840.1.113883.6.90', 'ICD-10-CM') }</beans:value>
+                <beans:value>#{ new org.sitenv.vocabularies.model.CodeModelDefinition(T(org.sitenv.vocabularies.model.impl.Icd10PcsModel), 'ICD10PCS', '2.16.840.1.113883.6.4', 'ICD-10-PCS') }</beans:value>
+                <beans:value>#{ new org.sitenv.vocabularies.model.CodeModelDefinition(T(org.sitenv.vocabularies.model.impl.Icd9CmDxModel), 'ICD9CM_DX', '2.16.840.1.113883.6.103', 'ICD-9-CM') }</beans:value>
+                <beans:value>#{ new org.sitenv.vocabularies.model.CodeModelDefinition(T(org.sitenv.vocabularies.model.impl.LoincModel), 'LOINC', '2.16.840.1.113883.6.1', 'LOINC') }</beans:value>
+                <beans:value>#{ new org.sitenv.vocabularies.model.CodeModelDefinition(T(org.sitenv.vocabularies.model.impl.RxNormModel), 'RXNORM', '2.16.840.1.113883.6.88', 'RxNorm') }</beans:value>
+                <beans:value>#{ new org.sitenv.vocabularies.model.CodeModelDefinition(T(org.sitenv.vocabularies.model.impl.SnomedModel), 'SNOMED-CT', '2.16.840.1.113883.6.96', 'SNOMED CT') }</beans:value>
                 <beans:value>#{ T(gov.hhs.onc.crigtt.validate.vocab.model.impl.IcdO3Model).DEF }</beans:value>
+            </beans:set>
+        </beans:property>
+        <beans:property name="valueSetCodeLoaders">
+            <beans:map>
+                <beans:entry key="PHVS" value-ref="valueSetLoaderPhinVads"/>
+                <beans:entry key="VSAC" value-ref="valueSetLoaderVsac"/>
+            </beans:map>
+        </beans:property>
+        <beans:property name="valueSetModelDefinitions">
+            <beans:set>
+                <beans:value>#{ new org.sitenv.vocabularies.model.ValueSetModelDefinition(T(org.sitenv.vocabularies.model.impl.PhinVadsModel), 'PHVS') }</beans:value>
+                <beans:value>#{ new org.sitenv.vocabularies.model.ValueSetModelDefinition(T(org.sitenv.vocabularies.model.impl.VsacModel), 'VSAC') }</beans:value>
             </beans:set>
         </beans:property>
     </beans:bean>

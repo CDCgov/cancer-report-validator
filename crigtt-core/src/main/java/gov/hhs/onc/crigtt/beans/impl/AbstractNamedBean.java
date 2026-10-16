@@ -1,7 +1,7 @@
 package gov.hhs.onc.crigtt.beans.impl;
 
 import gov.hhs.onc.crigtt.beans.NamedBean;
-import jakarta.annotation.Nullable;
+import javax.annotation.Nullable;
 
 public abstract class AbstractNamedBean extends AbstractIdentifiedBean implements NamedBean {
     protected String name;

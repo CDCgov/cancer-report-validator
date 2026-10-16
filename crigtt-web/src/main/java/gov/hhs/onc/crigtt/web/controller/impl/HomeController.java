@@ -15,8 +15,8 @@ import gov.hhs.onc.crigtt.xml.impl.CrigttJaxbMarshaller;
 import java.util.Collections;
 import java.util.List;
 import java.util.TimeZone;
-import jakarta.annotation.Resource;
-import jakarta.servlet.http.HttpServletRequest;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
@@ -33,7 +33,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 
 @Controller("controllerHome")
 public class HomeController implements ApplicationContextAware, InitializingBean {
-    private final static String HOME_VIEW_NAME = "index";
+    private final static String HOME_VIEW_NAME = "home";
 
     @Value("${crigtt.build.timestamp}")
     private long buildTimestamp;
@@ -62,13 +62,10 @@ public class HomeController implements ApplicationContextAware, InitializingBean
 
     @RequestMapping(value = { "/", "/home" }, method = { RequestMethod.GET })
     public ModelAndView displayHome(HttpServletRequest servletReq) throws Exception {
-        // Temporarily return a simple string to test if controller works
-        ModelAndView modelAndView = new ModelAndView(HOME_VIEW_NAME, Collections.singletonMap(
+        return new ModelAndView(HOME_VIEW_NAME, Collections.singletonMap(
             CrigttModelAttributes.FORMATTED_BUILD_TIMESTAMP_NAME,
             CrigttDateUtils.format(CrigttDateUtils.DISPLAY_FORMAT, this.buildTimestamp,
                 ObjectUtils.defaultIfNull(RequestContextUtils.getTimeZone(servletReq), this.defaultTimeZone))));
-        
-        return modelAndView;
     }
 
     @Override

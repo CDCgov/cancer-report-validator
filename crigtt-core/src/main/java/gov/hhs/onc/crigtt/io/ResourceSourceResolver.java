@@ -2,7 +2,7 @@ package gov.hhs.onc.crigtt.io;
 
 import gov.hhs.onc.crigtt.io.impl.ResourceSource;
 import java.io.IOException;
-import jakarta.annotation.Nullable;
+import javax.annotation.Nullable;
 import org.springframework.context.ResourceLoaderAware;
 
 public interface ResourceSourceResolver extends ResourceLoaderAware {

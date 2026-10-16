@@ -24,13 +24,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
 import java.util.TreeSet;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
-import jakarta.xml.bind.JAXBElement;
+import javax.xml.bind.JAXBElement;
 import javax.xml.transform.Source;
 import net.sf.saxon.Configuration;
 import net.sf.saxon.expr.XPathContext;
@@ -67,18 +66,8 @@ public final class CrigttTestcaseUtils {
 
     public static List<Testcase> buildTestcases(List<Source> sources, CrigttJaxbMarshaller jaxbMarshaller) {
         return (List)sources.stream().map((source) -> {
-            try {
-                Object result = jaxbMarshaller.unmarshal(source, JAXBElement.class);
-                if (result == null) {
-                    System.out.println("WARNING: Null result from JAXB unmarshalling, skipping testcase");
-                    return null;
-                }
-                return (Testcase)((JAXBElement)result).getValue();
-            } catch (Exception e) {
-                System.out.println("WARNING: Failed to unmarshal testcase: " + e.getMessage());
-                return null;
-            }
-        }).filter(Objects::nonNull).collect(Collectors.toList());
+            return (Testcase)((JAXBElement)jaxbMarshaller.unmarshal(source, JAXBElement.class)).getValue();
+        }).collect(Collectors.toList());
     }
 
     public static ValidatorEvent setEventDetails(ValidatorLocation loc) {

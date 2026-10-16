@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import jakarta.annotation.Nullable;
+import javax.annotation.Nullable;
 import javax.xml.transform.Source;
 import org.springframework.core.convert.ConversionFailedException;
 import org.springframework.core.convert.TypeDescriptor;
@@ -17,7 +17,7 @@ public class ResourceSourceConverter implements ConditionalGenericConverter {
     private final static Set<ConvertiblePair> CONV_TYPES = Stream.of(new ConvertiblePair(String.class, Source.class),
         new ConvertiblePair(String.class, ResourceSource.class)).collect(Collectors.toSet());
 
-    @jakarta.annotation.Resource(name = "resourceSrcResolverImpl")
+    @javax.annotation.Resource(name = "resourceSrcResolverImpl")
     private ResourceSourceResolver resourceSrcResolver;
 
     @Nullable

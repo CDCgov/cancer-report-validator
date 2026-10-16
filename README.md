@@ -21,16 +21,22 @@ physicians and it is not intended to be used for hospital or laboratory reportin
 
 This initiative has been sponsored by the CDC and is being managed by the [Office of the National Coordinator for Healthcare IT](http://www.healthit.gov/).
 
-## Change Logs
+# Test Data
 
-PLEASE NOTE THAT YOU REQUIRE JAVA 21 TO BUILD THIS VERSION. DO NOT INSTALL IF YOU HAVE JAVA VERSION LESS THAN 21
-This version contains major libraries and SDK updates to the CRV project including Spring Boot 3.x and Jakarta EE support, plus CDA validation and V1 feature parity updates including NPI number validation and CPT validation
+Test cases have been developed in conjunction with the validator. The test data can be obtained [here](https://oncprojectracking.healthit.gov/wiki/display/CRIGTT/Test+Data+Documentation).
 
+# Documentation
+
+Links for the project documentation can be found [here](https://github.com/CDCgov/Cancer-Report-Validator). The Juror Document can be found [here](https://oncprojectracking.healthit.gov/wiki/display/CRIGTT/CRV+Juror+Document). Questions may be directed to the Cancer Registry Testing Tool Google Group [here](http://groups.google.com/group/cancer-reg-testing-tool)
 
 # Resources
-The complete documentation of the project including necessary resources, build and deployment instructions are available in the link below.
-[Project guide and documentation](https://oncprojectracking.healthit.gov/wiki/display/CRIGTT/Cancer+Report+Validator+Documentation)
 
-## Discussion Group
+## Links
+
+* [JIRA Project](http://jira.oncprojectracking.org/browse/CRIGTT)
+* [Crucible Project](https://crucible.oncprojectracking.org/cru/browse/CRIGTT)
+* [Confluence Space](http://confluence.siframework.org/display/CRIGTT)
+
+## Groups
 
 * [Discussion](http://groups.google.com/group/cancer-reg-testing-tool)

@@ -1,3 +1,4 @@
+
 package gov.hhs.onc.crigtt.schematron.impl;
 
 import java.io.Serializable;
@@ -5,19 +6,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import jakarta.annotation.Generated;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlAnyAttribute;
-import jakarta.xml.bind.annotation.XmlAnyElement;
-import jakarta.xml.bind.annotation.XmlAttribute;
-import jakarta.xml.bind.annotation.XmlElementRef;
-import jakarta.xml.bind.annotation.XmlElementRefs;
-import jakarta.xml.bind.annotation.XmlIDREF;
-import jakarta.xml.bind.annotation.XmlMixed;
-import jakarta.xml.bind.annotation.XmlRootElement;
-import jakarta.xml.bind.annotation.XmlSchemaType;
-import jakarta.xml.bind.annotation.XmlType;
+import javax.annotation.Generated;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAnyAttribute;
+import javax.xml.bind.annotation.XmlAnyElement;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlElementRefs;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlMixed;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlType;
 import javax.xml.namespace.QName;
 import gov.hhs.onc.crigtt.schematron.Active;
 
@@ -27,21 +28,27 @@ import gov.hhs.onc.crigtt.schematron.Active;
 })
 @XmlRootElement(name = "active")
 @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
-public class ActiveImpl implements Active {
+public class ActiveImpl implements Active
+{
+
     @XmlElementRefs({
-        @XmlElementRef(name = "name", namespace = "http://purl.oclc.org/dsdl/schematron", type = NameImpl.class, required = false)
+        @XmlElementRef(name = "emph", namespace = "http://purl.oclc.org/dsdl/schematron", type = EmphasisImpl.class, required = false),
+        @XmlElementRef(name = "dir", namespace = "http://purl.oclc.org/dsdl/schematron", type = DirectionImpl.class, required = false),
+        @XmlElementRef(name = "span", namespace = "http://purl.oclc.org/dsdl/schematron", type = SpanImpl.class, required = false)
     })
     @XmlMixed
-    @XmlAnyElement(lax = true)
+    @XmlAnyElement
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     protected List<Serializable> content;
-
-    @XmlAttribute(name = "pattern")
+    @XmlAttribute(name = "pattern", required = true)
     @XmlIDREF
     @XmlSchemaType(name = "IDREF")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     protected Object pattern;
-
     @XmlAnyAttribute
-    private Map<QName, String> otherAttributes = new HashMap<>();
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
+    private Map<QName, String> otherAttributes = new HashMap<QName, String>();
+    private final static long serialVersionUID = 0L;
 
     /**
      * Default no-arg constructor
@@ -64,7 +71,7 @@ public class ActiveImpl implements Active {
     @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     public List<Serializable> getContent() {
         if (content == null) {
-            content = new ArrayList<>();
+            content = new ArrayList<Serializable>();
         }
         return this.content;
     }
@@ -90,6 +97,25 @@ public class ActiveImpl implements Active {
     }
 
     @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
+    public boolean isSetPattern() {
+        return (this.pattern!= null);
+    }
+
+    /**
+     * Gets a map that contains attributes that aren't bound to any typed property on this class.
+     * 
+     * <p>
+     * the map is keyed by the name of the attribute and 
+     * the value is the string value of the attribute.
+     * 
+     * the map returned by this method is live, and you can add new attribute
+     * by updating the map directly. Because of this design, there's no setter.
+     * 
+     * 
+     * @return
+     *     always non-null
+     */
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     public Map<QName, String> getOtherAttributes() {
         return otherAttributes;
     }
@@ -98,8 +124,4 @@ public class ActiveImpl implements Active {
         this.content = value;
     }
 
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
-    public boolean isSetPattern() {
-        return this.pattern != null;
-    }
 }

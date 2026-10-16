@@ -3,7 +3,7 @@ package gov.hhs.onc.crigtt.utils;
 import com.github.sebhoss.warnings.CompilerWarnings;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
-import jakarta.annotation.Nullable;
+import javax.annotation.Nullable;
 
 public final class CrigttFunctionUtils {
     private CrigttFunctionUtils() {

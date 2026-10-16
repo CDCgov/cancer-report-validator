@@ -1,35 +1,34 @@
 package gov.hhs.onc.crigtt.data.cache.impl;
 
-import org.ehcache.CacheManager;
-import org.ehcache.config.builders.CacheManagerBuilder;
+import java.util.Optional;
+import net.sf.ehcache.CacheManager;
+import net.sf.ehcache.config.Configuration;
+import net.sf.ehcache.config.SizeOfPolicyConfiguration;
 import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.FactoryBean;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
 
-public class CrigttCacheManagerFactoryBean implements FactoryBean<CacheManager>, DisposableBean {
-    private CacheManager cacheManager;
-
-    @Override
-    public CacheManager getObject() throws Exception {
-        if (this.cacheManager == null) {
-            this.cacheManager = CacheManagerBuilder.newCacheManagerBuilder().build(true);
-        }
-        return this.cacheManager;
-    }
-
-    @Override
-    public Class<?> getObjectType() {
-        return CacheManager.class;
-    }
-
-    @Override
-    public boolean isSingleton() {
-        return true;
+public class CrigttCacheManagerFactoryBean extends AbstractCrigttCacheComponentFactoryBean<EhCacheCacheManager, Configuration> implements DisposableBean {
+    public CrigttCacheManagerFactoryBean() {
+        super(EhCacheCacheManager.class);
     }
 
     @Override
     public void destroy() throws Exception {
-        if (this.cacheManager != null) {
-            this.cacheManager.close();
+        this.manager.getCacheManager().shutdown();
+    }
+
+    @Override
+    public EhCacheCacheManager getObject() throws Exception {
+        if (this.config.getName() == null) {
+            this.config.setName(this.beanName);
         }
+
+        this.config.addSizeOfPolicy(new SizeOfPolicyConfiguration().maxDepth(Integer.MAX_VALUE));
+
+        Optional.ofNullable(this.maxBytesLocalDisk).ifPresent(this.config::setMaxBytesLocalDisk);
+        Optional.ofNullable(this.maxBytesLocalHeap).ifPresent(this.config::setMaxBytesLocalHeap);
+        Optional.ofNullable(this.maxBytesLocalOffHeap).ifPresent(this.config::setMaxBytesLocalOffHeap);
+
+        return (this.manager = new EhCacheCacheManager(new CacheManager(this.config)));
     }
 }

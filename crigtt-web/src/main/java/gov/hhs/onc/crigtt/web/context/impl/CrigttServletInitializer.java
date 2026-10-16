@@ -1,48 +1,36 @@
 package gov.hhs.onc.crigtt.web.context.impl;
 
 import gov.hhs.onc.crigtt.context.CrigttProperties;
-import gov.hhs.onc.crigtt.web.CrigttWebApplication;
-import jakarta.servlet.ServletException;
+import gov.hhs.onc.crigtt.context.impl.CrigttApplication;
+import gov.hhs.onc.crigtt.context.impl.CrigttApplicationConfiguration;
 import java.io.File;
-import jakarta.servlet.ServletContext;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-import org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext;
+import java.util.Optional;
+import javax.servlet.ServletContext;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.context.web.ServletContextApplicationContextInitializer;
+import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.web.context.ConfigurableWebApplicationContext;
 
 public class CrigttServletInitializer extends SpringBootServletInitializer {
     private final static String WEBAPP_HOME_RESOLVE_PATH = "/";
     private final static String WEBAPP_HOME_CONTEXT_PATH = "/WEB-INF";
 
     @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        // Set the home directory
-        final File homeDir;
-        String homeDirPath = System.getProperty(CrigttProperties.APP_HOME_NAME);
-        
-        if (homeDirPath != null) {
-            homeDir = new File(homeDirPath);
-        } else {
-            homeDir = null;
-        }
+    protected ConfigurableWebApplicationContext createRootApplicationContext(ServletContext servletContext) {
+        CrigttApplication app = CrigttApplicationConfiguration.buildApplication();
+        app.setApplicationContextClass(CrigttWebApplicationContext.class);
+        app.setWebEnvironment(true);
 
-        return builder
-            .sources(CrigttWebApplication.class)
-            .profiles("crigtt.profile.app.context.web")
-            .initializers(applicationContext -> {
-                if (applicationContext instanceof ServletWebServerApplicationContext && homeDir != null) {
-                    System.setProperty(CrigttProperties.APP_HOME_NAME, homeDir.getAbsolutePath());
-                }
-            });
+        app.addInitializers(new ServletContextApplicationContextInitializer(servletContext));
+
+        app.setHome(new File(Optional.ofNullable(System.getProperty(CrigttProperties.APP_HOME_NAME)).orElseGet(
+            () -> (servletContext.getRealPath(WEBAPP_HOME_RESOLVE_PATH) + WEBAPP_HOME_CONTEXT_PATH))));
+
+        return this.run(app);
     }
 
     @Override
-    public void onStartup(ServletContext servletContext) throws ServletException {
-        // Set home directory if not already set
-        if (System.getProperty(CrigttProperties.APP_HOME_NAME) == null) {
-            File homeDir = new File(servletContext.getRealPath(WEBAPP_HOME_RESOLVE_PATH) + WEBAPP_HOME_CONTEXT_PATH);
-            System.setProperty(CrigttProperties.APP_HOME_NAME, homeDir.getAbsolutePath());
-        }
-        
-        super.onStartup(servletContext);
+    protected CrigttWebApplicationContext run(SpringApplication app) {
+        return ((CrigttWebApplicationContext) super.run(app));
     }
 }

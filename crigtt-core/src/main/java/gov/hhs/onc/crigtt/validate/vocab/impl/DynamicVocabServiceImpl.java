@@ -1,11 +1,16 @@
 package gov.hhs.onc.crigtt.validate.vocab.impl;
 
 import com.github.sebhoss.warnings.CompilerWarnings;
+import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.db.ODatabaseType;
+import com.orientechnologies.orient.core.db.OrientDB;
 import com.orientechnologies.orient.core.db.OrientDBConfig;
-import com.orientechnologies.orient.object.db.OrientDBObject;
-import com.orientechnologies.orient.core.db.object.ODatabaseObject;
+import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
+import com.orientechnologies.orient.server.OServer;
+import com.orientechnologies.orient.server.config.OServerStorageConfiguration;
+import gov.hhs.onc.crigtt.data.db.CrigttDbPaths;
 import gov.hhs.onc.crigtt.data.db.impl.CrigttDbServerConfiguration;
+import gov.hhs.onc.crigtt.data.db.utils.CrigttSqlUtils;
 import gov.hhs.onc.crigtt.utils.CrigttStreamUtils;
 import gov.hhs.onc.crigtt.validate.SchematronVars;
 import gov.hhs.onc.crigtt.validate.vocab.Code;
@@ -14,6 +19,10 @@ import gov.hhs.onc.crigtt.validate.vocab.VocabAssertion;
 import gov.hhs.onc.crigtt.validate.vocab.VocabFields;
 import gov.hhs.onc.crigtt.xml.utils.CrigttXpathUtils;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -36,6 +45,7 @@ import org.sitenv.vocabularies.model.ValueSetCodeModel;
 import org.sitenv.vocabularies.model.ValueSetModelDefinition;
 import org.sitenv.vocabularies.model.VocabularyModelDefinition;
 import org.sitenv.vocabularies.repository.VocabularyRepository;
+import org.sitenv.vocabularies.repository.VocabularyRepositoryConnectionInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -59,14 +69,14 @@ public class DynamicVocabServiceImpl extends AbstractVocabService implements Dyn
     @Value("${crigtt.validate.vocab.dynamic.repo.value.set.dir}")
     private File valueSetRepoDir;
 
-    @jakarta.annotation.Resource(name = "dbServerConfigValidateVocabDynamic")
+    @javax.annotation.Resource(name = "dbServerConfigValidateVocabDynamic")
     private CrigttDbServerConfiguration dbServerConfig;
 
     private Map<String, VocabularyLoader<?>> codeLoaders = new LinkedHashMap<>();
     private Set<CodeModelDefinition<?>> codeModelDefs = new LinkedHashSet<>();
     private Map<String, VocabularyLoader<? extends ValueSetCodeModel>> valueSetCodeLoaders = new LinkedHashMap<>();
     private Set<ValueSetModelDefinition<?>> valueSetModelDefs = new LinkedHashSet<>();
-    private OrientDBObject orientDBObject;
+    private OServer dbServer;
     private VocabularyRepository vocabRepo;
 
     @Override
@@ -149,36 +159,56 @@ public class DynamicVocabServiceImpl extends AbstractVocabService implements Dyn
 
     @Override
     public void destroy() throws Exception {
-        Optional.ofNullable(this.orientDBObject).ifPresent(OrientDBObject::close);
+        Optional.ofNullable(this.dbServer).ifPresent(OServer::shutdown);
     }
 
     @Override
+    @SuppressWarnings({ CompilerWarnings.RAWTYPES, CompilerWarnings.UNCHECKED })
     public void afterPropertiesSet() throws Exception {
         boolean dbPrimaryStorageExists = (this.dbPrimaryStorageDir.isDirectory() && (this.dbPrimaryStorageDir.list().length > 0));
 
-        // Initialize OrientDB using the new 3.x API
-        String dbUrl = "embedded:" + this.dbPrimaryStorageDir.getParent();
-        String dbName = this.dbPrimaryStorageDir.getName();
-        
-        this.orientDBObject = new OrientDBObject(dbUrl, OrientDBConfig.defaultConfig());
-        
-        // Create database if it doesn't exist
-        if (!this.orientDBObject.exists(dbName)) {
-            this.orientDBObject.create(dbName, ODatabaseType.PLOCAL);
+        LOGGER.info(String.format("Initializing OrientDB server: dbPrimaryStorageDir=%s, exists=%s, storages.length=%d", 
+            this.dbPrimaryStorageDir.getPath(), dbPrimaryStorageExists, this.dbServerConfig.storages.length));
+
+        (this.dbServer = new OServer()).startup(this.dbServerConfig);
+        this.dbServer.activate();
+
+        LOGGER.info("OrientDB server started successfully");
+
+        // Create databases if they don't exist using OrientDB 3.x API
+        for (OServerStorageConfiguration storage : this.dbServerConfig.storages) {
+            String storagePath = storage.path;
+            if (storagePath.startsWith("plocal:")) {
+                String dbDirPath = storagePath.substring("plocal:".length());
+                File dbDir = new File(dbDirPath);
+                String dbName = storage.name;
+                
+                if (!dbDir.exists()) {
+                    try {
+                        // Use OrientDB 3.x API to create database
+                        String baseDir = dbDir.getParent();
+                        OrientDB orient = new OrientDB("embedded:" + baseDir, OrientDBConfig.defaultConfig());
+                        if (!orient.exists(dbName)) {
+                            orient.create(dbName, ODatabaseType.PLOCAL);
+                            LOGGER.info(String.format("Created OrientDB database '%s' at %s", dbName, dbDirPath));
+                        }
+                        orient.close();
+                    } catch (Exception e) {
+                        LOGGER.error(String.format("Failed to create database '%s': %s", dbName, e.getMessage()), e);
+                        // Fall back to directory creation
+                        LOGGER.info(String.format("Creating database directory for storage '%s': %s", storage.name, dbDirPath));
+                        dbDir.mkdirs();
+                        LOGGER.info(String.format("Database directory created: %s", dbDirPath));
+                    }
+                } else {
+                    LOGGER.info(String.format("Database directory already exists for storage '%s': %s", storage.name, dbDirPath));
+                }
+            }
         }
 
-        // Initialize vocabulary repository - we may need to adapt this for OrientDB 3.x compatibility
-        this.vocabRepo = VocabularyRepository.getInstance();
-        
-        // Set up the vocabulary repository configuration
-        // Note: This may need further adaptation based on VocabularyRepository's OrientDB 3.x compatibility
-        try {
-            // Check if the repository has new initialization methods for OrientDB 3.x
-            // For now, we'll use the existing initialization and let it handle the connection
-            LOGGER.info("Initializing VocabularyRepository with OrientDB 3.x. Some compatibility issues may arise.");
-        } catch (Exception e) {
-            LOGGER.warn("VocabularyRepository may not be fully compatible with OrientDB 3.x", e);
-        }
+        (this.vocabRepo = VocabularyRepository.getInstance()).setOrientDbServer(this.dbServer);
+        this.vocabRepo.setPrimaryNodeCredentials(this.buildRepositoryConnectionInfo(this.dbServerConfig.storages[0]));
+        this.vocabRepo.setSecondaryNodeCredentials(this.buildRepositoryConnectionInfo(this.dbServerConfig.storages[1]));
 
         // noinspection RedundantCast
         this.vocabRepo.getCodeModelDefinitions().putAll(
@@ -191,13 +221,16 @@ public class DynamicVocabServiceImpl extends AbstractVocabService implements Dyn
                 this.valueSetModelDefs.stream())));
 
         this.vocabRepo.getCodeLoaders().putAll(this.codeLoaders);
+
         this.vocabRepo.getValueSetCodeLoaders().putAll(this.valueSetCodeLoaders);
 
-        // OrientDB 3.x compatibility: Skip connection pool initialization as it's not compatible
-        // VocabularyRepository's initializeDbConnectionPools() method is designed for OrientDB 2.x
-        // and is not compatible with OrientDB 3.x connection handling
-        LOGGER.info("Skipping VocabularyRepository.initializeDbConnectionPools() for OrientDB 3.x compatibility.");
-        LOGGER.info("Dynamic vocabulary queries will use direct OrientDB 3.x connections instead of connection pools.");
+        if (this.forceLoad) {
+            this.recreateStorageDatabase(this.dbServerConfig.storages[0]);
+        }
+
+        LOGGER.info("Initializing database connection pools...");
+        this.vocabRepo.initializeDbConnectionPools();
+        LOGGER.info("Database connection pools initialized successfully");
 
         if (!dbPrimaryStorageExists || this.forceLoad) {
             String codeRepoDirPath = this.codeRepoDir.getPath(), valueSetRepoPath = this.valueSetRepoDir.getPath();
@@ -207,6 +240,7 @@ public class DynamicVocabServiceImpl extends AbstractVocabService implements Dyn
                 this.forceLoad, codeRepoDirPath, valueSetRepoPath, this.dbPrimaryStorageDir.getPath()));
 
             this.vocabRepo.toggleActiveDatabase();
+
             this.vocabRepo.initializeDb(false);
 
             if (this.codeRepoDir.isDirectory()) {
@@ -220,12 +254,76 @@ public class DynamicVocabServiceImpl extends AbstractVocabService implements Dyn
             this.vocabRepo.toggleActiveDatabase();
         }
 
-        // OrientDB 3.x compatibility: Skip registerModels as it requires connection pools
-        // VocabularyRepository.registerModels() depends on connection pools that are not compatible with OrientDB 3.x
-        LOGGER.info("Skipping VocabularyRepository.registerModels() for OrientDB 3.x compatibility.");
-        LOGGER.info("Model registration will be handled directly by OrientDB 3.x when needed.");
-        
+        this.vocabRepo.registerModels(true);
+
         super.afterPropertiesSet();
+    }
+
+    private void recreateStorageDatabase(OServerStorageConfiguration storage) {
+        String storagePath = storage.path;
+
+        if (!storagePath.startsWith("plocal:")) {
+            return;
+        }
+
+        String dbDirPath = storagePath.substring("plocal:".length());
+        File dbDir = new File(dbDirPath);
+        String dbName = storage.name;
+        File baseDirFile = dbDir.getParentFile();
+
+        if (baseDirFile == null) {
+            LOGGER.warn(String.format("Unable to recreate storage '%s': cannot determine base directory from path=%s", dbName, dbDirPath));
+            return;
+        }
+
+        String baseDir = baseDirFile.getPath();
+
+        try (OrientDB orient = new OrientDB("embedded:" + baseDir, OrientDBConfig.defaultConfig())) {
+            if (orient.exists(dbName)) {
+                orient.drop(dbName);
+                LOGGER.info(String.format("Dropped existing OrientDB database '%s' at %s for force reload.", dbName, dbDirPath));
+            }
+
+            orient.create(dbName, ODatabaseType.PLOCAL);
+            LOGGER.info(String.format("Recreated OrientDB database '%s' at %s for force reload.", dbName, dbDirPath));
+        } catch (Exception e) {
+            LOGGER.warn(String.format("Failed to recreate database '%s' using OrientDB API; falling back to directory cleanup (%s).", dbName,
+                e.getMessage()));
+
+            try {
+                this.deleteDirectory(dbDir.toPath());
+
+                if (!dbDir.mkdirs() && !dbDir.isDirectory()) {
+                    LOGGER.warn(String.format("Unable to recreate storage directory after cleanup: %s", dbDirPath));
+                } else {
+                    LOGGER.info(String.format("Recreated storage directory after cleanup: %s", dbDirPath));
+                }
+            } catch (IOException ioEx) {
+                LOGGER.error(String.format("Unable to cleanup storage directory for database '%s' at %s", dbName, dbDirPath), ioEx);
+            }
+        }
+    }
+
+    private void deleteDirectory(Path dirPath) throws IOException {
+        if (!Files.exists(dirPath)) {
+            return;
+        }
+
+        try (java.util.stream.Stream<Path> walk = Files.walk(dirPath)) {
+            walk.sorted(Comparator.reverseOrder()).forEach(path -> {
+                try {
+                    Files.deleteIfExists(path);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        } catch (RuntimeException e) {
+            if (e.getCause() instanceof IOException) {
+                throw ((IOException) e.getCause());
+            }
+
+            throw e;
+        }
     }
 
     @SuppressWarnings({ CompilerWarnings.UNCHECKED })
@@ -234,48 +332,31 @@ public class DynamicVocabServiceImpl extends AbstractVocabService implements Dyn
     }
 
     private List<Code> findCodes(boolean forValueSet, Map<String, String> params) {
-        try (ODatabaseObject dbConn = this.orientDBObject.open(this.dbPrimaryStorageDir.getName(), "admin", "admin")) {
-            // Build SQL query using the new OrientDB 3.x query API
-            String queryClass = forValueSet ? "ValueSetCodeModel" : "CodeModel";
-            
-            // Build WHERE clause from parameters
-            StringBuilder queryBuilder = new StringBuilder("SELECT FROM " + queryClass);
-            if (!params.isEmpty()) {
-                queryBuilder.append(" WHERE ");
-                boolean first = true;
-                for (Map.Entry<String, String> entry : params.entrySet()) {
-                    if (!first) {
-                        queryBuilder.append(" AND ");
-                    }
-                    if (entry.getValue() != null) {
-                        queryBuilder.append(entry.getKey()).append(" = :").append(entry.getKey());
-                    } else {
-                        queryBuilder.append(entry.getKey()).append(" IS NULL");
-                    }
-                    first = false;
-                }
-            }
-            
-            String query = queryBuilder.toString();
-            LOGGER.debug("Executing vocabulary query: {}", query);
-            
-            // Use the new OrientDB 3.x query method
-            List<CodeModel> codeModels = dbConn.objectQuery(query, params);
-            
-            if (!CollectionUtils.isEmpty(codeModels)) {
-                return codeModels.stream()
-                    .map(codeModel -> new CodeImpl(codeModel.getCode(), codeModel.getDisplayName()))
-                    .collect(Collectors.toList());
-            }
-            
-            return Collections.emptyList();
-        } catch (Exception e) {
-            LOGGER.error("Error executing vocabulary query", e);
-            return Collections.emptyList();
+        try (OObjectDatabaseTx dbConn = this.vocabRepo.getActiveDbConnection()) {
+            List<CodeModel> codeModels =
+                (forValueSet ? dbConn.command(CrigttSqlUtils.buildSelectQuery(ValueSetCodeModel.class, null, null, params, null)).execute(params) : dbConn
+                    .command(CrigttSqlUtils.buildSelectQuery(CodeModel.class, null, null, params, null)).execute(params));
+
+            return (!CollectionUtils.isEmpty(codeModels) ? codeModels.stream()
+                .map(codeModel -> new CodeImpl((codeModel = dbConn.detach(codeModel, true)).getCode(), codeModel.getDisplayName()))
+                .collect(Collectors.toList()) : Collections.emptyList());
         }
     }
 
+    private VocabularyRepositoryConnectionInfo buildRepositoryConnectionInfo(OServerStorageConfiguration dbStorage) {
+        VocabularyRepositoryConnectionInfo repoConnInfo = new VocabularyRepositoryConnectionInfo();
+        String connectionInfo = CrigttDbPaths.REMOTE_PROTOCOL_PREFIX + this.dbServerConfig.getIpAddress() + CrigttDbPaths.SERVER_DELIM
+            + this.dbServerConfig.getPort() + CrigttDbPaths.DELIM + dbStorage.name;
+        
+        LOGGER.info(String.format("Building repository connection: dbStorage.name=%s, dbStorage.path=%s, connectionInfo=%s", 
+            dbStorage.name, dbStorage.path, connectionInfo));
+        
+        repoConnInfo.setConnectionInfo(connectionInfo);
+        repoConnInfo.setPassword(dbStorage.userPassword);
+        repoConnInfo.setUsername(dbStorage.userName);
 
+        return repoConnInfo;
+    }
 
     @Override
     public Map<String, VocabularyLoader<?>> getCodeLoaders() {

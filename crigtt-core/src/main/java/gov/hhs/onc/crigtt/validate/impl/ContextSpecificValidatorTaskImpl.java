@@ -31,7 +31,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import jakarta.annotation.Resource;
+import javax.annotation.Resource;
 import javax.xml.transform.Source;
 import net.sf.saxon.om.NamespaceBinding;
 import net.sf.saxon.om.NodeInfo;
@@ -172,14 +172,12 @@ public class ContextSpecificValidatorTaskImpl extends AbstractValidatorTask impl
 
         if (baseExprLocNodes.isEmpty()) {
             for (ElementSet elementSet : xPathSetContent.getElementSets()) {
-                String subExpressionPrefix = elementSet.getSubExpressionPrefix() != null ? elementSet.getSubExpressionPrefix() : "";
-                CrigttTestcaseUtils.addEventInfo(events, elementSet, baseXPathExpression + subExpressionPrefix, this.nullFlavors);
+                CrigttTestcaseUtils.addEventInfo(events, elementSet, baseXPathExpression + elementSet.getSubExpressionPrefix(), this.nullFlavors);
             }
         } else {
             for (ElementSet elementSet : xPathSetContent.getElementSets()) {
                 Map<SubExpressionSet, Map<String, List<NodeInfo>>> subExpressionSetResults = new LinkedHashMap<>(elementSet.getSubExpressionSets().size());
-                String subExpressionPrefix = elementSet.getSubExpressionPrefix() != null ? elementSet.getSubExpressionPrefix() : "";
-                String baseSubExpression = baseXPathExpression + subExpressionPrefix;
+                String baseSubExpression = baseXPathExpression + elementSet.getSubExpressionPrefix();
 
                 List<XdmNode> exprLocNodes = Arrays.asList(this.xpathCompiler.evaluateNodes(baseSubExpression, this.xpathContext, this.doc));
 
@@ -192,8 +190,7 @@ public class ContextSpecificValidatorTaskImpl extends AbstractValidatorTask impl
 
                     for (SubExpressionSet subExpressionSet : elementSet.getSubExpressionSets()) {
                         Map<String, List<NodeInfo>> nodeInfoResults = new HashMap<>();
-                        String subExpression = subExpressionSet.getSubExpression() != null ? subExpressionSet.getSubExpression() : "";
-                        String xPathExpression = baseSubExpression + subExpression;
+                        String xPathExpression = baseSubExpression + subExpressionSet.getSubExpression();
                         MatchingCondition matchingCondition = subExpressionSet.getMatchingCondition();
                         XdmNode[] evaluatedNodes;
                         if (subExpressionSet.getCustomEvalExpression() != null && subExpressionSet.getCustomEvalExpression().getExpression() != null &&
@@ -239,8 +236,7 @@ public class ContextSpecificValidatorTaskImpl extends AbstractValidatorTask impl
                         }
                     }
 
-                    events.addAll(processResults(subExpressionSetResults, baseSubExpression, 
-                        elementSet.getOptional() != null ? elementSet.getOptional() : false, indexCount));
+                    events.addAll(processResults(subExpressionSetResults, baseSubExpression, elementSet.getOptional(), indexCount));
                 }
             }
         }

@@ -16,7 +16,7 @@ import gov.hhs.onc.crigtt.validate.render.ValidatorRenderType;
 import gov.hhs.onc.crigtt.validate.render.XmlValidatorRenderer;
 import gov.hhs.onc.crigtt.xml.impl.CrigttJaxbMarshaller;
 import java.util.Map;
-import jakarta.annotation.Resource;
+import javax.annotation.Resource;
 
 public class XmlValidatorRendererImpl extends AbstractValidatorRenderer implements XmlValidatorRenderer {
     @Resource(

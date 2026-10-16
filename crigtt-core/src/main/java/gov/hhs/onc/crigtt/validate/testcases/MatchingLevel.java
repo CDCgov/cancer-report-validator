@@ -1,8 +1,9 @@
+
 package gov.hhs.onc.crigtt.validate.testcases;
 
-import jakarta.xml.bind.annotation.XmlEnum;
-import jakarta.xml.bind.annotation.XmlType;
-import jakarta.annotation.Generated;
+import javax.annotation.Generated;
+import javax.xml.bind.annotation.XmlEnum;
+import javax.xml.bind.annotation.XmlType;
 
 
 /**

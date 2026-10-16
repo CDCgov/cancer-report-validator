@@ -1,7 +1,7 @@
 package gov.hhs.onc.crigtt.beans;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.annotation.Nullable;
+import javax.annotation.Nullable;
 
 public interface IdentifiedBean {
     public boolean isSetId();

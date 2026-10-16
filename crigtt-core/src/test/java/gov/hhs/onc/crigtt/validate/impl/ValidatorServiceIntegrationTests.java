@@ -14,7 +14,7 @@ import gov.hhs.onc.crigtt.validate.render.XmlValidatorRenderer;
 import gov.hhs.onc.crigtt.validate.testcases.Testcase;
 import java.util.Collections;
 import java.util.Map;
-import jakarta.annotation.Resource;
+import javax.annotation.Resource;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 

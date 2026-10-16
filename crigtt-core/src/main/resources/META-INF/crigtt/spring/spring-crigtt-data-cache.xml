@@ -18,32 +18,39 @@
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
     
     <!--====================================================================================================
-    = CACHE MANAGERS - Spring Boot 3.x compatible configuration
+    = CACHE MANAGER CONFIGURATIONS
     =====================================================================================================-->
-    <!-- Use Spring's built-in ConcurrentMapCacheManager for simplicity and compatibility -->
-    <beans:bean id="cacheManager" class="org.springframework.cache.concurrent.ConcurrentMapCacheManager" primary="true">
-        <!-- This creates a simple in-memory cache manager compatible with Spring Boot 3.x -->
-    </beans:bean>
-
-    <!--====================================================================================================
-    = CACHE MANAGERS - Legacy configuration (commented out for Spring Boot 3.x compatibility)
-    =====================================================================================================-->
-    <!-- 
-    <beans:bean id="cacheManagerCrigtt" class="gov.hhs.onc.crigtt.data.cache.impl.CrigttCacheManagerFactoryBean" abstract="true"/>
+    <beans:bean id="cacheManagerConfig" class="net.sf.ehcache.config.Configuration" abstract="true"/>
     
-    <beans:bean id="cacheManager" class="gov.hhs.onc.crigtt.data.cache.impl.CrigttCacheManagerFactoryBean"
-        parent="cacheManagerCrigtt">
-    </beans:bean>
-    -->
-
     <!--====================================================================================================
-    = CACHES - Spring Boot 3.x compatible configuration
+    = CACHE MANAGERS
     =====================================================================================================-->
-    <!-- Cache beans are automatically created by ConcurrentMapCacheManager as needed -->
-    <!-- Legacy cache configuration commented out for Spring Boot 3.x compatibility -->
-    <!--
-    <beans:bean id="cacheCrigtt" class="gov.hhs.onc.crigtt.data.cache.impl.CrigttCacheFactoryBean" abstract="true">
-        <beans:property name="cacheManager" ref="cacheManager"/>
+    <beans:bean id="cacheManager" class="org.springframework.cache.CacheManager" abstract="true"/>
+    
+    <beans:bean id="cacheManagerEhCache" class="org.springframework.cache.ehcache.EhCacheCacheManager" parent="cacheManager" abstract="true"/>
+    
+    <beans:bean id="cacheManagerCrigtt" class="gov.hhs.onc.crigtt.data.cache.impl.CrigttCacheManagerFactoryBean" parent="cacheManagerEhCache" abstract="true"/>
+    
+    <!--====================================================================================================
+    = CACHE CONFIGURATIONS
+    =====================================================================================================-->
+    <beans:bean id="cacheConfig" class="net.sf.ehcache.config.CacheConfiguration" abstract="true"/>
+    
+    <beans:bean id="cacheConfigCrigtt" parent="cacheConfig" abstract="true"
+        p:eternal="true"
+        p:memoryStoreEvictionPolicyFromObject="FIFO"/>
+    
+    <!--====================================================================================================
+    = CACHES
+    =====================================================================================================-->
+    <beans:bean id="cache" class="gov.hhs.onc.crigtt.data.cache.impl.CrigttCache" abstract="true"/>
+    
+    <beans:bean id="cacheCrigtt" class="gov.hhs.onc.crigtt.data.cache.impl.CrigttCacheFactoryBean" parent="cache" abstract="true"
+        p:persistenceStrategy="NONE">
+        <beans:property name="listeners">
+            <beans:array>
+                <beans:ref bean="cacheListener"/>
+            </beans:array>
+        </beans:property>
     </beans:bean>
-    -->
 </beans:beans>

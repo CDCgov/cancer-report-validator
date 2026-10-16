@@ -1,139 +1,166 @@
+
 package gov.hhs.onc.crigtt.validate.impl;
 
+import javax.annotation.Generated;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import gov.hhs.onc.crigtt.validate.ValidatorDocument;
-import gov.hhs.onc.crigtt.validate.ValidatorError;
 import gov.hhs.onc.crigtt.validate.ValidatorReport;
 import gov.hhs.onc.crigtt.validate.ValidatorResults;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlAttribute;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlRootElement;
-import jakarta.xml.bind.annotation.XmlType;
-import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "validatorReport")
+@XmlType(name = "Report", propOrder = {
+    "id",
+    "submittedTimestamp",
+    "processedTimestamp",
+    "results",
+    "document",
+    "testcaseId"
+})
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
+@JsonTypeName("validatorReport")
 @XmlRootElement(name = "report")
-public class ValidatorReportImpl extends AbstractValidatorResponse implements ValidatorReport {
-    @XmlElement(name = "error", type = ValidatorErrorImpl.class)
-    private List<ValidatorError> errors;
+public class ValidatorReportImpl
+    extends AbstractValidatorResponse
+    implements ValidatorReport
+{
 
-    @XmlAttribute(name = "id")
-    private String id;
+    @XmlElement(namespace = "urn:gov.hhs.onc.crigtt", required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
+    protected String id;
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
+    protected long submittedTimestamp;
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
+    protected long processedTimestamp;
+    @XmlElement(required = true, type = ValidatorResultsImpl.class)
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
+    protected ValidatorResultsImpl results;
+    @XmlElement(required = true, type = ValidatorDocumentImpl.class)
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
+    protected ValidatorDocumentImpl document;
+    @XmlElement(required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
+    protected String testcaseId;
+    private final static long serialVersionUID = 0L;
 
-    @XmlElement(name = "submittedTimestamp")
-    private long submittedTimestamp;
-
-    @XmlElement(name = "processedTimestamp")
-    private long processedTimestamp;
-
-    @XmlElement(name = "results", type = ValidatorResultsImpl.class)
-    private ValidatorResults results;
-
-    @XmlElement(name = "document", type = ValidatorDocumentImpl.class)
-    private ValidatorDocument document;
-
-    @XmlElement(name = "testcaseId")
-    private String testcaseId;
-
-    @Override
-    public List<ValidatorError> getErrors() {
-        return this.errors;
+    /**
+     * Default no-arg constructor
+     * 
+     */
+    public ValidatorReportImpl() {
+        super();
     }
 
-    @Override
-    public void setErrors(List<ValidatorError> errors) {
-        this.errors = errors;
+    /**
+     * Fully-initialising value constructor
+     * 
+     */
+    public ValidatorReportImpl(final String id, final long submittedTimestamp, final long processedTimestamp, final ValidatorResultsImpl results, final ValidatorDocumentImpl document, final String testcaseId) {
+        super();
+        this.id = id;
+        this.submittedTimestamp = submittedTimestamp;
+        this.processedTimestamp = processedTimestamp;
+        this.results = results;
+        this.document = document;
+        this.testcaseId = testcaseId;
     }
 
-    @Override
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     public String getId() {
         return id;
     }
 
-    @Override
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     public void setId(String value) {
         this.id = value;
     }
 
-    @Override
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     public boolean isSetId() {
-        return this.id != null;
+        return (this.id!= null);
     }
 
-    @Override
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     public long getSubmittedTimestamp() {
         return submittedTimestamp;
     }
 
-    @Override
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     public void setSubmittedTimestamp(long value) {
         this.submittedTimestamp = value;
     }
 
-    @Override
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     public boolean isSetSubmittedTimestamp() {
-        return this.submittedTimestamp > 0;
+        return true;
     }
 
-    @Override
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     public long getProcessedTimestamp() {
         return processedTimestamp;
     }
 
-    @Override
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     public void setProcessedTimestamp(long value) {
         this.processedTimestamp = value;
     }
 
-    @Override
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     public boolean isSetProcessedTimestamp() {
-        return this.processedTimestamp > 0;
+        return true;
     }
 
-    @Override
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     public ValidatorResults getResults() {
         return results;
     }
 
-    @Override
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     public void setResults(ValidatorResults value) {
-        this.results = value;
+        this.results = ((ValidatorResultsImpl) value);
     }
 
-    @Override
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     public boolean isSetResults() {
-        return this.results != null;
+        return (this.results!= null);
     }
 
-    @Override
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     public ValidatorDocument getDocument() {
         return document;
     }
 
-    @Override
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     public void setDocument(ValidatorDocument value) {
-        this.document = value;
+        this.document = ((ValidatorDocumentImpl) value);
     }
 
-    @Override
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     public boolean isSetDocument() {
-        return this.document != null;
+        return (this.document!= null);
     }
 
-    @Override
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     public String getTestcaseId() {
         return testcaseId;
     }
 
-    @Override
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     public void setTestcaseId(String value) {
         this.testcaseId = value;
     }
 
-    @Override
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2023-06-25T07:53:34-04:00", comments = "JAXB RI v2.2.11")
     public boolean isSetTestcaseId() {
-        return this.testcaseId != null;
+        return (this.testcaseId!= null);
     }
+
 }

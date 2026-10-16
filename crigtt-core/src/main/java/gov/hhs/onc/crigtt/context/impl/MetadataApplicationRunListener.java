@@ -2,11 +2,9 @@ package gov.hhs.onc.crigtt.context.impl;
 
 import gov.hhs.onc.crigtt.context.CrigttMetadataInitializer;
 import java.io.File;
-import java.time.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 
@@ -25,7 +23,7 @@ public class MetadataApplicationRunListener extends AbstractCrigttApplicationRun
     }
 
     @Override
-    public void started(ConfigurableApplicationContext context, Duration timeTaken) {
+    public void started() {
         CrigttMetadataInitializer metadataInit = buildComponent(CrigttMetadataInitializer.class, DefaultMetadataInitializer::new, this.app);
 
         File appHome = metadataInit.buildApplicationHome();

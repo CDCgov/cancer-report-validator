@@ -1,12 +1,15 @@
 package gov.hhs.onc.crigtt.context.impl;
 
-import java.time.Duration;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.function.Supplier;
-import org.springframework.boot.ConfigurableBootstrapContext;
+import org.apache.commons.lang3.ClassUtils;
+import org.apache.commons.lang3.reflect.ConstructorUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringApplicationRunListener;
+import org.springframework.context.ApplicationContextException;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.core.annotation.AnnotationAwareOrderComparator;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.io.support.SpringFactoriesLoader;
 
@@ -15,52 +18,47 @@ public abstract class AbstractCrigttApplicationRunListener implements SpringAppl
     protected String[] args;
 
     protected AbstractCrigttApplicationRunListener(SpringApplication app, String[] args) {
-        // Handle both CrigttApplication and regular SpringApplication
-        if (app instanceof CrigttApplication) {
-            this.app = (CrigttApplication) app;
-        } else {
-            // Create a CrigttApplication wrapper when running in servlet container
-            this.app = new CrigttApplication(app.getAllSources().toArray(new Class<?>[0]));
-        }
+        this.app = ((CrigttApplication) app);
         this.args = args;
     }
 
     @Override
-    public void starting(ConfigurableBootstrapContext bootstrapContext) {
+    public void finished(ConfigurableApplicationContext appContext, Throwable exception) {
     }
 
     @Override
-    public void environmentPrepared(ConfigurableBootstrapContext bootstrapContext, ConfigurableEnvironment environment) {
+    public void contextLoaded(ConfigurableApplicationContext appContext) {
     }
 
     @Override
-    public void contextPrepared(ConfigurableApplicationContext context) {
+    public void contextPrepared(ConfigurableApplicationContext appContext) {
     }
 
     @Override
-    public void contextLoaded(ConfigurableApplicationContext context) {
+    public void environmentPrepared(ConfigurableEnvironment env) {
     }
 
     @Override
-    public void started(ConfigurableApplicationContext context, Duration timeTaken) {
+    public void started() {
     }
 
-    @Override
-    public void ready(ConfigurableApplicationContext context, Duration timeTaken) {
-    }
+    protected static <T> T buildComponent(Class<T> componentClass, Supplier<T> defaultSupplier, Object ... args) {
+        List<String> componentClassNames = SpringFactoriesLoader.loadFactoryNames(componentClass, AbstractCrigttApplicationRunListener.class.getClassLoader());
 
-    @Override
-    public void failed(ConfigurableApplicationContext context, Throwable exception) {
-    }
-
-    protected static <T> T buildComponent(Class<T> componentType, Supplier<T> defaultSupplier, CrigttApplication app) {
-        List<T> components = SpringFactoriesLoader.forResourceLocation("META-INF/spring.factories")
-                .load(componentType);
-
-        if (components.isEmpty()) {
+        if (componentClassNames.isEmpty()) {
             return defaultSupplier.get();
         }
 
-        return components.get(0);
+        List<Class<?>> componentClasses = ClassUtils.convertClassNamesToClasses(componentClassNames);
+
+        componentClasses.sort(AnnotationAwareOrderComparator.INSTANCE);
+
+        Class<?> primaryComponentClass = componentClasses.get(0);
+
+        try {
+            return componentClass.cast(ConstructorUtils.invokeConstructor(primaryComponentClass, args));
+        } catch (IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException e) {
+            throw new ApplicationContextException(String.format("Unable to instantiate component (class=%s).", primaryComponentClass.getName()), e);
+        }
     }
 }

@@ -1,15 +1,17 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
     <modelVersion>4.0.0</modelVersion>
     <groupId>gov.hhs.onc.crigtt</groupId>
     <artifactId>crigtt-parent</artifactId>
-    <version>1.2.2</version>
+    <version>2.0.0</version>
     <packaging>pom</packaging>
 
     <name>${project.artifactId}</name>
     <description>Cancer Registry IG Test Tool (CRIGTT) parent Maven project.</description>
+    <!--<url>http://github.com/esacinc/crigtt/</url>-->
     <url>https://github.com/CDCgov/Cancer-Report-Validator</url>
     <licenses>
         <license>
@@ -17,6 +19,7 @@
             <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
     </licenses>
+    
     <developers>
         <developer>
             <name>Michal Kotelba</name>
@@ -53,15 +56,7 @@
         <developerConnection>scm:git:git://github.com/esacinc/crigtt.git</developerConnection>
         <url>http://github.com/esacinc/crigtt/tree/master/</url>
     </scm>
-
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.0</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
-
+    
     <distributionManagement>
         <snapshotRepository>
 
@@ -75,49 +70,30 @@
     </distributionManagement>
     
     <properties>
-        <!-- Version properties -->
+        <spring.version>5.3.29</spring.version>
+        <jackson.version>2.9.7</jackson.version>
+        <orientdb.version>3.2.35</orientdb.version>
+        <!-- Java properties -->
         <java.version>21</java.version>
-        <spring-boot.version>3.2.0</spring-boot.version>
-        <spring.version>6.1.0</spring.version>
-        <groovy.version>4.0.16</groovy.version>
-        <jackson.version>2.16.1</jackson.version>
-        
-        <!-- Jakarta EE properties -->
-        <jakarta.xml.bind.version>4.0.1</jakarta.xml.bind.version>
-        <jakarta.xml.ws.version>4.0.1</jakarta.xml.ws.version>
-        <jaxb.version>4.0.4</jaxb.version>
-        <jakarta.annotation.version>2.1.1</jakarta.annotation.version>
-        <jakarta.activation.version>2.1.2</jakarta.activation.version>
-        
-        <!-- Cache and JSON properties -->
-        <javax.cache.version>1.1.1</javax.cache.version>
-        <javax.json.version>1.1.4</javax.json.version>
-        
         <!-- Project properties -->
         <project.basedir.all>${project.basedir}/..</project.basedir.all>
         <project.basedir.parent>${project.basedir}/${project.parent.relativePath}</project.basedir.parent>
-        
         <!-- Project build Groovy source properties -->
         <project.build.groovyScriptSourceDirectory>${project.build.scriptSourceDirectory}/groovy</project.build.groovyScriptSourceDirectory>
-        
         <!-- Project build JAXB source properties -->
         <project.build.jaxbSourceDirectory>${project.basedir}/src/main/jaxb</project.build.jaxbSourceDirectory>
-        
         <!-- Project build properties properties -->
         <project.build.propertiesDirectory>${project.build.outputDirectory}/META-INF/crigtt</project.build.propertiesDirectory>
         <project.build.testPropertiesDirectory>${project.build.testOutputDirectory}/META-INF/crigtt</project.build.testPropertiesDirectory>
-        
         <!-- Project build properties source properties -->
         <project.build.propertiesSourceDirectory>${project.basedir}/src/main/resources/META-INF/crigtt</project.build.propertiesSourceDirectory>
         <project.build.testPropertiesSourceDirectory>${project.basedir}/src/test/resources/META-INF/crigtt</project.build.testPropertiesSourceDirectory>
-        
         <!-- Project build XML schema properties -->
         <project.build.schemaDirectory>${project.build.outputDirectory}/META-INF/crigtt/schema</project.build.schemaDirectory>
+        <!-- Project build XML schema source properties -->
         <project.build.schemaSourceDirectory>${project.basedir}/src/main/schema</project.build.schemaSourceDirectory>
-        
         <!-- Project build source properties -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
     
     <repositories>
@@ -148,12 +124,12 @@
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
-                <version>1.4.14</version>
+                <version>1.2.13</version>
             </dependency>
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-core</artifactId>
-                <version>1.4.14</version>
+                <version>1.2.13</version>
             </dependency>
             <dependency>
                 <groupId>com.beust</groupId>
@@ -203,12 +179,12 @@
             <dependency>
                 <groupId>com.orientechnologies</groupId>
                 <artifactId>orientdb-client</artifactId>
-                <version>3.2.43</version>
+                <version>${orientdb.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.orientechnologies</groupId>
                 <artifactId>orientdb-core</artifactId>
-                <version>3.2.43</version>
+                <version>${orientdb.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.xerial.snappy</groupId>
@@ -219,7 +195,7 @@
             <dependency>
                 <groupId>com.orientechnologies</groupId>
                 <artifactId>orientdb-object</artifactId>
-                <version>3.2.43</version>
+                <version>${orientdb.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.hibernate.javax.persistence</groupId>
@@ -230,11 +206,11 @@
             <dependency>
                 <groupId>com.orientechnologies</groupId>
                 <artifactId>orientdb-server</artifactId>
-                <version>3.2.43</version>
+                <version>${orientdb.version}</version>
                 <exclusions>
                     <exclusion>
-                        <groupId>jakarta.mail</groupId>
-                        <artifactId>jakarta.mail-api</artifactId>
+                        <groupId>javax.mail</groupId>
+                        <artifactId>mail</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>
@@ -244,63 +220,30 @@
                 <version>2.4</version>
             </dependency>
             <dependency>
-                <groupId>jakarta.cache</groupId>
+                <groupId>javax.cache</groupId>
                 <artifactId>cache-api</artifactId>
-                <version>1.1.1</version>
+                <version>1.0.0</version>
             </dependency>
             <dependency>
-                <groupId>jakarta.el</groupId>
-                <artifactId>jakarta.el-api</artifactId>
-                <version>5.0.1</version>
+                <groupId>javax.el</groupId>
+                <artifactId>javax.el-api</artifactId>
+                <version>3.0.0</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
-                <groupId>jakarta.inject</groupId>
-                <artifactId>jakarta.inject-api</artifactId>
-                <version>2.0.1</version>
-            </dependency>
-            <!-- Jakarta XML & JAXB dependencies -->
-            <dependency>
-                <groupId>jakarta.xml.bind</groupId>
-                <artifactId>jakarta.xml.bind-api</artifactId>
-                <version>${jakarta.xml.bind.version}</version>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
+                <version>1</version>
             </dependency>
             <dependency>
-                <groupId>jakarta.activation</groupId>
-                <artifactId>jakarta.activation-api</artifactId>
-                <version>${jakarta.activation.version}</version>
+                <groupId>javax.xml.bind</groupId>
+                <artifactId>jaxb-api</artifactId>
+                <version>2.2.12</version>
             </dependency>
             <dependency>
-                <groupId>org.glassfish.jaxb</groupId>
-                <artifactId>jaxb-runtime</artifactId>
-                <version>${jaxb.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.xml.bind</groupId>
-                <artifactId>jakarta.xml.bind-api</artifactId>
-                <version>${jakarta.xml.bind.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.annotation</groupId>
-                <artifactId>jakarta.annotation-api</artifactId>
-                <version>${jakarta.annotation.version}</version>
-            </dependency>
-            
-            <!-- Additional Jakarta EE APIs -->
-            <dependency>
-                <groupId>jakarta.xml.ws</groupId>
-                <artifactId>jakarta.xml.ws-api</artifactId>
-                <version>${jakarta.xml.ws.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.xml.soap</groupId>
-                <artifactId>jakarta.xml.soap-api</artifactId>
-                <version>3.0.1</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.jws</groupId>
-                <artifactId>jakarta.jws-api</artifactId>
-                <version>3.0.0</version>
+                <groupId>javax.annotation</groupId>
+                <artifactId>javax.annotation-api</artifactId>
+                <version>1.3.2</version>
             </dependency>
             <dependency>
                 <groupId>joda-time</groupId>
@@ -357,7 +300,7 @@
             <dependency>
                 <groupId>org.apache.cxf</groupId>
                 <artifactId>cxf-core</artifactId>
-                <version>4.0.3</version>
+                <version>3.1.2</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.codehaus.woodstox</groupId>
@@ -402,9 +345,15 @@
                 <version>1.52</version>
             </dependency>
             <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy</artifactId>
+                <!--<version>2.4.4</version>-->
+                <version>4.0.23</version>
+            </dependency>
+            <dependency>
                 <groupId>org.apache.groovy</groupId>
                 <artifactId>groovy-all</artifactId>
-                <version>4.0.16</version>
+                <version>4.0.23</version>
                 <type>pom</type>
             </dependency>
             <dependency>
@@ -424,21 +373,36 @@
             </dependency>
             <dependency>
                 <groupId>org.glassfish</groupId>
-                <artifactId>jakarta.el</artifactId>
-                <version>5.0.0-M1</version>
+                <artifactId>javax.el</artifactId>
+                <version>3.0.0</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
-                <groupId>org.eclipse</groupId>
-                <artifactId>yasson</artifactId>
-                <version>3.0.3</version>
+                <groupId>org.glassfish</groupId>
+                <artifactId>javax.json</artifactId>
+                <version>1.0.4</version>
             </dependency>
             <dependency>
                 <groupId>org.glassfish.jaxb</groupId>
                 <artifactId>jaxb-bom</artifactId>
-                <version>${jaxb.version}</version>
+                <version>2.2.11</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.jaxb</groupId>
+                <artifactId>jaxb-runtime</artifactId>
+                <version>2.2.11</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.sun.xml.fastinfoset</groupId>
+                        <artifactId>FastInfoset</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.jvnet.staxex</groupId>
+                        <artifactId>stax-ex</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.jvnet.jaxb2_commons</groupId>
@@ -496,22 +460,22 @@
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>jcl-over-slf4j</artifactId>
-                <version>2.0.9</version>
+                <version>1.7.36</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>jul-to-slf4j</artifactId>
-                <version>2.0.9</version>
+                <version>1.7.36</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>log4j-over-slf4j</artifactId>
-                <version>2.0.9</version>
+                <version>1.7.36</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>2.0.9</version>
+                <version>1.7.36</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -523,8 +487,8 @@
                         <artifactId>commons-logging</artifactId>
                     </exclusion>
                     <exclusion>
-                        <groupId>jakarta.el</groupId>
-                        <artifactId>jakarta.el-api</artifactId>
+                        <groupId>javax.el</groupId>
+                        <artifactId>javax.el-api</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>
@@ -538,7 +502,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
+                <version>1.2.5.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -584,34 +548,34 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.11.0</version>
+                    <version>3.3</version>
                     <inherited>true</inherited>
                     <configuration>
-                        <release>${java.version}</release>
                         <compilerArgs>
-                            <arg>-J-XX:MetaspaceSize=128m</arg>
-                            <arg>-J-XX:MaxMetaspaceSize=256m</arg>
+                            <arg>-J-XX:MetaspaceSize=64m</arg>
+                            <arg>-J-XX:MaxMetaspaceSize=128m</arg>
                             <arg>-J-XX:+UseG1GC</arg>
                             <arg>-J-XX:MaxGCPauseMillis=50</arg>
                             <arg>-parameters</arg>
-                            <arg>--enable-preview</arg>
-                            <arg>--add-modules</arg>
-                            <arg>jdk.incubator.vector</arg>
+                            <arg>-proc:none</arg>
+                            <arg>-Werror</arg>
                             <arg>-Xlint</arg>
                             <arg>-Xlint:-path</arg>
                         </compilerArgs>
                         <fork>true</fork>
-                        <maxmem>512m</maxmem>
-                        <meminitial>256m</meminitial>
+                        <maxmem>256m</maxmem>
+                        <meminitial>128m</meminitial>
                         <optimize>true</optimize>
                         <showDeprecation>true</showDeprecation>
                         <showWarnings>true</showWarnings>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
                     </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-dependency-plugin</artifactId>
-                    <version>3.6.1</version>
+                    <version>2.10</version>
                     <inherited>true</inherited>
                     <configuration>
                         <silent>true</silent>
@@ -789,7 +753,7 @@
                     <version>2.18.1</version>
                     <inherited>true</inherited>
                     <configuration>
-                        <argLine>-Xms1024m -Xmx2048m -XX:MetaspaceSize=256m -XX:MaxMetaspaceSize=512m -XX:+UseG1GC -XX:MaxGCPauseMillis=50 --enable-preview --add-modules jdk.incubator.vector</argLine>
+                        <argLine>-Xms512m -Xmx1024m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=256m -XX:+UseG1GC -XX:MaxGCPauseMillis=50</argLine>
                         <reportFormat>plain</reportFormat>
                         <systemPropertyVariables combine.children="append">
                             <crigtt.data.dir>${project.build.directory}/surefire-data</crigtt.data.dir>
@@ -837,27 +801,57 @@
                 <plugin>
                     <groupId>org.codehaus.gmavenplus</groupId>
                     <artifactId>gmavenplus-plugin</artifactId>
-                    <version>3.0.2</version>
+                    <version>4.0.1</version>
+                    <!--<version>1.5</version>-->
                     <inherited>true</inherited>
-                    <configuration>
-                        <verbose>true</verbose>
-                        <javaVersion>${java.version}</javaVersion>
-                        <invokeDynamic>true</invokeDynamic>
-                    </configuration>
                     <dependencies>
                         <dependency>
-                            <groupId>org.apache.groovy</groupId>
-                            <artifactId>groovy</artifactId>
-                            <version>${groovy.version}</version>
-                            <scope>runtime</scope>
+                            <groupId>commons-io</groupId>
+                            <artifactId>commons-io</artifactId>
+                            <version>2.4</version>
                         </dependency>
                         <dependency>
-                            <groupId>org.apache.groovy</groupId>
-                            <artifactId>groovy-ant</artifactId>
-                            <version>${groovy.version}</version>
+                            <groupId>org.apache.ant</groupId>
+                            <artifactId>ant</artifactId>
+                            <version>1.9.6</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.apache.commons</groupId>
+                            <artifactId>commons-lang3</artifactId>
+                            <version>3.4</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.apache.maven</groupId>
+                            <artifactId>maven-core</artifactId>
+                            <version>2.2.1</version>
+                            <exclusions>
+                                <exclusion>
+                                    <groupId>org.slf4j</groupId>
+                                    <artifactId>jcl-over-slf4j</artifactId>
+                                </exclusion>
+                                <exclusion>
+                                    <groupId>org.slf4j</groupId>
+                                    <artifactId>slf4j-jdk14</artifactId>
+                                </exclusion>
+                            </exclusions>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.codehaus.groovy</groupId>
+                            <artifactId>groovy</artifactId>
+                            <version>3.0.23</version>
                             <scope>runtime</scope>
+                            <exclusions>
+                                <exclusion>
+                                    <groupId>commons-logging</groupId>
+                                    <artifactId>commons-logging</artifactId>
+                                </exclusion>
+                            </exclusions>
                         </dependency>
                     </dependencies>
+                    <configuration>
+                        <properties combine.children="append"/>
+                        <scripts combine.children="append"/>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>

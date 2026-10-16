@@ -1,0 +1,17 @@
+OrientDB 3.x VM Arguments for IntelliJ IDEA Tomcat Configuration
+================================================================
+
+--add-opens=java.base/java.lang=ALL-UNNAMED
+--add-opens=java.base/java.lang.reflect=ALL-UNNAMED
+--add-opens=java.base/java.io=ALL-UNNAMED
+--add-opens=java.base/java.util=ALL-UNNAMED
+--add-opens=java.base/java.util.stream=ALL-UNNAMED
+--add-opens=java.base/java.net=ALL-UNNAMED
+--add-opens=java.base/sun.nio.ch=ALL-UNNAMED
+--add-opens=java.base/java.nio=ALL-UNNAMED
+-Dcrigtt.data.dir=${CRV_DATA_ROOT_PATH}
+-Dcrigtt.db.validate.vocab.dynamic.user.root.name=${username}
+-Dcrigtt.db.validate.vocab.dynamic.user.root.pass=${password}
+-Dcrigtt.validate.vocab.dynamic.repo.code.dir=${CODES_DIR}
+-Dcrigtt.validate.vocab.dynamic.repo.value.set.dir=${VALUE_SET_DIR}
+-Dcrigtt.validate.vocab.dynamic.load.force=false

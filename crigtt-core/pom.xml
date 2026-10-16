@@ -8,7 +8,7 @@
     <parent>
         <groupId>gov.hhs.onc.crigtt</groupId>
         <artifactId>crigtt-parent</artifactId>
-        <version>1.2.2</version>
+        <version>2.0.0</version>
         <relativePath>../crigtt-parent</relativePath>
     </parent>
 
@@ -231,8 +231,10 @@
             <artifactId>bcprov-jdk15on</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.codehaus.groovy</groupId>
+            <groupId>org.apache.groovy</groupId>
             <artifactId>groovy-all</artifactId>
+            <version>4.0.23</version>
+            <type>pom</type>
         </dependency>
         <dependency>
             <groupId>org.codehaus.janino</groupId>
@@ -367,8 +369,8 @@
                     <compilerArgs>
                         <arg>-Xlint:none</arg>
                     </compilerArgs>
-                    <source>11</source>
-                    <target>11</target>
+                    <source>21</source>
+                    <target>21</target>
                 </configuration>
             </plugin>
             <plugin>

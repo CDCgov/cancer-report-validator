@@ -1,9 +1,9 @@
 package gov.hhs.onc.crigtt.logging.impl;
 
-import ch.qos.logback.classic.ClassicConstants;
 import ch.qos.logback.classic.LoggerContext;
-import ch.qos.logback.classic.gaffer.GafferConfigurator;
+import ch.qos.logback.classic.joran.JoranConfigurator;
 import ch.qos.logback.classic.util.ContextSelectorStaticBinder;
+import ch.qos.logback.core.joran.spi.JoranException;
 import ch.qos.logback.core.status.Status;
 import ch.qos.logback.core.status.StatusManager;
 import ch.qos.logback.core.status.StatusUtil;
@@ -77,16 +77,15 @@ public class LoggingApplicationRunListener extends AbstractCrigttApplicationRunL
         loggerContext.putProperty(CrigttProperties.LOGGING_FILE_DIR_NAME, loggingInit.buildLogDirectory().getPath());
         loggerContext.putProperty(CrigttProperties.LOGGING_FILE_NAME_NAME, loggingInit.buildLogFileName());
 
-        String configFileUrlPath = LOGBACK_CONFIG_FILE_URL_PATH_PREFIX + appName + FilenameUtils.EXTENSION_SEPARATOR + CrigttFileExtensions.GROOVY;
+        String configFileUrlPath = LOGBACK_CONFIG_FILE_URL_PATH_PREFIX + appName + FilenameUtils.EXTENSION_SEPARATOR + "xml";
         URL configFileUrl;
 
         try {
-            GafferConfigurator configurator = new GafferConfigurator(loggerContext);
-
-            loggerContext.putObject(ClassicConstants.GAFFER_CONFIGURATOR_FQCN, configurator);
-
-            configurator.run(IOUtils.toString((configFileUrl = ResourceUtils.getURL(configFileUrlPath))));
-        } catch (IOException e) {
+            JoranConfigurator configurator = new JoranConfigurator();
+            configurator.setContext(loggerContext);
+            configFileUrl = ResourceUtils.getURL(configFileUrlPath);
+            configurator.doConfigure(configFileUrl);
+        } catch (IOException | JoranException e) {
             throw new ApplicationContextException(String.format("Unable to process Logback configuration file (path=%s).", configFileUrlPath), e);
         }
 

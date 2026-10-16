@@ -1,6 +1,10 @@
 package gov.hhs.onc.crigtt.validate.vocab.impl;
 
 import com.github.sebhoss.warnings.CompilerWarnings;
+import com.orientechnologies.orient.core.Orient;
+import com.orientechnologies.orient.core.db.ODatabaseType;
+import com.orientechnologies.orient.core.db.OrientDB;
+import com.orientechnologies.orient.core.db.OrientDBConfig;
 import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 import com.orientechnologies.orient.server.OServer;
 import com.orientechnologies.orient.server.config.OServerStorageConfiguration;
@@ -15,6 +19,10 @@ import gov.hhs.onc.crigtt.validate.vocab.VocabAssertion;
 import gov.hhs.onc.crigtt.validate.vocab.VocabFields;
 import gov.hhs.onc.crigtt.xml.utils.CrigttXpathUtils;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -159,8 +167,44 @@ public class DynamicVocabServiceImpl extends AbstractVocabService implements Dyn
     public void afterPropertiesSet() throws Exception {
         boolean dbPrimaryStorageExists = (this.dbPrimaryStorageDir.isDirectory() && (this.dbPrimaryStorageDir.list().length > 0));
 
+        LOGGER.info(String.format("Initializing OrientDB server: dbPrimaryStorageDir=%s, exists=%s, storages.length=%d", 
+            this.dbPrimaryStorageDir.getPath(), dbPrimaryStorageExists, this.dbServerConfig.storages.length));
+
         (this.dbServer = new OServer()).startup(this.dbServerConfig);
         this.dbServer.activate();
+
+        LOGGER.info("OrientDB server started successfully");
+
+        // Create databases if they don't exist using OrientDB 3.x API
+        for (OServerStorageConfiguration storage : this.dbServerConfig.storages) {
+            String storagePath = storage.path;
+            if (storagePath.startsWith("plocal:")) {
+                String dbDirPath = storagePath.substring("plocal:".length());
+                File dbDir = new File(dbDirPath);
+                String dbName = storage.name;
+                
+                if (!dbDir.exists()) {
+                    try {
+                        // Use OrientDB 3.x API to create database
+                        String baseDir = dbDir.getParent();
+                        OrientDB orient = new OrientDB("embedded:" + baseDir, OrientDBConfig.defaultConfig());
+                        if (!orient.exists(dbName)) {
+                            orient.create(dbName, ODatabaseType.PLOCAL);
+                            LOGGER.info(String.format("Created OrientDB database '%s' at %s", dbName, dbDirPath));
+                        }
+                        orient.close();
+                    } catch (Exception e) {
+                        LOGGER.error(String.format("Failed to create database '%s': %s", dbName, e.getMessage()), e);
+                        // Fall back to directory creation
+                        LOGGER.info(String.format("Creating database directory for storage '%s': %s", storage.name, dbDirPath));
+                        dbDir.mkdirs();
+                        LOGGER.info(String.format("Database directory created: %s", dbDirPath));
+                    }
+                } else {
+                    LOGGER.info(String.format("Database directory already exists for storage '%s': %s", storage.name, dbDirPath));
+                }
+            }
+        }
 
         (this.vocabRepo = VocabularyRepository.getInstance()).setOrientDbServer(this.dbServer);
         this.vocabRepo.setPrimaryNodeCredentials(this.buildRepositoryConnectionInfo(this.dbServerConfig.storages[0]));
@@ -180,7 +224,13 @@ public class DynamicVocabServiceImpl extends AbstractVocabService implements Dyn
 
         this.vocabRepo.getValueSetCodeLoaders().putAll(this.valueSetCodeLoaders);
 
+        if (this.forceLoad) {
+            this.recreateStorageDatabase(this.dbServerConfig.storages[0]);
+        }
+
+        LOGGER.info("Initializing database connection pools...");
         this.vocabRepo.initializeDbConnectionPools();
+        LOGGER.info("Database connection pools initialized successfully");
 
         if (!dbPrimaryStorageExists || this.forceLoad) {
             String codeRepoDirPath = this.codeRepoDir.getPath(), valueSetRepoPath = this.valueSetRepoDir.getPath();
@@ -209,6 +259,73 @@ public class DynamicVocabServiceImpl extends AbstractVocabService implements Dyn
         super.afterPropertiesSet();
     }
 
+    private void recreateStorageDatabase(OServerStorageConfiguration storage) {
+        String storagePath = storage.path;
+
+        if (!storagePath.startsWith("plocal:")) {
+            return;
+        }
+
+        String dbDirPath = storagePath.substring("plocal:".length());
+        File dbDir = new File(dbDirPath);
+        String dbName = storage.name;
+        File baseDirFile = dbDir.getParentFile();
+
+        if (baseDirFile == null) {
+            LOGGER.warn(String.format("Unable to recreate storage '%s': cannot determine base directory from path=%s", dbName, dbDirPath));
+            return;
+        }
+
+        String baseDir = baseDirFile.getPath();
+
+        try (OrientDB orient = new OrientDB("embedded:" + baseDir, OrientDBConfig.defaultConfig())) {
+            if (orient.exists(dbName)) {
+                orient.drop(dbName);
+                LOGGER.info(String.format("Dropped existing OrientDB database '%s' at %s for force reload.", dbName, dbDirPath));
+            }
+
+            orient.create(dbName, ODatabaseType.PLOCAL);
+            LOGGER.info(String.format("Recreated OrientDB database '%s' at %s for force reload.", dbName, dbDirPath));
+        } catch (Exception e) {
+            LOGGER.warn(String.format("Failed to recreate database '%s' using OrientDB API; falling back to directory cleanup (%s).", dbName,
+                e.getMessage()));
+
+            try {
+                this.deleteDirectory(dbDir.toPath());
+
+                if (!dbDir.mkdirs() && !dbDir.isDirectory()) {
+                    LOGGER.warn(String.format("Unable to recreate storage directory after cleanup: %s", dbDirPath));
+                } else {
+                    LOGGER.info(String.format("Recreated storage directory after cleanup: %s", dbDirPath));
+                }
+            } catch (IOException ioEx) {
+                LOGGER.error(String.format("Unable to cleanup storage directory for database '%s' at %s", dbName, dbDirPath), ioEx);
+            }
+        }
+    }
+
+    private void deleteDirectory(Path dirPath) throws IOException {
+        if (!Files.exists(dirPath)) {
+            return;
+        }
+
+        try (java.util.stream.Stream<Path> walk = Files.walk(dirPath)) {
+            walk.sorted(Comparator.reverseOrder()).forEach(path -> {
+                try {
+                    Files.deleteIfExists(path);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        } catch (RuntimeException e) {
+            if (e.getCause() instanceof IOException) {
+                throw ((IOException) e.getCause());
+            }
+
+            throw e;
+        }
+    }
+
     @SuppressWarnings({ CompilerWarnings.UNCHECKED })
     private static Map<String, String> buildParameters(Entry<String, String> ... entries) {
         return CrigttStreamUtils.toMap(() -> new LinkedHashMap<>(entries.length), Stream.of(entries));
@@ -228,8 +345,13 @@ public class DynamicVocabServiceImpl extends AbstractVocabService implements Dyn
 
     private VocabularyRepositoryConnectionInfo buildRepositoryConnectionInfo(OServerStorageConfiguration dbStorage) {
         VocabularyRepositoryConnectionInfo repoConnInfo = new VocabularyRepositoryConnectionInfo();
-        repoConnInfo.setConnectionInfo((CrigttDbPaths.REMOTE_PROTOCOL_PREFIX + this.dbServerConfig.getIpAddress() + CrigttDbPaths.SERVER_DELIM
-            + this.dbServerConfig.getPort() + CrigttDbPaths.DELIM + dbStorage.name));
+        String connectionInfo = CrigttDbPaths.REMOTE_PROTOCOL_PREFIX + this.dbServerConfig.getIpAddress() + CrigttDbPaths.SERVER_DELIM
+            + this.dbServerConfig.getPort() + CrigttDbPaths.DELIM + dbStorage.name;
+        
+        LOGGER.info(String.format("Building repository connection: dbStorage.name=%s, dbStorage.path=%s, connectionInfo=%s", 
+            dbStorage.name, dbStorage.path, connectionInfo));
+        
+        repoConnInfo.setConnectionInfo(connectionInfo);
         repoConnInfo.setPassword(dbStorage.userPassword);
         repoConnInfo.setUsername(dbStorage.userName);
 

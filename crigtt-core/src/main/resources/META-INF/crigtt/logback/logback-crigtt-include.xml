@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+    <!-- PROPERTIES: CONSOLE -->
+    <property name="consoleEncPattern" value="${LOGGING_CONSOLE_ENC_PATTERN:-%pColor - %m%n%exRoot}"/>
+    <property name="consoleTarget" value="${LOGGING_CONSOLE_TARGET:-System.out}"/>
+    
+    <!-- PROPERTIES: FILE -->
+    <property name="fileDir" value="${LOGGING_FILE_DIR}"/>
+    <property name="fileName" value="${LOGGING_FILE_NAME}"/>
+    <property name="fileExt" value="${LOGGING_FILE_EXT:-.log}"/>
+    <property name="fileEncPattern" value="${LOGGING_FILE_ENC_PATTERN:-%d{yyyy-MM-dd HH:mm:ss z} [%C:%L %t] %p - %m%n%exRoot}"/>
+    <property name="fileSizeMax" value="${LOGGING_FILE_SIZE_MAX:-50MB}"/>
+    
+    <!-- CONVERSION RULES -->
+    <conversionRule conversionWord="exRoot" converterClass="gov.hhs.onc.crigtt.logging.impl.RootCauseThrowableProxyConverter"/>
+    <conversionRule conversionWord="pColor" converterClass="gov.hhs.onc.crigtt.logging.impl.PriorityColorCompositeConverter"/>
+    
+    <!-- STATUS LISTENERS -->
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener"/>
+    
+    <!-- APPENDER: CONSOLE -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${consoleEncPattern}</pattern>
+        </encoder>
+        <target>${consoleTarget}</target>
+        <withJansi>true</withJansi>
+    </appender>
+    
+    <!-- APPENDER: FILE -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${fileDir}/${fileName}${fileExt}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${fileDir}/${fileName}.%d{yyyy-MM-dd}.%i${fileExt}</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${fileSizeMax}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${fileEncPattern}</pattern>
+        </encoder>
+    </appender>
+    
+    <!-- LOGGERS: PROJECT -->
+    <logger name="gov.hhs.onc.crigtt" level="ALL" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </logger>
+   
+    <logger name="gov.hhs.onc.crigtt.data.cache.impl.CrigttCacheListener" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </logger>
+    
+    <logger name="gov.hhs.onc.crigtt.validate.vocab.impl.DynamicVocabServiceImpl" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </logger>
+    
+    <logger name="gov.hhs.onc.crigtt.validate.vocab.impl.StaticVocabServiceImpl" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </logger>
+    
+    <logger name="gov.hhs.onc.crigtt.xml.impl.CrigttJaxbMarshaller" level="WARN" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </logger>
+    
+    <!-- LOGGERS: ORIENT TECHNOLOGIES -->
+    <logger name="com.orientechnologies" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </logger>
+    
+    <!-- LOGGERS: EHCACHE -->
+    <logger name="net.sf.ehcache" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </logger>
+    
+    <!-- LOGGERS: SAXON -->
+    <logger name="net.sf.saxon" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </logger>
+    
+    <!-- LOGGERS: APACHE -->
+    <logger name="org.apache" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </logger>
+    
+    <!-- LOGGERS: APACHE CXF -->
+    <logger name="org.apache.cxf" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </logger>
+    
+    <!-- LOGGERS: SITENV -->
+    <logger name="org.sitenv" level="ALL" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </logger>
+    
+    <!-- LOGGERS: SPRING FRAMEWORK -->
+    <logger name="org.springframework" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </logger>
+    
+    <logger name="org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker" level="WARN" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </logger>
+    
+    <!-- ROOT LOGGER -->
+    <root level="WARN">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</included>
